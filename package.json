@@ -1,0 +1,38 @@
+{
+    "name": "background",
+    "displayName": "background",
+    "description": "A simple tool to make your vscode's background look better!",
+    "version": "1.0.1",
+    "publisher": "shalldie",
+    "engines": {
+        "vscode": "^0.10.1"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:extension.background.reset",
+        "onCommand:extension.background.setImgs",
+        "onCommand:extension.background.uninstall"
+    ],
+    "main": "./extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.background.reset",
+                "title": "Background - Set as default. (设置为默认)"
+            },
+            {
+                "command": "extension.background.setImgs",
+                "title": "Background - Personalization! (个性化,自选图片)"
+            },
+            {
+                "command": "extension.background.uninstall",
+                "title": "Background - Remove the background. (删除背景)"
+            }
+        ]
+    },
+    "devDependencies": {
+        "vscode": "0.10.x"
+    }
+}
