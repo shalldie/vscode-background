@@ -2,10 +2,15 @@
     "name": "background",
     "displayName": "background",
     "description": "A simple tool to make your vscode's background look better!",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "publisher": "shalldie",
     "engines": {
         "vscode": "^0.10.1"
+    },
+    "icon": "images/spellIcon.svg",
+    "galleryBanner": {
+        "color": "#fff",
+        "theme": "light"
     },
     "categories": [
         "Other"
