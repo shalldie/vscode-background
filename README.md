@@ -3,6 +3,8 @@
 ## Add a lovely background-image to your vscode.
  <br />
 
+### 暂时只在win7，win10 上面测试过，请谨慎使用 0.0，不过玩不坏的
+
 ### It looks like:
  <br />
 ![](https://raw.githubusercontent.com/shalldie/vscode-background/master/gif/show.gif)
