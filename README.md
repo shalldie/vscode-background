@@ -2,6 +2,7 @@
 
 ## Add a lovely background-image to your vscode.
  <br />
+### Cross all themes! 已支持所有主题！
 
 ### 暂时只在win7，win10 上面测试过，请谨慎使用 0.0，不过玩不坏的
 
