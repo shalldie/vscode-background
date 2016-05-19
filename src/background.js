@@ -18,7 +18,8 @@ function search() {
             vshelp.showStatusBar('Search is complated.', 3000);
             if (error) {
                 console.log(error);
-                vshelp.showError('Unknown error!  Please enter the path by yourself.')
+                // vshelp.showError('Unknown error!  Please enter the path by yourself.')
+                vshelp.showStatusBar('Query error!  Please enter the path by yourself.(没找到安装目录，请自己输入吧...)', 10000);
                 reject(error);
                 return;
             }
