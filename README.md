@@ -19,3 +19,10 @@ Press F1,and you can get it by enter **ext install background** in your vscode. 
 *** 
 
 **Enjoy!**
+
+## 想了想，需要加个日志，就从这次开始吧，，I decide to add a log by now.
+
+#### 2016/8/11
+    修复vscode1.4下不能使用的问题。
+
+

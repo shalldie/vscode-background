@@ -123,8 +123,12 @@ function uninstall() {
 function createLoader(arr) {            //创建脚本入口文件
     var html = fs.readFileSync(path.join(__dirname, 'ext-loader.js'), 'utf-8');
     var index = 0;
+    if (!arr) {
+        arr = require('./defSrc');
+    }
+
     if (arr && arr.length) {                                                //修改background-image
-        html = html.replace(/url\((\S+?)\)/g, function (g0, g1) {
+        html = html.replace(/url\((\S*?)\)/g, function (g0, g1) {
             var url = arr[index++];
             return url ? `url(${url})` : 'none';
         });
