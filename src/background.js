@@ -6,6 +6,7 @@ var vshelp = require('./vshelp');
 var path = require('path');
 var fs = require('fs');
 var child = require('child_process');
+var os = require('os');
 
 var dirPath = "";     //主要文件夹路径
 var indexPath = "";   //electron入口html
@@ -17,8 +18,8 @@ function search() {
         child.exec('reg query HKEY_CLASSES_ROOT\\*\\shell\\VSCode /v Icon', function (error, strOut, strError) {
             vshelp.showStatusBar('Search is complated.', 3000);
             if (error) {
-                console.log(error);
-                vshelp.showStatusBar('Query error!  Please enter the path by yourself.(没找到安装目录，请自己输入吧...)', 10000);
+                // console.log(error);
+                vshelp.showStatusBar('Please enter the path by yourself.(没找到安装目录，请自己输入吧...)', 10000);
                 reject(error);
                 return;
             }
@@ -37,7 +38,7 @@ function init(value, arr, noAction) {      //逻辑入口
     return vshelp.prompt({
         value: value || "",
         prompt: "Please enter the path of your vscode (请输入您的vscode安装目录)",
-        placeHolder: "for example(比如)： E:\\Microsoft VS Code"
+        placeHolder: "like:(windows)E:\\Microsoft VS Code | (os x)/Users/**/Desktop/Visual Studio Code.app"
     }).then(baseUrl => {
         if (!baseUrl) return;
 
@@ -57,8 +58,19 @@ function init(value, arr, noAction) {      //逻辑入口
 
 
 function judgePath(inputPath) {  //校验并填充路径
+    var mainFilePath = 'resources\\app\\out\\vs\\workbench\\electron-browser';
 
-    var _dirPath = path.join(inputPath, 'resources\\app\\out\\vs\\workbench\\electron-browser');
+    var osArr = ['win32', 'darwin'],
+        osIndex = osArr.indexOf(os.platform());
+
+    if (osIndex == 0) {    // windows
+        mainFilePath = 'resources\\app\\out\\vs\\workbench\\electron-browser';
+    }
+    else if (osIndex == 1) {   // mac 
+        mainFilePath = 'Contents/resources/app/out/vs/workbench/electron-browser';
+    }
+
+    var _dirPath = path.join(inputPath, mainFilePath);
 
     if (!judgeDirPath(_dirPath)) return false;
     dirPath = _dirPath;

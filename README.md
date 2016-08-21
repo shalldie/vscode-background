@@ -2,9 +2,14 @@
 
 ## Add a lovely background-image to your vscode.
  <br />
-### Cross all themes! 已支持所有主题！
+### Cross all themes! 已支持所有主题！ 
 
-### 暂时只在win7，win10 上面测试过，请谨慎使用 0.0，不过玩不坏的
+### windows 与 os x 已经测试，欢迎品尝.
+
+### Press F1 and chose the command. 请按下 F1 去选择指令。
+ <br />
+![](https://raw.githubusercontent.com/shalldie/vscode-background/master/gif/command.png)
+
 
 ### It looks like:
  <br />
@@ -24,5 +29,8 @@ Press F1,and you can get it by enter **ext install background** in your vscode. 
 
 #### 2016/8/11
     修复vscode1.4下不能使用的问题。
+
+#### 2016/8/21
+    买了一台mac...于是把mac支持了。感谢 [@asteryk](https://github.com/shalldie/vscode-background/issues/2)  :D
 
 
