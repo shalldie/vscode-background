@@ -2,7 +2,7 @@
     "name": "background",
     "displayName": "background",
     "description": "A simple tool to make your vscode's background look better!",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "publisher": "shalldie",
     "engines": {
         "vscode": "^1.0.0"
@@ -12,9 +12,10 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.background.reset",
-        "onCommand:extension.background.setImgs",
-        "onCommand:extension.background.uninstall"
+        "*"
+        // "onCommand:extension.background.reset",
+        // "onCommand:extension.background.setImgs",
+        // "onCommand:extension.background.uninstall"
     ],
     "main": "./extension",
     "contributes": {

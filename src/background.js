@@ -25,7 +25,9 @@ function removeOld() {
         fs.writeFileSync(indexPath, html, 'utf-8');
 
         console.log('删除成功...');
+        return 1;
     }
+    return 0;
 }
 
 /**
@@ -47,16 +49,9 @@ function installImg(arr) {
  */
 function uninstallImg() {
     var content = fs.readFileSync(vscodePath.cssPath, 'utf-8');
-    content = content.replace(/\/*css-background-start*\/[\s\S]*?\/*css-background-end*\//, '');
+    content = content.replace(/\/\*css-background-start\*\/[\s\S]*?\/\*css-background-end\*\//, '');
+    content = content.replace(/\s*$/, '');
     fs.writeFileSync(vscodePath.cssPath, content, 'utf-8');
-}
-
-
-/**
- * 运行vscode时，进行的初步检测
- */
-function firstLoad() {
-
 }
 
 module.exports = {

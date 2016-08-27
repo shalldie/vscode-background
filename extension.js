@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 var vscode = require('vscode');
-var background = require('./src/background');
+var controller = require('./src/controller');
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -15,17 +15,19 @@ function activate(context) {
     // Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
 
+    controller.firstLoad();
 
-    var disposableReset = vscode.commands.registerCommand('extension.background.reset', function() {
 
+    var disposableReset = vscode.commands.registerCommand('extension.background.reset', function () {
+        controller.reset();
     });
 
-    var disposableSetImgs = vscode.commands.registerCommand('extension.background.setImgs', function() {
-
+    var disposableSetImgs = vscode.commands.registerCommand('extension.background.setImgs', function () {
+        controller.setImgs();
     });
 
-    var disposableUninstall = vscode.commands.registerCommand('extension.background.uninstall', function() {
-
+    var disposableUninstall = vscode.commands.registerCommand('extension.background.uninstall', function () {
+        controller.uninstall();
     });
 
     context.subscriptions.push(disposableReset);
@@ -35,5 +37,5 @@ function activate(context) {
 exports.activate = activate;
 
 // this method is called when your extension is deactivated
-function deactivate() {}
+function deactivate() { }
 exports.deactivate = deactivate;

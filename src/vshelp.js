@@ -40,10 +40,24 @@ class VsHelp {
      * 
      * @static
      * @param {any} content
-     * @returns promise
+     * @returns
      */
     static showInfo(content) {
         return vscode.window.showInformationMessage(content);
+    }
+
+    /**
+     * 提示完信息就重启
+     * 
+     * @static
+     * @param {any} content
+     */
+    static showInfoRestart(content) {
+        vscode.window.showInformationMessage(content, { title: "Restart vscode" })
+            .then(function (item) {
+                if (!item) return;
+                vscode.commands.executeCommand('workbench.action.reloadWindow');
+            });
     }
 
     /**
