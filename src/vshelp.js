@@ -1,13 +1,20 @@
-
 var vscode = require('vscode');
 
-var statusBar;  //左下角提示框，单例
-
-// vscode 辅助类
+/**
+ * 提示辅助工具类
+ * 
+ * @class VsHelp
+ */
 class VsHelp {
 
-    //提示框，return thenable
-    static prompt(options) {   //输入框
+    /**
+     * 输入框
+     * 
+     * @static
+     * @param {any} options
+     * @returns promise
+     */
+    static prompt(options) {
         // options:
         // {
         //     password?: boolean                            是否密文
@@ -28,53 +35,41 @@ class VsHelp {
         return vscode.window.showInputBox(options);
     }
 
-    static showInfo(content) {  //信息提示框
+    /**
+     * 信息提示框
+     * 
+     * @static
+     * @param {any} content
+     * @returns
+     */
+    static showInfo(content) {
         return vscode.window.showInformationMessage(content);
     }
 
-    static showError(error) {  //错误提示框
+    /**
+     * 提示完信息就重启
+     * 
+     * @static
+     * @param {any} content
+     */
+    static showInfoRestart(content) {
+        vscode.window.showInformationMessage(content, { title: "Restart vscode" })
+            .then(function (item) {
+                if (!item) return;
+                vscode.commands.executeCommand('workbench.action.reloadWindow');
+            });
+    }
+
+    /**
+     * 错误提示框
+     * 
+     * @static
+     * @param {any} error
+     * @returns promise
+     */
+    static showError(error) {
         return vscode.window.showErrorMessage(error);
     }
-
-    // 左下角状态信息  return thenable
-    static showStatusBar(content, delay) {
-        if (!statusBar) statusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
-
-        var time = +new Date
-        statusBar.time = time;  //时间戳，闭包用来检测是否最后一次操作
-
-        statusBar.text = content;
-        statusBar.show();
-
-        if (!delay) {   //如果没有持续时间
-            return new Promise(resolve => resolve());
-        }
-
-        return new Promise(resolve => {
-            setTimeout(() => {
-                resolve();
-            }, delay);
-        }).then(() => {
-            if (statusBar.time != time) return;  //只以最后一次操作为准
-            statusBar.text = "";
-            statusBar.hide();
-        });
-    }
-
-    // 选择菜单
-
-    static showQuickPick() {
-        var QuickPickItem = vscode.QuickPickItem;
-        var item = new QuickPickItem();
-        // vscode.showQuickPick(['hello'],)
-    }
-
-    static dispose() {
-        if (statusBar) {
-            statusBar.dispose();
-        }
-    }
-
 }
 
 module.exports = VsHelp;

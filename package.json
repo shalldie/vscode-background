@@ -5,16 +5,17 @@
     "version": "1.0.9",
     "publisher": "shalldie",
     "engines": {
-        "vscode": "^0.10.1"
+        "vscode": "^1.0.0"
     },
     "icon": "gif/logo.png",
     "categories": [
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.background.reset",
-        "onCommand:extension.background.setImgs",
-        "onCommand:extension.background.uninstall"
+        "*"
+        // "onCommand:extension.background.reset",
+        // "onCommand:extension.background.setImgs",
+        // "onCommand:extension.background.uninstall"
     ],
     "main": "./extension",
     "contributes": {
@@ -33,7 +34,10 @@
             }
         ]
     },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
     "devDependencies": {
-        "vscode": "0.10.x"
+        "vscode": "^0.11.0"
     }
 }
