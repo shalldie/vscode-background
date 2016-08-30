@@ -1,5 +1,5 @@
 var background = require('./background');
-var vsHelp = require('./vshelp');
+var vsHelp = require('./vsHelp');
 var fs = require('fs');
 var path = require('path');
 
