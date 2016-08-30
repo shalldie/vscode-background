@@ -1,5 +1,9 @@
 # vscode-background
 
+[![Version](http://vsmarketplacebadge.apphb.com/version/shalldie.background.svg)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[![Installs](http://vsmarketplacebadge.apphb.com/installs/shalldie.background.svg)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[![Ratings](https://vsmarketplacebadge.apphb.com/rating/shalldie.background.svg)](https://vsmarketplacebadge.apphb.com/rating/shalldie.background.svg)
+
 ## Add a lovely background-image to your vscode.
  <br />
 ### Cross all themes, cross most os! 已支持所有主题，大部分操作系统(window,os x,linux?)！ 
