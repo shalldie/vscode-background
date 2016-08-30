@@ -6,6 +6,11 @@
 
 ### windows 与 os x 已经测试，欢迎品尝.
 
+
+GitHub: [https://github.com/shalldie/vscode-background](https://github.com/shalldie/vscode-background)
+
+Vscode Market: [https://marketplace.visualstudio.com/items?itemName=shalldie.background](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+
 ### Press F1 and chose the command. 请按下 F1 去选择指令。
  <br />
 ![](https://raw.githubusercontent.com/shalldie/vscode-background/master/gif/command.png)
@@ -36,4 +41,7 @@ Press F1,and you can get it by enter **ext install background** in your vscode. 
 ### 2016/8/27
     重写了所有代码。  可以自动获取vscode安装目录，去除注入js的方式，改为直接修改css。
     windows 跟 mac 已经完全支持。  Linux 相信也没问题，，，但是这个我无法测试，ahaha。
+
+### 2016/8/30
+    之前文件名写错了...导致在linux下出错。 Sorry ... 该版本已修复.
 
