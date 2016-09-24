@@ -35,9 +35,9 @@ function removeOld() {
  * 
  * @param {any} arr
  */
-function installImg(arr) {
+function installImg(arr, randChoice) {
     uninstallImg();
-    var content = getCss(arr).replace(/\s*$/, ''); // 去除末尾空白
+    var content = getCss(arr, randChoice).replace(/\s*$/, ''); // 去除末尾空白
 
     var cssContent = fs.readFileSync(vscodePath.cssPath, 'utf-8') + content;
 
