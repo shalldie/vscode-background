@@ -28,6 +28,10 @@
             {
                 "command": "extension.background.uninstall",
                 "title": "Background - Remove the background. (删除背景)"
+            },
+            {
+                "command": "extension.background.changeRandChoice",
+                "title": "Background - Open or close the randChoice function. (开关图片随机位置功能)"
             }
         ]
     },

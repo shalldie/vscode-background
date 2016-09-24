@@ -15,8 +15,7 @@ function activate(context) {
     // Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
 
-    controller.firstLoad();
-
+    controller.onActive();
 
     var disposableReset = vscode.commands.registerCommand('extension.background.reset', function () {
         controller.reset();
@@ -30,9 +29,14 @@ function activate(context) {
         controller.uninstall();
     });
 
+    var disposableChangeRandChoice = vscode.commands.registerCommand('extension.background.changeRandChoice', function () {
+        controller.changeRandChoice();
+    });
+
     context.subscriptions.push(disposableReset);
     context.subscriptions.push(disposableSetImgs);
     context.subscriptions.push(disposableUninstall);
+    context.subscriptions.push(disposableChangeRandChoice);
 }
 exports.activate = activate;
 
