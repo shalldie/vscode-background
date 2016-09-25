@@ -18,18 +18,31 @@
     "contributes": {
         "commands": [
             {
-                "command": "extension.background.reset",
-                "title": "Background - Set as default. (设置为默认)"
-            },
-            {
-                "command": "extension.background.setImgs",
-                "title": "Background - Personalization! (个性化,自选图片)"
-            },
-            {
-                "command": "extension.background.uninstall",
-                "title": "Background - Remove the background. (删除背景)"
+                "command": "extension.background.info",
+                "title": "Background - Info"
             }
-        ]
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "Plugin background config. background 插件配置",
+            "properties": {
+                "background.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Plugin background enabled.background 插件是否启用"
+                },
+                "background.useDefault": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Use default images.使用默认图片"
+                },
+                "background.cunstomImages": {
+                    "type": "array",
+                    "default": [],
+                    "description": "Your custom Images(Max length is 3). 自己定制背景图，最多3个"
+                }
+            }
+        }
     },
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install"

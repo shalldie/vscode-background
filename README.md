@@ -10,14 +10,16 @@
 
 ### windows 与 os x 已经测试，欢迎品尝.
 
+### Be sure to have administrator authority！！ 如果不能使用，请确保你有管理员权限！！
+
 
 GitHub: [https://github.com/shalldie/vscode-background](https://github.com/shalldie/vscode-background)
 
 Vscode Market: [https://marketplace.visualstudio.com/items?itemName=shalldie.background](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
-### Press F1 and chose the command. 请按下 F1 去选择指令。
+### U can config yourself background in settings.json .  在setting.json中，可以对background插件进行配置。
  <br />
-![](https://raw.githubusercontent.com/shalldie/vscode-background/master/gif/command.png)
+![](https://raw.githubusercontent.com/shalldie/vscode-background/master/gif/settings.png)
 
 
 ### It looks like:
@@ -49,3 +51,7 @@ Press F1,and you can get it by enter **ext install background** in your vscode. 
 ### 2016/8/30
     之前文件名写错了...导致在linux下出错。 Sorry ... 该版本已修复.
 
+### 2016/9/26
+    1.将输入框改成配置文件 setting.json
+    2.图片路径注入对时候，进行 encodeURI 编码，并用引号扩起来
+    3.其它部分代码优化和更改

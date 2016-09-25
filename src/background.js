@@ -1,61 +1,164 @@
 var fs = require('fs');
 var path = require('path');
 
-var getCss = require('./getCss');
-var vscodePath = require('./vscodePath');
+var vscode = require('vscode');
+
+var getCss = require('./getCss'); // css template
+var vscodePath = require('./vscodePath'); // 路径文件
+var version = require('./version');  // 版本
+var vsHelp = require('./vsHelp'); // vsHelp 辅助类
 
 /**
- * 移除旧版本文件
- */
-function removeOld() {
-    var loaderPath = path.join(vscodePath.indexDir, 'ext-loader.js'); // ext-loader.js 的路径
-
-    if (fs.existsSync(loaderPath)) { // 如果之前安装过旧版本，则移除
-        console.log('安装过旧版本，移除');
-
-        fs.unlinkSync(loaderPath);
-
-        console.log('删除成功...');
-
-        console.log('删除原来文件入口 index.html 中的内容');
-
-        var indexPath = path.join(vscodePath.indexDir, 'index.html');
-        var html = fs.readFileSync(indexPath, 'utf-8'); // 入口文件的内容
-        html = html.replace(/<!--extstart-->[\s\S]*?<!--extend-->/, ''); // 移除旧插件植入的script
-        fs.writeFileSync(indexPath, html, 'utf-8');
-
-        console.log('删除成功...');
-        return 1;
-    }
-    return 0;
-}
-
-/**
- * 载入图片
+ * 主流程控制类
  * 
- * @param {any} arr
+ * @class Background
  */
-function installImg(arr) {
-    uninstallImg();
-    var content = getCss(arr).replace(/\s*$/, ''); // 去除末尾空白
+class Background {
 
-    var cssContent = fs.readFileSync(vscodePath.cssPath, 'utf-8') + content;
+    /**
+     * Creates an instance of Background.
+     * 
+     * 
+     * @memberOf Background
+     */
+    constructor() {
+        this.init();
+    }
 
-    fs.writeFileSync(vscodePath.cssPath, cssContent, 'utf-8');
+
+    /**
+     *  初始化
+     * 
+     * 
+     * @memberOf Background
+     */
+    init() {
+        var firstLoad = this.firstLoad(); // 检查是否刚刚安装
+
+        var ifOld = this.removeOld(); // 是否存在过时文件
+
+        var config = vscode.workspace.getConfiguration('background');  // 用户配置
+
+        this.lastConfig = config; // 当前的配置
+
+        if (firstLoad) { // 第一次默认安装
+            this.install(firstLoad);
+        }
+
+
+        // 监测配置文件
+        var subscriptions = [];
+
+        vscode.workspace.onDidChangeConfiguration(this.install, this, subscriptions);
+
+        this.disposable = vscode.Disposable.from(subscriptions);
+
+
+    }
+
+    /**
+     * 是否刚刚安装background插件
+     * 
+     * @returns boolean
+     * 
+     * @memberOf Background
+     */
+    firstLoad() {
+        var configPath = path.join(__dirname, 'config', 'config.json');
+        var info = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+        if (info.firstload) {
+            // var hasOld = this.removeOld();
+            // var content = hasOld ? 'Ver. old uninstalled. ' : '';
+
+            vsHelp.showInfo('Welcome to use background! U can config it in settings.json.');
+            info.firstload = false;
+            fs.writeFileSync(configPath, JSON.stringify(info, null, '    '), 'utf-8');
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * 移除旧版本
+     * 
+     * @returns 是否存在旧版本
+     * 
+     * @memberOf Background
+     */
+    removeOld() {
+        var cssContent = fs.readFileSync(vscodePath.cssPath, 'utf-8'); // css 文件内容
+
+        var ifVerOld = !!~cssContent.indexOf(`/*background.ver.${version}*/`); // 版本是否过时
+
+        if (ifVerOld) {  // 如果版本过时，则卸载
+            this.uninstall();
+            console.log('删除旧版本');
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
+     * 安装背景图
+     * 
+     * 
+     * @memberOf Background
+     */
+    install(firstload) {
+        var lastConfig = this.lastConfig; // 之前的配置
+        var config = vscode.workspace.getConfiguration('background');  // 用户配置
+
+        // 如果配置文件改变到时候，当前插件配置没有改变，则返回
+        if (!firstload && JSON.stringify(lastConfig) == JSON.stringify(config)) {
+            console.log('配置文件未改变.')
+            return;
+        }
+
+        // 之后到操作有两种：1.初次加载  2.配置文件改变 
+
+        if (!lastConfig.enabled && !config.enabled) {  // 如果此时仍然为未启用状态，只是修改图片路径
+            return;
+        }
+
+        this.lastConfig = config; // 更新最新配置
+
+        if (!config.enabled) {  // 关闭插件
+            this.uninstall();
+            vsHelp.showInfoRestart('Background has been uninstalled! Please restart.');
+            return;
+        }
+
+        var arr = [];  // 默认图片
+
+        if (!config.useDefault) { // 自定义图片
+            arr = config.cunstomImages;
+        }
+
+        var content = getCss(arr).replace(/\s*$/, ''); // 去除末尾空白
+
+        var cssContent = fs.readFileSync(vscodePath.cssPath, 'utf-8') + content;
+
+        fs.writeFileSync(vscodePath.cssPath, cssContent, 'utf-8');
+        vsHelp.showInfoRestart('Background has been changed! Please restart.');
+    }
+
+    /**
+     * 卸载背景图
+     * 
+     * 
+     * @memberOf Background
+     */
+    uninstall() {
+        var content = fs.readFileSync(vscodePath.cssPath, 'utf-8');
+        content = content.replace(/\/\*css-background-start\*\/[\s\S]*?\/\*css-background-end\*\//, '');
+        content = content.replace(/\s*$/, '');
+        fs.writeFileSync(vscodePath.cssPath, content, 'utf-8');
+    }
+
+
 }
 
-/**
- * 删除图片
- */
-function uninstallImg() {
-    var content = fs.readFileSync(vscodePath.cssPath, 'utf-8');
-    content = content.replace(/\/\*css-background-start\*\/[\s\S]*?\/\*css-background-end\*\//, '');
-    content = content.replace(/\s*$/, '');
-    fs.writeFileSync(vscodePath.cssPath, content, 'utf-8');
-}
-
-module.exports = {
-    removeOld: removeOld,
-    installImg: installImg,
-    uninstallImg: uninstallImg
-};
+module.exports = Background;
