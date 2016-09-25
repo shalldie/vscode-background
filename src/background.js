@@ -90,7 +90,7 @@ class Background {
     removeOld() {
         var cssContent = fs.readFileSync(vscodePath.cssPath, 'utf-8'); // css 文件内容
 
-        var ifVerOld = !!~cssContent.indexOf(`/*background.ver.${version}*/`); // 版本是否过时
+        var ifVerOld = !~cssContent.indexOf(`background.ver.${version}`); // 版本是否过时
 
         if (ifVerOld) {  // 如果版本过时，则卸载
             this.uninstall();
