@@ -35,14 +35,14 @@ class Background {
     init() {
         var firstLoad = this.firstLoad(); // 检查是否刚刚安装
 
-        var ifOld = this.removeOld(); // 是否存在过时文件
+        var ifOld = this.removeOld(); // 是否存在过时文件，或者样式表中无数据
 
         var config = vscode.workspace.getConfiguration('background');  // 用户配置
 
         this.lastConfig = config; // 当前的配置
 
-        if (firstLoad) { // 第一次默认安装
-            this.install(firstLoad);
+        if (firstLoad || ifOld) { // 第一次默认安装，如果样式表无数据也进行安装检测
+            this.install(true);
         }
 
 
@@ -83,7 +83,7 @@ class Background {
     /**
      * 移除旧版本
      * 
-     * @returns 是否存在旧版本
+     * @returns 是否存在旧版本，或者未安装
      * 
      * @memberOf Background
      */

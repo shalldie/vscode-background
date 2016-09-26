@@ -6,16 +6,16 @@
 
 ## Add a lovely background-image to your vscode.
  <br />
-### Cross all themes, cross most os! 已支持所有主题，大部分操作系统(window,os x,linux?)！ 
-
-### windows 与 os x 已经测试，欢迎品尝.
-
-### Be sure to have administrator authority！！ 如果不能使用，请确保你有管理员权限！！
-
-
+ 
 GitHub: [https://github.com/shalldie/vscode-background](https://github.com/shalldie/vscode-background)
 
 Vscode Market: [https://marketplace.visualstudio.com/items?itemName=shalldie.background](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+
+### Cross all themes, cross most os! 已支持所有主题，大部分操作系统(window,os x,linux)！ 
+
+### Be sure to have administrator authority！！ 如果不能使用，请确保你有管理员权限！！
+
+authority in ubuntu:[https://github.com/shalldie/vscode-background/issues/6](https://github.com/shalldie/vscode-background/issues/6)
 
 ### U can config yourself background in settings.json .  在setting.json中，可以对background插件进行配置。
  <br />
@@ -55,3 +55,6 @@ Press F1,and you can get it by enter **ext install background** in your vscode. 
     1.将输入框改成配置文件 setting.json
     2.图片路径注入对时候，进行 encodeURI 编码，并用引号扩起来
     3.其它部分代码优化和更改
+
+### 2016/9/26  11:57
+    vscode升级会覆盖原css，添加处理，再次覆盖回去。。。
