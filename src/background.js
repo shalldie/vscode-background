@@ -43,6 +43,8 @@ class Background {
 
         if (firstLoad || ifOld) { // 第一次默认安装，如果样式表无数据也进行安装检测
             this.install(true);
+        } else if (config.enabled && config.randomOrder) {
+            this.randomOrder(config);  // 随机改变背景图片顺序
         }
 
 
@@ -134,10 +136,10 @@ class Background {
         var arr = [];  // 默认图片
 
         if (!config.useDefault) { // 自定义图片
-            arr = config.cunstomImages;
+            arr = config.customImages;
         }
 
-        var content = getCss(arr).replace(/\s*$/, ''); // 去除末尾空白
+        var content = getCss(arr, config.randomOrder).replace(/\s*$/, ''); // 去除末尾空白
 
         var cssContent = fs.readFileSync(vscodePath.cssPath, 'utf-8') + content;
 
@@ -159,6 +161,18 @@ class Background {
     }
 
 
+    /**
+     * 随机顺序
+     */
+    randomOrder(config) {
+        this.uninstall();
+
+        var cssContent = fs.readFileSync(vscodePath.cssPath, 'utf-8');
+        cssContent = cssContent.replace(/\/\*css-background-start\*\/[\s\S]*?\/\*css-background-end\*\//g, '');
+        cssContent = cssContent.replace(/\s*$/, '');
+        cssContent += getCss(config.useDefault ? [] : config.customImages, config.randomOrder).replace(/\s*$/, '');
+        fs.writeFileSync(vscodePath.cssPath, cssContent, 'utf-8');
+    }
 }
 
 module.exports = Background;

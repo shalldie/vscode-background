@@ -36,10 +36,15 @@
                     "default": true,
                     "description": "Use default images.使用默认图片"
                 },
-                "background.cunstomImages": {
+                "background.customImages": {
                     "type": "array",
                     "default": [],
-                    "description": "Your custom Images(Max length is 3). 自己定制背景图，最多3个"
+                    "description": "Your custom Images. 自己定制背景图"
+                },
+                "background.randomOrder": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Random background images order. 背景图片顺序随机"
                 }
             }
         }
