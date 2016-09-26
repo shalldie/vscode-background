@@ -153,7 +153,7 @@ class Background {
      */
     uninstall() {
         var content = fs.readFileSync(vscodePath.cssPath, 'utf-8');
-        content = content.replace(/\/\*css-background-start\*\/[\s\S]*?\/\*css-background-end\*\//, '');
+        content = content.replace(/\/\*css-background-start\*\/[\s\S]*?\/\*css-background-end\*\//g, '');
         content = content.replace(/\s*$/, '');
         fs.writeFileSync(vscodePath.cssPath, content, 'utf-8');
     }
