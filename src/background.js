@@ -134,7 +134,7 @@ class Background {
         var arr = [];  // 默认图片
 
         if (!config.useDefault) { // 自定义图片
-            arr = config.cunstomImages;
+            arr = config.customImages;
         }
 
         var content = getCss(arr).replace(/\s*$/, ''); // 去除末尾空白

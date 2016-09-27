@@ -2,7 +2,7 @@
     "name": "background",
     "displayName": "background",
     "description": "A simple tool to make your vscode's background look better!",
-    "version": "1.1.6",
+    "version": "1.1.7",
     "publisher": "shalldie",
     "engines": {
         "vscode": "^1.0.0"
@@ -36,7 +36,7 @@
                     "default": true,
                     "description": "Use default images.使用默认图片"
                 },
-                "background.cunstomImages": {
+                "background.customImages": {
                     "type": "array",
                     "default": [],
                     "description": "Your custom Images(Max length is 3). 自己定制背景图，最多3个"

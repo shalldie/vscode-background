@@ -58,3 +58,7 @@ Press F1,and you can get it by enter **ext install background** in your vscode. 
 
 ### 2016/9/26  11:57
     vscode升级会覆盖原css，添加处理，再次覆盖回去。。。
+
+### 2016/9/17 
+    将 cunstomImages 修改为 customImages
+    Please use customImages in your settings.json
