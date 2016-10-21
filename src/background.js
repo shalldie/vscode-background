@@ -132,9 +132,10 @@ class Background {
         }
 
         var arr = []; // 默认图片		
-
+        var size = [];
         if (!config.useDefault) { // 自定义图片
             arr = config.customImages;
+            size = config.size;
         }
 
         var opacity = config.opacityImages;
