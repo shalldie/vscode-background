@@ -35,13 +35,13 @@ module.exports = function(arr, opacity, size) {
     
 /*css-background-start*/
 /*background.ver.${version}*/
-[id='workbench.parts.editor']>.content>.one-editor-silo:nth-child(1) .overflow-guard>.monaco-scrollable-element{background:linear-gradient(to bottom, rgba(0,0,0,${opc}) 0%,rgba(0,0,0,${opc}) 100%), url('${img0}') no-repeat 100% 100%;
+[id='workbench.parts.editor']>.content>.one-editor-silo:nth-child(1) .overflow-guard>.monaco-scrollable-element{background:linear-gradient(to bottom, rgba(0,0,0,${opc}) 0%,rgba(0,0,0,${opc}) 100%), url('${img0}') no-repeat;
 	${position}${backSize}${sizeImg[0]};}
 
-[id='workbench.parts.editor']>.content>.one-editor-silo:nth-child(3) .overflow-guard>.monaco-scrollable-element{background:linear-gradient(to bottom, rgba(0,0,0,${opc}) 0%,rgba(0,0,0,${opc}) 100%), url('${img1}') no-repeat 100% 100%;
+[id='workbench.parts.editor']>.content>.one-editor-silo:nth-child(3) .overflow-guard>.monaco-scrollable-element{background:linear-gradient(to bottom, rgba(0,0,0,${opc}) 0%,rgba(0,0,0,${opc}) 100%), url('${img1}') no-repeat;
 	${position}${backSize}${sizeImg[1]};}
 
-[id='workbench.parts.editor']>.content>.one-editor-silo:nth-child(5) .overflow-guard>.monaco-scrollable-element{background:linear-gradient(to bottom, rgba(0,0,0,${opc}) 0%,rgba(0,0,0,${opc}) 100%), url('${img2}') no-repeat 100% 100%;
+[id='workbench.parts.editor']>.content>.one-editor-silo:nth-child(5) .overflow-guard>.monaco-scrollable-element{background:linear-gradient(to bottom, rgba(0,0,0,${opc}) 0%,rgba(0,0,0,${opc}) 100%), url('${img2}') no-repeat;
 	${position}${backSize}${sizeImg[2]};}
 
 [id='workbench.parts.editor']>.content>.one-editor-silo .monaco-editor>.overflow-guard>.monaco-scrollable-element>.monaco-editor-background{background: none;}
