@@ -12,6 +12,8 @@ GitHub: [https://github.com/shalldie/vscode-background](https://github.com/shall
 Vscode Market: [https://marketplace.visualstudio.com/items?itemName=shalldie.background](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
 ----------------------------------------------------------------------------------
+![](https://raw.githubusercontent.com/ArmanKurzhumbaev/vscode-background/master/gif/new_config.gif)
+----------------------------------------------------------------------------------
 ![](https://raw.githubusercontent.com/shalldie/vscode-background/master/gif/info.png)
 
     在vscode 1.6.1 的时候，出现了这个提示。你可以先点击【不再显示】.
