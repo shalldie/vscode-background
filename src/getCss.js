@@ -4,7 +4,7 @@ var version = require('./version');
 /**
  * 生成css样式
  */
-module.exports = function (arr) {
+module.exports = function(arr, opacity, size) {
     var img0, img1, img2;
 
     if (arr && arr.length) { // 如果传入的有参数
@@ -19,19 +19,27 @@ module.exports = function (arr) {
         img2 = defBase64[2];
     }
 
+    var opc;
+    if (opacity && opacity >= 0 && opacity <= 100) {
+        opc = opacity / 100;
+    } else {
+        opc = 0.7;
+    }
     var content = `
     
 /*css-background-start*/
 /*background.ver.${version}*/
-[id='workbench.parts.editor']>.content>.one-editor-silo:nth-child(1) .overflow-guard>.monaco-scrollable-element{background-image: url('${img0}');}
+[id='workbench.parts.editor']>.content>.one-editor-silo:nth-child(1) .overflow-guard>.monaco-scrollable-element{background:linear-gradient(to bottom, rgba(0,0,0,${opc}) 0%,rgba(0,0,0,${opc}) 100%), url('${img0}') no-repeat fixed;
+	background-position:center;background-size:${size[0]};}
 
-[id='workbench.parts.editor']>.content>.one-editor-silo:nth-child(3) .overflow-guard>.monaco-scrollable-element{background-image: url('${img1}');}
+[id='workbench.parts.editor']>.content>.one-editor-silo:nth-child(3) .overflow-guard>.monaco-scrollable-element{background:linear-gradient(to bottom, rgba(0,0,0,${opc}) 0%,rgba(0,0,0,${opc}) 100%), url('${img1}') no-repeat fixed;
+	background-position:center;background-size:${size[1]};}
 
-[id='workbench.parts.editor']>.content>.one-editor-silo:nth-child(5) .overflow-guard>.monaco-scrollable-element{background-image: url('${img2}');}
+[id='workbench.parts.editor']>.content>.one-editor-silo:nth-child(5) .overflow-guard>.monaco-scrollable-element{background:linear-gradient(to bottom, rgba(0,0,0,${opc}) 0%,rgba(0,0,0,${opc}) 100%), url('${img2}') no-repeat fixed;
+	background-position:center;background-size:${size[2]};}
 
 [id='workbench.parts.editor']>.content>.one-editor-silo .monaco-editor>.overflow-guard>.monaco-scrollable-element>.monaco-editor-background{background: none;}
 
-[id='workbench.parts.editor']>.content>.one-editor-silo .overflow-guard>.monaco-scrollable-element{background-position:100% 100%;background-repeat:no-repeat;}
 /*css-background-end*/
 `;
 
