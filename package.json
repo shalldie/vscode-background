@@ -16,12 +16,10 @@
     ],
     "main": "./extension",
     "contributes": {
-        "commands": [
-            {
-                "command": "extension.background.info",
-                "title": "Background - Info"
-            }
-        ],
+        "commands": [{
+            "command": "extension.background.info",
+            "title": "Background - Info"
+        }],
         "configuration": {
             "type": "object",
             "title": "Plugin background config. background 插件配置",
@@ -36,6 +34,16 @@
                     "default": true,
                     "description": "Use default images.使用默认图片"
                 },
+                "background.opacityImages": {
+                    "type": "integer",
+                    "default": 90,
+                    "description": "Custom opacity(0 - 100)"
+                },
+                "background.size": {
+                    "type": "array",
+                    "default": ["contain", "contain", "contain"],
+                    "description": "background-size property( CSS ) "
+                },
                 "background.customImages": {
                     "type": "array",
                     "default": [],
@@ -49,5 +57,10 @@
     },
     "devDependencies": {
         "vscode": "^0.11.0"
+    },
+    "__metadata": {
+        "id": "dee8df91-b82e-4d4c-a99a-872360b1d015",
+        "publisherId": "4b608099-52f9-4b35-bf6f-0ec7e2527248",
+        "publisherDisplayName": "shalldie"
     }
 }

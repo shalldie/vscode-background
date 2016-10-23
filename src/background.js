@@ -5,7 +5,7 @@ var vscode = require('vscode');
 
 var getCss = require('./getCss'); // css template
 var vscodePath = require('./vscodePath'); // 路径文件
-var version = require('./version');  // 版本
+var version = require('./version'); // 版本
 var vsHelp = require('./vsHelp'); // vsHelp 辅助类
 
 /**
@@ -37,7 +37,7 @@ class Background {
 
         var ifOld = this.removeOld(); // 是否存在过时文件，或者样式表中无数据
 
-        var config = vscode.workspace.getConfiguration('background');  // 用户配置
+        var config = vscode.workspace.getConfiguration('background'); // 用户配置
 
         this.lastConfig = config; // 当前的配置
 
@@ -92,7 +92,7 @@ class Background {
 
         var ifVerOld = !~cssContent.indexOf(`background.ver.${version}`); // 版本是否过时
 
-        if (ifVerOld) {  // 如果版本过时，则卸载
+        if (ifVerOld) { // 如果版本过时，则卸载
             this.uninstall();
             console.log('删除旧版本');
             return true;
@@ -109,7 +109,7 @@ class Background {
      */
     install(firstload) {
         var lastConfig = this.lastConfig; // 之前的配置
-        var config = vscode.workspace.getConfiguration('background');  // 用户配置
+        var config = vscode.workspace.getConfiguration('background'); // 用户配置
 
         // 如果配置文件改变到时候，当前插件配置没有改变，则返回
         if (!firstload && JSON.stringify(lastConfig) == JSON.stringify(config)) {
@@ -119,25 +119,29 @@ class Background {
 
         // 之后到操作有两种：1.初次加载  2.配置文件改变 
 
-        if (!lastConfig.enabled && !config.enabled) {  // 如果此时仍然为未启用状态，只是修改图片路径
+        if (!lastConfig.enabled && !config.enabled) { // 如果此时仍然为未启用状态，只是修改图片路径
             return;
         }
 
         this.lastConfig = config; // 更新最新配置
 
-        if (!config.enabled) {  // 关闭插件
+        if (!config.enabled) { // 关闭插件
             this.uninstall();
             vsHelp.showInfoRestart('Background has been uninstalled! Please restart.');
             return;
         }
 
-        var arr = [];  // 默认图片
-
+        var arr = []; // 默认图片		
+        var size = [];
         if (!config.useDefault) { // 自定义图片
             arr = config.customImages;
+            size = config.size;
         }
 
-        var content = getCss(arr).replace(/\s*$/, ''); // 去除末尾空白
+        var opacity = config.opacityImages;
+        var size = config.size;
+
+        var content = getCss(arr, opacity, size).replace(/\s*$/, ''); // 去除末尾空白
 
         var cssContent = fs.readFileSync(vscodePath.cssPath, 'utf-8') + content;
 
@@ -157,8 +161,6 @@ class Background {
         content = content.replace(/\s*$/, '');
         fs.writeFileSync(vscodePath.cssPath, content, 'utf-8');
     }
-
-
 }
 
 module.exports = Background;
