@@ -139,7 +139,13 @@ class Background {
 
         var content = getCss(arr).replace(/\s*$/, ''); // 去除末尾空白
 
-        var cssContent = fs.readFileSync(vscodePath.cssPath, 'utf-8') + content;
+        var cssContent = fs.readFileSync(vscodePath.cssPath, 'utf-8');
+
+
+        cssContent = cssContent.replace(/\/\*css-background-start\*\/[\s\S]*?\/\*css-background-end\*\//g, '');
+        cssContent = cssContent.replace(/\s*$/, '');
+
+        cssContent += content;
 
         fs.writeFileSync(vscodePath.cssPath, cssContent, 'utf-8');
         vsHelp.showInfoRestart('Background has been changed! Please restart.');

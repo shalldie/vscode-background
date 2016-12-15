@@ -2,7 +2,7 @@
     "name": "background",
     "displayName": "background",
     "description": "A simple tool to make your vscode's background look better!",
-    "version": "1.1.8",
+    "version": "1.1.9",
     "publisher": "shalldie",
     "engines": {
         "vscode": "^1.0.0"

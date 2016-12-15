@@ -78,4 +78,7 @@ Press F1,and you can get it by enter **ext install background** in your vscode. 
     Please use customImages in your settings.json
 
 ### 2016/12/15
+    ver.1.1.8
     修复vscode升级到1.8，导致插件不能用的问题
+    ver.1.1.9
+    修复背景重影的问题
