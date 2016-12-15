@@ -23,15 +23,15 @@ module.exports = function (arr) {
     
 /*css-background-start*/
 /*background.ver.${version}*/
-[id='workbench.parts.editor']>.content>.one-editor-silo:nth-child(1) .overflow-guard>.monaco-scrollable-element{background-image: url('${img0}');}
+.editor-one .editor-container .monaco-scrollable-element{background-image: url('${img0}');}
 
-[id='workbench.parts.editor']>.content>.one-editor-silo:nth-child(3) .overflow-guard>.monaco-scrollable-element{background-image: url('${img1}');}
+.editor-two .editor-container .monaco-scrollable-element{background-image: url('${img1}');}
 
-[id='workbench.parts.editor']>.content>.one-editor-silo:nth-child(5) .overflow-guard>.monaco-scrollable-element{background-image: url('${img2}');}
+.editor-three .editor-container .monaco-scrollable-element{background-image: url('${img2}');}
 
 [id='workbench.parts.editor']>.content>.one-editor-silo .monaco-editor>.overflow-guard>.monaco-scrollable-element>.monaco-editor-background{background: none;}
 
-[id='workbench.parts.editor']>.content>.one-editor-silo .overflow-guard>.monaco-scrollable-element{background-position:100% 100%;background-repeat:no-repeat;}
+.one-editor-silo .editor-container .monaco-scrollable-element{background-position:100% 100%;background-repeat:no-repeat;}
 /*css-background-end*/
 `;
 
