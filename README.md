@@ -12,36 +12,63 @@ GitHub: [https://github.com/shalldie/vscode-background](https://github.com/shall
 Vscode Market: [https://marketplace.visualstudio.com/items?itemName=shalldie.background](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
 ----------------------------------------------------------------------------------
+### Cross all themes, cross most os! 已支持所有主题，大部分操作系统(window,os x,linux)！
+### It looks like:
+ <br />
+
+![](gif/show.gif)
+ 
+----------------------------------------------------------------------------------
+### Warns 警告：
+<br/>
+ 
 ![](https://raw.githubusercontent.com/shalldie/vscode-background/master/gif/info.png)
 
     在vscode 1.6.1 的时候，出现了这个提示。你可以先点击【不再显示】.
     我去官网查了一下，目前已经不建议使用注入代码的方式完成功能。
-    我会想办法看是否可以解决这个问题，或者把这个插件转型成一个主题？给点意见吧。
+    本插件是钻了个漏洞。
 
     At vscode ver 1.6.1 ,a information appears while opening vscode.
-    U can click the last button to avoid it.
+    U can click the last button(never show again) to avoid it.
     This plugin is edit the vscode's file to make it work,which is not recommended now.
-    I'll try to fix it,or to change this plugin to a theme? For help...
 
 ----------------------------------------------------------------------------------
 
-### Cross all themes, cross most os! 已支持所有主题，大部分操作系统(window,os x,linux)！ 
+### Q&A 常见问题:
+
+    Q:It seems that nothing happens after installing the extension?
+    Q:安装完插件后，似乎没有反应？
+
+    A:Make sure to have the administrator authority！！
+    A:如果不能使用，请确保你有管理员权限！！
+> 
+    Q:How to get the administrator authority?
+    Q:怎么获取管理员权限呢？ =。=
+    
+    A:In windows,click right button on the vscode's icon,then check the [run with the administrator authority].
+      In ubuntu:[https://github.com/shalldie/vscode-background/issues/6](https://github.com/shalldie/vscode-background/issues/6).
+    A:在windows环境中，可以右键单击vscode的图标，选择【以管理员身份运行】。
+      在ubuntu中：[https://github.com/shalldie/vscode-background/issues/6](https://github.com/shalldie/vscode-background/issues/6).
+>
+    Q:How to uninstall the extension?
+      怎么卸载这个插件？
+
+    A:Set the config ** "background.enabled": false ** in settings.json
+
+    Q:Where is the settings.json?
+    Q: **settings.json**  这个文件在哪里？
+    A:
 
 ### Be sure to have administrator authority！！ 如果不能使用，请确保你有管理员权限！！
 
 authority in ubuntu:[https://github.com/shalldie/vscode-background/issues/6](https://github.com/shalldie/vscode-background/issues/6)
 
 ### U can config yourself background in settings.json .  在setting.json中，可以对background插件进行配置。
- <br />
+> 
 ![](gif/settings.png)
 
 
-### It looks like:
- <br />
-![](gif/show.gif)
 
-<br />
-***
 Press F1,and you can get it by enter **ext install background** in your vscode. (～￣▽￣)～
 <br />
 <br />
