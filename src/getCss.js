@@ -4,20 +4,20 @@ var version = require('./version');
 /**
  * 生成css样式
  */
-module.exports = function (arr) {
+module.exports = function (arr, randomOrder) {
     var img0, img1, img2;
 
-    if (arr && arr.length) { // 如果传入的有参数
+    (function (arr, randomOrder) {
+        var size = arr.length;
+        var index = randomOrder ? parseInt(size * Math.random()) : 0;
+        img0 = arr[index++ % size] || "none";
+        img1 = arr[index++ % size] || "none";
+        img2 = arr[index++ % size] || "none";
+    })((arr && arr.length && arr) || defBase64, randomOrder);
 
-        img0 = encodeURI(arr[0] || "none");
-        img1 = encodeURI(arr[1] || "none");
-        img2 = encodeURI(arr[2] || "none");
-
-    } else { // 如果没有参数，则使用默认值
-        img0 = defBase64[0];
-        img1 = defBase64[1];
-        img2 = defBase64[2];
-    }
+    img0 = img0.replace('url(none)', '');
+    img1 = img1.replace('url(none)', '');
+    img2 = img2.replace('url(none)', '');
 
     var content = `
     
