@@ -16,13 +16,13 @@ Vscode Market: [https://marketplace.visualstudio.com/items?itemName=shalldie.bac
 ### It looks like:
  <br />
 
-![](gif/show.gif)
+![](https://github.com/shalldie/vscode-background/raw/master/gif/show.gif)
  
 ----------------------------------------------------------------------------------
 ### Warns 警告：
 <br/>
  
-![](gif/info.png)
+![](https://github.com/shalldie/vscode-background/raw/master/gif/info.png)
 
     在vscode 1.6.1 的时候，出现了这个提示。你可以先点击【不再显示】.
     我去官网查了一下，目前已经不建议使用注入代码的方式完成功能。
@@ -41,7 +41,9 @@ Vscode Market: [https://marketplace.visualstudio.com/items?itemName=shalldie.bac
 
     A:After installing the extension,the default images will be added to background.U can config it in settings.json.
     A:安装插件之后，默认图片就会被添加到背景中。settings.json 里面有很多都是可以配置的。
-  ![](gif/settings.png)
+  ![](https://github.com/shalldie/vscode-background/raw/master/gif/settings.png)
+    
+    新特性:"background-style":{} ，试用阶段
 >
     Q:It seems that nothing happens after installing the extension?
     Q:安装完插件后，似乎没有反应？
