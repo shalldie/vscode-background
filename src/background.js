@@ -137,7 +137,7 @@ class Background {
             arr = config.customImages;
         }
 
-        var content = getCss(arr).replace(/\s*$/, ''); // 去除末尾空白
+        var content = getCss(arr, config.style).replace(/\s*$/, ''); // 去除末尾空白
 
         var cssContent = fs.readFileSync(vscodePath.cssPath, 'utf-8');
 

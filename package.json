@@ -2,7 +2,7 @@
     "name": "background",
     "displayName": "background",
     "description": "A simple tool to make your vscode's background look better!",
-    "version": "1.1.9",
+    "version": "1.1.10",
     "publisher": "shalldie",
     "engines": {
         "vscode": "^1.0.0"
@@ -30,6 +30,14 @@
                     "type": "boolean",
                     "default": true,
                     "description": "Plugin background enabled.background 插件是否启用"
+                },
+                "background.style": {
+                    "type": "object",
+                    "default": {
+                        "background-position": "100% 100%",
+                        "background-repeat": "no-repeat"
+                    },
+                    "description": "Custom style.自定义样式."
                 },
                 "background.useDefault": {
                     "type": "boolean",
