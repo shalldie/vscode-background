@@ -43,7 +43,7 @@ Vscode Market: [https://marketplace.visualstudio.com/items?itemName=shalldie.bac
     A:安装插件之后，默认图片就会被添加到背景中。settings.json 里面有很多都是可以配置的。
   ![](https://github.com/shalldie/vscode-background/raw/master/gif/settings.png)
     
-    新特性:"background-style":{} ，试用阶段
+    新特性:"background.style":{} ，试用阶段
 >
     Q:It seems that nothing happens after installing the extension?
     Q:安装完插件后，似乎没有反应？
