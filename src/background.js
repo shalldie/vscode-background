@@ -113,7 +113,7 @@ class Background {
 
         // 如果配置文件改变到时候，当前插件配置没有改变，则返回
         if (!firstload && JSON.stringify(lastConfig) == JSON.stringify(config)) {
-            console.log('配置文件未改变.')
+            // console.log('配置文件未改变.')
             return;
         }
 

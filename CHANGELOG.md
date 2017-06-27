@@ -1,3 +1,8 @@
+### ver1.1.12 (2017/6/27)
+    Config opacity. 添加自定义透明度功能。
+    remove background to the css3 [::after],so u can config opacity now!
+    把background的背景移植到css3属性[::after]上，所以现在可以配置透明度。    
+
 ### ver1.1.10 ver1.1.11 (2017/3/27)
     添加 minimap 透明度
     增加自定义样式功能

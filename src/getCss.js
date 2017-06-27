@@ -36,15 +36,14 @@ module.exports = function (arr, style) {
     
 /*css-background-start*/
 /*background.ver.${version}*/
-.editor-one>.container>.editor-container>.monaco-editor>.overflow-guard>.monaco-scrollable-element:nth-child(2){background-image: url('${img0}');${styleContent}}
+.editor-one>.container>.editor-container>.monaco-editor>.overflow-guard>.monaco-scrollable-element:nth-child(2)::after{background-image: url('${img0}');${styleContent}}
 
-.editor-two>.container>.editor-container>.monaco-editor>.overflow-guard>.monaco-scrollable-element:nth-child(2){background-image: url('${img1}');${styleContent}}
+.editor-two>.container>.editor-container>.monaco-editor>.overflow-guard>.monaco-scrollable-element:nth-child(2)::after{background-image: url('${img1}');${styleContent}}
 
-.editor-three>.container>.editor-container>.monaco-editor>.overflow-guard>.monaco-scrollable-element:nth-child(2){background-image: url('${img2}');${styleContent}}
+.editor-three>.container>.editor-container>.monaco-editor>.overflow-guard>.monaco-scrollable-element:nth-child(2)::after{background-image: url('${img2}');${styleContent}}
 
 [id='workbench.parts.editor']>.content>.one-editor-silo .monaco-editor>.overflow-guard>.monaco-scrollable-element>.monaco-editor-background{background: none;}
 
-.minimap{opacity:.6;}
 /*css-background-end*/
 `;
 
