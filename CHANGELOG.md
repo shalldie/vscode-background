@@ -1,3 +1,8 @@
+## ver1.1.13 (2017/6/29)
+    "background.useFront":boolean
+    add config to on the top of code,or behind the code.
+    添加图片前置，后置功能。
+
 ### ver1.1.12 (2017/6/27)
     Config opacity. 添加自定义透明度功能。
     remove background to the css3 [::after],so u can config opacity now!
