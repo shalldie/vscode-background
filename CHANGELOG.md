@@ -1,3 +1,7 @@
+## ver1.1.14 (2017/7/3)
+    Fix the bug,which "z-index" caught.
+    修复背景图后置的 z-index 导致样式影响问题
+
 ## ver1.1.13 (2017/6/29)
     "background.useFront":boolean
     add config to on the top of code,or behind the code.

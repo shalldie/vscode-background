@@ -28,7 +28,7 @@ module.exports = function (arr, style, useFront) {
     let styleArr = [];
     for (let k in style) {
         // 在使用背景图时，排除掉 pointer-events
-        if (!useFront && k == 'pointer-events') {
+        if (!useFront && ~['pointer-events', 'z-index'].indexOf(k)) {
             continue;
         }
 
