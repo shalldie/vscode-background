@@ -1,31 +1,23 @@
-var defBase64 = require('./defBase64');
-var version = require('./version');
+import defBase64 from './defBase64';
+import version from './version';
 
 /**
  * 生成css样式
  * 
- * @param {Array<string>} arr
- * @param {Object} style
- * @param {boolean} useFront
- * @returns {string}
+ * @export
+ * @param {Array<string>} arr 图片数组
+ * @param {any} [style={}] 自定义样式
+ * @param {boolean} [useFront=true] 是否用前景图
+ * @returns 
  */
-module.exports = function (arr, style, useFront) {
-    style = style || {};
-    let img0, img1, img2;
+export default function (arr: Array<string>, style = {}, useFront = true) {
+    let [img0, img1, img2] = (arr && arr.length) ?
+        [encodeURI(arr[0] || 'none'),
+        encodeURI(arr[1] || 'none'),
+        encodeURI(arr[2] || 'none')] : defBase64;
 
-    if (arr && arr.length) { // 如果传入的有参数
+    let styleArr: string[] = [];
 
-        img0 = encodeURI(arr[0] || "none");
-        img1 = encodeURI(arr[1] || "none");
-        img2 = encodeURI(arr[2] || "none");
-
-    } else { // 如果没有参数，则使用默认值
-        img0 = defBase64[0];
-        img1 = defBase64[1];
-        img2 = defBase64[2];
-    }
-
-    let styleArr = [];
     for (let k in style) {
         // 在使用背景图时，排除掉 pointer-events
         if (!useFront && ~['pointer-events', 'z-index'].indexOf(k)) {
@@ -36,6 +28,7 @@ module.exports = function (arr, style, useFront) {
             styleArr.push(`${k}:${style[k]}`);
         }
     }
+
     // 在前景图时使用 ::after
     let frontContent = useFront ? '::after' : '';
 
