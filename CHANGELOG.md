@@ -1,3 +1,10 @@
+## ver1.1.16 (2017/10/30)
+    用 typescript 重写了一下，因为旧代码太恶心了。
+    rewrite by typescript,because the old code is so rubish. :D
+    修复了旧版本的一个bug：插件卸载之后，注册的事件并没有dispose掉。
+    fix bug: After extension has been uninstalled,the event doesn't dispose currently.
+    
+
 ## ver1.1.14 (2017/7/3)
     Fix the bug,which "z-index" caught.
     修复背景图后置的 z-index 导致样式影响问题

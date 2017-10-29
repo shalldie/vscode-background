@@ -13,12 +13,11 @@ Vscode Market: [https://marketplace.visualstudio.com/items?itemName=shalldie.bac
 
 ----------------------------------------------------------------------------------
 
-***
-### opacity support! 支持透明度了！
-U can add **"opacity":0.6** in **"background.style"** of settings.json.
+### Notice 提示
 
-在 settings.json 中的 background.style 里面，添加 opacity:0.6 就可以设置透明度
-***
+**http** 协议的外链图片在当前版本不能使用(vscode 限制)，需要用 **https** 协议开头的外链地址。
+
+You should use protocol **https** instead of **http** to the image,which is not support by vscode now.
 
 ### Cross all themes, cross most os! 已支持所有主题，大部分操作系统(window,os x,linux)！
 ### It looks like:
@@ -31,6 +30,10 @@ U can add **"opacity":0.6** in **"background.style"** of settings.json.
 <br/>
  
 ![](https://github.com/shalldie/vscode-background/raw/master/gif/info.png)
+
+**本插件是通过修改vscode的css文件的方式运行**
+
+**This extension works by editting the vscode's css file.**
 
     在vscode 1.6.1 的时候，出现了这个提示。你可以先点击【不再显示】.
     我去官网查了一下，目前已经不建议使用注入代码的方式完成功能。
