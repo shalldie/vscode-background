@@ -1,3 +1,9 @@
+## ver1.1.17 (2017/11/12)
+    fix bug: 在vscode更新的时候，遗漏了 非初次加载插件&&css文件未hack 的情况。
+    产生原因：用ts重写的时候遗漏。
+    fix bug: while vscode updated,extension can't work well.
+    why it happens: My fault,i forgot it when rewrite it by typescript.Sorry...
+
 ## ver1.1.16 (2017/10/30)
     用 typescript 重写了一下，因为旧代码太恶心了。
     rewrite by typescript,because the old code is so rubish. :D

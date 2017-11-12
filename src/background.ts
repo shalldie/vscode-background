@@ -87,7 +87,7 @@ class Background {
         let fileType = this.getFileType(); // css 文件目前状态
 
         // 如果是第一次加载插件，或者旧版本
-        if (firstload || fileType == FileType.isOld) {
+        if (firstload || fileType == FileType.isOld || fileType == FileType.empty) {
             this.install(true);
         }
 
