@@ -30,7 +30,7 @@ export default function (arr: Array<string>, style = {}, useFront = true) {
     }
 
     // 在前景图时使用 ::after
-    let frontContent = useFront ? '::after' : '';
+    let frontContent = useFront ? '::after' : '::before';
 
     // 样式内容
     let styleContent = styleArr.join(';') + ';';
