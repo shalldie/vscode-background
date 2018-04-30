@@ -49,7 +49,16 @@
                         "background-repeat": "no-repeat",
                         "opacity": 1
                     },
-                    "description": "Custom style.自定义样式."
+                    "description": "Custom common style.自定义各项公有样式."
+                },
+                "background.styles": {
+                    "type": "array",
+                    "default": [
+                        {},
+                        {},
+                        {}
+                    ],
+                    "description": "Each style of backgrounds. 每一个背景图的独有样式。"
                 },
                 "background.useDefault": {
                     "type": "boolean",
