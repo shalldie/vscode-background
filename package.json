@@ -2,12 +2,16 @@
     "name": "background",
     "displayName": "background",
     "description": "A simple tool to make your vscode's background look better!",
-    "version": "1.1.17",
+    "version": "1.1.18",
     "publisher": "shalldie",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/shalldie/vscode-background.git"
+    },
     "engines": {
         "vscode": "^1.17.0"
     },
-    "icon": "gif/logo.png",
+    "icon": "https://user-images.githubusercontent.com/9987486/40583704-6accf3a4-61c6-11e8-8c00-a636b9c3ec65.png",
     "categories": [
         "Other"
     ],
@@ -49,7 +53,16 @@
                         "background-repeat": "no-repeat",
                         "opacity": 1
                     },
-                    "description": "Custom style.自定义样式."
+                    "description": "Custom common style.自定义各项公有样式."
+                },
+                "background.styles": {
+                    "type": "array",
+                    "default": [
+                        {},
+                        {},
+                        {}
+                    ],
+                    "description": "Each style of backgrounds. 每一个背景图的独有样式。"
                 },
                 "background.useDefault": {
                     "type": "boolean",
