@@ -1,3 +1,4 @@
+import {homedir} from 'os'
 import defBase64 from './defBase64';
 import version from './version';
 
@@ -35,9 +36,7 @@ function getStyleByOptions(options: object, useFront: boolean) {
  */
 export default function (arr: Array<string>, style = {}, styles = [], useFront = true) {
     let [img0, img1, img2] = (arr && arr.length) ?
-        [encodeURI(arr[0] || 'none'),
-        encodeURI(arr[1] || 'none'),
-        encodeURI(arr[2] || 'none')] : defBase64;
+        arr.map(img => encodeURI(img.replace(/^~(?=$|\/|\\)/, homedir()) || 'none')): defBase64;
 
     let defStyle = getStyleByOptions(style, useFront); // 默认样式
     let [styel0, style1, style2] = [                   // 3个子项样式
