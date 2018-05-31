@@ -31,19 +31,29 @@ function getStyleByOptions(options: object, useFront: boolean) {
  * @param {any} [style={}] 自定义样式
  * @param {Array<any>} [styles=[]] 每个背景图的自定义样式
  * @param {boolean} [useFront=true] 是否用前景图
+ * @param {boolean} [random=true] 是否随机顺序
  * @returns 
  */
-export default function (arr: Array<string>, style = {}, styles = [], useFront = true) {
-    let [img0, img1, img2] = (arr && arr.length) ?
-        [encodeURI(arr[0] || 'none'),
-        encodeURI(arr[1] || 'none'),
-        encodeURI(arr[2] || 'none')] : defBase64;
+export default function (config: any) {
+    let { style = {}, styles = [], useFront = true, useDefault, customImages, random } = config;
+
+    let arr = useDefault ? defBase64 : customImages;
+    let pick = random ? (() => {
+        let samples = new Array(arr.length).fill(null).map((_, i) => i).sort(() => 0.5 - Math.random());
+        return (arr, i) => arr[samples[i]];
+    })() : i => i;
+
+    let [img0, img1, img2] = [
+        encodeURI(pick(arr, 0) || 'none'),
+        encodeURI(pick(arr, 1) || 'none'),
+        encodeURI(pick(arr, 2) || 'none'),
+    ];
 
     let defStyle = getStyleByOptions(style, useFront); // 默认样式
     let [styel0, style1, style2] = [                   // 3个子项样式
-        defStyle + getStyleByOptions(styles[0], useFront),
-        defStyle + getStyleByOptions(styles[1], useFront),
-        defStyle + getStyleByOptions(styles[2], useFront)
+        defStyle + getStyleByOptions(pick(styles, 0), useFront),
+        defStyle + getStyleByOptions(pick(styles, 1), useFront),
+        defStyle + getStyleByOptions(pick(styles, 2), useFront)
     ];
 
     // 在前景图时使用 ::after

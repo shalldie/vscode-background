@@ -91,6 +91,9 @@ class Background {
             this.install(true);
         }
 
+        if (this.config.enabled && this.config.random) {
+            this.refreshCss();
+        }
     }
 
     /**
@@ -183,22 +186,9 @@ class Background {
             return;
         }
 
-        // 5.hack 样式
-        let arr = []; // 默认图片
+        // 5.自定义的样式内容
+        this.refreshCss();
 
-        if (!config.useDefault) { // 自定义图片
-            arr = config.customImages;
-        }
-
-        // 自定义的样式内容
-        let content = getCss(arr, config.style, config.styles, config.useFront).replace(/\s*$/, ''); // 去除末尾空白
-
-        // 添加到原有样式(尝试删除旧样式)中
-        let cssContent = this.getCssContent();
-        cssContent = this.clearCssContent(cssContent);
-        cssContent += content;
-
-        this.saveCssContent(cssContent);
         vsHelp.showInfoRestart('Background has been changed! Please restart.');
 
     }
@@ -234,6 +224,24 @@ class Background {
         content = content.replace(/\/\*css-background-start\*\/[\s\S]*?\/\*css-background-end\*\//g, '');
         content = content.replace(/\s*$/, '');
         return content;
+    }
+
+    /**
+     * 刷新样式表
+     * 
+     * @private
+     * @memberof Background
+     */
+    refreshCss() {
+        this.uninstall();
+
+        let content = getCss(this.config).replace(/\s*$/, ''); // 去除末尾空白
+    
+        // 添加到原有样式(尝试删除旧样式)中
+        let cssContent = this.getCssContent();
+        cssContent = this.clearCssContent(cssContent);
+        cssContent += content;
+        this.saveCssContent(cssContent);
     }
 
     //#endregion

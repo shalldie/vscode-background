@@ -72,7 +72,12 @@
                 "background.customImages": {
                     "type": "array",
                     "default": [],
-                    "description": "Your custom Images(Max length is 3). 自己定制背景图，最多3个"
+                    "description": "Your custom Images. 自己定制背景图"
+                },
+                "background.random": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Random background images order. 背景图片顺序随机"
                 }
             }
         }

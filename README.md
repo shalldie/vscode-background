@@ -1,5 +1,19 @@
 # vscode-background
 
+***
+## 关于这个fork
+> 这个版本fork自 [shalldie](https://github.com/shalldie/vscode-background) ，主要改进为添加随机顺序播放背景图功能，雨露均沾 ：)
+
+## 2018-05-31：
+感谢 [@shalldie](https://github.com/shalldie) 添加的针对每张图添加样式特性！
+
+我的[**会动的篝酱**](./images/kagari-nobg-nolight.gif)透明度问题解决了~
+
+所以同步更新一波~ 以后有什么新有趣的特性看心情同步~
+
+
+***
+
 [![Version](https://vsmarketplacebadge.apphb.com/version/shalldie.background.svg)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Installs](https://vsmarketplacebadge.apphb.com/installs/shalldie.background.svg)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Ratings](https://vsmarketplacebadge.apphb.com/rating/shalldie.background.svg)](https://vsmarketplacebadge.apphb.com/rating/shalldie.background.svg)
