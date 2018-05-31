@@ -2,19 +2,23 @@
     "name": "background",
     "displayName": "background",
     "description": "A simple tool to make your vscode's background look better!",
-    "version": "1.1.6",
+    "version": "1.1.18",
     "publisher": "shalldie",
-    "engines": {
-        "vscode": "^1.0.0"
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/shalldie/vscode-background.git"
     },
-    "icon": "gif/logo.png",
+    "engines": {
+        "vscode": "^1.17.0"
+    },
+    "icon": "https://user-images.githubusercontent.com/9987486/40583704-6accf3a4-61c6-11e8-8c00-a636b9c3ec65.png",
     "categories": [
         "Other"
     ],
     "activationEvents": [
         "*"
     ],
-    "main": "./extension",
+    "main": "./out/extension",
     "contributes": {
         "commands": [
             {
@@ -31,6 +35,35 @@
                     "default": true,
                     "description": "Plugin background enabled.background 插件是否启用"
                 },
+                "background.useFront": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "If use front image,which means image is placed on the top of your code. 是否使用前景图，这样会使图片放在代码的顶部"
+                },
+                "background.style": {
+                    "type": "object",
+                    "default": {
+                        "content": "''",
+                        "pointer-events": "none",
+                        "position": "absolute",
+                        "z-index": "99999",
+                        "width": "100%",
+                        "height": "100%",
+                        "background-position": "100% 100%",
+                        "background-repeat": "no-repeat",
+                        "opacity": 1
+                    },
+                    "description": "Custom common style.自定义各项公有样式."
+                },
+                "background.styles": {
+                    "type": "array",
+                    "default": [
+                        {},
+                        {},
+                        {}
+                    ],
+                    "description": "Each style of backgrounds. 每一个背景图的独有样式。"
+                },
                 "background.useDefault": {
                     "type": "boolean",
                     "default": true,
@@ -41,7 +74,7 @@
                     "default": [],
                     "description": "Your custom Images. 自己定制背景图"
                 },
-                "background.randomOrder": {
+                "background.random": {
                     "type": "boolean",
                     "default": true,
                     "description": "Random background images order. 背景图片顺序随机"
@@ -50,9 +83,16 @@
         }
     },
     "scripts": {
-        "postinstall": "node ./node_modules/vscode/bin/install"
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
-        "vscode": "^0.11.0"
+        "typescript": "^2.5.3",
+        "vscode": "^1.1.5",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
     }
 }

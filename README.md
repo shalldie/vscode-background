@@ -1,60 +1,96 @@
 # vscode-background
 
-[![Version](http://vsmarketplacebadge.apphb.com/version/shalldie.background.svg)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
-[![Installs](http://vsmarketplacebadge.apphb.com/installs/shalldie.background.svg)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+***
+## 关于这个fork
+> 这个版本fork自 [shalldie](https://github.com/shalldie/vscode-background) ，主要改进为添加随机顺序播放背景图功能，雨露均沾 ：)
+
+## 2018-05-31：
+感谢 [@shalldie](https://github.com/shalldie) 添加的针对每张图添加样式特性！
+
+我的[**会动的篝酱**](./images/kagari-nobg-nolight.gif)透明度问题解决了~
+
+所以同步更新一波~ 以后有什么新有趣的特性看心情同步~
+
+
+***
+
+[![Version](https://vsmarketplacebadge.apphb.com/version/shalldie.background.svg)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[![Installs](https://vsmarketplacebadge.apphb.com/installs/shalldie.background.svg)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Ratings](https://vsmarketplacebadge.apphb.com/rating/shalldie.background.svg)](https://vsmarketplacebadge.apphb.com/rating/shalldie.background.svg)
 
 ## Add a lovely background-image to your vscode.
- <br />
- 
+
 GitHub: [https://github.com/shalldie/vscode-background](https://github.com/shalldie/vscode-background)
 
 Vscode Market: [https://marketplace.visualstudio.com/items?itemName=shalldie.background](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
-### Cross all themes, cross most os! 已支持所有主题，大部分操作系统(window,os x,linux)！ 
+## It looks like:
 
-### Be sure to have administrator authority！！ 如果不能使用，请确保你有管理员权限！！
+![](https://user-images.githubusercontent.com/9987486/40583705-7105dda8-61c6-11e8-935a-3c5d475a1eb1.gif)
 
-authority in ubuntu:[https://github.com/shalldie/vscode-background/issues/6](https://github.com/shalldie/vscode-background/issues/6)
+## Warns 警告：
 
-### U can config yourself background in settings.json .  在setting.json中，可以对background插件进行配置。
- <br />
-![](https://raw.githubusercontent.com/shalldie/vscode-background/master/gif/settings.png)
+> **本插件是通过修改 vscode 的 css 文件的方式运行**  
+> 所以会在初次安装，或者 vscode 升级的时候，出现以下提示，请选择 【不再提示】:
+>
+> **This extension works by editting the vscode's css file.**  
+> So, a information appears while the first time to install or vscode update.U can click the [never show again] to avoid it.
 
+![](https://user-images.githubusercontent.com/9987486/40583926-b1fb5398-61ca-11e8-8271-4ac650d158d3.png)
 
-### It looks like:
- <br />
-![](https://raw.githubusercontent.com/shalldie/vscode-background/master/gif/show.gif)
+This is the reason:
 
+![](https://user-images.githubusercontent.com/9987486/40583775-91d4c8d6-61c7-11e8-9048-8c5538a32399.png)
+
+## Config 配置项
+
+| Name                      |      Type       | Description                                                                                 |
+| :------------------------ | :-------------: | :------------------------------------------------------------------------------------------ |
+| `background.enabled`      |    `Boolean`    | 插件是否启用 <br> If background enabled.                                                    |
+| `background.useDefault`   |    `Boolean`    | 是否使用默认图片 <br> If use default images.                                                |
+| `background.customImages` | `Array<String>` | 自定义图片，最多 3 个<br> Your Your custom Images(Max length is 3)                          |
+| `background.style`        |    `Object`     | 自定义样式 <br> Custom style                                                                |
+| `background.styles`       | `Array<Object>` | 每个图片的独立样式 <br> Style of each image.                                                |
+| `background.useFront`     |    `Boolean`    | 前景图/背景图。 在代码上面还是下面 <br> `true`:On the top of code. `false`: Behind the code |
+
+## Notice 提示
+
+**http** 协议的外链图片在当前版本不能使用(vscode 限制)，需要用 **https** 协议开头的外链地址。
+
+You should use protocol **https** instead of **http** to the image,which is not support by vscode now.
+
+## Uninstall 卸载
+
+    Set the config  {"background.enabled": false}  in settings.json,then uninstall the plugin.
+    在 settings.json 中设置 {"background.enabled": false} ，然后再删除插件。如果直接删除插件会有遗留，就需要重装vscode了。
+
+### Q&A 常见问题:
+
+---
+
+    Q:It seems that nothing happens after installing the extension?
+    Q:安装完插件后，似乎没有反应？
+
+    A:Make sure to have the administrator authority！！
+    A:如果不能使用，请确保你有管理员权限！！
+
+---
+
+    Q:How to get the administrator authority?
+    Q:怎么获取管理员权限呢？ =。=
+
+    A:In windows,click right button on the vscode's icon,then check the [run with the administrator authority].
+    A:在windows环境中，可以右键单击vscode的图标，选择【以管理员身份运行】。
+
+---
+
+In ubuntu:[https://github.com/shalldie/vscode-background/issues/6](https://github.com/shalldie/vscode-background/issues/6).
+
+Press F1,and you can get it by enter **ext install background** in your vscode. (～￣ ▽ ￣)～
 <br />
-***
-Press F1,and you can get it by enter **ext install background** in your vscode. (～￣▽￣)～
 <br />
-<br />
-你可以在vscode中，按下F1，然后输入 **ext install background** 来下载她 (～￣▽￣)～
-*** 
+你可以在 vscode 中，按下 F1，然后输入 **ext install background** 来下载她 (～￣ ▽ ￣)～
+
+---
 
 **Enjoy!**
-
-## 想了想，需要加个日志，就从这次开始吧，，I decide to add a log by now.
-
-#### 2016/8/11
-    修复vscode1.4下不能使用的问题。
-
-#### 2016/8/21
-    买了一台mac...于是把mac支持了。感谢 [@asteryk](https://github.com/shalldie/vscode-background/issues/2)  :D
-
-### 2016/8/27
-    重写了所有代码。  可以自动获取vscode安装目录，去除注入js的方式，改为直接修改css。
-    windows 跟 mac 已经完全支持。  Linux 相信也没问题，，，但是这个我无法测试，ahaha。
-
-### 2016/8/30
-    之前文件名写错了...导致在linux下出错。 Sorry ... 该版本已修复.
-
-### 2016/9/26
-    1.将输入框改成配置文件 setting.json
-    2.图片路径注入对时候，进行 encodeURI 编码，并用引号扩起来
-    3.其它部分代码优化和更改
-
-### 2016/9/26  11:57
-    vscode升级会覆盖原css，添加处理，再次覆盖回去。。。
