@@ -3,7 +3,7 @@ import version from './version';
 
 /**
  * 通过配置获取样式文本
- * 
+ *
  * @param {object} options 用户配置
  * @param {boolean} useFront 是否前景图
  * @returns {string}
@@ -25,13 +25,13 @@ function getStyleByOptions(options: object, useFront: boolean) {
 
 /**
  * 生成css样式
- * 
+ *
  * @export
  * @param {Array<string>} arr 图片数组
  * @param {any} [style={}] 自定义样式
  * @param {Array<any>} [styles=[]] 每个背景图的自定义样式
  * @param {boolean} [useFront=true] 是否用前景图
- * @returns 
+ * @returns
  */
 export default function (arr: Array<string>, style = {}, styles = [], useFront = true) {
     let [img0, img1, img2] = (arr && arr.length) ?
@@ -50,16 +50,17 @@ export default function (arr: Array<string>, style = {}, styles = [], useFront =
     let frontContent = useFront ? '::after' : '::before';
 
     let content = `
-    
+
 /*css-background-start*/
 /*background.ver.${version}*/
-.editor-one>.container>.editor-container>.monaco-editor>.overflow-guard>.monaco-scrollable-element:nth-child(2)${frontContent}{background-image: url('${img0}');${styel0}}
 
-.editor-two>.container>.editor-container>.monaco-editor>.overflow-guard>.monaco-scrollable-element:nth-child(2)${frontContent}{background-image: url('${img1}');${style1}}
+[id="workbench.parts.editor"] .split-view-view:nth-child(1) .editor-container .overflow-guard>.monaco-scrollable-element${frontContent}{background-image: url('${img0}');${styel0}}
 
-.editor-three>.container>.editor-container>.monaco-editor>.overflow-guard>.monaco-scrollable-element:nth-child(2)${frontContent}{background-image: url('${img2}');${style2}}
+[id="workbench.parts.editor"] .split-view-view:nth-child(2) .editor-container .overflow-guard>.monaco-scrollable-element${frontContent}{background-image: url('${img1}');${style1}}
 
-[id='workbench.parts.editor']>.content>.one-editor-silo .monaco-editor>.overflow-guard>.monaco-scrollable-element>.monaco-editor-background{background: none;}
+[id="workbench.parts.editor"] .split-view-view:nth-child(3) .editor-container .overflow-guard>.monaco-scrollable-element${frontContent}{background-image: url('${img2}');${style2}}
+
+[id="workbench.parts.editor"] .split-view-view .editor-container .overflow-guard>.monaco-scrollable-element>.monaco-editor-background{background: none;}
 
 /*css-background-end*/
 `;

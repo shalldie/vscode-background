@@ -2,7 +2,7 @@
     "name": "background",
     "displayName": "background",
     "description": "A simple tool to make your vscode's background look better!",
-    "version": "1.1.18",
+    "version": "1.1.19",
     "publisher": "shalldie",
     "repository": {
         "type": "git",
@@ -11,7 +11,7 @@
     "engines": {
         "vscode": "^1.17.0"
     },
-    "icon": "https://user-images.githubusercontent.com/9987486/40583704-6accf3a4-61c6-11e8-8c00-a636b9c3ec65.png",
+    "icon": "vscode-background-logo.png",
     "categories": [
         "Other"
     ],

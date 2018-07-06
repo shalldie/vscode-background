@@ -1,3 +1,11 @@
+## ver1.1.19 (2018/7/6)
+    更新样式。
+    update style.
+
+## ver1.1.18 (忘记什么时候更新的了。forget when)
+    好像是更新文档之类。
+    seems to update docs.
+
 ## ver1.1.17 (2017/11/12)
     fix bug: 在vscode更新的时候，遗漏了 非初次加载插件&&css文件未hack 的情况。
     产生原因：用ts重写的时候遗漏。
@@ -9,7 +17,7 @@
     rewrite by typescript,because the old code is so rubish. :D
     修复了旧版本的一个bug：插件卸载之后，注册的事件并没有dispose掉。
     fix bug: After extension has been uninstalled,the event doesn't dispose currently.
-    
+
 
 ## ver1.1.14 (2017/7/3)
     Fix the bug,which "z-index" caught.
@@ -23,7 +31,7 @@
 ### ver1.1.12 (2017/6/27)
     Config opacity. 添加自定义透明度功能。
     remove background to the css3 [::after],so u can config opacity now!
-    把background的背景移植到css3属性[::after]上，所以现在可以配置透明度。    
+    把background的背景移植到css3属性[::after]上，所以现在可以配置透明度。
 
 ### ver1.1.10 ver1.1.11 (2017/3/27)
     添加 minimap 透明度
@@ -35,7 +43,7 @@
     ver.1.1.9
     修复背景重影的问题
 
-### ver1.1.7 (2016/9/27) 
+### ver1.1.7 (2016/9/27)
     将 cunstomImages 修改为 customImages
     Please use customImages in your settings.json
 
