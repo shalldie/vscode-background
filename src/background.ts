@@ -187,7 +187,8 @@ class Background {
         let arr = []; // 默认图片
 
         if (!config.useDefault) { // 自定义图片
-            arr = config.customImages;
+            //arr = config.customImages;
+            arr = this.getImageList();
         }
 
         // 自定义的样式内容
@@ -235,7 +236,38 @@ class Background {
         content = content.replace(/\s*$/, '');
         return content;
     }
-
+    /**
+     * get and random order images
+     *
+     * @private
+     * @returns {array}
+     * @memberof Background
+     */
+    private getImageList(): string[] {
+        let config = this.config;
+        let folders:string[] = config.customImageFolders;
+        let arr:string[] = [];
+        if(folders.length > 0){
+            let fdpath:string = folders[Math.floor( Math.random() * folders.length )];
+            let files:string[] = fs.readdirSync(path.resolve(fdpath));
+            files.filter((s) => {
+                return s.endsWith('.png') || s.endsWith('.jpg') || s.endsWith('.gif');
+            }).forEach((file) => {
+                arr.push( path.join(fdpath,file).toString().replace(/\\/g,'/') ) ;
+            });
+        }else{
+            arr = config.customImages;
+        }
+        if(config.useRandom){ 
+            for(let i:number = arr.length - 1; i > 0; i--){
+                let r:number = Math.floor(Math.random() * (i + 1));
+                let tmp = arr[i];
+                arr[i] = arr[r];
+                arr[r] = tmp;
+            }
+        }
+        return arr;
+    }
     //#endregion
 
     //#region public methods
