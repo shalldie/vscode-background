@@ -34,13 +34,21 @@ function getStyleByOptions(options: object, useFront: boolean) {
  * @returns
  */
 export default function (arr: Array<string>, style = {}, styles = [], useFront = true) {
-    let [img0, img1, img2] = (arr && arr.length) ?
-        [encodeURI(arr[0] || 'none'),
-        encodeURI(arr[1] || 'none'),
-        encodeURI(arr[2] || 'none')] : defBase64;
+    let img0, img1, img2;
+    // 根据用户设置的背景图，填充满三个，不够则使用默认的图片。
+    if (arr && arr.length) {
+        const arrImage = [
+          [encodeURI(arr[0] || 'none'), defBase64[0], defBase64[1]],
+          [encodeURI(arr[0] || 'none'), encodeURI(arr[1] || 'none'), defBase64[0]],
+          [encodeURI(arr[0] || 'none'), encodeURI(arr[1] || 'none'), encodeURI(arr[2] || 'none')],
+        ];
+        [img0, img1, img2] = arrImage[arr.length - 1];
+    } else {
+        [img0, img1, img2] = defBase64;
+    }
 
     let defStyle = getStyleByOptions(style, useFront); // 默认样式
-    let [styel0, style1, style2] = [                   // 3个子项样式
+    let [style0, style1, style2] = [                   // 3个子项样式
         defStyle + getStyleByOptions(styles[0], useFront),
         defStyle + getStyleByOptions(styles[1], useFront),
         defStyle + getStyleByOptions(styles[2], useFront)
@@ -54,7 +62,7 @@ export default function (arr: Array<string>, style = {}, styles = [], useFront =
 /*css-background-start*/
 /*background.ver.${version}*/
 
-[id="workbench.parts.editor"] .split-view-view:nth-child(1) .editor-container .overflow-guard>.monaco-scrollable-element${frontContent}{background-image: url('${img0}');${styel0}}
+[id="workbench.parts.editor"] .split-view-view:nth-child(1) .editor-container .overflow-guard>.monaco-scrollable-element${frontContent}{background-image: url('${img0}');${style0}}
 
 [id="workbench.parts.editor"] .split-view-view:nth-child(2) .editor-container .overflow-guard>.monaco-scrollable-element${frontContent}{background-image: url('${img1}');${style1}}
 
