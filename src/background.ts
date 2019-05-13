@@ -10,7 +10,7 @@ import getCss from './getCss';
 
 /**
  * 文件类型
- * 
+ *
  * @enum {number}
  */
 enum FileType {
@@ -30,7 +30,7 @@ enum FileType {
 
 /**
  * 插件逻辑类
- * 
+ *
  * @export
  * @class Background
  */
@@ -40,7 +40,7 @@ class Background {
 
     /**
      * 当前用户配置
-     * 
+     *
      * @private
      * @type {*}
      * @memberof Background
@@ -53,9 +53,9 @@ class Background {
 
     /**
      * 获取 css 文件内容
-     * 
+     *
      * @private
-     * @returns {string} 
+     * @returns {string}
      * @memberof Background
      */
     private getCssContent(): string {
@@ -64,9 +64,9 @@ class Background {
 
     /**
      * 设置 css 文件内容
-     * 
+     *
      * @private
-     * @param {string} content 
+     * @param {string} content
      * @memberof Background
      */
     private saveCssContent(content: string): void {
@@ -76,7 +76,7 @@ class Background {
 
     /**
      * 初始化
-     * 
+     *
      * @private
      * @memberof Background
      */
@@ -95,7 +95,7 @@ class Background {
 
     /**
      * 检测是否初次加载，并在初次加载的时候提示用户
-     * 
+     *
      * @private
      * @returns {boolean} 是否初次加载
      * @memberof Background
@@ -119,9 +119,9 @@ class Background {
 
     /**
      * 获取css文件状态
-     * 
+     *
      * @private
-     * @returns {FileType} 
+     * @returns {FileType}
      * @memberof Background
      */
     private getFileType(): FileType {
@@ -148,10 +148,10 @@ class Background {
 
     /**
      * 安装插件，hack css
-     * 
+     *
      * @private
      * @param {boolean} [refresh] 需要更新
-     * @returns {void} 
+     * @returns {void}
      * @memberof Background
      */
     private install(refresh?: boolean): void {
@@ -165,7 +165,7 @@ class Background {
             return;
         }
 
-        // 之后操作有两种：1.初次加载  2.配置文件改变 
+        // 之后操作有两种：1.初次加载  2.配置文件改变
 
         // 2.两次配置均为，未启动插件
         if (!lastConfig.enabled && !config.enabled) {
@@ -191,7 +191,7 @@ class Background {
         }
 
         // 自定义的样式内容
-        let content = getCss(arr, config.style, config.styles, config.useFront).replace(/\s*$/, ''); // 去除末尾空白
+        let content = getCss(arr, config.style, config.styles, config.useFront, config.align).replace(/\s*$/, ''); // 去除末尾空白
 
         // 添加到原有样式(尝试删除旧样式)中
         let cssContent = this.getCssContent();
@@ -205,7 +205,7 @@ class Background {
 
     /**
      * 卸载
-     * 
+     *
      * @private
      * @memberof Background
      */
@@ -224,10 +224,10 @@ class Background {
 
     /**
      * 清理css中的添加项
-     * 
+     *
      * @private
-     * @param {string} content 
-     * @returns {string} 
+     * @param {string} content
+     * @returns {string}
      * @memberof Background
      */
     private clearCssContent(content: string): string {
@@ -242,8 +242,8 @@ class Background {
 
     /**
      * 初始化，并开始监听配置文件改变
-     * 
-     * @returns {vscode.Disposable} 
+     *
+     * @returns {vscode.Disposable}
      * @memberof Background
      */
     public watch(): vscode.Disposable {

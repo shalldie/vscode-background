@@ -16,10 +16,10 @@ Vscode Market: [https://marketplace.visualstudio.com/items?itemName=shalldie.bac
 
 ## Warns 警告：
 
-> **本插件是通过修改 vscode 的 css 文件的方式运行**  
+> **本插件是通过修改 vscode 的 css 文件的方式运行**
 > 所以会在初次安装，或者 vscode 升级的时候，出现以下提示，请选择 【不再提示】:
 >
-> **This extension works by editting the vscode's css file.**  
+> **This extension works by editting the vscode's css file.**
 > So, a information appears while the first time to install or vscode update.U can click the [never show again] to avoid it.
 
 ![](https://user-images.githubusercontent.com/9987486/40583926-b1fb5398-61ca-11e8-8271-4ac650d158d3.png)
@@ -38,6 +38,7 @@ This is the reason:
 | `background.style`        |    `Object`     | 自定义样式 <br> Custom style                                                                |
 | `background.styles`       | `Array<Object>` | 每个图片的独立样式 <br> Style of each image.                                                |
 | `background.useFront`     |    `Boolean`    | 前景图/背景图。 在代码上面还是下面 <br> `true`:On the top of code. `false`: Behind the code |
+| `background.align`        |    `string`     | 当有多个视图的时候，图片排列方式 `left` 或 `right` <br> Align images, `left` or `right`, when open multiple views |
 
 ## Notice 提示
 

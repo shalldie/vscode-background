@@ -31,9 +31,10 @@ function getStyleByOptions(options: object, useFront: boolean) {
  * @param {any} [style={}] 自定义样式
  * @param {Array<any>} [styles=[]] 每个背景图的自定义样式
  * @param {boolean} [useFront=true] 是否用前景图
+ * @param {string} [align="left"] 排列方式
  * @returns
  */
-export default function (arr: Array<string>, style = {}, styles = [], useFront = true) {
+export default function (arr: Array<string>, style = {}, styles = [], useFront = true, align = "left") {
     let [img0, img1, img2] = (arr && arr.length) ?
         [encodeURI(arr[0] || 'none'),
         encodeURI(arr[1] || 'none'),
@@ -48,17 +49,18 @@ export default function (arr: Array<string>, style = {}, styles = [], useFront =
 
     // 在前景图时使用 ::after
     let frontContent = useFront ? '::after' : '::before';
+    let nth = align == "left" ? "nth-child" : "nth-last-child"
 
     let content = `
 
 /*css-background-start*/
 /*background.ver.${version}*/
 
-[id="workbench.parts.editor"] .split-view-view:nth-child(1) .editor-container .overflow-guard>.monaco-scrollable-element${frontContent}{background-image: url('${img0}');${styel0}}
+[id="workbench.parts.editor"] .split-view-view:${nth}(1) .editor-container .overflow-guard>.monaco-scrollable-element${frontContent}{background-image: url('${img0}');${styel0}}
 
-[id="workbench.parts.editor"] .split-view-view:nth-child(2) .editor-container .overflow-guard>.monaco-scrollable-element${frontContent}{background-image: url('${img1}');${style1}}
+[id="workbench.parts.editor"] .split-view-view:${nth}(2) .editor-container .overflow-guard>.monaco-scrollable-element${frontContent}{background-image: url('${img1}');${style1}}
 
-[id="workbench.parts.editor"] .split-view-view:nth-child(3) .editor-container .overflow-guard>.monaco-scrollable-element${frontContent}{background-image: url('${img2}');${style2}}
+[id="workbench.parts.editor"] .split-view-view:${nth}(3) .editor-container .overflow-guard>.monaco-scrollable-element${frontContent}{background-image: url('${img2}');${style2}}
 
 [id="workbench.parts.editor"] .split-view-view .editor-container .overflow-guard>.monaco-scrollable-element>.monaco-editor-background{background: none;}
 
