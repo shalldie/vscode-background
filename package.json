@@ -73,6 +73,11 @@
                     "type": "array",
                     "default": [],
                     "description": "Your custom Images(Max length is 3). 自己定制背景图，最多3个"
+                },
+                "background.align": {
+                    "type": "string",
+                    "default": ["left"],
+                    "description": "Align images, `left` or `right`, when open multiple views. 当有多个视图的时候，图片排列方式 `left` 或 `right`"
                 }
             }
         }
