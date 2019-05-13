@@ -76,7 +76,7 @@
                 },
                 "background.align": {
                     "type": "string",
-                    "default": ["left"],
+                    "default": "left",
                     "description": "Align images, `left` or `right`, when open multiple views. 当有多个视图的时候，图片排列方式 `left` 或 `right`"
                 }
             }
