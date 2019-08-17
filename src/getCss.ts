@@ -8,7 +8,7 @@ import version from './version';
  * @param {boolean} useFront 是否前景图
  * @returns {string}
  */
-function getStyleByOptions(options: object, useFront: boolean) {
+function getStyleByOptions(options: object, useFront: boolean): string {
     let styleArr: string[] = [];
     for (let k in options) {
         // 在使用背景图时，排除掉 pointer-events
@@ -33,11 +33,11 @@ function getStyleByOptions(options: object, useFront: boolean) {
  * @param {boolean} [useFront=true] 是否用前景图
  * @returns
  */
-export default function (arr: Array<string>, style = {}, styles = [], useFront = true) {
+export default function (arr: Array<string>, style: any = {}, styles: Array<any> = [], useFront: boolean = true) {
     let [img0, img1, img2] = (arr && arr.length) ?
-        [encodeURI(arr[0] || 'none'),
-        encodeURI(arr[1] || 'none'),
-        encodeURI(arr[2] || 'none')] : defBase64;
+        [arr[0] || 'none',
+        arr[1] || 'none',
+        arr[2] || 'none'] : defBase64;
 
     let defStyle = getStyleByOptions(style, useFront); // 默认样式
     let [styel0, style1, style2] = [                   // 3个子项样式

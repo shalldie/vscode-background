@@ -1,3 +1,7 @@
+## ver1.1.20 (2019/8/18)
+    更新css文件地址。去掉对自定义路径的编码。
+    update the address of css file.remove the encoding for custom path.
+
 ## ver1.1.19 (2018/7/6)
     更新样式。
     update style.

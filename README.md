@@ -16,10 +16,10 @@ Vscode Market: [https://marketplace.visualstudio.com/items?itemName=shalldie.bac
 
 ## Warns 警告：
 
-> **本插件是通过修改 vscode 的 css 文件的方式运行**  
+> **本插件是通过修改 vscode 的 css 文件的方式运行**
 > 所以会在初次安装，或者 vscode 升级的时候，出现以下提示，请选择 【不再提示】:
 >
-> **This extension works by editting the vscode's css file.**  
+> **This extension works by editting the vscode's css file.**
 > So, a information appears while the first time to install or vscode update.U can click the [never show again] to avoid it.
 
 ![](https://user-images.githubusercontent.com/9987486/40583926-b1fb5398-61ca-11e8-8271-4ac650d158d3.png)
@@ -51,6 +51,11 @@ You should use protocol **https** instead of **http** to the image,which is not 
     在 settings.json 中设置 {"background.enabled": false} ，然后再删除插件。如果直接删除插件会有遗留，就需要重装vscode了。
 
 ### Q&A 常见问题:
+
+---
+    Q:How to remove [unsupported] tag?
+    Q:怎么去除顶部的[不受信任]的标志？
+    A:see here: https://github.com/lehni/vscode-fix-checksums
 
 ---
 
