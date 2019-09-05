@@ -5,7 +5,7 @@ import * as vscode from 'vscode';
 const base = path.dirname(require.main.filename);
 
 // css文件路径
-const cssName = +vscode.version >= 1.38 ? 'workbench.desktop.main.css' : 'workbench.main.css';
+const cssName = parseFloat(vscode.version) >= 1.38 ? 'workbench.desktop.main.css' : 'workbench.main.css';
 const cssPath = path.join(base, 'vs', 'workbench', cssName);
 
 // electron 入口文件所在文件夹
