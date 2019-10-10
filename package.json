@@ -8,7 +8,7 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/shalldie/vscode-background.git"
+        "url": "https://github.com/shalldie/vscode-background.git"
     },
     "engines": {
         "vscode": "^1.17.0"
