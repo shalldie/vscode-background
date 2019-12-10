@@ -1,5 +1,5 @@
-import * as path from 'path';
-import * as vscode from 'vscode';
+import path from 'path';
+import vscode from 'vscode';
 
 // 基础目录
 const base = path.dirname(require.main.filename);

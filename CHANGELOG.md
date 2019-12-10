@@ -1,3 +1,7 @@
+## ver1.1.23 (2019/12/10)
+    优化部分代码，卸载插件时自动清理样式 (依赖node)。
+    beautify code, auto remove style after uninstalled (depend on node).
+
 ## ver1.1.20 (2019/8/18)
     更新css文件地址。去掉对自定义路径的编码。
     update the address of css file.remove the encoding for custom path.
