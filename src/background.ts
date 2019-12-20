@@ -1,5 +1,6 @@
 import * as path from 'path';
 import * as fs from 'fs';
+import { tmpdir } from 'os';
 
 import * as vscode from 'vscode';
 
@@ -69,10 +70,80 @@ class Background {
      * @param {string} content 
      * @memberof Background
      */
-    private saveCssContent(content: string): void {
-        fs.writeFileSync(vscodePath.cssPath, content, 'utf-8');
+    private async saveCssContent(content: string): Promise<void> {
+        // 异步
+        return new Promise<void>((resolve, reject) => {
+            // 写入文件
+            fs.writeFile(vscodePath.cssPath, content, { encoding: 'utf-8' }, err => {
+                // 如果写入时发生了错误就提权再写入一下试试
+                if (err) {
+                    // 询问用户是否使用管理员重试
+                    const msg = "Try to change background failed...";
+                    const optionRetry = "Retry as admin";
+                    const optionCancel = "Cancel";
+                    vscode.window.showWarningMessage(msg, optionRetry, optionCancel).then(ack => {
+                        if (ack == optionRetry) {
+                            // 用户选择了继续
+                            this.saveCssContentElevated(content)
+                                .then(() => resolve(undefined))
+                                .catch(err => reject(err));
+                        } else {
+                            // 用户取消 返回失败
+                            reject("User cancelled");
+                        }
+                    });
+                } else {
+                    // 没发生错误就算成功
+                    resolve(undefined);
+                }
+            });
+        });
     }
 
+    /**
+     * 提权设置 css 文件内容
+     * 
+     * @param content 
+     */
+    private async saveCssContentElevated(content: string): Promise<void> {
+        // 先保存到一个临时文件
+        const tmpPath: string = path.join(tmpdir(), `code-elevated-${Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 6)}`)
+        return new Promise<void>((resolve, reject) => {
+            // 写入临时文件
+            fs.writeFile(tmpPath, content, err => {
+                if (err) {
+                    // 发生错误
+                    reject(err.message);
+                } else {
+                    // 保存临时文件成功，把临时文件复制到目标文件
+                    const sudoPrompt = require('sudo-prompt');
+                    const sudoCommand: string[] = [
+                        `"${vscodePath.getCLIPath()}"`,
+                        `--file-chmod`,
+                        `--file-write`,
+                        `"${tmpPath}"`,
+                        `"${vscodePath.cssPath}"`
+                    ];
+                    /* 
+                        提权执行复制命令 把临时文件复制到目标文件
+                        /src/vs/workbench/services/textfile/electron-browser/nativeTextFileService.ts line:270
+                    */
+                    sudoPrompt.exec(sudoCommand.join(' '), {
+                        name: "Background"
+                    }, (error: string, stdout: string, stderr: string) => {
+                        // 复制完了，删除临时文件
+                        fs.unlinkSync(tmpPath);
+                        // 根据结果返回成功或失败
+                        if (error || stderr) {
+                            reject(error || stderr);
+                        } else {
+                            resolve(undefined);
+                        }
+                    });
+                }
+            });
+        });
+    }
 
     /**
      * 初始化
@@ -178,8 +249,9 @@ class Background {
 
         // 4.如果关闭插件
         if (!config.enabled) {
-            this.uninstall();
-            vsHelp.showInfoRestart('Background has been uninstalled! Please restart.');
+            this.uninstall()
+            .then(() => vsHelp.showInfoRestart('Background has been uninstalled! Please restart.'))
+            .catch(err => vscode.window.showErrorMessage(`Error: ${err}`));
             return;
         }
 
@@ -198,9 +270,9 @@ class Background {
         cssContent = this.clearCssContent(cssContent);
         cssContent += content;
 
-        this.saveCssContent(cssContent);
-        vsHelp.showInfoRestart('Background has been changed! Please restart.');
-
+        this.saveCssContent(cssContent)
+            .then(() => vsHelp.showInfoRestart('Background has been changed! Please restart.'))
+            .catch(err => vscode.window.showErrorMessage(`Error: ${err}`));
     }
 
     /**
@@ -209,17 +281,18 @@ class Background {
      * @private
      * @memberof Background
      */
-    private uninstall(): boolean {
-        try {
-            let content = this.getCssContent();
-            content = this.clearCssContent(content);
-            this.saveCssContent(content);
-            return true;
-        }
-        catch (ex) {
-            console.log(ex);
-            return false;
-        }
+    private async uninstall(): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
+            try {
+                let content = this.getCssContent();
+                content = this.clearCssContent(content);
+                this.saveCssContent(content).then(() => resolve(undefined)).catch(err => reject(err));
+            }
+            catch (ex) {
+                console.log(ex);
+                reject(ex);
+            }
+        });
     }
 
     /**
