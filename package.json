@@ -2,7 +2,7 @@
     "name": "background",
     "displayName": "background",
     "description": "A simple tool to make your vscode's background look better!",
-    "version": "1.1.21",
+    "version": "1.1.23",
     "publisher": "shalldie",
     "author": "shalldie",
     "license": "MIT",
@@ -11,7 +11,7 @@
         "url": "git+https://github.com/shalldie/vscode-background.git"
     },
     "engines": {
-        "vscode": "^1.17.0"
+        "vscode": "^1.40.0"
     },
     "icon": "vscode-background-logo.png",
     "categories": [
@@ -81,15 +81,18 @@
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
+        "vscode:uninstall": "node ./out/uninstall",
         "compile": "tsc -p ./",
         "watch": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+        "lint": "eslint . --ext .ts",
+        "lint-fix": "eslint . --fix --ext .ts"
     },
     "devDependencies": {
-        "typescript": "^2.5.3",
-        "vscode": "^1.1.5",
-        "@types/node": "^7.0.43",
-        "@types/mocha": "^2.2.42"
+        "@types/node": "^12.12.16",
+        "@types/vscode": "^1.40.0",
+        "@typescript-eslint/eslint-plugin": "^2.11.0",
+        "@typescript-eslint/parser": "^2.11.0",
+        "eslint": "^6.7.2",
+        "typescript": "^3.7.3"
     }
 }

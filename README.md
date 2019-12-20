@@ -47,8 +47,11 @@ You should use protocol **https** instead of **http** to the image,which is not 
 
 ## Uninstall 卸载
 
-    Set the config  {"background.enabled": false}  in settings.json,then uninstall the plugin.
-    在 settings.json 中设置 {"background.enabled": false} ，然后再删除插件。如果直接删除插件会有遗留，就需要重装vscode了。
+    Style may be uninstalled after the extension has been uninstalled, which depends on node.
+    If it not work, set the config  {"background.enabled": false}  in settings.json,then uninstall the plugin.
+
+    插件在删除的时候，会自动删除添加的样式（依赖node环境）。
+    如果没有node环境，需要在 settings.json 中设置 {"background.enabled": false} ，然后再删除插件。如果直接删除插件会有遗留，就需要重装vscode了。
 
 ### Q&A 常见问题:
 
