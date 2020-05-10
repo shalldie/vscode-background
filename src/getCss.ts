@@ -55,7 +55,7 @@ export default function (
     style: any = {},
     styles: Array<any> = [],
     useFront = true,
-    loop: boolean = false
+    loop = false
 ): string {
     const defStyle = getStyleByOptions(style, useFront); // 默认样式
     let images = (arr && arr.length) ? arr : defBase64;
@@ -67,21 +67,21 @@ export default function (
     if (!loop) {
         // 非循环使用生成nth-child(index + 1)
         images.forEach((item, index) => {
-            const n = `${index + 1}`
-            const otherStyle = defStyle + getStyleByOptions(styles[index], useFront)
-            content += genStyleItem(n, item, useFront, otherStyle) + '\n'
-        })
+            const n = `${index + 1}`;
+            const otherStyle = defStyle + getStyleByOptions(styles[index], useFront);
+            content += genStyleItem(n, item, useFront, otherStyle) + '\n';
+        });
     } else {
         // 循环使用逆序循环生成nth-child(length * n - index)
-        images = images.reverse()
-        const styleList = styles.reverse()
-        const length = images.length
+        images = images.reverse();
+        const styleList = styles.reverse();
+        const length = images.length;
 
         images.forEach((item, index) => {
-            const n = `${length}n - ${index}`
-            const otherStyle = defStyle + getStyleByOptions(styleList[index], useFront)
-            content += genStyleItem(n, item, useFront, otherStyle) + '\n'
-        })
+            const n = `${length}n - ${index}`;
+            const otherStyle = defStyle + getStyleByOptions(styleList[index], useFront);
+            content += genStyleItem(n, item, useFront, otherStyle) + '\n';
+        });
     }
 
     // 追加额外样式
