@@ -75,6 +75,11 @@
                     "type": "array",
                     "default": [],
                     "description": "Your custom Images(Max length is 3). 自己定制背景图，最多3个"
+                },
+                "background.loop": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Loop use Images. 循环使用图片"
                 }
             }
         }
