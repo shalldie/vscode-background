@@ -18,11 +18,10 @@ const vsHelp = {
      * @returns {Thenable<void>}
      */
     showInfoRestart(content: string): Thenable<void> {
-        return vscode.window.showInformationMessage(content, { title: 'Restart vscode' })
-            .then(function (item) {
-                if (!item) return;
-                vscode.commands.executeCommand('workbench.action.reloadWindow');
-            });
+        return vscode.window.showInformationMessage(content, { title: 'Restart vscode' }).then(function (item) {
+            if (!item) return;
+            vscode.commands.executeCommand('workbench.action.reloadWindow');
+        });
     }
 };
 

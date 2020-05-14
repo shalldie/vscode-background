@@ -6,6 +6,7 @@ import vscode from 'vscode';
 import vsHelp from './vsHelp';
 import vscodePath from './vscodePath';
 import getCss from './getCss';
+import defBase64 from './defBase64';
 import { version, BACKGROUND_VER, ENCODE } from './constants';
 
 /**
@@ -35,7 +36,6 @@ enum ECSSEditType {
  * @class Background
  */
 class Background {
-
     //#region private fields 私有字段
 
     /**
@@ -71,7 +71,6 @@ class Background {
      * @memberof Background
      */
     public get fileType(): ECSSEditType {
-
         if (!this.hasInstalled) {
             return ECSSEditType.noModified;
         }
@@ -124,8 +123,7 @@ class Background {
      * @memberof Background
      */
     private initialize(): void {
-
-        const firstload = this.checkFirstload();  // 是否初次加载插件
+        const firstload = this.checkFirstload(); // 是否初次加载插件
 
         const fileType = this.fileType; // css 文件目前状态
 
@@ -133,7 +131,6 @@ class Background {
         if (firstload || fileType == ECSSEditType.isOld || fileType == ECSSEditType.noModified) {
             this.install(true);
         }
-
     }
 
     /**
@@ -169,8 +166,7 @@ class Background {
      * @memberof Background
      */
     private install(refresh?: boolean): void {
-
-        const lastConfig = this.config;  // 之前的配置
+        const lastConfig = this.config; // 之前的配置
         const config = vscode.workspace.getConfiguration('background'); // 当前用户配置
 
         // 1.如果配置文件改变的时候，当前插件配置没有改变，则返回
@@ -198,9 +194,10 @@ class Background {
         }
 
         // 5.hack 样式
-        let arr = []; // 默认图片
+        let arr = defBase64; // 默认图片
 
-        if (!config.useDefault) { // 自定义图片
+        if (!config.useDefault) {
+            // 自定义图片
             arr = config.customImages;
         }
 
@@ -214,7 +211,6 @@ class Background {
 
         this.saveCssContent(cssContent);
         vsHelp.showInfoRestart('Background has been changed! Please restart.');
-
     }
 
     /**
@@ -247,8 +243,7 @@ class Background {
             content = this.clearCssContent(content);
             this.saveCssContent(content);
             return true;
-        }
-        catch (ex) {
+        } catch (ex) {
             console.log(ex);
             return false;
         }

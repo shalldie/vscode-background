@@ -9,3 +9,5 @@ vsc-extension-quickstart.md
 .eslintignore
 .eslintrc.json
 package-lock.json
+.huskyrc
+.prettierignore

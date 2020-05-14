@@ -1,6 +1,10 @@
+## ver1.1.24 (2020/05/14)
+    添加 `loop` 模式，可以循环展示图片。
+    add loop mode, which can repeat your image.
+
 ## ver1.1.23 (2019/12/10)
-    优化部分代码，卸载插件时自动清理样式 (依赖node)。
-    beautify code, auto remove style after uninstalled (depend on node).
+    优化部分代码，卸载插件时自动清理样式，不一定生效,,, (依赖node)。
+    optimize code, auto remove style after uninstalled (depend on node).some times it doesn't work.
 
 ## ver1.1.20 (2019/8/18)
     更新css文件地址。去掉对自定义路径的编码。
@@ -22,7 +26,7 @@
 
 ## ver1.1.16 (2017/10/30)
     用 typescript 重写了一下，因为旧代码太恶心了。
-    rewrite by typescript,because the old code is so rubish. :D
+    rewrite by typescript,because the old code is so rubbish. :D
     修复了旧版本的一个bug：插件卸载之后，注册的事件并没有dispose掉。
     fix bug: After extension has been uninstalled,the event doesn't dispose currently.
 
