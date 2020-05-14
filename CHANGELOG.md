@@ -1,4 +1,4 @@
-## ver1.1.24 (2020/05/14)
+## ver1.1.25 (2020/05/14)
     添加 `loop` 模式，可以循环展示图片。
     add loop mode, which can repeat your image.
 

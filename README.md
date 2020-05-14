@@ -34,10 +34,11 @@ This is the reason:
 | :------------------------ | :-------------: | :------------------------------------------------------------------------------------------ |
 | `background.enabled`      |    `Boolean`    | 插件是否启用 <br> If background enabled.                                                    |
 | `background.useDefault`   |    `Boolean`    | 是否使用默认图片 <br> If use default images.                                                |
-| `background.customImages` | `Array<String>` | 自定义图片，最多 3 个<br> Your Your custom Images(Max length is 3)                          |
+| `background.customImages` | `Array<String>` | 自定义图片 <br> Your Your custom images                                                     |
 | `background.style`        |    `Object`     | 自定义样式 <br> Custom style                                                                |
 | `background.styles`       | `Array<Object>` | 每个图片的独立样式 <br> Style of each image.                                                |
 | `background.useFront`     |    `Boolean`    | 前景图/背景图。 在代码上面还是下面 <br> `true`:On the top of code. `false`: Behind the code |
+| `background.loop`         |    `Boolean`    | 循环模式，会重复显示图片 <br> `loop` mode, may repeat your images                           |
 
 ## Notice 提示
 
@@ -56,6 +57,7 @@ You should use protocol **https** instead of **http** to the image,which is not 
 ### Q&A 常见问题:
 
 ---
+
     Q:How to remove [unsupported] tag?
     Q:怎么去除顶部的[不受信任]的标志？
     A:see here: https://github.com/lehni/vscode-fix-checksums
