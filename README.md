@@ -3,6 +3,7 @@
 [![Version](https://vsmarketplacebadge.apphb.com/version/shalldie.background.svg)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Installs](https://vsmarketplacebadge.apphb.com/installs/shalldie.background.svg)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Ratings](https://vsmarketplacebadge.apphb.com/rating/shalldie.background.svg)](https://vsmarketplacebadge.apphb.com/rating/shalldie.background.svg)
+[![Build Status](https://travis-ci.org/shalldie/vscode-background.svg?branch=master)](https://travis-ci.org/shalldie/vscode-background)
 
 ## Add a lovely background-image to your vscode.
 
