@@ -1,2 +1,3 @@
 dist
-.nuxt
+out
+node_modules
