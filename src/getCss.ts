@@ -23,28 +23,9 @@ function getStyleByOptions(options: object, useFront: boolean): string {
     return styleArr.join(';') + ';';
 }
 
-export interface HomeScreenConfig {
-    imageUrl: string;
-    styles?: any;
-}
-
-const defaultHomeScreenStyles: any = {
-    'background-position': 'center',
-    'background-size': 'cover',
-    'background-repeat': 'no-repeat'
-};
-
-function getHomeScreenContent(homeScreenConfig?: HomeScreenConfig) {
-    if (homeScreenConfig && homeScreenConfig.imageUrl) {
-        const configuration = homeScreenConfig.styles || defaultHomeScreenStyles;
-        const homeScreenStyles = getStyleByOptions(
-            {
-                ...configuration,
-                'background-image': `url(${homeScreenConfig.imageUrl})`
-            },
-            false
-        );
-        return `\n.monaco-workbench .part.editor > .content {${homeScreenStyles}}`;
+function getHomeScreenContent(images: any[], styleDecorator: (imageUrl: string) => string): string {
+    if (images.length) {
+        return `\n [id="workbench.parts.editor"]  > .content .empty${styleDecorator(images[0])}`;
     }
     return '';
 }
@@ -58,7 +39,6 @@ function getHomeScreenContent(homeScreenConfig?: HomeScreenConfig) {
  * @param {Array<any>} [styles=[]] 每个背景图的自定义样式
  * @param {boolean} [useFront=true] 是否用前景图
  * @param {boolean} [loop=false] 是否循环使用图片
- * @param {HomeScreenConfig} []
  * @returns {string}
  */
 export default function (
@@ -66,8 +46,7 @@ export default function (
     style: any = {},
     styles: Array<any> = [],
     useFront = true,
-    loop = false,
-    homeScreenConfig?: HomeScreenConfig
+    loop = false
 ): string {
     // ------ 默认样式 ------
     const defStyle = getStyleByOptions(style, useFront);
@@ -93,7 +72,10 @@ export default function (
         })
         .join('\n');
 
-    const homeScreenStyleContent = getHomeScreenContent(homeScreenConfig);
+    const homeScreenStyleContent = getHomeScreenContent(images, image => {
+        const homeScreenStyles = defStyle + getStyleByOptions(styles[0] || {}, useFront);
+        return `{background-image: url('${image}');${homeScreenStyles}`;
+    });
     const content = `
 /*css-background-start*/
 /*${BACKGROUND_VER}.${version}*/

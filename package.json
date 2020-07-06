@@ -80,16 +80,6 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Loop your images. 循环使用图片"
-                },
-                "background.homeScreen.imageUrl": {
-                    "type": "string",
-                    "default": false,
-                    "description": "Url for image to be used as the home screen background."
-                },
-                "background.homeScreen.styles": {
-                    "type": "object",
-                    "default": {},
-                    "description": "Custom styles for the home screen background."
                 }
             }
         }
