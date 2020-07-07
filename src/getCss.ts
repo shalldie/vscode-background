@@ -23,6 +23,13 @@ function getStyleByOptions(options: object, useFront: boolean): string {
     return styleArr.join(';') + ';';
 }
 
+function getHomeScreenContent(images: any[], styleDecorator: (imageUrl: string) => string): string {
+    if (images.length) {
+        return `\n [id="workbench.parts.editor"]  > .content .empty${styleDecorator(images[0])}`;
+    }
+    return '';
+}
+
 /**
  * 生成 css 内容
  *
@@ -65,10 +72,14 @@ export default function (
         })
         .join('\n');
 
+    const homeScreenStyleContent = getHomeScreenContent(images, image => {
+        const homeScreenStyles = defStyle + getStyleByOptions(styles[0] || {}, useFront);
+        return `{background-image: url('${image}');${homeScreenStyles}`;
+    });
     const content = `
 /*css-background-start*/
 /*${BACKGROUND_VER}.${version}*/
-${imageStyleContent}
+${imageStyleContent}${homeScreenStyleContent}
 [id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element>.monaco-editor-background{background: none;}
 /*css-background-end*/
 `;
