@@ -23,13 +23,6 @@ function getStyleByOptions(options: object, useFront: boolean): string {
     return styleArr.join(';') + ';';
 }
 
-function getHomeScreenContent(images: any[], styleDecorator: (imageUrl: string) => string): string {
-    if (images.length) {
-        return `\n [id="workbench.parts.editor"]  > .content .empty${styleDecorator(images[0])}`;
-    }
-    return '';
-}
-
 /**
  * 生成 css 内容
  *
@@ -68,18 +61,23 @@ export default function (
             // ------ style ------
             const styleContent = defStyle + getStyleByOptions(styles[index] || {}, useFront);
 
-            return `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element${frontContent}{background-image: url('${img}');${styleContent}}`;
+            return (
+                // code editor
+                `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) ` +
+                `.editor-container .editor-instance>.monaco-editor ` +
+                `.overflow-guard>.monaco-scrollable-element${frontContent}{background-image: url('${img}');${styleContent}}` +
+                '\n' +
+                // home screen
+                `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) ` +
+                `.empty::before { background-image: url('${img}');${styleContent} }`
+            );
         })
         .join('\n');
 
-    const homeScreenStyleContent = getHomeScreenContent(images, image => {
-        const homeScreenStyles = defStyle + getStyleByOptions(styles[0] || {}, useFront);
-        return `{background-image: url('${image}');${homeScreenStyles}`;
-    });
     const content = `
 /*css-background-start*/
 /*${BACKGROUND_VER}.${version}*/
-${imageStyleContent}${homeScreenStyleContent}
+${imageStyleContent}
 [id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element>.monaco-editor-background{background: none;}
 /*css-background-end*/
 `;

@@ -1,3 +1,7 @@
+## ver1.1.26 (2020/07/07)
+    给首屏（空白屏）添加图片。
+    add image to home screen(empty screen).
+
 ## ver1.1.25 (2020/05/14)
     添加 `loop` 模式，可以循环展示图片。
     add loop mode, which can repeat your image.
