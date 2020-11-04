@@ -21,7 +21,7 @@ Vscode Market: [https://marketplace.visualstudio.com/items?itemName=shalldie.bac
 > 所以会在初次安装，或者 vscode 升级的时候，出现以下提示，请选择 【不再提示】:
 >
 > **This extension works by editting the vscode's css file.**
-> So, a information appears while the first time to install or vscode update.U can click the [never show again] to avoid it.
+> So, a warning appears while the first time to install or vscode update. U can click the [never show again] to avoid it.
 
 ![](https://user-images.githubusercontent.com/9987486/40583926-b1fb5398-61ca-11e8-8271-4ac650d158d3.png)
 
@@ -33,24 +33,24 @@ This is the reason:
 
 | Name                      |      Type       | Description                                                                                 |
 | :------------------------ | :-------------: | :------------------------------------------------------------------------------------------ |
-| `background.enabled`      |    `Boolean`    | 插件是否启用 <br> If background enabled.                                                    |
-| `background.useDefault`   |    `Boolean`    | 是否使用默认图片 <br> If use default images.                                                |
-| `background.customImages` | `Array<String>` | 自定义图片 <br> Your Your custom images                                                     |
-| `background.style`        |    `Object`     | 自定义样式 <br> Custom style                                                                |
-| `background.styles`       | `Array<Object>` | 每个图片的独立样式 <br> Style of each image.                                                |
-| `background.useFront`     |    `Boolean`    | 前景图/背景图。 在代码上面还是下面 <br> `true`:On the top of code. `false`: Behind the code |
+| `background.enabled`      |    `Boolean`    | 插件是否启用 <br> Enable or disable this plugin                                             |
+| `background.useDefault`   |    `Boolean`    | 是否使用默认图片 <br> Whether or not to use default images                                  |
+| `background.customImages` | `Array<String>` | 自定义图片 <br> Add your custom images                                                      |
+| `background.style`        |    `Object`     | 自定义样式 <br> Customize style                                                             |
+| `background.styles`       | `Array<Object>` | 每个图片的独立样式 <br> Add custom Style for individual image.                              |
+| `background.useFront`     |    `Boolean`    | 前景图/背景图。 在代码上面还是下面 <br> Set the image to front or back of your code	    |
 | `background.loop`         |    `Boolean`    | 循环模式，会重复显示图片 <br> `loop` mode, may repeat your images                           |
 
 ## Notice 提示
 
 **http** 协议的外链图片在当前版本不能使用(vscode 限制)，需要用 **https** 协议开头的外链地址。
 
-You should use protocol **https** instead of **http** to the image,which is not support by vscode now.
+You should use protocol **https** instead of **http** for the image, **http** is not support by vscode any more.
 
 ## Uninstall 卸载
 
     Style may be uninstalled after the extension has been uninstalled, which depends on node.
-    If it not work, set the config  {"background.enabled": false}  in settings.json,then uninstall the plugin.
+    If it not work, set the config  {"background.enabled": false}  in settings.json, then uninstall the plugin.
 
     插件在删除的时候，会自动删除添加的样式（依赖node环境）。
     如果没有node环境，需要在 settings.json 中设置 {"background.enabled": false} ，然后再删除插件。如果直接删除插件会有遗留，就需要重装vscode了。
@@ -68,7 +68,7 @@ You should use protocol **https** instead of **http** to the image,which is not 
     Q:It seems that nothing happens after installing the extension?
     Q:安装完插件后，似乎没有反应？
 
-    A:Make sure to have the administrator authority！！
+    A:Make sure you have the administrator authority！！
     A:如果不能使用，请确保你有管理员权限！！
 
 ---
@@ -81,12 +81,12 @@ You should use protocol **https** instead of **http** to the image,which is not 
 
 ---
 
-In ubuntu:[https://github.com/shalldie/vscode-background/issues/6](https://github.com/shalldie/vscode-background/issues/6).
-
-Press F1,and you can get it by enter **ext install background** in your vscode. (～￣ ▽ ￣)～
-<br />
-<br />
-你可以在 vscode 中，按下 F1，然后输入 **ext install background** 来下载她 (～￣ ▽ ￣)～
+    In ubuntu:[https://github.com/shalldie/vscode-background/issues/6](https://github.com/shalldie/vscode-background/issues/6).
+    
+    Press F1,and you can get it by enter **ext install background** in your vscode. (～￣ ▽ ￣)～
+    <br />
+    <br />
+    你可以在 vscode 中，按下 F1，然后输入 **ext install background** 来下载她 (～￣ ▽ ￣)～
 
 ---
 
