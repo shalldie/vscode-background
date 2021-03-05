@@ -1,4 +1,7 @@
 import { version, BACKGROUND_VER } from './constants';
+import { URL } from 'url';
+import fs from 'fs';
+import path from 'path';
 
 /**
  * 通过配置获取样式文本
@@ -21,6 +24,18 @@ function getStyleByOptions(options: object, useFront: boolean): string {
         }
     }
     return styleArr.join(';') + ';';
+}
+
+/**
+ * 使用 file 协议加载图片文件并转为 base64
+ * @param url 图片路径
+ */
+function loadImageBase64FromFileProtocol(url: string): string {
+    const fileUrl = new URL(url);
+    const buffer = fs.readFileSync(fileUrl);
+    const extName = path.extname(fileUrl.pathname).substr(1);
+
+    return `data:image/${extName};base64,${buffer.toString('base64')}`;
 }
 
 /**
@@ -47,8 +62,18 @@ export default function (
     // ------ 在前景图时使用 ::after ------
     const frontContent = useFront ? '::after' : '::before';
 
+    /*
+      图片预处理
+      在 v1.51.1 版本之后, vscode 将工作区放入 sandbox 中运行并添加了 file 协议的访问限制, 导致使用 file 协议的背景图片无法显示
+      当检测到配置文件使用 file 协议时, 需要将图片读取并转为 base64, 而后再插入到 css 中
+    */
+
+    const list = images.map(url => {
+        return url.startsWith('file://') ? loadImageBase64FromFileProtocol(url) : url;
+    });
+
     // ------ 组合样式 ------
-    const imageStyleContent = images
+    const imageStyleContent = list
         .map((img, index) => {
             // ------ nth-child ------
             // nth-child(1)
