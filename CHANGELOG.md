@@ -1,3 +1,7 @@
+## ver1.1.27 (2021/03/13)
+    修复vscode升级带来的自定义图片问题，感谢 `NoDocCat`
+    Fix the problem of custom image caused by vscode upgrade, thx for `NoDocCat`.
+
 ## ver1.1.26 (2020/07/07)
     给首屏（空白屏）添加图片。
     add image to home screen(empty screen).

@@ -1,7 +1,7 @@
-import { version, BACKGROUND_VER } from './constants';
-import { URL } from 'url';
 import fs from 'fs';
 import path from 'path';
+import { URL } from 'url';
+import { version, BACKGROUND_VER } from './constants';
 
 /**
  * 通过配置获取样式文本
