@@ -3,7 +3,7 @@
 [![Version](https://vsmarketplacebadge.apphb.com/version/shalldie.background.svg)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Installs](https://vsmarketplacebadge.apphb.com/installs/shalldie.background.svg)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Ratings](https://vsmarketplacebadge.apphb.com/rating/shalldie.background.svg)](https://vsmarketplacebadge.apphb.com/rating/shalldie.background.svg)
-[![Build Status](https://travis-ci.org/shalldie/vscode-background.svg?branch=master)](https://travis-ci.org/shalldie/vscode-background)
+[![Build Status](https://github.com/shalldie/vscode-background/actions/workflows/node.js.yml/badge.svg)](https://github.com/shalldie/vscode-background/actions)
 
 ## Add a lovely background-image to your vscode.
 
@@ -31,15 +31,15 @@ This is the reason:
 
 ## Config 配置项
 
-| Name                      |      Type       | Description                                                                                 |
-| :------------------------ | :-------------: | :------------------------------------------------------------------------------------------ |
-| `background.enabled`      |    `Boolean`    | 插件是否启用 <br> Enable or disable this plugin                                             |
-| `background.useDefault`   |    `Boolean`    | 是否使用默认图片 <br> Whether or not to use default images                                  |
-| `background.customImages` | `Array<String>` | 自定义图片 <br> Add your custom images                                                      |
-| `background.style`        |    `Object`     | 自定义样式 <br> Customize style                                                             |
-| `background.styles`       | `Array<Object>` | 每个图片的独立样式 <br> Add custom Style for individual image.                              |
-| `background.useFront`     |    `Boolean`    | 前景图/背景图。 在代码上面还是下面 <br> Set the image to front or back of your code	    |
-| `background.loop`         |    `Boolean`    | 循环模式，会重复显示图片 <br> `loop` mode, may repeat your images                           |
+| Name                      |      Type       | Description                                                                         |
+| :------------------------ | :-------------: | :---------------------------------------------------------------------------------- |
+| `background.enabled`      |    `Boolean`    | 插件是否启用 <br> Enable or disable this plugin                                     |
+| `background.useDefault`   |    `Boolean`    | 是否使用默认图片 <br> Whether or not to use default images                          |
+| `background.customImages` | `Array<String>` | 自定义图片 <br> Add your custom images                                              |
+| `background.style`        |    `Object`     | 自定义样式 <br> Customize style                                                     |
+| `background.styles`       | `Array<Object>` | 每个图片的独立样式 <br> Add custom Style for individual image.                      |
+| `background.useFront`     |    `Boolean`    | 前景图/背景图。 在代码上面还是下面 <br> Set the image to front or back of your code |
+| `background.loop`         |    `Boolean`    | 循环模式，会重复显示图片 <br> `loop` mode, may repeat your images                   |
 
 ## Notice 提示
 
@@ -82,7 +82,7 @@ You should use protocol **https** instead of **http** for the image, **http** is
 ---
 
     In ubuntu:[https://github.com/shalldie/vscode-background/issues/6](https://github.com/shalldie/vscode-background/issues/6).
-    
+
     Press F1,and you can get it by enter **ext install background** in your vscode. (～￣ ▽ ￣)～
     <br />
     <br />
