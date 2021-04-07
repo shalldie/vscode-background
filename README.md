@@ -1,9 +1,9 @@
 # vscode-background
 
-[![Version](https://vsmarketplacebadge.apphb.com/version/shalldie.background.svg)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
-[![Installs](https://vsmarketplacebadge.apphb.com/installs/shalldie.background.svg)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
-[![Ratings](https://vsmarketplacebadge.apphb.com/rating/shalldie.background.svg)](https://vsmarketplacebadge.apphb.com/rating/shalldie.background.svg)
-[![Build Status](https://github.com/shalldie/vscode-background/actions/workflows/node.js.yml/badge.svg)](https://github.com/shalldie/vscode-background/actions)
+[![Version](https://vsmarketplacebadge.apphb.com/version/shalldie.background.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[![Installs](https://vsmarketplacebadge.apphb.com/installs/shalldie.background.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[![Ratings](https://vsmarketplacebadge.apphb.com/rating/shalldie.background.svg?style=flat-square)](https://vsmarketplacebadge.apphb.com/rating/shalldie.background.svg)
+[![Build Status](https://img.shields.io/github/workflow/status/shalldie/vscode-background/ci?label=build&logo=github&style=flat-square)](https://github.com/shalldie/vscode-background/actions)
 
 ## Add a lovely background-image to your vscode.
 
