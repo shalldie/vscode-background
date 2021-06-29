@@ -1,5 +1,5 @@
 /** 版本号 */
-export const version = '1.1.27';
+export const version = '1.1.28';
 
 /** 版本标识 */
 export const BACKGROUND_VER = 'background.ver';

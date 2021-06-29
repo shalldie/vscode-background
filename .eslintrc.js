@@ -1,6 +1,22 @@
+// eslint-disable-next-line
 module.exports = {
-    extends: '@nosaid/eslint-config-for-typescript',
+    env: {
+        browser: true,
+        node: true,
+        es6: true
+    },
+    extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:@typescript-eslint/recommended',
+        'prettier',
+        'plugin:prettier/recommended'
+    ],
+    plugins: ['prettier'],
     rules: {
+        'prefer-const': ['error', { destructuring: 'all' }],
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/interface-name-prefix': 'off',
         '@typescript-eslint/ban-types': 'off'
     }
 };

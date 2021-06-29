@@ -71,6 +71,9 @@ You should use protocol **https** instead of **http** for the image, **http** is
     A:Make sure you have the administrator authority！！
     A:如果不能使用，请确保你有管理员权限！！
 
+    A:In Mac, move `vscode` from `Download` to `Applications`.
+    A:在 Mac 下，把 vscode 从 `下载` 移动到 `应用` 中
+
 ---
 
     Q:How to get the administrator authority?

@@ -1,102 +1,107 @@
 {
-    "name": "background",
-    "displayName": "background",
-    "description": "A simple tool to make your vscode's background look better!",
-    "version": "1.1.27",
-    "publisher": "shalldie",
-    "author": "shalldie",
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/shalldie/vscode-background.git"
-    },
-    "engines": {
-        "vscode": "^1.40.0"
-    },
-    "icon": "vscode-background-logo.png",
-    "categories": [
-        "Other"
+  "name": "background",
+  "displayName": "background",
+  "description": "A simple tool to make your vscode's background look better!",
+  "version": "1.1.28",
+  "publisher": "shalldie",
+  "author": "shalldie",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shalldie/vscode-background.git"
+  },
+  "engines": {
+    "vscode": "^1.40.0"
+  },
+  "icon": "vscode-background-logo.png",
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.background.info",
+        "title": "Background - Info"
+      }
     ],
-    "activationEvents": [
-        "*"
-    ],
-    "main": "./out/extension",
-    "contributes": {
-        "commands": [
-            {
-                "command": "extension.background.info",
-                "title": "Background - Info"
-            }
-        ],
-        "configuration": {
-            "type": "object",
-            "title": "Plugin background config. background 插件配置",
-            "properties": {
-                "background.enabled": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Plugin background enabled.background 插件是否启用"
-                },
-                "background.useFront": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "If use front image,which means image is placed on the top of your code. 是否使用前景图，这样会使图片放在代码的顶部"
-                },
-                "background.style": {
-                    "type": "object",
-                    "default": {
-                        "content": "''",
-                        "pointer-events": "none",
-                        "position": "absolute",
-                        "z-index": "99999",
-                        "width": "100%",
-                        "height": "100%",
-                        "background-position": "100% 100%",
-                        "background-repeat": "no-repeat",
-                        "opacity": 1
-                    },
-                    "description": "Custom common style.自定义各项公有样式."
-                },
-                "background.styles": {
-                    "type": "array",
-                    "default": [
-                        {},
-                        {},
-                        {}
-                    ],
-                    "description": "Each style of backgrounds. 每一个背景图的独有样式。"
-                },
-                "background.useDefault": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Use default images.使用默认图片"
-                },
-                "background.customImages": {
-                    "type": "array",
-                    "default": [],
-                    "description": "Your custom images. 自己定制背景图"
-                },
-                "background.loop": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Loop your images. 循环使用图片"
-                }
-            }
+    "configuration": {
+      "type": "object",
+      "title": "Plugin background config. background 插件配置",
+      "properties": {
+        "background.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Plugin background enabled.background 插件是否启用"
+        },
+        "background.useFront": {
+          "type": "boolean",
+          "default": true,
+          "description": "If use front image,which means image is placed on the top of your code. 是否使用前景图，这样会使图片放在代码的顶部"
+        },
+        "background.style": {
+          "type": "object",
+          "default": {
+            "content": "''",
+            "pointer-events": "none",
+            "position": "absolute",
+            "z-index": "99999",
+            "width": "100%",
+            "height": "100%",
+            "background-position": "100% 100%",
+            "background-repeat": "no-repeat",
+            "opacity": 1
+          },
+          "description": "Custom common style.自定义各项公有样式."
+        },
+        "background.styles": {
+          "type": "array",
+          "default": [
+            {},
+            {},
+            {}
+          ],
+          "description": "Each style of backgrounds. 每一个背景图的独有样式。"
+        },
+        "background.useDefault": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use default images.使用默认图片"
+        },
+        "background.customImages": {
+          "type": "array",
+          "default": [],
+          "description": "Your custom images. 自己定制背景图"
+        },
+        "background.loop": {
+          "type": "boolean",
+          "default": false,
+          "description": "Loop your images. 循环使用图片"
         }
-    },
-    "scripts": {
-        "vscode:prepublish": "npm run compile",
-        "vscode:uninstall": "node ./out/uninstall",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
-        "lint": "eslint . --ext .ts src",
-        "fix": "eslint . --fix --ext .ts src"
-    },
-    "devDependencies": {
-        "@nosaid/eslint-config-for-typescript": "0.0.6",
-        "@types/node": "^12.12.16",
-        "@types/vscode": "^1.40.0",
-        "husky": "^4.2.5",
-        "typescript": "^3.9.2"
+      }
     }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "vscode:uninstall": "node ./out/uninstall",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint . --ext .ts src",
+    "fix": "eslint . --fix --ext .ts src"
+  },
+  "devDependencies": {
+    "@types/node": "^15.12.5",
+    "@types/vscode": "^1.40.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.1",
+    "@typescript-eslint/parser": "^4.28.1",
+    "eslint": "^7.29.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^6.0.0",
+    "prettier": "^2.3.2",
+    "typescript": "^4.3.4"
+  }
 }

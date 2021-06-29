@@ -5,5 +5,14 @@
     "endOfLine": "auto",
     "printWidth": 120,
     "bracketSpacing": true,
-    "arrowParens": "avoid"
+    "arrowParens": "avoid",
+    "overrides": [
+        {
+            "files": ["*.yaml", "*.yml", "package.json", "package-lock.json"],
+            "options": {
+                "singleQuote": false,
+                "tabWidth": 2
+            }
+        }
+    ]
 }
