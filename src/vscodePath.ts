@@ -11,7 +11,7 @@ const cssPath = path.join(base, 'vs', 'workbench', cssName);
 // electron 入口文件所在文件夹
 const indexDir = path.join(base, 'vs', 'workbench', 'electron-browser', 'bootstrap');
 
-export default {
+export const vscodePath = {
     /**
      * 基础目录
      */

@@ -1,5 +1,5 @@
-import background from './background';
-import vsHelp from './vsHelp';
+import { background } from './background';
+import { vsHelp } from './vsHelp';
 
 if (background.hasInstalled) {
     background.uninstall();

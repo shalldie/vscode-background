@@ -1,12 +1,12 @@
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
 
 import vscode from 'vscode';
 
-import vsHelp from './vsHelp';
-import vscodePath from './vscodePath';
-import getCss from './getCss';
-import defBase64 from './defBase64';
+import { vsHelp } from './vsHelp';
+import { vscodePath } from './vscodePath';
+import { getCss } from './getCss';
+import { defBase64 } from './defBase64';
 import { version, BACKGROUND_VER, ENCODE } from './constants';
 
 /**
@@ -263,4 +263,4 @@ class Background {
     //#endregion
 }
 
-export default new Background();
+export const background = new Background();

@@ -1,6 +1,6 @@
 import vscode from 'vscode';
 
-const vsHelp = {
+export const vsHelp = {
     /**
      * 展示信息提示框
      *
@@ -24,5 +24,3 @@ const vsHelp = {
         });
     }
 };
-
-export default vsHelp;

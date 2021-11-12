@@ -49,7 +49,7 @@ function loadImageBase64FromFileProtocol(url: string): string {
  * @param {boolean} [loop=false] 是否循环使用图片
  * @returns {string}
  */
-export default function (
+export function getCss(
     images: string[],
     style: any = {},
     styles: Array<any> = [],
