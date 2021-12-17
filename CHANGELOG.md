@@ -1,3 +1,13 @@
+## ver1.1.30 (2021/12/17)
+
+    适配 web，比如 code-server。
+    adapt to vscode web, for example code-server.
+
+## ver1.1.29 (???)
+
+    忘记了。
+    forget.
+
 ## ver1.1.28 (2021/06/29)
 
     同步一下最近的更新，没有功能上的调整。
