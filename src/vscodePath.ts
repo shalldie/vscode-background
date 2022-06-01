@@ -7,7 +7,8 @@ const base = path.dirname(require.main.filename);
 
 // css文件路径
 const cssName = parseFloat(vscode.version) >= 1.38 ? 'workbench.desktop.main.css' : 'workbench.main.css';
-const webCssName = 'workbench.web.api.css';
+// https://github.com/microsoft/vscode/pull/141263
+const webCssName = 'workbench.web.main.css';
 
 const cssPath = (() => {
     const getCssPath = (cssFileName: string) => path.join(base, 'vs', 'workbench', cssFileName);

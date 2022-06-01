@@ -1,3 +1,8 @@
+## ver1.1.31 (2022/6/1)
+
+    调整 web css 路径，// https://github.com/microsoft/vscode/pull/141263
+    update path of web css.
+
 ## ver1.1.30 (2021/12/17)
 
     适配 web，比如 code-server。
