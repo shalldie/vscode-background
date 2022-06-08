@@ -86,7 +86,7 @@
         },
         "background.minimapOpacity": {
           "type": "number",
-          "default": null,
+          "default": 1,
           "description": "Make Minimap transparent. 使Minimap透明"
         }
       }
