@@ -74,7 +74,10 @@
         "background.customImages": {
           "type": "array",
           "default": [],
-          "description": "Your custom images. 自己定制背景图"
+          "items": {
+            "type": "string"
+          },
+          "markdownDescription": "Your custom images. 自己定制背景图  \nYou must add the `file://` prefix when you use local files!  \n当您使用本地文件时，您**必须**添加`file://`前缀！"
         },
         "background.loop": {
           "type": "boolean",
