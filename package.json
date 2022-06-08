@@ -29,6 +29,10 @@
       {
         "command": "extension.background.info",
         "title": "Background - Info"
+      },
+      {
+        "command": "extension.background.uninstall",
+        "title": "Background - Uninstall (remove extension)"
       }
     ],
     "configuration": {

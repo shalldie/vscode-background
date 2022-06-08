@@ -15,25 +15,35 @@ export const vsHelp = {
      * 提示信息并重启
      *
      * @param {string} content 提示内容
+     * @param {string} contentWhenFixChecksumsBeInstalled 当'Fix VSCode Checksums'扩展被安装时的提示内容
      * @returns {Thenable<void>}
      */
-    async showInfoRestart(content: string): Promise<void> {
+    async showInfoRestart(
+        content: string,
+        contentWhenFixChecksumsBeInstalled = "We found the 'Fix VSCode Checksums' Extension has been installed. Do you want to use it to remove [unsupported] tag? "
+    ): Promise<void> {
+        const fix = 'use Fix VSCode Checksums';
+        const restart = 'Restart vscode';
         const fixChecksums = vscode.extensions.getExtension('lehni.vscode-fix-checksums');
+
+        const items: string[] = [];
+        let msg = content;
         if (fixChecksums) {
-            const result = await vscode.window.showInformationMessage(
-                "We found the 'Fix VSCode Checksums' Extension has been installed. " +
-                    'Do you want to use it to remove [unsupported] tag? ',
-                'Yes',
-                'No'
-            );
-            if (result === 'Yes') {
-                vscode.commands.executeCommand('fixChecksums.apply');
-                return;
-            }
+            items.push(fix);
+            msg = contentWhenFixChecksumsBeInstalled;
         }
-        return vscode.window.showInformationMessage(content, { title: 'Restart vscode' }).then(function (item) {
-            if (!item) return;
-            vscode.commands.executeCommand('workbench.action.reloadWindow');
+        items.push(restart);
+
+        vscode.window.showInformationMessage(msg, ...items).then(item => {
+            switch (item) {
+                case restart:
+                    vscode.commands.executeCommand('workbench.action.reloadWindow');
+                    break;
+                case fix:
+                    vscode.commands.executeCommand('fixChecksums.apply');
+                    vscode.commands.executeCommand('workbench.action.reloadWindow');
+                    break;
+            }
         });
     }
 };

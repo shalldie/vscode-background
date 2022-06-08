@@ -22,6 +22,19 @@ export function activate(context: vscode.ExtensionContext): void {
     context.subscriptions.push(disposable);
 
     context.subscriptions.push(background.watch());
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand('extension.background.uninstall', () => {
+            if (!background.hasInstalled) {
+                return;
+            }
+
+            background.uninstall();
+            vscode.commands.executeCommand('workbench.extensions.uninstallExtension', 'shalldie.background');
+            const msg = 'background extension has been uninstalled. See You Next Time! ';
+            vsHelp.showInfoRestart(msg, msg);
+        })
+    );
 }
 
 // this method is called when your extension is deactivated
