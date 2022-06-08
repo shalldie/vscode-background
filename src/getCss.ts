@@ -98,10 +98,12 @@ export function getCss(
             const codeEditorSelector = `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element${frontContent}`;
             // “开始”欢迎页面选择器
             const startedPageSelector = `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.gettingStartedContainer::before`;
+            // 扩展编辑器视图选择器
+            const extEditorSelector = `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.extension-editor::before`;
             // 空页面选择器
             const emptyViewSelector = `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .empty::before`;
 
-            return /* css */ `${codeEditorSelector},${startedPageSelector},${emptyViewSelector}{background-image:url('${img}');${styleContent}}`;
+            return /* css */ `${codeEditorSelector},${startedPageSelector},${extEditorSelector},${emptyViewSelector}{background-image:url('${img}');${styleContent}}`;
         })
         .join('\n');
 
