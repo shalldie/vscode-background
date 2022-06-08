@@ -56,7 +56,9 @@ export function getCss(
     styles: Array<any> = [],
     useFront = true,
     loop = false,
-    minimapOpacity?: number
+    minimapOpacity?: number,
+    customBackgroundSelectors?: string[],
+    customRemoveBackgroundSelectors?: string[]
 ): string {
     // ------ 默认样式 ------
     const defStyle = getStyleByOptions(style, useFront);
@@ -83,7 +85,17 @@ export function getCss(
     // ------ 组合样式 ------
     const imageStyleContent = list
         .map((img, index, arr) =>
-            makeImageStyleContent(img, index, arr, loop, useFront, frontContent, defStyle, styles)
+            makeImageStyleContent(
+                img,
+                index,
+                arr,
+                loop,
+                useFront,
+                frontContent,
+                defStyle,
+                styles,
+                customBackgroundSelectors
+            )
         )
         .join('\n');
 
@@ -94,7 +106,9 @@ export function getCss(
         '[id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-diff-editor',
         // 差异编辑器 子编辑器
         '[id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-diff-editor .editor>.monaco-editor',
-        '[id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-diff-editor .editor>.monaco-editor .monaco-editor-background'
+        '[id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-diff-editor .editor>.monaco-editor .monaco-editor-background',
+        // 自定义选择器
+        ...customRemoveBackgroundSelectors
     );
 
     const content = wrapCssContent(minimapStyleContent, imageStyleContent, removeBackground);
@@ -123,7 +137,8 @@ const makeImageStyleContent = (
     useFront: boolean,
     frontContent: string,
     defStyle: string,
-    styles: any[]
+    styles: any[],
+    customBackgroundSelectors?: string[]
 ) => {
     // ------ nth-child ------
     // nth-child(1)
@@ -148,6 +163,8 @@ const makeImageStyleContent = (
         // 差异编辑器视图选择器
         `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.monaco-diff-editor .editor .monaco-editor::before`,
         // 空页面选择器
-        `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .empty::before`
+        `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .empty::before`,
+        // 自定义选择器
+        ...customBackgroundSelectors
     );
 };

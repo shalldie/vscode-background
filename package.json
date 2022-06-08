@@ -95,6 +95,22 @@
           "type": "number",
           "default": 1,
           "description": "Make Minimap transparent. 使Minimap透明"
+        },
+        "background.customBackgroundSelectors": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "description": "自定义将要应用背景的元素的选择器"
+        },
+        "background.customRemoveBackgroundSelectors": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "description": "自定义将要删除背景的元素的选择器"
         }
       }
     }

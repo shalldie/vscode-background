@@ -208,7 +208,9 @@ class Background {
             config.styles,
             config.useFront,
             config.loop,
-            config.minimapOpacity
+            config.minimapOpacity,
+            config.customBackgroundSelectors,
+            config.customRemoveBackgroundSelectors
         ).trimEnd(); // 去除末尾空白
 
         // 添加到原有样式(尝试删除旧样式)中
