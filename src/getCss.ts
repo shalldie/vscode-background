@@ -165,6 +165,8 @@ const makeImageStyleContent = (
         // 空页面选择器
         `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .empty::before`,
         // 自定义选择器
-        ...customBackgroundSelectors
+        ...customBackgroundSelectors.map(str =>
+            str.replace('${nthChildIndex}', nthChildIndex).replace('${frontContent}', frontContent).trim()
+        )
     );
 };
