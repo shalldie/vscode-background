@@ -82,39 +82,72 @@ export function getCss(
 
     // ------ 组合样式 ------
     const imageStyleContent = list
-        .map((img, index) => {
-            // ------ nth-child ------
-            // nth-child(1)
-            let nthChildIndex = index + 1 + '';
-            // nth-child(3n + 1)
-            if (loop) {
-                nthChildIndex = `${images.length}n + ${nthChildIndex}`;
-            }
-
-            // ------ style ------
-            const styleContent = defStyle + getStyleByOptions(styles[index] || {}, useFront);
-
-            // 代码编辑器选择器
-            const codeEditorSelector = `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element${frontContent}`;
-            // “开始”欢迎页面选择器
-            const startedPageSelector = `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.gettingStartedContainer::before`;
-            // 扩展编辑器视图选择器
-            const extEditorSelector = `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.extension-editor::before`;
-            // 空页面选择器
-            const emptyViewSelector = `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .empty::before`;
-
-            return /* css */ `${codeEditorSelector},${startedPageSelector},${extEditorSelector},${emptyViewSelector}{background-image:url('${img}');${styleContent}}`;
-        })
+        .map((img, index, arr) =>
+            makeImageStyleContent(img, index, arr, loop, useFront, frontContent, defStyle, styles)
+        )
         .join('\n');
 
-    const content = `
-/*css-background-start*/
-/*${BACKGROUND_VER}.${version}*/
-${minimapStyleContent}
-${imageStyleContent}
-[id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element>.monaco-editor-background{background: none;}
-/*css-background-end*/
-`;
+    const removeBackground = clearBackground(
+        // 代码编辑器
+        '[id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element>.monaco-editor-background',
+        // 差异编辑器
+        '[id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-diff-editor',
+        // 差异编辑器 子编辑器
+        '[id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-diff-editor .editor>.monaco-editor',
+        '[id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-diff-editor .editor>.monaco-editor .monaco-editor-background'
+    );
+
+    const content = wrapCssContent(minimapStyleContent, imageStyleContent, removeBackground);
 
     return content;
 }
+const wrapCssContent = (...cssContent: string[]) => /* css */ `
+/*css-background-start*/
+/*${BACKGROUND_VER}.${version}*/
+${cssContent.join('\n')}
+/*css-background-end*/
+`;
+
+const clearBackground = (...selectors: string[]) => {
+    return selectors.map(i => i.trim()).join(',') + /* css */ `{background: none;}`;
+};
+const setBackground = (img: string, styleContent: string, ...selectors: string[]) => {
+    return selectors.map(i => i.trim()).join(',') + /* css */ `{background-image:url('${img}');${styleContent}}`;
+};
+
+const makeImageStyleContent = (
+    img: string,
+    index: number,
+    images: string[],
+    loop: boolean,
+    useFront: boolean,
+    frontContent: string,
+    defStyle: string,
+    styles: any[]
+) => {
+    // ------ nth-child ------
+    // nth-child(1)
+    let nthChildIndex = index + 1 + '';
+    // nth-child(3n + 1)
+    if (loop) {
+        nthChildIndex = `${images.length}n + ${nthChildIndex}`;
+    }
+
+    // ------ style ------
+    const styleContent = defStyle + getStyleByOptions(styles[index] || {}, useFront);
+
+    return setBackground(
+        img,
+        styleContent,
+        // 代码编辑器选择器
+        `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element${frontContent}`,
+        // “开始”欢迎页面选择器
+        `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.gettingStartedContainer::before`,
+        // 扩展编辑器视图选择器
+        `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.extension-editor::before`,
+        // 差异编辑器视图选择器
+        `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.monaco-diff-editor .editor .monaco-editor::before`,
+        // 空页面选择器
+        `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .empty::before`
+    );
+};
