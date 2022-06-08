@@ -20,6 +20,9 @@
   "activationEvents": [
     "onStartupFinished"
   ],
+  "extensionKind": [
+    "ui"
+  ],
   "main": "./out/extension",
   "contributes": {
     "commands": [
