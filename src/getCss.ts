@@ -33,7 +33,7 @@ function getStyleByOptions(options: object, useFront: boolean): string {
 function loadImageBase64FromFileProtocol(url: string): string {
     const fileUrl = new URL(url);
     const buffer = fs.readFileSync(fileUrl);
-    const extName = path.extname(fileUrl.pathname).substr(1);
+    const extName = path.extname(fileUrl.pathname).substring(1); // substr 已被标记弃用
 
     return `data:image/${extName};base64,${buffer.toString('base64')}`;
 }
@@ -47,6 +47,7 @@ function loadImageBase64FromFileProtocol(url: string): string {
  * @param {Array<any>} [styles=[]] 每个背景图的自定义样式
  * @param {boolean} [useFront=true] 是否用前景图
  * @param {boolean} [loop=false] 是否循环使用图片
+ * @param {number} [minimapOpacity] miniMap的透明度
  * @returns {string}
  */
 export function getCss(
@@ -54,7 +55,8 @@ export function getCss(
     style: any = {},
     styles: Array<any> = [],
     useFront = true,
-    loop = false
+    loop = false,
+    minimapOpacity?: number
 ): string {
     // ------ 默认样式 ------
     const defStyle = getStyleByOptions(style, useFront);
@@ -72,6 +74,12 @@ export function getCss(
         return url.startsWith('file://') ? loadImageBase64FromFileProtocol(url) : url;
     });
 
+    // Minimap 透明度样式
+    const minimapStyleContent =
+        !!minimapOpacity && minimapOpacity < 1
+            ? `[id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-editor .overflow-guard .minimap{opacity: ${minimapOpacity};}`
+            : '';
+
     // ------ 组合样式 ------
     const imageStyleContent = list
         .map((img, index) => {
@@ -86,22 +94,21 @@ export function getCss(
             // ------ style ------
             const styleContent = defStyle + getStyleByOptions(styles[index] || {}, useFront);
 
-            return (
-                // code editor
-                `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) ` +
-                `.editor-container .editor-instance>.monaco-editor ` +
-                `.overflow-guard>.monaco-scrollable-element${frontContent}{background-image: url('${img}');${styleContent}}` +
-                '\n' +
-                // home screen
-                `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) ` +
-                `.empty::before { background-image: url('${img}');${styleContent} }`
-            );
+            // 代码编辑器选择器
+            const codeEditorSelector = `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element${frontContent}`;
+            // “开始”欢迎页面选择器
+            const startedPageSelector = `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.gettingStartedContainer::before`;
+            // 空页面选择器
+            const emptyViewSelector = `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .empty::before`;
+
+            return /* css */ `${codeEditorSelector},${startedPageSelector},${emptyViewSelector}{background-image:url('${img}');${styleContent}}`;
         })
         .join('\n');
 
     const content = `
 /*css-background-start*/
 /*${BACKGROUND_VER}.${version}*/
+${minimapStyleContent}
 ${imageStyleContent}
 [id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element>.monaco-editor-background{background: none;}
 /*css-background-end*/

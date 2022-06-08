@@ -80,6 +80,11 @@
           "type": "boolean",
           "default": false,
           "description": "Loop your images. 循环使用图片"
+        },
+        "background.minimapOpacity": {
+          "type": "number",
+          "default": null,
+          "description": "Make Minimap transparent. 使Minimap透明"
         }
       }
     }

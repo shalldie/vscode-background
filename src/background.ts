@@ -202,7 +202,14 @@ class Background {
         }
 
         // 自定义的样式内容
-        const content = getCss(arr, config.style, config.styles, config.useFront, config.loop).replace(/\s*$/, ''); // 去除末尾空白
+        const content = getCss(
+            arr,
+            config.style,
+            config.styles,
+            config.useFront,
+            config.loop,
+            config.minimapOpacity
+        ).trimEnd(); // 去除末尾空白
 
         // 添加到原有样式(尝试删除旧样式)中
         let cssContent = this.getCssContent();
