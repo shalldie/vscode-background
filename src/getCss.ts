@@ -154,16 +154,6 @@ const makeImageStyleContent = (
     return setBackground(
         img,
         styleContent,
-        // 代码编辑器选择器
-        `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element${frontContent}`,
-        // “开始”欢迎页面选择器
-        `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.gettingStartedContainer::before`,
-        // 扩展编辑器视图选择器
-        `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.extension-editor::before`,
-        // 差异编辑器视图选择器
-        `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.monaco-diff-editor .editor .monaco-editor::before`,
-        // 空页面选择器
-        `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) .empty::before`,
         // 自定义选择器
         ...customBackgroundSelectors.map(str =>
             str.replace('${nthChildIndex}', nthChildIndex).replace('${frontContent}', frontContent).trim()
