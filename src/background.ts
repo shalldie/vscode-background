@@ -170,14 +170,14 @@ class Background {
      * @private
      * @memberof Background
      */
-    private initialize(): void {
+    private async initialize(): Promise<void> {
         const firstload = this.checkFirstload(); // 是否初次加载插件
 
         const fileType = this.fileType; // css 文件目前状态
 
         // 如果是第一次加载插件，或者旧版本
         if (firstload || fileType == ECSSEditType.isOld || fileType == ECSSEditType.noModified) {
-            this.install(true);
+            await this.install(true);
         }
     }
 
@@ -213,7 +213,7 @@ class Background {
      * @returns {void}
      * @memberof Background
      */
-    private install(refresh?: boolean): void {
+    private async install(refresh?: boolean): Promise<void> {
         const lastConfig = this.config; // 之前的配置
         const config = vscode.workspace.getConfiguration('background'); // 当前用户配置
 
@@ -236,8 +236,8 @@ class Background {
 
         // 4.如果关闭插件
         if (!config.enabled) {
-            this.uninstall();
-            vsHelp.showInfoRestart('Background has been uninstalled! Please restart.');
+            await this.uninstall();
+            await vsHelp.showInfoRestart('Background has been uninstalled! Please restart.');
             return;
         }
 
@@ -266,8 +266,8 @@ class Background {
         cssContent = this.clearCssContent(cssContent);
         cssContent += content;
 
-        this.saveCssContent(cssContent);
-        vsHelp.showInfoRestart('Background has been changed! Please restart.');
+        await this.saveCssContent(cssContent);
+        await vsHelp.showInfoRestart('Background has been changed! Please restart.');
     }
 
     /**
@@ -294,11 +294,11 @@ class Background {
      * @returns {boolean}
      * @memberof Background
      */
-    public uninstall(): boolean {
+    public async uninstall(): Promise<boolean> {
         try {
             let content = this.getCssContent();
             content = this.clearCssContent(content);
-            this.saveCssContent(content);
+            await this.saveCssContent(content);
             return true;
         } catch (ex) {
             console.log(ex);
@@ -312,9 +312,9 @@ class Background {
      * @returns {vscode.Disposable}
      * @memberof Background
      */
-    public watch(): vscode.Disposable {
-        this.initialize();
-        return vscode.workspace.onDidChangeConfiguration(() => this.install());
+    public async watch(): Promise<vscode.Disposable> {
+        await this.initialize();
+        return vscode.workspace.onDidChangeConfiguration(async () => await this.install());
     }
 
     //#endregion
