@@ -134,5 +134,8 @@
     "husky": "^6.0.0",
     "prettier": "^2.3.2",
     "typescript": "^4.3.4"
+  },
+  "dependencies": {
+    "sudo-prompt": "^9.2.1"
   }
 }

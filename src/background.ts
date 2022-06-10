@@ -1,5 +1,7 @@
 import fs from 'fs';
+import fsp from 'fs/promises';
 import path from 'path';
+import sudo from 'sudo-prompt';
 
 import vscode from 'vscode';
 
@@ -8,6 +10,8 @@ import { vscodePath } from './vscodePath';
 import { getCss } from './getCss';
 import { defBase64 } from './defBase64';
 import { version, BACKGROUND_VER, ENCODE } from './constants';
+import { tmpdir } from 'os';
+import { randomUUID } from 'crypto';
 
 /**
  * css文件修改状态类型
@@ -110,10 +114,54 @@ class Background {
      * @param {string} content
      * @memberof Background
      */
-    private saveCssContent(content: string): void {
-        if (content && content.length) {
-            fs.writeFileSync(vscodePath.cssPath, content, ENCODE);
+    private async saveCssContent(content: string): Promise<void> {
+        if (!content || !content.length) {
+            return;
         }
+        try {
+            await fsp.writeFile(vscodePath.cssPath, content, ENCODE);
+        } catch (e) {
+            const retry = 'Retry with Admin';
+            const result = await vscode.window.showErrorMessage(e.message, retry);
+            if (result !== retry) {
+                return;
+            }
+            const tempFilePath = await this.saveCssContentToTemp(content);
+            try {
+                const mvcmd = process.platform === 'win32' ? 'move /Y' : 'mv -f';
+                const cmdarg = `${mvcmd} "${tempFilePath}" "${vscodePath.cssPath}"`;
+                await this.sudoCommand(cmdarg, { name: 'Visual Studio Code Background Extension' });
+            } catch (e) {
+                await vscode.window.showErrorMessage(e.message);
+            } finally {
+                await fsp.rm(tempFilePath);
+            }
+        }
+    }
+
+    private async sudoCommand(
+        cmd: string,
+        options?: { name?: string; icns?: string; env?: { [key: string]: string } }
+    ): Promise<[stdout?: string | Buffer, stderr?: string | Buffer]> {
+        return new Promise((resolve, reject) => {
+            const callback = (error: Error, stdout: string | Buffer, stderr: string | Buffer) => {
+                if (error) {
+                    reject(error);
+                }
+                resolve([stdout, stderr]);
+            };
+            if (!options) {
+                sudo.exec(cmd, callback);
+                return;
+            }
+            sudo.exec(cmd, options, callback);
+        });
+    }
+
+    private async saveCssContentToTemp(content: string): Promise<string> {
+        const tempPath = path.resolve(tmpdir(), `vscode-background-${randomUUID()}.css`);
+        await fsp.writeFile(tempPath, content, ENCODE);
+        return tempPath;
     }
 
     /**
