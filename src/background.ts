@@ -139,6 +139,12 @@ class Background {
         }
     }
 
+    /**
+     * 提权运行命令
+     * @param cmd 命令
+     * @param options 选项
+     * @returns 命令输出
+     */
     private async sudoCommand(
         cmd: string,
         options?: { name?: string; icns?: string; env?: { [key: string]: string } }
@@ -158,6 +164,11 @@ class Background {
         });
     }
 
+    /**
+     * 保存CSS到临时文件
+     * @param content CSS文件内容
+     * @returns 临时文件路径
+     */
     private async saveCssContentToTemp(content: string): Promise<string> {
         const tempPath = path.resolve(tmpdir(), `vscode-background-${randomUUID()}.css`);
         await fsp.writeFile(tempPath, content, ENCODE);
