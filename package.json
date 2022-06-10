@@ -137,7 +137,8 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "lint": "eslint . --ext .ts src",
-    "fix": "eslint . --fix --ext .ts src"
+    "fix": "eslint . --fix --ext .ts src",
+    "package": "npx vsce package"
   },
   "devDependencies": {
     "@types/node": "^15.12.5",
@@ -149,7 +150,8 @@
     "eslint-plugin-prettier": "^3.4.0",
     "husky": "^6.0.0",
     "prettier": "^2.3.2",
-    "typescript": "^4.3.4"
+    "typescript": "^4.3.4",
+    "vsce": "^2.9.1"
   },
   "dependencies": {
     "sudo-prompt": "^9.2.1"
