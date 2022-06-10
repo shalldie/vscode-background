@@ -100,13 +100,6 @@ export function getCss(
         .join('\n');
 
     const removeBackground = clearBackground(
-        // 代码编辑器
-        '[id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element>.monaco-editor-background',
-        // 差异编辑器
-        '[id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-diff-editor',
-        // 差异编辑器 子编辑器
-        '[id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-diff-editor .editor>.monaco-editor',
-        '[id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-diff-editor .editor>.monaco-editor .monaco-editor-background',
         // 自定义选择器
         ...customRemoveBackgroundSelectors
     );
