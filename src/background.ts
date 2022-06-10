@@ -1,4 +1,5 @@
 import fs from 'fs/promises';
+import { constants as fsConstants } from 'fs';
 import path from 'path';
 import sudo from 'sudo-prompt';
 
@@ -122,6 +123,7 @@ class Background {
             return false;
         }
         try {
+            await fs.access(vscodePath.cssPath, fsConstants.W_OK);
             await fs.writeFile(vscodePath.cssPath, content, ENCODE);
             return true;
         } catch (e) {
