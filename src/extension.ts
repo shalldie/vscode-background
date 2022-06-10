@@ -30,9 +30,12 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
             }
 
             const msg = 'background extension has been uninstalled. See You Next Time! ';
-            await background.uninstall();
-            await vscode.commands.executeCommand('workbench.extensions.uninstallExtension', 'shalldie.background');
-            await vsHelp.showInfoRestart(msg, msg);
+            if (await background.uninstall()) {
+                // 当且仅当成功删除样式时才会卸载扩展
+                // 否则可能导致没有成功删掉样式时扩展就被卸载掉
+                await vscode.commands.executeCommand('workbench.extensions.uninstallExtension', 'shalldie.background');
+                await vsHelp.showInfoRestart(msg, msg);
+            }
         })
     );
 }

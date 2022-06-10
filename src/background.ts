@@ -114,25 +114,28 @@ class Background {
      * @param {string} content
      * @memberof Background
      */
-    private async saveCssContent(content: string): Promise<void> {
+    private async saveCssContent(content: string): Promise<boolean> {
         if (!content || !content.length) {
-            return;
+            return false;
         }
         try {
             await fsp.writeFile(vscodePath.cssPath, content, ENCODE);
+            return true;
         } catch (e) {
             const retry = 'Retry with Admin';
             const result = await vscode.window.showErrorMessage(e.message, retry);
             if (result !== retry) {
-                return;
+                return false;
             }
             const tempFilePath = await this.saveCssContentToTemp(content);
             try {
                 const mvcmd = process.platform === 'win32' ? 'move /Y' : 'mv -f';
                 const cmdarg = `${mvcmd} "${tempFilePath}" "${vscodePath.cssPath}"`;
                 await this.sudoCommand(cmdarg, { name: 'Visual Studio Code Background Extension' });
+                return true;
             } catch (e) {
                 await vscode.window.showErrorMessage(e.message);
+                return false;
             } finally {
                 await fsp.rm(tempFilePath);
             }
@@ -277,8 +280,9 @@ class Background {
         cssContent = this.clearCssContent(cssContent);
         cssContent += content;
 
-        await this.saveCssContent(cssContent);
-        await vsHelp.showInfoRestart('Background has been changed! Please restart.');
+        if (await this.saveCssContent(cssContent)) {
+            await vsHelp.showInfoRestart('Background has been changed! Please restart.');
+        }
     }
 
     /**
@@ -309,8 +313,7 @@ class Background {
         try {
             let content = this.getCssContent();
             content = this.clearCssContent(content);
-            await this.saveCssContent(content);
-            return true;
+            return await this.saveCssContent(content);
         } catch (ex) {
             console.log(ex);
             return false;
