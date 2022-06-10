@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 import { URL } from 'url';
 import { version, BACKGROUND_VER } from './constants';
@@ -30,9 +30,9 @@ function getStyleByOptions(options: object, useFront: boolean): string {
  * 使用 file 协议加载图片文件并转为 base64
  * @param url 图片路径
  */
-function loadImageBase64FromFileProtocol(url: string): string {
+async function loadImageBase64FromFileProtocol(url: string): Promise<string> {
     const fileUrl = new URL(url);
-    const buffer = fs.readFileSync(fileUrl);
+    const buffer = await fs.readFile(fileUrl);
     const extName = path.extname(fileUrl.pathname).substring(1); // substr 已被标记弃用
 
     return `data:image/${extName};base64,${buffer.toString('base64')}`;
@@ -50,16 +50,16 @@ function loadImageBase64FromFileProtocol(url: string): string {
  * @param {number} [minimapOpacity] miniMap的透明度
  * @returns {string}
  */
-export function getCss(
+export async function getCss(
     images: string[],
     style: any = {},
     styles: Array<any> = [],
     useFront = true,
     loop = false,
     minimapOpacity?: number,
-    customBackgroundSelectors?: string[],
-    customRemoveBackgroundSelectors?: string[]
-): string {
+    backgroundSelectors?: string[],
+    removeBackgroundSelectors?: string[]
+): Promise<string> {
     // ------ 默认样式 ------
     const defStyle = getStyleByOptions(style, useFront);
 
@@ -72,8 +72,8 @@ export function getCss(
       当检测到配置文件使用 file 协议时, 需要将图片读取并转为 base64, 而后再插入到 css 中
     */
 
-    const list = images.map(url => {
-        return url.startsWith('file://') ? loadImageBase64FromFileProtocol(url) : url;
+    const list = images.map(async url => {
+        return url.startsWith('file://') ? await loadImageBase64FromFileProtocol(url) : url;
     });
 
     // Minimap 透明度样式
@@ -83,25 +83,17 @@ export function getCss(
             : '';
 
     // ------ 组合样式 ------
-    const imageStyleContent = list
-        .map((img, index, arr) =>
-            makeImageStyleContent(
-                img,
-                index,
-                arr,
-                loop,
-                useFront,
-                frontContent,
-                defStyle,
-                styles,
-                customBackgroundSelectors
+    const imageStyleContent = (
+        await Promise.all(
+            list.map((img, index, arr) =>
+                makeImageStyleContent(img, index, arr, loop, frontContent, defStyle, styles, backgroundSelectors)
             )
         )
-        .join('\n');
+    ).join('\n');
 
     const removeBackground = clearBackground(
         // 自定义选择器
-        ...customRemoveBackgroundSelectors
+        ...removeBackgroundSelectors.map(i => i.trim())
     );
 
     const content = wrapCssContent(minimapStyleContent, imageStyleContent, removeBackground);
@@ -115,24 +107,49 @@ ${cssContent.join('\n')}
 /*css-background-end*/
 `;
 
+/**
+ * 获取删除背景的CSS样式字符串
+ * @param selectors 选择器
+ * @returns 同步的CSS样式字符串
+ */
 const clearBackground = (...selectors: string[]) => {
     return selectors.map(i => i.trim()).join(',') + /* css */ `{background: none;}`;
 };
-const setBackground = (img: string, styleContent: string, ...selectors: string[]) => {
-    return selectors.map(i => i.trim()).join(',') + /* css */ `{background-image:url('${img}');${styleContent}}`;
+
+/**
+ * 获取背景图样式
+ * @param img 图片路径
+ * @param styleContent 图片的样式
+ * @param selectors 选择器
+ * @returns 异步的CSS样式字符串
+ */
+const setBackground = async (img: Promise<string>, styleContent: string, ...selectors: string[]) => {
+    return selectors.map(i => i.trim()).join(',') + /* css */ `{background-image:url('${await img}');${styleContent}}`;
 };
 
+/**
+ * 生成图片样式
+ *
+ * @param img 异步的图片uri
+ * @param index 图片索引
+ * @param images 异步图片uri 数组
+ * @param loop 是否循环使用图片
+ * @param frontContent 伪元素
+ * @param defStyle 默认样式
+ * @param styles 每个背景图的自定义样式
+ * @param backgroundSelectors 自定义选择器
+ * @returns {Promise<string>} 异步的css字符串
+ */
 const makeImageStyleContent = (
-    img: string,
+    img: Promise<string>,
     index: number,
-    images: string[],
+    images: Promise<string>[],
     loop: boolean,
-    useFront: boolean,
-    frontContent: string,
+    frontContent: '::after' | '::before',
     defStyle: string,
     styles: any[],
-    customBackgroundSelectors?: string[]
-) => {
+    backgroundSelectors: string[]
+): Promise<string> => {
     // ------ nth-child ------
     // nth-child(1)
     let nthChildIndex = index + 1 + '';
@@ -142,13 +159,13 @@ const makeImageStyleContent = (
     }
 
     // ------ style ------
-    const styleContent = defStyle + getStyleByOptions(styles[index] || {}, useFront);
+    const styleContent = defStyle + getStyleByOptions(styles[index] || {}, frontContent === '::after');
 
     return setBackground(
         img,
         styleContent,
         // 自定义选择器
-        ...customBackgroundSelectors.map(str =>
+        ...backgroundSelectors.map(str =>
             str.replace('${nthChildIndex}', nthChildIndex).replace('${frontContent}', frontContent).trim()
         )
     );

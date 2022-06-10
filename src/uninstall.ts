@@ -1,7 +1,10 @@
 import { background } from './background';
 import { vsHelp } from './vsHelp';
 
-if (background.hasInstalled) {
-    background.uninstall();
-    vsHelp.showInfoRestart('Background has been uninstalled! Please restart.');
-}
+background.hasInstalled().then(async hasInstalled => {
+    if (hasInstalled) {
+        if (await background.uninstall()) {
+            vsHelp.showInfoRestart('Background has been uninstalled! Please restart.');
+        }
+    }
+});

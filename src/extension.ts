@@ -25,7 +25,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 
     context.subscriptions.push(
         vscode.commands.registerCommand('extension.background.uninstall', async () => {
-            if (!background.hasInstalled) {
+            if (!(await background.hasInstalled())) {
                 return;
             }
 
