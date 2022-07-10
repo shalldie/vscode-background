@@ -7,7 +7,7 @@ import { vsHelp } from './vsHelp';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext): void {
+export async function activate(context: vscode.ExtensionContext): Promise<void> {
     // Use the console to output diagnostic information (console.log) and errors (console.error)
     // This line of code will only be executed once when your extension is activated
     // console.log('Congratulations, your extension "background" is now active!');
@@ -21,7 +21,23 @@ export function activate(context: vscode.ExtensionContext): void {
 
     context.subscriptions.push(disposable);
 
-    context.subscriptions.push(background.watch());
+    context.subscriptions.push(await background.watch());
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand('extension.background.uninstall', async () => {
+            if (!(await background.hasInstalled())) {
+                return;
+            }
+
+            const msg = 'background extension has been uninstalled. See You Next Time! ';
+            if (await background.uninstall()) {
+                // 当且仅当成功删除样式时才会卸载扩展
+                // 否则可能导致没有成功删掉样式时扩展就被卸载掉
+                await vscode.commands.executeCommand('workbench.extensions.uninstallExtension', 'shalldie.background');
+                await vsHelp.showInfoRestart(msg, msg);
+            }
+        })
+    );
 }
 
 // this method is called when your extension is deactivated

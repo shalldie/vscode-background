@@ -18,7 +18,10 @@
     "Other"
   ],
   "activationEvents": [
-    "*"
+    "onStartupFinished"
+  ],
+  "extensionKind": [
+    "ui"
   ],
   "main": "./out/extension",
   "contributes": {
@@ -26,6 +29,10 @@
       {
         "command": "extension.background.info",
         "title": "Background - Info"
+      },
+      {
+        "command": "extension.background.uninstall",
+        "title": "Background - Uninstall (remove extension)"
       }
     ],
     "configuration": {
@@ -74,12 +81,52 @@
         "background.customImages": {
           "type": "array",
           "default": [],
-          "description": "Your custom images. 自己定制背景图"
+          "items": {
+            "type": "string"
+          },
+          "markdownDescription": "Your custom images. 自己定制背景图  \nYou must add the `file://` prefix when you use local files!  \n当您使用本地文件时，您**必须**添加`file://`前缀！"
         },
         "background.loop": {
           "type": "boolean",
           "default": false,
           "description": "Loop your images. 循环使用图片"
+        },
+        "background.minimapOpacity": {
+          "type": "number",
+          "default": 1,
+          "description": "Make Minimap transparent. 使Minimap透明"
+        },
+        "background.customBackgroundSelectors": {
+          "type": "array",
+          "default": [
+            "[id=\"workbench.parts.editor\"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element${frontContent}",
+            "[id=\"workbench.parts.editor\"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.gettingStartedContainer::before",
+            "[id=\"workbench.parts.editor\"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.extension-editor::before",
+            "[id=\"workbench.parts.editor\"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.monaco-diff-editor .editor .monaco-editor::before",
+            "[id=\"workbench.parts.editor\"] .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.settings-editor::before",
+            "[id=\"workbench.parts.editor\"] .split-view-view:nth-child(${nthChildIndex}) .empty::before"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "Customize the selector of the element to which the background will be applied. 自定义将要应用背景的元素的选择器"
+        },
+        "background.customRemoveBackgroundSelectors": {
+          "type": "array",
+          "default": [
+            "[id=\"workbench.parts.editor\"] .split-view-view .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element>.monaco-editor-background",
+            "[id=\"workbench.parts.editor\"] .split-view-view .editor-container .editor-instance>.monaco-diff-editor",
+            "[id=\"workbench.parts.editor\"] .split-view-view .editor-container .editor-instance>.monaco-diff-editor .editor>.monaco-editor",
+            "[id=\"workbench.parts.editor\"] .split-view-view .editor-container .editor-instance>.monaco-diff-editor .editor>.monaco-editor .monaco-editor-background",
+            "[id=\"workbench.parts.editor\"] .split-view-view .editor-container .editor-instance>.settings-editor .settings-body .split-view-container .settings-tree-container>.monaco-list>.monaco-scrollable-element>.monaco-list-rows",
+            "[id=\"workbench.parts.editor\"] .split-view-view .editor-container .editor-instance>.settings-editor .settings-body .split-view-container .settings-tree-container>.monaco-list>.monaco-scrollable-element>.monaco-list-rows>.monaco-list-row",
+            "[id=\"workbench.parts.editor\"] .split-view-view .editor-container .editor-instance>.settings-editor .settings-body .split-view-container .settings-tree-container>.monaco-list>.monaco-scrollable-element>.monaco-list-rows>.monaco-list-row.focused",
+            "[id=\"workbench.parts.editor\"] .split-view-view .editor-container .editor-instance>.settings-editor .settings-body .split-view-container .settings-tree-container>.monaco-list>.monaco-scrollable-element>.monaco-list-rows>.monaco-list-row.selected"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "Customize the selector of the element whose background will be removed. 自定义将要删除背景的元素的选择器"
         }
       }
     }
@@ -90,7 +137,8 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "lint": "eslint . --ext .ts src",
-    "fix": "eslint . --fix --ext .ts src"
+    "fix": "eslint . --fix --ext .ts src",
+    "package": "npx vsce package"
   },
   "devDependencies": {
     "@types/node": "^15.12.5",
@@ -102,6 +150,10 @@
     "eslint-plugin-prettier": "^3.4.0",
     "husky": "^6.0.0",
     "prettier": "^2.3.2",
-    "typescript": "^4.3.4"
+    "typescript": "^4.3.4",
+    "vsce": "^2.9.1"
+  },
+  "dependencies": {
+    "sudo-prompt": "^9.2.1"
   }
 }

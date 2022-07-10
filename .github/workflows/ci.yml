@@ -26,4 +26,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - run: npm run compile
+    - run: npm run package
+    - uses: actions/upload-artifact@v3
+      with:
+        name: build-artifact
+        path: '*.vsix'

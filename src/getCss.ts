@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 import { URL } from 'url';
 import { version, BACKGROUND_VER } from './constants';
@@ -30,10 +30,10 @@ function getStyleByOptions(options: object, useFront: boolean): string {
  * 使用 file 协议加载图片文件并转为 base64
  * @param url 图片路径
  */
-function loadImageBase64FromFileProtocol(url: string): string {
+async function loadImageBase64FromFileProtocol(url: string): Promise<string> {
     const fileUrl = new URL(url);
-    const buffer = fs.readFileSync(fileUrl);
-    const extName = path.extname(fileUrl.pathname).substr(1);
+    const buffer = await fs.readFile(fileUrl);
+    const extName = path.extname(fileUrl.pathname).substring(1); // substr 已被标记弃用
 
     return `data:image/${extName};base64,${buffer.toString('base64')}`;
 }
@@ -47,15 +47,19 @@ function loadImageBase64FromFileProtocol(url: string): string {
  * @param {Array<any>} [styles=[]] 每个背景图的自定义样式
  * @param {boolean} [useFront=true] 是否用前景图
  * @param {boolean} [loop=false] 是否循环使用图片
+ * @param {number} [minimapOpacity] miniMap的透明度
  * @returns {string}
  */
-export function getCss(
+export async function getCss(
     images: string[],
     style: any = {},
     styles: Array<any> = [],
     useFront = true,
-    loop = false
-): string {
+    loop = false,
+    minimapOpacity?: number,
+    backgroundSelectors?: string[],
+    removeBackgroundSelectors?: string[]
+): Promise<string> {
     // ------ 默认样式 ------
     const defStyle = getStyleByOptions(style, useFront);
 
@@ -68,44 +72,101 @@ export function getCss(
       当检测到配置文件使用 file 协议时, 需要将图片读取并转为 base64, 而后再插入到 css 中
     */
 
-    const list = images.map(url => {
-        return url.startsWith('file://') ? loadImageBase64FromFileProtocol(url) : url;
+    const list = images.map(async url => {
+        return url.startsWith('file://') ? await loadImageBase64FromFileProtocol(url) : url;
     });
 
+    // Minimap 透明度样式
+    const minimapStyleContent =
+        !!minimapOpacity && minimapOpacity < 1
+            ? `[id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-editor .overflow-guard .minimap{opacity: ${minimapOpacity};}`
+            : '';
+
     // ------ 组合样式 ------
-    const imageStyleContent = list
-        .map((img, index) => {
-            // ------ nth-child ------
-            // nth-child(1)
-            let nthChildIndex = index + 1 + '';
-            // nth-child(3n + 1)
-            if (loop) {
-                nthChildIndex = `${images.length}n + ${nthChildIndex}`;
-            }
+    const imageStyleContent = (
+        await Promise.all(
+            list.map((img, index, arr) =>
+                makeImageStyleContent(img, index, arr, loop, frontContent, defStyle, styles, backgroundSelectors)
+            )
+        )
+    ).join('\n');
 
-            // ------ style ------
-            const styleContent = defStyle + getStyleByOptions(styles[index] || {}, useFront);
+    const removeBackground = clearBackground(
+        // 自定义选择器
+        ...removeBackgroundSelectors.map(i => i.trim())
+    );
 
-            return (
-                // code editor
-                `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) ` +
-                `.editor-container .editor-instance>.monaco-editor ` +
-                `.overflow-guard>.monaco-scrollable-element${frontContent}{background-image: url('${img}');${styleContent}}` +
-                '\n' +
-                // home screen
-                `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) ` +
-                `.empty::before { background-image: url('${img}');${styleContent} }`
-            );
-        })
-        .join('\n');
-
-    const content = `
-/*css-background-start*/
-/*${BACKGROUND_VER}.${version}*/
-${imageStyleContent}
-[id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element>.monaco-editor-background{background: none;}
-/*css-background-end*/
-`;
+    const content = wrapCssContent(minimapStyleContent, imageStyleContent, removeBackground);
 
     return content;
 }
+const wrapCssContent = (...cssContent: string[]) => /* css */ `
+/*css-background-start*/
+/*${BACKGROUND_VER}.${version}*/
+${cssContent.join('\n')}
+/*css-background-end*/
+`;
+
+/**
+ * 获取删除背景的CSS样式字符串
+ * @param selectors 选择器
+ * @returns 同步的CSS样式字符串
+ */
+const clearBackground = (...selectors: string[]) => {
+    return selectors.map(i => i.trim()).join(',') + /* css */ `{background: none;}`;
+};
+
+/**
+ * 获取背景图样式
+ * @param img 图片路径
+ * @param styleContent 图片的样式
+ * @param selectors 选择器
+ * @returns 异步的CSS样式字符串
+ */
+const setBackground = async (img: Promise<string>, styleContent: string, ...selectors: string[]) => {
+    return selectors.map(i => i.trim()).join(',') + /* css */ `{background-image:url('${await img}');${styleContent}}`;
+};
+
+/**
+ * 生成图片样式
+ *
+ * @param img 异步的图片uri
+ * @param index 图片索引
+ * @param images 异步图片uri 数组
+ * @param loop 是否循环使用图片
+ * @param frontContent 伪元素
+ * @param defStyle 默认样式
+ * @param styles 每个背景图的自定义样式
+ * @param backgroundSelectors 自定义选择器
+ * @returns {Promise<string>} 异步的css字符串
+ */
+const makeImageStyleContent = (
+    img: Promise<string>,
+    index: number,
+    images: Promise<string>[],
+    loop: boolean,
+    frontContent: '::after' | '::before',
+    defStyle: string,
+    styles: any[],
+    backgroundSelectors: string[]
+): Promise<string> => {
+    // ------ nth-child ------
+    // nth-child(1)
+    let nthChildIndex = index + 1 + '';
+    // nth-child(3n + 1)
+    if (loop) {
+        nthChildIndex = `${images.length}n + ${nthChildIndex}`;
+    }
+
+    // ------ style ------
+    const styleContent = defStyle + getStyleByOptions(styles[index] || {}, frontContent === '::after');
+
+    return setBackground(
+        img,
+        styleContent,
+        // 自定义选择器
+        ...backgroundSelectors.map(str =>
+            str.replace('${nthChildIndex}', nthChildIndex).replace('${frontContent}', frontContent).trim()
+        )
+    );
+};

@@ -1,5 +1,7 @@
-import fs from 'fs';
+import fs from 'fs/promises';
+import { constants as fsConstants } from 'fs';
 import path from 'path';
+import sudo from 'sudo-prompt';
 
 import vscode from 'vscode';
 
@@ -8,6 +10,8 @@ import { vscodePath } from './vscodePath';
 import { getCss } from './getCss';
 import { defBase64 } from './defBase64';
 import { version, BACKGROUND_VER, ENCODE } from './constants';
+import { tmpdir } from 'os';
+import { randomUUID } from 'crypto';
 
 /**
  * css文件修改状态类型
@@ -58,8 +62,12 @@ class Background {
      * @type {boolean}
      * @memberof Background
      */
-    public get hasInstalled(): boolean {
-        const content = this.getCssContent() || '';
+    public async hasInstalled(): Promise<boolean> {
+        const content = await this.getCssContent();
+        if (!content) {
+            return false;
+        }
+
         return !!~content.indexOf(BACKGROUND_VER);
     }
 
@@ -70,12 +78,12 @@ class Background {
      * @type {ECSSEditType}
      * @memberof Background
      */
-    public get fileType(): ECSSEditType {
-        if (!this.hasInstalled) {
+    public async fileType(): Promise<ECSSEditType> {
+        if (!(await this.hasInstalled())) {
             return ECSSEditType.noModified;
         }
 
-        const cssContent = this.getCssContent();
+        const cssContent = await this.getCssContent();
 
         // hack 过的旧版本，即不包含当前版本
         const ifVerOld = !~cssContent.indexOf(`/*${BACKGROUND_VER}.${version}*/`);
@@ -99,8 +107,8 @@ class Background {
      * @returns {string}
      * @memberof Background
      */
-    private getCssContent(): string {
-        return fs.readFileSync(vscodePath.cssPath, ENCODE);
+    private async getCssContent(): Promise<string> {
+        return await fs.readFile(vscodePath.cssPath, ENCODE);
     }
 
     /**
@@ -110,10 +118,69 @@ class Background {
      * @param {string} content
      * @memberof Background
      */
-    private saveCssContent(content: string): void {
-        if (content && content.length) {
-            fs.writeFileSync(vscodePath.cssPath, content, ENCODE);
+    private async saveCssContent(content: string): Promise<boolean> {
+        if (!content || !content.length) {
+            return false;
         }
+        try {
+            await fs.access(vscodePath.cssPath, fsConstants.W_OK);
+            await fs.writeFile(vscodePath.cssPath, content, ENCODE);
+            return true;
+        } catch (e) {
+            const retry = 'Retry with Admin';
+            const result = await vscode.window.showErrorMessage(e.message, retry);
+            if (result !== retry) {
+                return false;
+            }
+            const tempFilePath = await this.saveCssContentToTemp(content);
+            try {
+                const mvcmd = process.platform === 'win32' ? 'move /Y' : 'mv -f';
+                const cmdarg = `${mvcmd} "${tempFilePath}" "${vscodePath.cssPath}"`;
+                await this.sudoCommand(cmdarg, { name: 'Visual Studio Code Background Extension' });
+                return true;
+            } catch (e) {
+                await vscode.window.showErrorMessage(e.message);
+                return false;
+            } finally {
+                await fs.rm(tempFilePath);
+            }
+        }
+    }
+
+    /**
+     * 提权运行命令
+     * @param cmd 命令
+     * @param options 选项
+     * @returns 命令输出
+     */
+    private async sudoCommand(
+        cmd: string,
+        options?: { name?: string; icns?: string; env?: { [key: string]: string } }
+    ): Promise<[stdout?: string | Buffer, stderr?: string | Buffer]> {
+        return new Promise((resolve, reject) => {
+            const callback = (error: Error, stdout: string | Buffer, stderr: string | Buffer) => {
+                if (error) {
+                    reject(error);
+                }
+                resolve([stdout, stderr]);
+            };
+            if (!options) {
+                sudo.exec(cmd, callback);
+                return;
+            }
+            sudo.exec(cmd, options, callback);
+        });
+    }
+
+    /**
+     * 保存CSS到临时文件
+     * @param content CSS文件内容
+     * @returns 临时文件路径
+     */
+    private async saveCssContentToTemp(content: string): Promise<string> {
+        const tempPath = path.resolve(tmpdir(), `vscode-background-${randomUUID()}.css`);
+        await fs.writeFile(tempPath, content, ENCODE);
+        return tempPath;
     }
 
     /**
@@ -122,14 +189,14 @@ class Background {
      * @private
      * @memberof Background
      */
-    private initialize(): void {
-        const firstload = this.checkFirstload(); // 是否初次加载插件
+    private async initialize(): Promise<void> {
+        const firstload = await this.checkFirstload(); // 是否初次加载插件
 
-        const fileType = this.fileType; // css 文件目前状态
+        const fileType = await this.fileType(); // css 文件目前状态
 
         // 如果是第一次加载插件，或者旧版本
         if (firstload || fileType == ECSSEditType.isOld || fileType == ECSSEditType.noModified) {
-            this.install(true);
+            await this.install(true);
         }
     }
 
@@ -140,16 +207,16 @@ class Background {
      * @returns {boolean} 是否初次加载
      * @memberof Background
      */
-    private checkFirstload(): boolean {
+    private async checkFirstload(): Promise<boolean> {
         const configPath = path.join(__dirname, '../assets/config.json');
-        const info: { firstload: boolean } = JSON.parse(fs.readFileSync(configPath, ENCODE));
+        const info: { firstload: boolean } = JSON.parse(await fs.readFile(configPath, ENCODE));
 
         if (info.firstload) {
             // 提示
             vsHelp.showInfo('Welcome to use background! U can config it in settings.json.');
             // 标识插件已启动过
             info.firstload = false;
-            fs.writeFileSync(configPath, JSON.stringify(info, null, '    '), ENCODE);
+            fs.writeFile(configPath, JSON.stringify(info, null, '    '), ENCODE);
 
             return true;
         }
@@ -165,7 +232,7 @@ class Background {
      * @returns {void}
      * @memberof Background
      */
-    private install(refresh?: boolean): void {
+    private async install(refresh?: boolean): Promise<void> {
         const lastConfig = this.config; // 之前的配置
         const config = vscode.workspace.getConfiguration('background'); // 当前用户配置
 
@@ -188,8 +255,8 @@ class Background {
 
         // 4.如果关闭插件
         if (!config.enabled) {
-            this.uninstall();
-            vsHelp.showInfoRestart('Background has been uninstalled! Please restart.');
+            await this.uninstall();
+            await vsHelp.showInfoRestart('Background has been uninstalled! Please restart.');
             return;
         }
 
@@ -202,15 +269,27 @@ class Background {
         }
 
         // 自定义的样式内容
-        const content = getCss(arr, config.style, config.styles, config.useFront, config.loop).replace(/\s*$/, ''); // 去除末尾空白
+        const content = (
+            await getCss(
+                arr,
+                config.style,
+                config.styles,
+                config.useFront,
+                config.loop,
+                config.minimapOpacity,
+                config.customBackgroundSelectors,
+                config.customRemoveBackgroundSelectors
+            )
+        ).trimEnd(); // 去除末尾空白
 
         // 添加到原有样式(尝试删除旧样式)中
-        let cssContent = this.getCssContent();
+        let cssContent = await this.getCssContent();
         cssContent = this.clearCssContent(cssContent);
         cssContent += content;
 
-        this.saveCssContent(cssContent);
-        vsHelp.showInfoRestart('Background has been changed! Please restart.');
+        if (await this.saveCssContent(cssContent)) {
+            await vsHelp.showInfoRestart('Background has been changed! Please restart.');
+        }
     }
 
     /**
@@ -236,13 +315,13 @@ class Background {
      *
      * @returns {boolean}
      * @memberof Background
+     * @returns 是否成功卸载
      */
-    public uninstall(): boolean {
+    public async uninstall(): Promise<boolean> {
         try {
-            let content = this.getCssContent();
+            let content = await this.getCssContent();
             content = this.clearCssContent(content);
-            this.saveCssContent(content);
-            return true;
+            return await this.saveCssContent(content);
         } catch (ex) {
             console.log(ex);
             return false;
@@ -255,9 +334,9 @@ class Background {
      * @returns {vscode.Disposable}
      * @memberof Background
      */
-    public watch(): vscode.Disposable {
-        this.initialize();
-        return vscode.workspace.onDidChangeConfiguration(() => this.install());
+    public async watch(): Promise<vscode.Disposable> {
+        await this.initialize();
+        return vscode.workspace.onDidChangeConfiguration(async () => await this.install());
     }
 
     //#endregion
