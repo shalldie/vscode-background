@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import vscode from 'vscode';
 
@@ -6,7 +5,7 @@ import vscode from 'vscode';
 const base = path.dirname(require.main.filename);
 
 // css文件路径
-const cssName = parseFloat(vscode.version) >= 1.38 ? 'workbench.desktop.main.css' : 'workbench.main.css';
+const cssName = 'workbench.desktop.main.css';
 // https://github.com/microsoft/vscode/pull/141263
 const webCssName = 'workbench.web.main.css';
 

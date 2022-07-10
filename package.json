@@ -3,6 +3,16 @@
   "displayName": "background",
   "description": "A simple tool to make your vscode's background look better!",
   "version": "1.1.31",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "vscode:uninstall": "node ./out/uninstall",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint . --ext .ts src",
+    "fix": "eslint . --fix --ext .ts src",
+    "package": "vsce package",
+    "prepare": "husky install"
+  },
   "publisher": "shalldie",
   "author": "shalldie",
   "license": "MIT",
@@ -131,26 +141,17 @@
       }
     }
   },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "vscode:uninstall": "node ./out/uninstall",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "lint": "eslint . --ext .ts src",
-    "fix": "eslint . --fix --ext .ts src",
-    "package": "vsce package"
-  },
   "devDependencies": {
     "@types/node": "^15.12.5",
     "@types/vscode": "^1.40.0",
-    "@typescript-eslint/eslint-plugin": "^4.28.1",
-    "@typescript-eslint/parser": "^4.28.1",
-    "eslint": "^7.29.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "husky": "^6.0.0",
-    "prettier": "^2.3.2",
-    "typescript": "^4.3.4",
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
+    "eslint": "^8.19.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.1",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4",
     "vsce": "^2.9.1"
   },
   "dependencies": {
