@@ -138,7 +138,7 @@
     "watch": "tsc -watch -p ./",
     "lint": "eslint . --ext .ts src",
     "fix": "eslint . --fix --ext .ts src",
-    "package": "npx vsce package"
+    "package": "vsce package"
   },
   "devDependencies": {
     "@types/node": "^15.12.5",
