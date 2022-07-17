@@ -21,7 +21,8 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 
     context.subscriptions.push(disposable);
 
-    context.subscriptions.push(await background.watch());
+    await background.setup();
+    context.subscriptions.push(background);
 
     context.subscriptions.push(
         vscode.commands.registerCommand('extension.background.uninstall', async () => {
@@ -34,7 +35,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
                 // 当且仅当成功删除样式时才会卸载扩展
                 // 否则可能导致没有成功删掉样式时扩展就被卸载掉
                 await vscode.commands.executeCommand('workbench.extensions.uninstallExtension', 'shalldie.background');
-                await vsHelp.showInfoRestart(msg, msg);
+                await vsHelp.showInfoRestart(msg);
             }
         })
     );

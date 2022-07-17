@@ -5,13 +5,8 @@
         "rootDir": "src",
         "outDir": "out",
         "esModuleInterop": true,
-        "lib": [
-            "es6"
-        ],
+        "lib": ["es6"],
         "sourceMap": true
     },
-    "exclude": [
-        "node_modules",
-        ".vscode-test"
-    ]
+    "exclude": ["node_modules", ".vscode-test"]
 }

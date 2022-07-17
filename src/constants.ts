@@ -1,5 +1,7 @@
+import pkg from '../package.json';
+
 /** 版本号 */
-export const version = '1.1.31';
+export const version = pkg.version;
 
 /** 版本标识 */
 export const BACKGROUND_VER = 'background.ver';

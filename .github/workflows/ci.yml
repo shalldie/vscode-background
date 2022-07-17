@@ -29,3 +29,7 @@ jobs:
       # validate compile、package
       - run: npm ci
       - run: npm run package
+      - uses: actions/upload-artifact@v3
+        with:
+          name: build-artifact
+          path: "*.vsix"
