@@ -7,71 +7,61 @@
 
 [English](./README.md) | [中文](./README.zh-CN.md)
 
-## Add a lovely background-image to your vscode.
+## 给 vscode 添加一个背景
 
 GitHub: [https://github.com/shalldie/vscode-background](https://github.com/shalldie/vscode-background)
 
 Vscode Market: [https://marketplace.visualstudio.com/items?itemName=shalldie.background](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
-## It looks like:
+## 看起来这样
 
 ![](https://user-images.githubusercontent.com/9987486/40583705-7105dda8-61c6-11e8-935a-3c5d475a1eb1.gif)
 
-## Warns 警告：
+## 注意：
 
 > **本插件是通过修改 vscode 的 css 文件的方式运行**
 > 所以会在初次安装，或者 vscode 升级的时候，出现以下提示，请选择 【不再提示】:
->
-> **This extension works by editting the vscode's css file.**
-> So, a warning appears while the first time to install or vscode update. U can click the [never show again] to avoid it.
 
 ![](https://user-images.githubusercontent.com/9987486/40583926-b1fb5398-61ca-11e8-8271-4ac650d158d3.png)
 
-This is the reason:
+原因：
 
 ![](https://user-images.githubusercontent.com/9987486/40583775-91d4c8d6-61c7-11e8-9048-8c5538a32399.png)
 
-## Config 配置项
+## 配置项
 
-| Name                      |      Type       | Description                                                                         |
-| :------------------------ | :-------------: | :---------------------------------------------------------------------------------- |
-| `background.enabled`      |    `Boolean`    | 插件是否启用 <br> Enable or disable this plugin                                     |
-| `background.useDefault`   |    `Boolean`    | 是否使用默认图片 <br> Whether or not to use default images                          |
-| `background.customImages` | `Array<String>` | 自定义图片 <br> Add your custom images                                              |
-| `background.style`        |    `Object`     | 自定义样式 <br> Customize style                                                     |
-| `background.styles`       | `Array<Object>` | 每个图片的独立样式 <br> Add custom Style for individual image.                      |
-| `background.useFront`     |    `Boolean`    | 前景图/背景图。 在代码上面还是下面 <br> Set the image to front or back of your code |
-| `background.loop`         |    `Boolean`    | 循环模式，会重复显示图片 <br> `loop` mode, may repeat your images                   |
+| 名称                      |      类型       | 描述                               |
+| :------------------------ | :-------------: | :--------------------------------- |
+| `background.enabled`      |    `Boolean`    | 插件是否启用                       |
+| `background.useDefault`   |    `Boolean`    | 是否使用默认图片                   |
+| `background.customImages` | `Array<String>` | 自定义图片                         |
+| `background.style`        |    `Object`     | 自定义样式                         |
+| `background.styles`       | `Array<Object>` | 每个图片的独立样式                 |
+| `background.useFront`     |    `Boolean`    | 前景图/背景图。 在代码上面还是下面 |
+| `background.loop`         |    `Boolean`    | 循环模式，会重复显示图片           |
 
-## Notice 提示
+## 提示
 
 **http** 协议的外链图片在当前版本不能使用(vscode 限制)，需要用 **https** 协议开头的外链地址。
 
-You should use protocol **https** instead of **http** for the image, **http** is not support by vscode any more.
+## 卸载
 
-## Uninstall 卸载
+    两种方式
 
-    There are two ways:
+    方式1. (推荐)
 
-    1. (recommended)
+    使用 `ctrl + shift + p` 打开命令面板，输入 `Background - Uninstall (remove extension)` ，完成自动化卸载。
 
-    Type `ctrl + shift + p` key to open command panel. And then use the `Background - Uninstall (remove extension)` command to complete the uninstall.
+    方式2.
 
-    使用 `ctrl + shift + p` 打开命令面板，输入 `Background - Uninstall (remove extension)` 以完成卸载。
-
-    2.
-
-    Set the config  {"background.enabled": false}  in settings.json, then uninstall the plugin.
-
-    需要在 settings.json 中设置 {"background.enabled": false} ，然后再删除插件。
+    在 settings.json 中设置 {"background.enabled": false} ，然后再删除插件。
 
 ### Q&A 常见问题:
 
 ---
 
-    Q:How to remove [unsupported] tag?
-    Q:怎么去除顶部的[不受信任]的标志？
-    A:see here: https://github.com/lehni/vscode-fix-checksums
+    Q:怎么去除顶部的[不受信任]的标志（强迫症）？
+    A:参考另一个插件: https://github.com/lehni/vscode-fix-checksums
 
 ---
 

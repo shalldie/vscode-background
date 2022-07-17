@@ -17,17 +17,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # checkout
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      # node@14 runtime
-      - name: Use Node.js 14
-        uses: actions/setup-node@v2
+      - name: Install Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 16
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.0.1
 
       # validate compile、package
-      - run: npm ci
+      - run: pnpm i
       - run: npm run package
       - uses: actions/upload-artifact@v3
         with:
