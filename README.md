@@ -53,9 +53,9 @@ You should use protocol **https** instead of **http** for the image, **http** is
 
     1. (recommended)
 
-    Type `ctrl + shift +p` key to open command panel. And then use the `Background - Uninstall (remove extension)` command to complete the uninstall.
+    Type `ctrl + shift + p` key to open command panel. And then use the `Background - Uninstall (remove extension)` command to complete the uninstall.
 
-    使用 `ctrl + shift +p` 打开命令面板，输入 `Background - Uninstall (remove extension)` 以完成卸载。
+    使用 `ctrl + shift + p` 打开命令面板，输入 `Background - Uninstall (remove extension)` 以完成卸载。
 
     2.
 
