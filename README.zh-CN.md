@@ -45,7 +45,7 @@ ext install background
 | `background.customImages` | `Array<String>` |     `[]`     | 自定义图片                         |
 | `background.loop`         |    `Boolean`    |   `false`    | 循环模式，会重复显示图片           |
 
-`style` 指的是 `css style`，通过自定义样式可以改变背景图的展示。
+`style` 指的是 [css style](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS)，通过自定义样式可以改变背景图的展示。
 
 ## 一些示例
 
@@ -101,9 +101,10 @@ ext install background
 }
 ```
 
-## 注意：
+## 注意
 
 > **本插件是通过修改 vscode 的 css 文件的方式运行**
+>
 > 所以会在初次安装，或者 vscode 升级的时候，出现以下提示，请选择 【不再提示】:
 
 ![](https://user-images.githubusercontent.com/9987486/40583926-b1fb5398-61ca-11e8-8271-4ac650d158d3.png)
@@ -118,7 +119,7 @@ ext install background
 
     方式1. (推荐)
 
-    使用 `ctrl + shift + p` 打开命令面板，输入 `Background - Uninstall (remove extension)` ，完成自动化卸载。
+    使用 `F1` 打开命令面板，输入并选择 `Background - Uninstall (remove extension)` ，完成自动化卸载。
 
     方式2.
 
@@ -144,37 +145,22 @@ ext install background
 
 ---
 
-    Q:怎么去除顶部的[不受信任]的标志（强迫症）？
-    A:参考另一个插件: https://github.com/lehni/vscode-fix-checksums
+    Q: 怎么去除顶部的[不受信任]的标志（强迫症）？
+    A: 参考另一个插件: https://github.com/lehni/vscode-fix-checksums
 
 ---
 
-    Q:It seems that nothing happens after installing the extension?
-    Q:安装完插件后，似乎没有反应？
-
-    A:Make sure you have the administrator authority！！
-    A:如果不能使用，请确保你有管理员权限！！
-
-    A:In Mac, move `vscode` from `Download` to `Applications`.
+    Q: Mac 下安装完插件后，似乎没有反应？
     A:在 Mac 下，把 vscode 从 `下载` 移动到 `应用` 中
 
 ---
 
-    Q:How to get the administrator authority?
-    Q:怎么获取管理员权限呢？ =。=
+    Q: 插件基于修改 vscode css 文件运行，无权限时会尝试提权。
+       如果因为某种原因不work了，用户需要自行改变权限怎么办呢？
 
-    A:In windows,click right button on the vscode's icon,then check the [run with the administrator authority].
-    A:在windows环境中，可以右键单击vscode的图标，选择【以管理员身份运行】。
+    A: 在 windows 中，可以右键单击vscode的图标，选择【以管理员身份运行】。
+    A: 在 mac/linux 中，请尝试：https://github.com/shalldie/vscode-background/issues/6
 
----
+## 协议
 
-    In ubuntu:[https://github.com/shalldie/vscode-background/issues/6](https://github.com/shalldie/vscode-background/issues/6).
-
-    Press F1,and you can get it by enter **ext install background** in your vscode. (～￣ ▽ ￣)～
-    <br />
-    <br />
-    你可以在 vscode 中，按下 F1，然后输入 **ext install background** 来下载她 (～￣ ▽ ￣)～
-
----
-
-**Enjoy!**
+MIT
