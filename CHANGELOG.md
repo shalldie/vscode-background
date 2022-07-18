@@ -1,6 +1,7 @@
 ## ver1.2.0 (2022/7/18)
 
     大量调整，相当部分来自：https://github.com/shalldie/vscode-background/pull/293
+    main:
     Auto sodu command to install. 自动提权。
     Another way to uninstall. 额外的卸载方式。
 
