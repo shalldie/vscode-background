@@ -161,6 +161,8 @@ ext install background
     A: 在 windows 中，可以右键单击vscode的图标，选择【以管理员身份运行】。
     A: 在 mac/linux 中，请尝试：https://github.com/shalldie/vscode-background/issues/6
 
+---
+
 ## 协议
 
 MIT

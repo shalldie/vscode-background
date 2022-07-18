@@ -157,6 +157,8 @@ This is the reason:
     A: In windows,click right button on the vscode's icon,then check the [run with the administrator authority].
     A: in mac/linux, try this: https://github.com/shalldie/vscode-background/issues/6 .
 
+---
+
 ## LICENSE
 
 MIT
