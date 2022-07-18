@@ -53,17 +53,17 @@
         "background.enabled": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Plugin background enabled.\nbackground 插件是否启用"
+          "markdownDescription": "Plugin background enabled.\n\nbackground 插件是否启用"
         },
         "background.useFront": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "If use front image,which means image is placed on the top of your code.\n是否使用前景图，这样会使图片放在代码的顶部"
+          "markdownDescription": "If use front image,which means image is placed on the top of your code.\n\n是否使用前景图，这样会使图片放在代码的顶部"
         },
         "background.useDefault": {
           "type": "boolean",
           "default": true,
-          "description": "Use default images.使用默认图片"
+          "description": "Use default images.\n\n使用默认图片"
         },
         "background.style": {
           "type": "object",
@@ -78,7 +78,7 @@
             "background-repeat": "no-repeat",
             "opacity": 1
           },
-          "markdownDescription": "Custom common style.\n自定义各项公有样式."
+          "markdownDescription": "Custom common style.\n\n自定义各项公有样式."
         },
         "background.styles": {
           "type": "array",
@@ -87,7 +87,7 @@
             {},
             {}
           ],
-          "markdownDescription": "Each style of backgrounds.\n每一个背景图的独有样式。"
+          "markdownDescription": "Each style of backgrounds.\n\n每一个背景图的独有样式。"
         },
         "background.customImages": {
           "type": "array",
@@ -95,12 +95,12 @@
           "items": {
             "type": "string"
           },
-          "markdownDescription": "Your custom images. 自己定制背景图\nExample:\n`https://a.com/b.png`\nor\n`file:///a/b.jpg`"
+          "markdownDescription": "Your custom images. 自己定制背景图\n\nExample:\n\n`https://a.com/b.png`\n\nor\n\n`file:///a/b.jpg`"
         },
         "background.loop": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Loop your images.\n循环使用图片"
+          "markdownDescription": "Loop your images.\n\n循环使用图片"
         }
       }
     }
