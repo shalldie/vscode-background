@@ -118,6 +118,12 @@ class Background implements Disposable {
             await fsp.writeFile(vscodePath.cssPath, content, ENCODE);
             return true;
         } catch (e) {
+            // FIXME：
+            // 一些系统会报错：Unable to find pkexec or kdesudo.
+            // 相关 issue：https://github.com/jorangreef/sudo-prompt/pull/123
+            // 测试环境： codercom/code-server:4.4.0
+            // uname -a
+            // Linux code-server-b6cc684df-sqx9h 5.4.0-77-generic #86-Ubuntu SMP Thu Jun 17 02:35:03 UTC 2021 x86_64 GNU/Linux
             const retry = 'Retry with Admin/Sudo';
             const result = await vscode.window.showErrorMessage(e.message, retry);
             if (result !== retry) {
