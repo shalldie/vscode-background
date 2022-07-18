@@ -41,9 +41,9 @@ User defined requirements can be met by changing the configuration(`settings.jso
 | `background.customImages` | `Array<String>` |     `[]`     | Add your custom images                      |
 | `background.loop`         |    `Boolean`    |   `false`    | `loop` mode, may repeat your images         |
 
-`style` means [css style](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS)，which allows you to create great-looking background。
+`style` means [css style](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS),which allows you to create great-looking background。
 
-## Some Examples
+## Examples
 
 1. disable this extension
 
@@ -115,7 +115,7 @@ This is the reason:
 
     1. (recommended)
 
-    press `F1` to open Command Palette，enter and chose `Background - Uninstall (remove extension)` ，Automatically complete uninstall.
+    press `F1` to open Command Palette,enter and chose `Background - Uninstall (remove extension)` ,automatically complete uninstall.
 
     2.
 
