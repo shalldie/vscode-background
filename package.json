@@ -61,6 +61,11 @@
           "default": true,
           "markdownDescription": "If use front image,which means image is placed on the top of your code.\n是否使用前景图，这样会使图片放在代码的顶部"
         },
+        "background.useDefault": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use default images.使用默认图片"
+        },
         "background.style": {
           "type": "object",
           "default": {
@@ -84,11 +89,6 @@
             {}
           ],
           "markdownDescription": "Each style of backgrounds.\n每一个背景图的独有样式。"
-        },
-        "background.useDefault": {
-          "type": "boolean",
-          "default": true,
-          "description": "Use default images.使用默认图片"
         },
         "background.customImages": {
           "type": "array",

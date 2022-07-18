@@ -8,7 +8,7 @@
     "arrowParens": "avoid",
     "overrides": [
         {
-            "files": ["*.yaml", "*.yml", "package.json", "package-lock.json"],
+            "files": ["*.md", "*.yaml", "*.yml", "package.json", "package-lock.json"],
             "options": {
                 "singleQuote": false,
                 "tabWidth": 2
