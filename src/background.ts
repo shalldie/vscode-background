@@ -118,7 +118,7 @@ class Background implements Disposable {
             await fsp.writeFile(vscodePath.cssPath, content, ENCODE);
             return true;
         } catch (e) {
-            const retry = 'Retry with Admin';
+            const retry = 'Retry with Admin/Sudo';
             const result = await vscode.window.showErrorMessage(e.message, retry);
             if (result !== retry) {
                 return false;

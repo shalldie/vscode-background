@@ -32,7 +32,8 @@
     "onStartupFinished"
   ],
   "extensionKind": [
-    "ui"
+    "ui",
+    "workspace"
   ],
   "main": "./out/extension",
   "contributes": {
