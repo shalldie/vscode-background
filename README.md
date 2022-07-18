@@ -135,7 +135,7 @@ This is the reason:
 
 ## CHANGELOG
 
-可以从 [这里](https://github.com/shalldie/vscode-background/blob/master/CHANGELOG.md) 查看所有的变更内容。
+You can checkout all our changes in our [change log](https://github.com/shalldie/vscode-background/blob/master/CHANGELOG.md).
 
 ## Q&A
 
