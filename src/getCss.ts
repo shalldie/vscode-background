@@ -1,7 +1,7 @@
 import fsp from 'fs/promises';
 import path from 'path';
 import { URL } from 'url';
-import { version, BACKGROUND_VER } from './constants';
+import { VERSION, BACKGROUND_VER } from './constants';
 
 /**
  * 通过配置获取样式文本
@@ -101,7 +101,7 @@ export function getCss(
 
     const content = `
 /*css-background-start*/
-/*${BACKGROUND_VER}.${version}*/
+/*${BACKGROUND_VER}.${VERSION}*/
 ${imageStyleContent}
 [id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element>.monaco-editor-background{background: none;}
 /*css-background-end*/

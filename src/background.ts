@@ -1,6 +1,6 @@
 // sys
 import { tmpdir } from 'os';
-import { constants as fsConstants } from 'fs';
+import fs, { constants as fsConstants } from 'fs';
 import fsp from 'fs/promises';
 import path from 'path';
 import { randomUUID } from 'crypto';
@@ -14,7 +14,7 @@ import { vsHelp } from './vsHelp';
 import { vscodePath } from './vscodePath';
 import { getCss } from './getCss';
 import { defBase64 } from './defBase64';
-import { version, BACKGROUND_VER, ENCODE } from './constants';
+import { VERSION, BACKGROUND_VER, ENCODE } from './constants';
 
 /**
  * css文件修改状态类型
@@ -54,6 +54,13 @@ class Background implements Disposable {
      */
     private config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('background');
 
+    /**
+     * 需要释放的资源
+     *
+     * @private
+     * @type {Disposable[]}
+     * @memberof Background
+     */
     private disposables: Disposable[] = [];
 
     //#endregion
@@ -74,7 +81,7 @@ class Background implements Disposable {
         const cssContent = await this.getCssContent();
 
         // hack 过的旧版本，即不包含当前版本
-        const ifVerOld = !~cssContent.indexOf(`/*${BACKGROUND_VER}.${version}*/`);
+        const ifVerOld = !~cssContent.indexOf(`/*${BACKGROUND_VER}.${VERSION}*/`);
 
         if (ifVerOld) {
             return ECSSEditType.isOld;
@@ -136,26 +143,18 @@ class Background implements Disposable {
      *
      * @private
      * @param {string} cmd 命令
-     * @param {{ name?: string; icns?: string; env?: { [key: string]: string } }} [options] 选项
-     * @return {*}  {Promise<[stdout?} 命令输出
+     * @param {{ name?: string }} [options={}] 选项
+     * @return {*}  {Promise<any>} 命令输出
      * @memberof Background
      */
-    private async sudoCommand(
-        cmd: string,
-        options?: { name?: string; icns?: string; env?: { [key: string]: string } }
-    ): Promise<[stdout?: string | Buffer, stderr?: string | Buffer]> {
+    private async sudoCommand(cmd: string, options: { name?: string } = {}): Promise<any> {
         return new Promise((resolve, reject) => {
-            const callback = (error: Error, stdout: string | Buffer, stderr: string | Buffer) => {
+            sudo.exec(cmd, options, (error: Error, stdout: string | Buffer, stderr: string | Buffer) => {
                 if (error) {
                     reject(error);
                 }
                 resolve([stdout, stderr]);
-            };
-            if (!options) {
-                sudo.exec(cmd, callback);
-                return;
-            }
-            sudo.exec(cmd, options, callback);
+            });
         });
     }
 
@@ -167,8 +166,8 @@ class Background implements Disposable {
      * @returns 临时文件路径
      * @memberof Background
      */
-    private async saveCssContentToTemp(content: string): Promise<string> {
-        const tempPath = path.resolve(tmpdir(), `vscode-background-${randomUUID()}.css`);
+    private async saveCssContentToTemp(content: string) {
+        const tempPath = path.join(tmpdir(), `vscode-background-${randomUUID()}.css`);
         await fsp.writeFile(tempPath, content, ENCODE);
         return tempPath;
     }
@@ -181,22 +180,22 @@ class Background implements Disposable {
      * @memberof Background
      */
     private async checkFirstload(): Promise<boolean> {
-        const configPath = path.join(__dirname, '../assets/config.json');
-        const info: { firstload: boolean } = JSON.parse(await fsp.readFile(configPath, ENCODE));
+        const versionTouchFile = path.join(__dirname, `../vscb.${VERSION}.touch`);
 
-        if (info.firstload) {
+        const firstLoad = !fs.existsSync(versionTouchFile);
+
+        if (firstLoad) {
             // 提示
 
             vsHelp.showInfo(
                 [
                     //
-                    `Welcome to use background@${version}!`,
+                    `Welcome to use background@${VERSION}!`,
                     'You can config it in settings.json.'
                 ].join('\n')
             );
             // 标识插件已启动过
-            info.firstload = false;
-            fsp.writeFile(configPath, JSON.stringify(info, null, '    '), ENCODE);
+            fsp.writeFile(versionTouchFile, '', ENCODE);
 
             return true;
         }
@@ -282,7 +281,7 @@ class Background implements Disposable {
     /**
      * 初始化
      *
-     * @private
+     * @return {*}  {Promise<void>}
      * @memberof Background
      */
     public async setup(): Promise<void> {
@@ -317,9 +316,8 @@ class Background implements Disposable {
     /**
      * 卸载
      *
-     * @returns {boolean}
+     * @return {*}  {Promise<boolean>} 是否成功卸载
      * @memberof Background
-     * @returns 是否成功卸载
      */
     public async uninstall(): Promise<boolean> {
         try {
@@ -332,6 +330,11 @@ class Background implements Disposable {
         }
     }
 
+    /**
+     * 释放资源
+     *
+     * @memberof Background
+     */
     public dispose() {
         this.disposables.forEach(n => n.dispose());
     }
