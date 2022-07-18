@@ -19,7 +19,9 @@
 
 ## 安装
 
-在命令选项版（command/ctl + p）中输入以下命令快速定位到插件：
+<!-- To install the extension just execute the following command in the Command Palette of Visual Studio Code -->
+
+在命令选项板（command/ctl + p）中输入以下命令快速定位到插件：
 
 ```
 ext install background
@@ -124,15 +126,15 @@ ext install background
 
 ## 感谢这些朋友的 pr 🙏
 
-[<img alt="shalldie" src="https://avatars3.githubusercontent.com/u/9987486?v=4" width="100">](https://github.com/shalldie)
-[<img alt="NoDocCat" src="https://avatars.githubusercontent.com/u/20502666?v=4" width="100">](https://github.com/NoDocCat)
-[<img alt="frg2089" src="https://avatars.githubusercontent.com/u/42184238?v=4" width="100">](https://github.com/frg2089)
-[<img alt="mwSora" src="https://avatars.githubusercontent.com/u/23083011?v=4" width="100">](https://github.com/mwSora)
-[<img alt="tumit" src="https://avatars.githubusercontent.com/u/1756190?v=4" width="100">](https://github.com/tumit)
-[<img alt="asurinsaka" src="https://avatars.githubusercontent.com/u/8145535?v=4" width="100">](https://github.com/asurinsaka)
-[<img alt="u3u" src="https://avatars.githubusercontent.com/u/20062482?v=4" width="100">](https://github.com/u3u)
-[<img alt="Unthrottled" src="https://avatars.githubusercontent.com/u/15972415?v=4" width="100">](https://github.com/Unthrottled)
-[<img alt="rogeraabbccdd" src="https://avatars.githubusercontent.com/u/15815422?v=4" width="100">](https://github.com/rogeraabbccdd)
+[<img alt="shalldie" src="https://avatars3.githubusercontent.com/u/9987486?v=4" width="80">](https://github.com/shalldie)
+[<img alt="NoDocCat" src="https://avatars.githubusercontent.com/u/20502666?v=4" width="80">](https://github.com/NoDocCat)
+[<img alt="frg2089" src="https://avatars.githubusercontent.com/u/42184238?v=4" width="80">](https://github.com/frg2089)
+[<img alt="mwSora" src="https://avatars.githubusercontent.com/u/23083011?v=4" width="80">](https://github.com/mwSora)
+[<img alt="tumit" src="https://avatars.githubusercontent.com/u/1756190?v=4" width="80">](https://github.com/tumit)
+[<img alt="asurinsaka" src="https://avatars.githubusercontent.com/u/8145535?v=4" width="80">](https://github.com/asurinsaka)
+[<img alt="u3u" src="https://avatars.githubusercontent.com/u/20062482?v=4" width="80">](https://github.com/u3u)
+[<img alt="Unthrottled" src="https://avatars.githubusercontent.com/u/15972415?v=4" width="80">](https://github.com/Unthrottled)
+[<img alt="rogeraabbccdd" src="https://avatars.githubusercontent.com/u/15815422?v=4" width="80">](https://github.com/rogeraabbccdd)
 
 ## 更新日志
 
