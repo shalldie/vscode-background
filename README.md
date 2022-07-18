@@ -137,7 +137,7 @@ This is the reason:
 
 可以从 [这里](https://github.com/shalldie/vscode-background/blob/master/CHANGELOG.md) 查看所有的变更内容。
 
-### Q&A
+## Q&A
 
 ---
 
