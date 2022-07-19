@@ -18,7 +18,7 @@ export const getNewProduct = (newChecksum: string) => {
     const product = require(vscodePath.productPath);
 
     // 获取Key
-    const key = vscodePath.cssPath.replace(`\\`, '/').replace(`${vscodePath.base}/`, '');
+    const key = vscodePath.cssPath.replace(`${vscodePath.base}`, '').replace(/\\/g, '/').substring(1);
 
     if (product.checksums[key] !== newChecksum) {
         product.checksums[key] = newChecksum;
