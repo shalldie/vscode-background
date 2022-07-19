@@ -15,6 +15,7 @@ import { vscodePath } from './vscodePath';
 import { getCss } from './getCss';
 import { defBase64 } from './defBase64';
 import { VERSION, BACKGROUND_VER, ENCODE } from './constants';
+import { computeChecksum, getNewProduct } from './vscodeChecksums';
 
 /**
  * css文件修改状态类型
@@ -110,12 +111,39 @@ class Background implements Disposable {
      * @memberof Background
      */
     private async saveCssContent(content: string): Promise<boolean> {
+        // TODO: 这逻辑太乱了，需要来点巧妙设计去重构它
         if (!content || !content.length) {
             return false;
         }
         try {
             await fsp.access(vscodePath.cssPath, fsConstants.W_OK);
             await fsp.writeFile(vscodePath.cssPath, content, ENCODE);
+            const json = getNewProduct(await computeChecksum(vscodePath.cssPath));
+            if (json) {
+                try {
+                    await fsp.writeFile(vscodePath.productPath, json, { encoding: 'utf8' });
+                } catch (e) {
+                    const retry = 'Retry with Admin/Sudo';
+                    const result = await vscode.window.showErrorMessage(e.message, retry);
+                    if (result !== retry) {
+                        return false;
+                    }
+                    const file: Array<{ source: string; target: string }> = [];
+                    const tempProductFilePath = await this.saveFileToTemp(json, '.json');
+                    file.push({ source: tempProductFilePath, target: vscodePath.productPath });
+
+                    try {
+                        const mvcmd = process.platform === 'win32' ? 'move /Y' : 'mv -f';
+                        const args = file.map(i => `${mvcmd} "${i.source}" "${i.target}"`);
+                        await this.sudoCommand(args.join(' && '), { name: 'Visual Studio Code Background Extension' });
+                        return true;
+                    } catch (e) {
+                        await vscode.window.showErrorMessage(e.message);
+                        return false;
+                    }
+                }
+            }
+
             return true;
         } catch (e) {
             // FIXME：
@@ -129,17 +157,28 @@ class Background implements Disposable {
             if (result !== retry) {
                 return false;
             }
-            const tempFilePath = await this.saveCssContentToTemp(content);
+            const file: Array<{ source: string; target: string }> = [];
+
+            const tempCssFilePath = await this.saveFileToTemp(content, '.css');
+            file.push({ source: tempCssFilePath, target: vscodePath.cssPath });
+
+            const json = getNewProduct(await computeChecksum(tempCssFilePath));
+            if (json) {
+                const tempProductFilePath = await this.saveFileToTemp(json, '.json');
+                file.push({ source: tempProductFilePath, target: vscodePath.productPath });
+            }
+
             try {
                 const mvcmd = process.platform === 'win32' ? 'move /Y' : 'mv -f';
-                const cmdarg = `${mvcmd} "${tempFilePath}" "${vscodePath.cssPath}"`;
-                await this.sudoCommand(cmdarg, { name: 'Visual Studio Code Background Extension' });
+                const args = file.map(i => `${mvcmd} "${i.source}" "${i.target}"`);
+                await this.sudoCommand(args.join(' && '), { name: 'Visual Studio Code Background Extension' });
                 return true;
             } catch (e) {
                 await vscode.window.showErrorMessage(e.message);
                 return false;
             } finally {
-                await fsp.rm(tempFilePath);
+                // mv/move 命令是移动 它不需要额外删除
+                // file.forEach(async i => await fsp.rm(i.source));
             }
         }
     }
@@ -168,12 +207,13 @@ class Background implements Disposable {
      * 保存CSS到临时文件
      *
      * @private
-     * @param content CSS文件内容
+     * @param content 文件内容
+     * @param extension 文件扩展名
      * @returns 临时文件路径
      * @memberof Background
      */
-    private async saveCssContentToTemp(content: string) {
-        const tempPath = path.join(tmpdir(), `vscode-background-${randomUUID()}.css`);
+    private async saveFileToTemp(content: string, extension: string) {
+        const tempPath = path.join(tmpdir(), `vscode-background-${randomUUID()}${extension}`);
         await fsp.writeFile(tempPath, content, ENCODE);
         return tempPath;
     }
