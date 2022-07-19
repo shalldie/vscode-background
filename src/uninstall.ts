@@ -1,3 +1,10 @@
+/**
+ * FIXME:
+ * Uninstall hook not executing
+ * vscode:uninstall 没有执行
+ * https://github.com/microsoft/vscode/issues/155561
+ */
+
 import { background } from './background';
 import { vsHelp } from './vsHelp';
 

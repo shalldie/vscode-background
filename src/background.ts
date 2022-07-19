@@ -193,13 +193,7 @@ class Background implements Disposable {
         if (firstLoad) {
             // 提示
 
-            vsHelp.showInfo(
-                [
-                    //
-                    `Welcome to use background@${VERSION}!`,
-                    'You can config it in settings.json.'
-                ].join('\n')
-            );
+            vscode.commands.executeCommand('extension.background.info');
             // 标识插件已启动过
             fsp.writeFile(versionTouchFile, '', ENCODE);
 

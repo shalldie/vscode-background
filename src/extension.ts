@@ -3,6 +3,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import vscode from 'vscode';
 import { background } from './background';
+import { VERSION } from './constants';
 import { vsHelp } from './vsHelp';
 
 // this method is called when your extension is activated
@@ -16,7 +17,15 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     // Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
     const disposable = vscode.commands.registerCommand('extension.background.info', function () {
-        vsHelp.showInfo('You can config your background in settings.json. Enjoy it!');
+        // 无换行
+        // https://github.com/Microsoft/vscode/blob/8616dbae8bc2abf7972a45449b0fb6b2b2d0f429/src/vs/workbench/common/notifications.ts#L412-L413
+        vsHelp.showInfo(
+            [
+                //
+                `Welcome to use background@${VERSION}!`,
+                'You can config it in `settings.json`.'
+            ].join(' ')
+        );
     });
 
     context.subscriptions.push(disposable);
@@ -34,7 +43,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
                 // 当且仅当成功删除样式时才会卸载扩展
                 // 否则可能导致没有成功删掉样式时扩展就被卸载掉
                 await vscode.commands.executeCommand('workbench.extensions.uninstallExtension', 'shalldie.background');
-                await vsHelp.showInfoRestart('background extension has been uninstalled. See You Next Time! ');
+                await vsHelp.showInfoRestart('background extension has been uninstalled. See you next time!');
             }
         })
     );
