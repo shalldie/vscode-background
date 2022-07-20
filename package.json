@@ -1,7 +1,7 @@
 {
   "name": "background",
   "displayName": "background",
-  "description": "A simple tool to make your vscode's background look better!",
+  "description": "Bring background images to your vscode",
   "version": "1.2.1",
   "scripts": {
     "vscode:prepublish": "npm run compile",
