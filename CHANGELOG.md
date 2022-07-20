@@ -2,7 +2,7 @@
 
     大量调整，相当部分来自：https://github.com/shalldie/vscode-background/pull/293
     main:
-    Auto sodu command to install. 自动提权。
+    Auto sudo command to install. 自动提权。
     Another way to uninstall. 额外的卸载方式。
 
 ## ver1.1.31 (2022/6/1)
