@@ -11,3 +11,6 @@ vsc-extension-quickstart.md
 package-lock.json
 .huskyrc
 .prettierignore
+.github
+*.touch
+.husky

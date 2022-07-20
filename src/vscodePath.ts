@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import vscode from 'vscode';
 
@@ -6,7 +5,7 @@ import vscode from 'vscode';
 const base = path.dirname(require.main.filename);
 
 // css文件路径
-const cssName = parseFloat(vscode.version) >= 1.38 ? 'workbench.desktop.main.css' : 'workbench.main.css';
+const cssName = 'workbench.desktop.main.css';
 // https://github.com/microsoft/vscode/pull/141263
 const webCssName = 'workbench.web.main.css';
 
@@ -16,15 +15,14 @@ const cssPath = (() => {
     const defPath = getCssPath(cssName);
     const webPath = getCssPath(webCssName);
 
-    /**
-     * 暂时没想到怎么判断在 web 中使用，比如 code-server。暂时这么处理吧
-     * 之后需要加上鉴权处理
-     */
-    if (!fs.existsSync(defPath) && fs.existsSync(webPath)) {
-        return webPath;
+    // See https://code.visualstudio.com/api/references/vscode-api#env
+    switch (vscode.env.appHost) {
+        case 'desktop':
+            return defPath;
+        case 'web':
+        default:
+            return webPath;
     }
-
-    return defPath;
 })();
 
 // electron 入口文件所在文件夹
