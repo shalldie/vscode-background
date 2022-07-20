@@ -13,3 +13,4 @@ package-lock.json
 .prettierignore
 .github
 *.touch
+.husky
