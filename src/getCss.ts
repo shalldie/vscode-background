@@ -47,15 +47,15 @@ async function loadImageBase64FromFileProtocol(url: string): Promise<string> {
  * @param {Array<any>} [styles=[]] 每个背景图的自定义样式
  * @param {boolean} [useFront=true] 是否用前景图
  * @param {boolean} [loop=false] 是否循环使用图片
- * @returns {string}
+ * @return {*}  {Promise<string>}
  */
-export function getCss(
+export async function getCss(
     images: string[],
     style: any = {},
     styles: Array<any> = [],
     useFront = true,
     loop = false
-): string {
+): Promise<string> {
     // ------ 默认样式 ------
     const defStyle = getStyleByOptions(style, useFront);
 
@@ -68,9 +68,12 @@ export function getCss(
       当检测到配置文件使用 file 协议时, 需要将图片读取并转为 base64, 而后再插入到 css 中
     */
 
-    const list = images.map(url => {
-        return url.startsWith('file://') ? loadImageBase64FromFileProtocol(url) : url;
-    });
+    const list: string[] = []; // 处理后的图片列表
+
+    for (const url of images) {
+        const handledUrl = url.startsWith('file://') ? await loadImageBase64FromFileProtocol(url) : url;
+        list.push(handledUrl);
+    }
 
     // ------ 组合样式 ------
     const imageStyleContent = list

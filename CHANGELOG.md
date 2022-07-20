@@ -1,3 +1,8 @@
+## ver1.2.1 (2022/7/20)
+
+    fix loading local image.
+    修复加载本地图片的问题。
+
 ## ver1.2.0 (2022/7/18)
 
     大量调整，相当部分来自：https://github.com/shalldie/vscode-background/pull/293
