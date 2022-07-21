@@ -37,11 +37,11 @@ User defined requirements can be met by changing the configuration(`settings.jso
 | `background.useFront`     |    `Boolean`    |    `true`    | Set the image to front or back of your code |
 | `background.useDefault`   |    `Boolean`    |    `true`    | Whether or not to use default images        |
 | `background.style`        |    `Object`     |     `{}`     | Customize style                             |
-| `background.styles`       | `Array<Object>` | `[{},{},{}]` | Add custom Style for individual image.      |
+| `background.styles`       | `Array<Object>` | `[{},{},{}]` | Add custom Style for individual image       |
 | `background.customImages` | `Array<String>` |     `[]`     | Add your custom images                      |
 | `background.loop`         |    `Boolean`    |   `false`    | `loop` mode, may repeat your images         |
 
-`style` means [css style](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS),which allows you to create great-looking background。
+`style` means [css style](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS), which allows you to create great-looking background.
 
 ## Examples
 
@@ -115,7 +115,7 @@ This is the reason:
 
     1. (recommended)
 
-    press `F1` to open Command Palette,enter and chose `Background - Uninstall (remove extension)` ,automatically complete uninstall.
+    press `F1` to open Command Palette, enter and chose `Background - Uninstall (remove extension)` , automatically complete uninstall.
 
     2.
 
