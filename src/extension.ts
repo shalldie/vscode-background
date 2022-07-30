@@ -3,7 +3,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import vscode from 'vscode';
 import { background } from './background';
-import { VERSION } from './constants';
+import { EXTENSION_ID, VERSION } from './constants';
 import { vsHelp } from './vsHelp';
 
 // this method is called when your extension is activated
@@ -42,7 +42,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
             if (await background.uninstall()) {
                 // 当且仅当成功删除样式时才会卸载扩展
                 // 否则可能导致没有成功删掉样式时扩展就被卸载掉
-                await vscode.commands.executeCommand('workbench.extensions.uninstallExtension', 'shalldie.background');
+                await vscode.commands.executeCommand('workbench.extensions.uninstallExtension', EXTENSION_ID);
                 await vsHelp.showInfoRestart('background extension has been uninstalled. See you next time!');
             }
         })
