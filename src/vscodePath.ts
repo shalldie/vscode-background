@@ -28,6 +28,10 @@ const cssPath = (() => {
 // electron 入口文件所在文件夹
 const indexDir = path.join(base, 'vs', 'workbench', 'electron-browser', 'bootstrap');
 
+const rootPath = path.join(base, '..');
+
+const productPath = path.join(rootPath, 'product.json');
+
 export const vscodePath = {
     /**
      * 基础目录
@@ -40,5 +44,13 @@ export const vscodePath = {
     /**
      * electron 入口文件所在文件夹
      */
-    indexDir
+    indexDir,
+    /**
+     * VSCode app文件夹
+     */
+    rootPath,
+    /**
+     * product.json 文件的路径
+     */
+    productPath
 };
