@@ -26,6 +26,14 @@ function getStyleByOptions(options: object, useFront: boolean): string {
     return styleArr.join(';') + ';';
 }
 
+const getImage = (index: number) => `--ext-vscode-background-image-${index}`;
+
+const getRootCss = (images: string[]) => {
+    return `:root, :host {
+  ${images.map((s, i) => `${getImage(i)}: url(${s})`).join(';\n')};
+}`.trim();
+};
+
 /**
  * 使用 file 协议加载图片文件并转为 base64
  * @param url 图片路径
@@ -75,6 +83,8 @@ export async function getCss(
         list.push(handledUrl);
     }
 
+    const rootCss = getRootCss(list);
+
     // ------ 组合样式 ------
     const imageStyleContent = list
         .map((img, index) => {
@@ -93,18 +103,22 @@ export async function getCss(
                 // code editor
                 `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) ` +
                 `.editor-container .editor-instance>.monaco-editor ` +
-                `.overflow-guard>.monaco-scrollable-element${frontContent}{background-image: url('${img}');${styleContent}}` +
+                `.overflow-guard>.monaco-scrollable-element${frontContent},` +
                 '\n' +
                 // home screen
                 `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) ` +
-                `.empty::before { background-image: url('${img}');${styleContent} }`
+                `.empty::before ` +
+                '\n' +
+                // 最终样式
+                `{ background-image: var(${getImage(index)});${styleContent} }`
             );
         })
         .join('\n');
 
-    const content = `
+    const content = /* css */ `
 /*css-background-start*/
 /*${BACKGROUND_VER}.${VERSION}*/
+${rootCss}
 ${imageStyleContent}
 [id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element>.monaco-editor-background{background: none;}
 /*css-background-end*/
