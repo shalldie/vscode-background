@@ -15,6 +15,7 @@ import { vscodePath } from './vscodePath';
 import { getCss } from './getCss';
 import { defBase64 } from './defBase64';
 import { VERSION, BACKGROUND_VER, ENCODE } from './constants';
+import * as Vibrancy from './vibrancy';
 
 /**
  * css文件修改状态类型
@@ -109,13 +110,13 @@ class Background implements Disposable {
      * @param {string} content
      * @memberof Background
      */
-    private async saveCssContent(content: string): Promise<boolean> {
+    async saveCssContent(content: string, path: string = vscodePath.cssPath): Promise<boolean> {
         if (!content || !content.length) {
             return false;
         }
         try {
-            await fsp.access(vscodePath.cssPath, fsConstants.W_OK);
-            await fsp.writeFile(vscodePath.cssPath, content, ENCODE);
+            await fsp.access(path, fsConstants.W_OK);
+            await fsp.writeFile(path, content, ENCODE);
             return true;
         } catch (e) {
             // FIXME：
@@ -132,7 +133,7 @@ class Background implements Disposable {
             const tempFilePath = await this.saveCssContentToTemp(content);
             try {
                 const mvcmd = process.platform === 'win32' ? 'move /Y' : 'mv -f';
-                const cmdarg = `${mvcmd} "${tempFilePath}" "${vscodePath.cssPath}"`;
+                const cmdarg = `${mvcmd} "${tempFilePath}" "${path}"`;
                 await this.sudoCommand(cmdarg, { name: 'Visual Studio Code Background Extension' });
                 return true;
             } catch (e) {
@@ -250,6 +251,10 @@ class Background implements Disposable {
         // 自定义的样式内容
         const content = (await getCss(arr, config.style, config.styles, config.useFront, config.loop)).trimEnd(); // 去除末尾空白
 
+        if (Vibrancy.check()) {
+            await Vibrancy.update(content);
+            return;
+        }
         // 添加到原有样式(尝试删除旧样式)中
         let cssContent = await this.getCssContent();
         cssContent = this.clearCssContent(cssContent);
