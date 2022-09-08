@@ -38,9 +38,9 @@ export const update = async (content: string) => {
         imports[index] = targetPath;
     }
 
-    // 更新配置
-    await conf.update(vibrancyConfigImports, imports, true);
     if (await task) {
+        // 更新配置
+        await conf.update(vibrancyConfigImports, imports, true);
         await vsHelp.showInfoRestart('Background has been changed! Please restart.');
     }
 };
