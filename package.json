@@ -102,6 +102,36 @@
           "type": "boolean",
           "default": false,
           "markdownDescription": "Loop your images.\n\n循环使用图片"
+        },
+        "background.editors.code": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "代码编辑器"
+        },
+        "background.editors.empty": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "空白页"
+        },
+        "background.editors.started": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "开始页面"
+        },
+        "background.editors.extension": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "扩展编辑器"
+        },
+        "background.editors.difference": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "差异编辑器"
+        },
+        "background.editors.settings": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "设置编辑器"
         }
       }
     }

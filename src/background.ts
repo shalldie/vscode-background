@@ -13,7 +13,6 @@ import sudo from 'sudo-prompt';
 import { vsHelp } from './vsHelp';
 import { vscodePath } from './vscodePath';
 import { getCss } from './getCss';
-import { defBase64 } from './defBase64';
 import { VERSION, BACKGROUND_VER, ENCODE } from './constants';
 
 /**
@@ -240,15 +239,9 @@ class Background implements Disposable {
         }
 
         // 5.hack 样式
-        let arr = defBase64; // 默认图片
-
-        if (!config.useDefault) {
-            // 自定义图片
-            arr = config.customImages;
-        }
 
         // 自定义的样式内容
-        const content = (await getCss(arr, config.style, config.styles, config.useFront, config.loop)).trimEnd(); // 去除末尾空白
+        const content = (await getCss(config as any)).trim();
 
         // 添加到原有样式(尝试删除旧样式)中
         let cssContent = await this.getCssContent();
