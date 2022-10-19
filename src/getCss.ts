@@ -171,12 +171,18 @@ export const getCss = async (config: VSCodeBackgroundConfig) => {
             cssSelectors.target(nth).join(',\n') + '\n' + object2css(specialStyle(index), images[index]);
     }
 
+    let other = '';
+    // 垂直滚动条透明度
+    if (config.opacities.decorationsOverviewRuler != 1)
+        other += `.decorationsOverviewRuler\n{\n  opacity: ${config.opacities.decorationsOverviewRuler};\n}`;
+
     return /* css */ `
 /*css-background-start*/
 /*${BACKGROUND_VER}.${VERSION}*/
 ${commonCssSelectors}
 ${removeCssSelectors}
 ${specialCssSelectors.join('\n')}
+${other}
 /*css-background-end*/
 `;
 };

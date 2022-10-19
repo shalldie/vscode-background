@@ -29,7 +29,7 @@ export interface Selector {
 /**
  * private 通用的选择器根
  */
-const _commonBase = '[id="workbench.parts.editor"] .split-view-view';
+const _commonBase = '#workbench\\.parts\\.editor .split-view-view';
 /**
  * 构建通用选择器
  * @param nth :nth-child(nth) 为空则不添加伪类

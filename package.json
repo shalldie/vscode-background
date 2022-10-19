@@ -132,6 +132,13 @@
           "type": "boolean",
           "default": false,
           "markdownDescription": "设置编辑器"
+        },
+        "background.opacities.decorationsOverviewRuler": {
+          "type": "number",
+          "default": 1,
+          "maximum": 1,
+          "minimum": 0,
+          "markdownDescription": "垂直滚动条透明度"
         }
       }
     }

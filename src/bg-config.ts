@@ -8,6 +8,9 @@ interface ApplyEditors {
     difference: boolean;
     settings: boolean;
     empty: boolean;
+
+interface ApplyOpacities {
+    decorationsOverviewRuler: number;
 }
 
 export interface VSCodeBackgroundConfig {
@@ -49,4 +52,5 @@ export interface VSCodeBackgroundConfig {
      * 需要背景的编辑器
      */
     editors: ApplyEditors;
+    opacities: ApplyOpacities;
 }
