@@ -1,0 +1,21 @@
+{
+  "background.cmd.uninstall": "Background - 卸载 (移除扩展)",
+  "background.cmd.refresh": "Background - 刷新",
+  "background.config.title": "background 插件配置。",
+  "background.config.enabled": "background 插件是否启用。",
+  "background.config.useFront": "是否使用前景图，这样会使图片放在代码的顶部。",
+  "background.config.useDefault": "使用默认图片。",
+  "background.config.style": "自定义各项公有样式。",
+  "background.config.styles": "每一个背景图的独有样式。",
+  "background.config.customImages": "自己定制背景图。\n\n例如:\n\n`https://a.com/b.png`\n\n或\n\n`file:///a/b.jpg`",
+  "background.config.loop": "循环使用图片。",
+  "background.config.editors.code": "为代码编辑器设置背景图片。",
+  "background.config.editors.empty": "为空白页设置背景图片。",
+  "background.config.editors.started": "为开始页面设置背景图片。",
+  "background.config.editors.extension": "为扩展编辑器设置背景图片。",
+  "background.config.editors.difference": "为差异编辑器设置背景图片。",
+  "background.config.editors.settings": "为设置编辑器设置背景图片。",
+  "background.config.editors.fullscreen": "设置全屏背景图片。",
+  "background.config.opacities.decorationsOverviewRuler": "垂直滚动条透明度。",
+  "background.config.lab.useVscodeFileUri": "使用 vscode-file:// 协议而不是 data: 协议(base64)处理本地文件。"
+}

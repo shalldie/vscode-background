@@ -100,7 +100,7 @@ const _autoSave = async (content: string) => {
             .writeFile(tempFilePath, content, ENCODE)
             .then(() =>
                 sudo(`${mvcmd} "${tempFilePath}" "${vscodePath.cssPath}"`, {
-                    name: 'Visual Studio Code Background Extension'
+                    name: vsHelp.sudo_title
                 })
             )
             .finally(() => fs.rm(tempFilePath, { force: true }));

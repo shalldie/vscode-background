@@ -5,14 +5,13 @@
   "version": "1.2.2-alpha.1",
   "preview": true,
   "scripts": {
-    "vscode:prepublish": "npm run compile",
     "vscode:uninstall": "node ./out/uninstall",
-    "build": "npm run compile",
+    "build": "gulp",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "lint": "eslint . --ext .ts src",
     "fix": "eslint . --fix --ext .ts src",
-    "package": "vsce package",
+    "package": "gulp package",
     "prepare": "husky install"
   },
   "publisher": "shalldie",
@@ -41,31 +40,33 @@
     "commands": [
       {
         "command": "extension.background.uninstall",
-        "title": "Background - Uninstall (remove extension)"
+        "title": "%background.cmd.uninstall%",
+        "shortTitle": "Background - Uninstall (remove extension)"
       },
       {
         "command": "extension.background.refresh",
-        "title": "Background - Refresh"
+        "title": "%background.cmd.refresh%",
+        "shortTitle": "Background - Refresh"
       }
     ],
     "configuration": {
       "type": "object",
-      "title": "Plugin background config. background 插件配置",
+      "title": "%background.config.title%",
       "properties": {
         "background.enabled": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Plugin background enabled.\n\nbackground 插件是否启用"
+          "markdownDescription": "%background.config.enabled%"
         },
         "background.useFront": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "If use front image,which means image is placed on the top of your code.\n\n是否使用前景图，这样会使图片放在代码的顶部"
+          "markdownDescription": "%background.config.useFront%"
         },
         "background.useDefault": {
           "type": "boolean",
           "default": true,
-          "description": "Use default images.\n\n使用默认图片"
+          "description": "%background.config.useDefault%"
         },
         "background.style": {
           "type": "object",
@@ -80,7 +81,7 @@
             "background-repeat": "no-repeat",
             "opacity": 1
           },
-          "markdownDescription": "Custom common style.\n\n自定义各项公有样式."
+          "markdownDescription": "%background.config.style%"
         },
         "background.styles": {
           "type": "array",
@@ -89,7 +90,7 @@
             {},
             {}
           ],
-          "markdownDescription": "Each style of backgrounds.\n\n每一个背景图的独有样式。"
+          "markdownDescription": "%background.config.styles%"
         },
         "background.customImages": {
           "type": "array",
@@ -97,59 +98,59 @@
           "items": {
             "type": "string"
           },
-          "markdownDescription": "Your custom images. 自己定制背景图\n\nExample:\n\n`https://a.com/b.png`\n\nor\n\n`file:///a/b.jpg`"
+          "markdownDescription": "%background.config.customImages%"
         },
         "background.loop": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Loop your images.\n\n循环使用图片"
+          "markdownDescription": "%background.config.loop%"
         },
         "background.editors.code": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "代码编辑器"
+          "markdownDescription": "%background.config.editors.code%"
         },
         "background.editors.empty": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "空白页"
+          "markdownDescription": "%background.config.editors.empty%"
         },
         "background.editors.started": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "开始页面"
+          "markdownDescription": "%background.config.editors.started%"
         },
         "background.editors.extension": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "扩展编辑器"
+          "markdownDescription": "%background.config.editors.extension%"
         },
         "background.editors.difference": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "差异编辑器"
+          "markdownDescription": "%background.config.editors.difference%"
         },
         "background.editors.settings": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "设置编辑器"
+          "markdownDescription": "%background.config.editors.settings%"
         },
         "background.editors.fullscreen": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "全屏"
+          "markdownDescription": "%background.config.editors.fullscreen%"
         },
         "background.opacities.decorationsOverviewRuler": {
           "type": "number",
           "default": 1,
           "maximum": 1,
           "minimum": 0,
-          "markdownDescription": "垂直滚动条透明度"
+          "markdownDescription": "%background.config.opacities.decorationsOverviewRuler%"
         },
         "background.lab.useVscodeFileUri": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "使用 vscode-file:// 协议而不是 data: 协议(base64)处理本地文件"
+          "markdownDescription": "%background.config.lab.useVscodeFileUri%"
         }
       }
     }
@@ -159,15 +160,22 @@
     "@types/vscode": "^1.40.0",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
+    "del": "^6.0.0",
     "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "gulp": "^4.0.2",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
     "husky": "^8.0.1",
     "prettier": "^2.7.1",
+    "run-sequence": "^2.2.1",
     "typescript": "^4.7.4",
-    "vsce": "^2.9.1"
+    "vsce": "^2.9.1",
+    "vscode-nls-dev": "^4.0.3"
   },
   "dependencies": {
-    "@vscode/sudo-prompt": "^9.3.1"
+    "@vscode/sudo-prompt": "^9.3.1",
+    "vscode-nls": "^5.2.0"
   }
 }

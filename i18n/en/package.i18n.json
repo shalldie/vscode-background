@@ -1,0 +1,12 @@
+{
+  "background.cmd.uninstall": "Background - Uninstall (remove extension)",
+  "background.cmd.refresh": "Background - Refresh",
+  "background.config.title": "Plugin background config.",
+  "background.config.enabled": "Plugin background enabled.",
+  "background.config.useFront": "If use front image,which means image is placed on the top of your code.",
+  "background.config.useDefault": "Use default images.",
+  "background.config.style": "Custom common style.",
+  "background.config.styles": "Each style of backgrounds.",
+  "background.config.customImages": "Your custom images.\n\nExample:\n\n`https://a.com/b.png`\n\nor\n\n`file:///a/b.jpg`",
+  "background.config.loop": "Loop your images."
+}

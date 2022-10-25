@@ -1,0 +1,11 @@
+{
+  "background.welcome": "Welcome to use background@{0}! You can config it in `settings.json`.",
+  "background.sudo": "Oops! Failed to write to the file, we don't have permission to write to the file.",
+  "background.sudo.retry": "Elevate permissions and retry",
+  "background.sudo.terminate": "Terminate",
+  "background.restart.settings": "Background has been changed! Please restart.",
+  "background.restart.uninstall": "Background has been uninstalled! Please restart.",
+  "background.restart.uninstall.ext": "background extension has been uninstalled. See you next time!",
+  "background.restart.title": "Restart vscode",
+  "background.sudo.title": "Visual Studio Code Background Extension"
+}

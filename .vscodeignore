@@ -14,3 +14,5 @@ package-lock.json
 .github
 *.touch
 .husky
+i18n
+gulpfile.js

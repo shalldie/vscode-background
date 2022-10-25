@@ -1,15 +1,34 @@
 import vscode from 'vscode';
+import * as nls from 'vscode-nls';
 import { VERSION } from './constants';
 
-const welcome_msg = `Welcome to use background@${VERSION}! You can config it in \`settings.json\`.`;
+const localize = nls.config({ messageFormat: nls.MessageFormat.both })();
 
-const sudo_msg = "Oops! Failed to write to the file, we don't have permission to write to the file.";
-const sudo_retry = 'Elevate permissions and retry';
-const sudo_terminate = 'Terminate';
+export const sudo_title = localize('background.sudo.title', 'Visual Studio Code Background Extension');
 
-const restart_onchanged = 'Background has been changed! Please restart.';
-const restart_onuninstalled = 'Background has been uninstalled! Please restart.';
-const restart_onuninstalledExt = 'background extension has been uninstalled. See you next time!';
+const welcome_msg = localize(
+    'background.welcome',
+    'Welcome to use background@{0}! You can config it in `settings.json`.',
+    VERSION
+);
+
+const sudo_msg = localize(
+    'background.sudo',
+    "Oops! Failed to write to the file, we don't have permission to write to the file."
+);
+const sudo_retry = localize('background.sudo.retry', 'Elevate permissions and retry');
+const sudo_terminate = localize('background.sudo.terminate', 'Terminate');
+
+const restart_onchanged = localize('background.restart.settings', 'Background has been changed! Please restart.');
+const restart_onuninstalled = localize(
+    'background.restart.uninstall',
+    'Background has been uninstalled! Please restart.'
+);
+const restart_onuninstalledExt = localize(
+    'background.restart.uninstall.ext',
+    'background extension has been uninstalled. See you next time!'
+);
+const restart_title = localize('background.restart.title', 'Restart vscode');
 
 /**
  * 展示信息提示框
@@ -28,7 +47,7 @@ const showInfo = (content: string): Thenable<string> => vscode.window.showInform
  * @returns {Thenable<void>}
  */
 const showInfoRestart = (content: string): Thenable<void> =>
-    vscode.window.showInformationMessage(content, { title: 'Restart vscode' }).then(function (item) {
+    vscode.window.showInformationMessage(content, { title: restart_title }).then(function (item) {
         if (!item) return;
         vscode.commands.executeCommand('workbench.action.reloadWindow');
     });

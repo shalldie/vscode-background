@@ -1,7 +1,8 @@
-out
-node_modules
-.vscode-test/
-*.vsix
-.DS_Store
-.husky
-*.touch
+/out
+/node_modules
+/.vscode-test
+/*.vsix
+/.DS_Store
+/.husky
+/*.touch
+/package.nls.*.json

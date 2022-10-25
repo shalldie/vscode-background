@@ -5,3 +5,4 @@ __tests__
 /scripts
 *.d.ts
 /out
+gulpfile.js

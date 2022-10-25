@@ -1,0 +1,11 @@
+{
+  "background.welcome": "欢迎使用 background@{0}！您可以在 `settings.json` 中配置它。",
+  "background.sudo": "哎呀！无法写入文件，我们没有写入文件的权限。",
+  "background.sudo.retry": "提升权限并重试",
+  "background.sudo.terminate": "终止",
+  "background.restart.settings": "背景扩展的设置被修改了！请重新启动VSCode。",
+  "background.restart.uninstall": "背景扩展被卸载了！请重新启动VSCode。",
+  "background.restart.uninstall.ext": "背景扩展已经被卸载了，期待下次与您相遇！",
+  "background.restart.title": "重新启动VSCode",
+  "background.sudo.title": "Visual Studio Code 背景扩展"
+}
