@@ -136,6 +136,11 @@
           "maximum": 1,
           "minimum": 0,
           "markdownDescription": "垂直滚动条透明度"
+        },
+        "background.lab.useVscodeFileUri": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "使用 vscode-file:// 协议而不是 data: 协议(base64)处理本地文件"
         }
       }
     }

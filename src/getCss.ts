@@ -36,11 +36,16 @@ const toBase64 = async (uri: vscode.Uri) => {
 };
 
 /**
+ * 实验性 - 转换到 vscode-file
+ */
+const toVscodeUri = (uri: vscode.Uri) => vscode.Uri.parse(`vscode-file://vscode-app${uri.path}`);
+
+/**
  * 图片预处理
  * @param images 图片地址
  * @returns 图片Uri
  */
-const getImageList = async (images: string[]) => {
+const getImageList = async (images: string[], useVscodeFileUri: boolean) => {
     const list = new Array<vscode.Uri>(images.length);
 
     for (let index = 0; index < images.length; index++) {
@@ -57,7 +62,7 @@ const getImageList = async (images: string[]) => {
             continue;
         }
 
-        list[index] = await toBase64(uri);
+        list[index] = useVscodeFileUri ? toVscodeUri(uri) : await toBase64(uri);
     }
 
     return list;
@@ -142,7 +147,7 @@ const getAllSelectors = (config: VSCodeBackgroundConfig) => {
  */
 export const getCss = async (config: VSCodeBackgroundConfig) => {
     // 异步处理图像
-    const tImages = getImageList(config.customImages);
+    const tImages = getImageList(config.customImages, config.lab.useVscodeFileUri);
 
     // 通用样式
     const commonStyle = parseStyle({ content: "''", ...config.style }, config.useFront);

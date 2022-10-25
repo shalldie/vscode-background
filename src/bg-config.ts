@@ -55,4 +55,10 @@ export interface VSCodeBackgroundConfig {
      */
     editors: ApplyEditors;
     opacities: ApplyOpacities;
+    lab: {
+        /**
+         * 使用 vscode-file:// 协议而不是 data: 协议(base64)处理本地文件
+         */
+        useVscodeFileUri: boolean;
+    };
 }
