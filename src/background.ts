@@ -185,9 +185,7 @@ export const hasInstalled = (css: string) => css && !!~css.indexOf(BACKGROUND_VE
  * 卸载
  */
 export const uninstall = (hidePrompt?: boolean) =>
-    getCssContent()
-        .then(_cleanCss)
-        .then(_autoSave)
+    _autoSave('')
         .then(() => {
             if (!hidePrompt) vsHelp.restartOnUninstalled();
         })
