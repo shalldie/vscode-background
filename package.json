@@ -42,6 +42,10 @@
       {
         "command": "extension.background.uninstall",
         "title": "Background - Uninstall (remove extension)"
+      },
+      {
+        "command": "extension.background.refresh",
+        "title": "Background - Refresh"
       }
     ],
     "configuration": {
