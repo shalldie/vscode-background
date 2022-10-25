@@ -12,5 +12,6 @@
     "[typescript]": {
         "editor.defaultFormatter": "dbaeumer.vscode-eslint",
         "editor.tabSize": 4
-    }
+    },
+    "typescript.tsdk": "node_modules\\typescript\\lib"
 }
