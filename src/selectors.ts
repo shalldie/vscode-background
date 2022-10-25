@@ -41,7 +41,7 @@ const commonBase = (nth?: string) => (nth ? `${_commonBase}:nth-child(${nth})` :
  * @param isFront
  * @returns
  */
-const pseudo = (isFront: boolean) => (isFront ? 'before' : 'after');
+const pseudo = (isFront: boolean) => (isFront ? 'after' : 'before');
 
 export const selectors: {
     [key: string]: SelectorBuilder;
@@ -108,6 +108,42 @@ export const selectors: {
         target: nth => `${commonBase(nth)} .empty::${pseudo(isFront)}`
     }),
     fullscreen: isFront => ({
-        target: () => `.monaco-workbench::${pseudo(isFront)}`
+        target: () => `.monaco-workbench::${pseudo(isFront)}`,
+        remove: [
+            // 实验性 (一键去所有背景)
+            '.monaco-editor',
+            '.monaco-editor-background',
+            '.monaco-editor .margin',
+            // 标题栏
+            '#workbench\\.parts\\.titlebar',
+            // 活动栏
+            '#workbench\\.parts\\.activitybar',
+            // 侧边栏
+            '#workbench\\.parts\\.sidebar',
+            '#workbench\\.parts\\.sidebar .monaco-scrollable-element .monaco-list-rows',
+            '#workbench\\.parts\\.sidebar .monaco-scrollable-element .monaco-list-rows .monaco-list-row.selected',
+            // 编辑器
+            '#workbench\\.parts\\.editor',
+            '#workbench\\.parts\\.editor .content',
+            '#workbench\\.parts\\.editor .title.tabs.show-file-icons',
+            '#workbench\\.parts\\.editor .editor-container',
+            '#workbench\\.parts\\.editor .editor-container .monaco-editor .margin',
+            // 编辑器标签页头
+            '#workbench\\.parts\\.editor .title.tabs.show-file-icons>.tabs-and-actions-container>.monaco-scrollable-element>.tabs-container>.tab',
+            '#workbench\\.parts\\.editor .title.tabs.show-file-icons>.tabs-and-actions-container>.monaco-scrollable-element>.tabs-container>.tab.dirty',
+            '#workbench\\.parts\\.editor .title.tabs.show-file-icons>.tabs-and-actions-container>.monaco-scrollable-element>.tabs-container>.tab.active',
+            // 面包屑导航
+            '#workbench\\.parts\\.editor .title.tabs.show-file-icons>.tabs-breadcrumbs .monaco-breadcrumbs',
+            // 粘性组件
+            '#workbench\\.parts\\.editor .sticky-widget',
+            '#workbench\\.parts\\.editor .sticky-widget .sticky-line-root',
+            // 面板
+            '#workbench\\.parts\\.panel',
+            '#workbench\\.parts\\.panel .monaco-editor .margin',
+            // 右侧边栏
+            '#workbench\\.parts\\.auxiliarybar',
+            // 底部状态栏
+            '#workbench\\.parts\\.statusbar'
+        ]
     })
 };

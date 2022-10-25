@@ -130,6 +130,11 @@
           "default": false,
           "markdownDescription": "设置编辑器"
         },
+        "background.editors.fullscreen": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "全屏"
+        },
         "background.opacities.decorationsOverviewRuler": {
           "type": "number",
           "default": 1,
