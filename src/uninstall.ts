@@ -5,18 +5,11 @@
  * https://github.com/microsoft/vscode/issues/155561
  */
 
-import { background } from './background';
-import { vsHelp } from './vsHelp';
+import * as background from './background';
 
-async function uninstall() {
-    const hasInstalled = await background.hasInstalled();
-    if (hasInstalled) {
-        return;
+const uninstall = async () => {
+    if (await background.getCssContent().then(background.hasInstalled)) {
+        await background.uninstall();
     }
-
-    if (await background.uninstall()) {
-        vsHelp.showInfoRestart('Background has been uninstalled! Please restart.');
-    }
-}
-
+};
 uninstall();

@@ -106,5 +106,8 @@ export const selectors: {
      */
     empty: isFront => ({
         target: nth => `${commonBase(nth)} .empty::${pseudo(isFront)}`
+    }),
+    fullscreen: isFront => ({
+        target: () => `.monaco-workbench::${pseudo(isFront)}`
     })
 };

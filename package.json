@@ -39,10 +39,6 @@
   "contributes": {
     "commands": [
       {
-        "command": "extension.background.info",
-        "title": "Background - Info"
-      },
-      {
         "command": "extension.background.uninstall",
         "title": "Background - Uninstall (remove extension)"
       }
@@ -157,6 +153,6 @@
     "vsce": "^2.9.1"
   },
   "dependencies": {
-    "sudo-prompt": "^9.2.1"
+    "@vscode/sudo-prompt": "^9.3.1"
   }
 }

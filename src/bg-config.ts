@@ -8,6 +8,7 @@ interface ApplyEditors {
     difference: boolean;
     settings: boolean;
     empty: boolean;
+    fullscreen: boolean;
 }
 
 interface ApplyOpacities {

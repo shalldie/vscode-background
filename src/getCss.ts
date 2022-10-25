@@ -47,7 +47,7 @@ const getImageList = async (images: string[]) => {
         const path = images[index].trim();
 
         const uri =
-            path.startsWith('file://') || path.startsWith('/') || path.startsWith(":'", 1)
+            path.startsWith('file://') || path.startsWith('/') || path.startsWith(':', 1)
                 ? vscode.Uri.file(path.replace('file://', ''))
                 : vscode.Uri.parse(path, true);
 
@@ -105,7 +105,7 @@ const object2css = (style: object | undefined, backgroundUrl?: vscode.Uri) => {
 
     let css = '';
     if (backgroundUrl) {
-        css += `  background-image: url(${backgroundUrl.toString()});\n`;
+        css += `  background-image: url('${backgroundUrl.toString(true)}');\n`;
     }
     for (const prop in style) {
         if (style[prop]) css += `  ${prop}: ${style[prop]};\n`;
@@ -155,7 +155,7 @@ export const getCss = async (config: VSCodeBackgroundConfig) => {
     // 应用通用样式的选择器
     const commonCssSelectors = cssSelectors.target().join(',\n') + '\n' + object2css(commonStyle);
     // 应用清除背景样式的选择器
-    const removeCssSelectors = cssSelectors.remove.join(',\n') + '\n' + object2css({ background: 'none' });
+    const removeCssSelectors = cssSelectors.remove.join(',\n') + '\n' + object2css({ background: 'none !important' });
     // 应用专用样式的选择器
     const specialCssSelectors: Array<string> = [];
 
@@ -184,5 +184,5 @@ ${removeCssSelectors}
 ${specialCssSelectors.join('\n')}
 ${other}
 /*css-background-end*/
-`;
+`.trim();
 };
