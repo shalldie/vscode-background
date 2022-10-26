@@ -124,7 +124,7 @@ const object2css = (style: object | undefined, backgroundUrl?: vscode.Uri) => {
  * @returns 选择器
  */
 const getAllSelectors = (config: VSCodeBackgroundConfig) => {
-    const cssSelectors: Array<Selector> = [];
+    const cssSelectors = new Array<Selector>();
     for (const key in config.editors) {
         const element = config.editors[key];
         // when element is undefined | null | 0 | false
@@ -147,7 +147,7 @@ const getAllSelectors = (config: VSCodeBackgroundConfig) => {
  */
 export const getCss = async (config: VSCodeBackgroundConfig) => {
     // 异步处理图像
-    const ___images = [];
+    const ___images = new Array<string>();
     if (config.useDefault) ___images.push(...builtin);
     ___images.push(...config.customImages);
 
@@ -166,7 +166,7 @@ export const getCss = async (config: VSCodeBackgroundConfig) => {
     // 应用清除背景样式的选择器
     const removeCssSelectors = cssSelectors.remove.join(',\n') + '\n' + object2css({ background: 'none !important' });
     // 应用专用样式的选择器
-    const specialCssSelectors: Array<string> = [];
+    const specialCssSelectors = new Array<string>();
 
     // 取回异步结果
     const images = await tImages;
