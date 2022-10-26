@@ -1,20 +1,3 @@
-/**
- * 注明哪些编辑器需要背景
- */
-interface ApplyEditors {
-    code: boolean;
-    started: boolean;
-    extension: boolean;
-    difference: boolean;
-    settings: boolean;
-    empty: boolean;
-    fullscreen: boolean;
-}
-
-interface ApplyOpacities {
-    decorationsOverviewRuler: number;
-}
-
 export interface VSCodeBackgroundConfig {
     /**
      * 启用插件
@@ -34,12 +17,16 @@ export interface VSCodeBackgroundConfig {
     /**
      * 公共样式
      */
-    style: any;
+    style: {
+        [key: string]: string | number;
+    };
 
     /**
      * 独立样式
      */
-    styles: any[];
+    styles: {
+        [key: string]: string | number;
+    }[];
 
     /**
      * 自定义图片
@@ -53,8 +40,18 @@ export interface VSCodeBackgroundConfig {
     /**
      * 需要背景的编辑器
      */
-    editors: ApplyEditors;
-    opacities: ApplyOpacities;
+    editors: {
+        code: boolean;
+        started: boolean;
+        extension: boolean;
+        difference: boolean;
+        settings: boolean;
+        empty: boolean;
+        fullscreen: boolean;
+    };
+    opacities: {
+        decorationsOverviewRuler: number;
+    };
     lab: {
         /**
          * 使用 vscode-file:// 协议而不是 data: 协议(base64)处理本地文件
