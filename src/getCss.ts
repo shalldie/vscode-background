@@ -4,8 +4,8 @@ import path from 'path';
 
 import type { VSCodeBackgroundConfig } from './bg-config';
 import { BACKGROUND_VER, VERSION } from './constants';
-import { defBase64 } from './defBase64';
 import { Selector, selectors } from './selectors';
+import { builtin } from './builtin';
 
 // see https://developer.mozilla.org/zh-CN/docs/Web/Media/Formats/Image_types
 const mimeTypes = {
@@ -147,7 +147,11 @@ const getAllSelectors = (config: VSCodeBackgroundConfig) => {
  */
 export const getCss = async (config: VSCodeBackgroundConfig) => {
     // 异步处理图像
-    const tImages = getImageList(config.customImages, config.lab.useVscodeFileUri);
+    const ___images = [];
+    if (config.useDefault) ___images.push(...builtin);
+    ___images.push(...config.customImages);
+
+    const tImages = getImageList(___images, config.lab.useVscodeFileUri);
 
     // 通用样式
     const commonStyle = parseStyle({ content: "''", ...config.style }, config.useFront);
@@ -165,9 +169,7 @@ export const getCss = async (config: VSCodeBackgroundConfig) => {
     const specialCssSelectors: Array<string> = [];
 
     // 取回异步结果
-    const images = config.useDefault
-        ? [...defBase64.map(uri => vscode.Uri.parse(uri, true)), ...(await tImages)]
-        : await tImages;
+    const images = await tImages;
 
     for (let index = 0; index < images.length; index++) {
         const nth = getNthChildIndex(index, config.loop, images.length);
