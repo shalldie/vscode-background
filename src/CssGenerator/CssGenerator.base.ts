@@ -3,32 +3,7 @@ import path from 'path';
 import { URL } from 'url';
 import { VERSION, BACKGROUND_VER } from '../constants';
 
-export abstract class AbsCssGenerator {
-    /**
-     * 通过配置获取样式文本
-     *
-     * @protected
-     * @param {object} options 用户配置
-     * @param {boolean} useFront 是否前景图
-     * @return {*}  {string}
-     * @memberof AbsCssGenerator
-     */
-    protected getStyleByOptions(options: object, useFront: boolean): string {
-        const styleArr: string[] = [];
-        for (const k in options) {
-            // 在使用背景图时，排除掉 pointer-events
-            if (!useFront && ~['pointer-events', 'z-index'].indexOf(k)) {
-                continue;
-            }
-
-            // eslint-disable-next-line
-            if (options.hasOwnProperty(k)) {
-                styleArr.push(`${k}:${options[k]}`);
-            }
-        }
-        return styleArr.join(';') + ';';
-    }
-
+export abstract class AbsCssGenerator<T = any> {
     /**
      * 使用 file 协议加载图片文件并转为 base64
      *
@@ -70,16 +45,15 @@ export abstract class AbsCssGenerator {
         return list;
     }
 
-    protected abstract getCss(options: any): Promise<string>;
+    protected abstract getCss(options: T): Promise<string>;
 
-    public async create(options: any) {
+    public async create(options: T) {
         const imageStyleContent = await this.getCss(options);
 
         const content = `
         /*css-background-start*/
         /*${BACKGROUND_VER}.${VERSION}*/
         ${imageStyleContent}
-        [id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element>.monaco-editor-background{background: none;}
         /*css-background-end*/
         `;
 

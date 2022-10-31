@@ -13,7 +13,11 @@
 
 Bring background images to your [Visual Studio Code](https://code.visualstudio.com)
 
-![](https://user-images.githubusercontent.com/9987486/40583705-7105dda8-61c6-11e8-935a-3c5d475a1eb1.gif)
+<img width="880" src="https://user-images.githubusercontent.com/9987486/40583705-7105dda8-61c6-11e8-935a-3c5d475a1eb1.gif">
+
+Fullscreen
+
+<img width="880" src="https://user-images.githubusercontent.com/9987486/198958380-6eaf96c7-3aa2-4fce-b27e-6f33c8d4e2c1.png">
 
 ## Installation
 
@@ -31,9 +35,16 @@ User defined requirements can be met by changing the configuration(`settings.jso
 
 ## Config
 
+### Base Config
+
+| Name                 |   Type    | Default | Description                   |
+| :------------------- | :-------: | :-----: | :---------------------------- |
+| `background.enabled` | `Boolean` | `true`  | Enable or disable this plugin |
+
+### Default Config
+
 | Name                      |      Type       |   Default    | Description                                 |
 | :------------------------ | :-------------: | :----------: | :------------------------------------------ |
-| `background.enabled`      |    `Boolean`    |    `true`    | Enable or disable this plugin               |
 | `background.useFront`     |    `Boolean`    |    `true`    | Set the image to front or back of your code |
 | `background.useDefault`   |    `Boolean`    |    `true`    | Whether or not to use default images        |
 | `background.style`        |    `Object`     |     `{}`     | Customize style                             |
@@ -41,7 +52,27 @@ User defined requirements can be met by changing the configuration(`settings.jso
 | `background.customImages` | `Array<String>` |     `[]`     | Add your custom images                      |
 | `background.loop`         |    `Boolean`    |   `false`    | `loop` mode, may repeat your images         |
 
-`style` means [css style](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS), which allows you to create great-looking background.
+> `style` means [css style](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS), which allows you to create great-looking background.
+
+### Fullscreen Config
+
+> may overwrite the default config
+
+| Name                    |   Type   | Default | Description                 |
+| :---------------------- | :------: | :-----: | :-------------------------- |
+| `background.fullscreen` | `Object` | `null`  | Set the image to fullscreen |
+
+example:
+
+```json
+{
+  "background.fullscreen": {
+    "image": "https://pathtoimage.png", // url of your image
+    "opacity": 0.91, // 0.85 ~ 0.95 recommended
+    "size": "cover" // also css, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`
+  }
+}
+```
 
 ## Examples
 
@@ -84,15 +115,14 @@ You should use protocol **https** instead of **http** for the image, **http** is
 }
 ```
 
-5. custom style - full screen
-
-[Related Issue](https://github.com/shalldie/vscode-background/issues/268)
+5. full screen
 
 ```json
 {
-  "background.style": {
-    "background-size": "cover",
-    "position": "fixed"
+  "background.fullscreen": {
+    "image": "https://pathtoimage.png", // url of your image
+    "opacity": 0.91, // 0.85 ~ 0.95 recommended
+    "size": "cover" // also css, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`
   }
 }
 ```

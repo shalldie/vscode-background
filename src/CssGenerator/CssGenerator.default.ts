@@ -1,16 +1,63 @@
+import { defBase64 } from '../defBase64';
 import { AbsCssGenerator } from './CssGenerator.base';
 
+/**
+ * 默认配置
+ *
+ * @export
+ * @class DefaultGeneratorOptions
+ */
 export class DefaultGeneratorOptions {
-    images: string[] = [];
+    useFront = true;
+    useDefault = true;
     style: any = {};
     styles: Array<any> = [];
-    useFront = true;
+    customImages: string[] = [];
     loop = false;
 }
 
-export class DefaultCssGenerator extends AbsCssGenerator {
+/**
+ * 默认样式生成
+ *
+ * @export
+ * @class DefaultCssGenerator
+ * @extends {AbsCssGenerator<DefaultGeneratorOptions>}
+ */
+export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions> {
+    /**
+     * 通过配置获取样式文本
+     *
+     * @protected
+     * @param {object} options 用户配置
+     * @param {boolean} useFront 是否前景图
+     * @return {*}  {string}
+     * @memberof DefaultCssGenerator
+     */
+    protected getStyleByOptions(options: object, useFront: boolean): string {
+        const styleArr: string[] = [];
+        for (const k in options) {
+            // 在使用背景图时，排除掉 pointer-events
+            if (!useFront && ~['pointer-events', 'z-index'].indexOf(k)) {
+                continue;
+            }
+
+            // eslint-disable-next-line
+            if (options.hasOwnProperty(k)) {
+                styleArr.push(`${k}:${options[k]}`);
+            }
+        }
+        return styleArr.join(';') + ';';
+    }
+
     protected async getCss(options: DefaultGeneratorOptions) {
-        const { images, style, styles, useFront, loop } = options;
+        // 处理默认参数
+        options = {
+            ...new DefaultGeneratorOptions(),
+            ...options
+        };
+        const { useDefault, customImages, style, styles, useFront, loop } = options;
+
+        const images = useDefault ? defBase64 : customImages;
 
         // ------ 默认样式 ------
         const defStyle = this.getStyleByOptions(style, useFront);

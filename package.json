@@ -2,7 +2,7 @@
   "name": "background",
   "displayName": "background",
   "description": "Bring background images to your vscode",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "vscode:uninstall": "node ./out/uninstall",
@@ -101,7 +101,16 @@
         "background.loop": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Loop your images.\n\n循环使用图片"
+          "markdownDescription": "Loop your images.\n\n循环使用图片。"
+        },
+        "background.fullscreen": {
+          "type": "object",
+          "default": {
+            "image": "",
+            "opacity": 0.91,
+            "size": "cover"
+          },
+          "markdownDescription": "Feature - fullscreen, may overwrite other config.\n\n全屏，会覆盖其它配置。"
         }
       }
     }

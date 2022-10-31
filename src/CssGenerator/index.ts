@@ -1,9 +1,26 @@
-import { DefaultGeneratorOptions } from './CssGenerator.default';
-import { FullScreenGeneratorOptions } from './CssGenerator.fullscreen';
+import { DefaultCssGenerator, DefaultGeneratorOptions } from './CssGenerator.default';
+import { FullScreenCssGenerator, FullScreenGeneratorOptions } from './CssGenerator.fullscreen';
 
-export type TCssGeneratorOptions = DefaultGeneratorOptions & FullScreenGeneratorOptions;
+/**
+ * 配置项参数
+ */
+export type TCssGeneratorOptions = DefaultGeneratorOptions & {
+    enabled: boolean;
+    fullscreen?: FullScreenGeneratorOptions;
+};
 
+/**
+ * 样式生成工厂
+ *
+ * @export
+ * @class CssGenerator
+ */
 export class CssGenerator {
-    // eslint-disable-next-line
-    public static create(options: TCssGeneratorOptions) {}
+    public static create(options: TCssGeneratorOptions) {
+        if (options.fullscreen?.image) {
+            return new FullScreenCssGenerator().create(options.fullscreen);
+        }
+
+        return new DefaultCssGenerator().create(options);
+    }
 }
