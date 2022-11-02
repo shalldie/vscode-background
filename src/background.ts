@@ -12,9 +12,13 @@ import sudo from 'sudo-prompt';
 // self
 import { vsHelp } from './vsHelp';
 import { vscodePath } from './vscodePath';
-import { getCss } from './getCss';
-import { defBase64 } from './defBase64';
 import { VERSION, BACKGROUND_VER, ENCODE } from './constants';
+import { CssGenerator, TCssGeneratorOptions } from './CssGenerator';
+
+/**
+ * 配置类型
+ */
+type TConfigType = vscode.WorkspaceConfiguration & TCssGeneratorOptions;
 
 /**
  * css文件修改状态类型
@@ -49,10 +53,10 @@ class Background implements Disposable {
      * 当前用户配置
      *
      * @private
-     * @type {vscode.WorkspaceConfiguration}
+     * @type {TConfigType}
      * @memberof Background
      */
-    private config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('background');
+    private config: TConfigType = vscode.workspace.getConfiguration('background') as TConfigType;
 
     /**
      * 需要释放的资源
@@ -213,7 +217,7 @@ class Background implements Disposable {
      */
     private async install(refresh?: boolean): Promise<void> {
         const lastConfig = this.config; // 之前的配置
-        const config = vscode.workspace.getConfiguration('background'); // 当前用户配置
+        const config = vscode.workspace.getConfiguration('background') as TConfigType; // 当前用户配置
 
         // 1.如果配置文件改变的时候，当前插件配置没有改变，则返回
         if (!refresh && JSON.stringify(lastConfig) == JSON.stringify(config)) {
@@ -239,16 +243,8 @@ class Background implements Disposable {
             return;
         }
 
-        // 5.hack 样式
-        let arr = defBase64; // 默认图片
-
-        if (!config.useDefault) {
-            // 自定义图片
-            arr = config.customImages;
-        }
-
         // 自定义的样式内容
-        const content = (await getCss(arr, config.style, config.styles, config.useFront, config.loop)).trimEnd(); // 去除末尾空白
+        const content = (await CssGenerator.create(config)).trimEnd(); // 去除末尾空白
 
         // 添加到原有样式(尝试删除旧样式)中
         let cssContent = await this.getCssContent();

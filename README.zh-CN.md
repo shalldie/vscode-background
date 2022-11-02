@@ -15,7 +15,11 @@
 
 给 [Visual Studio Code](https://code.visualstudio.com) 添加背景
 
-![](https://user-images.githubusercontent.com/9987486/40583705-7105dda8-61c6-11e8-935a-3c5d475a1eb1.gif)
+<img width="880" src="https://user-images.githubusercontent.com/9987486/40583705-7105dda8-61c6-11e8-935a-3c5d475a1eb1.gif">
+
+全屏
+
+<img width="880" src="https://user-images.githubusercontent.com/9987486/198958380-6eaf96c7-3aa2-4fce-b27e-6f33c8d4e2c1.png">
 
 ## 安装
 
@@ -35,9 +39,16 @@ ext install background
 
 ## 配置项
 
+### 基础配置
+
+| 名称                 |   类型    | 默认值 | 描述         |
+| :------------------- | :-------: | :----: | :----------- |
+| `background.enabled` | `Boolean` | `true` | 插件是否启用 |
+
+### 默认配置
+
 | 名称                      |      类型       |    默认值    | 描述                               |
 | :------------------------ | :-------------: | :----------: | :--------------------------------- |
-| `background.enabled`      |    `Boolean`    |    `true`    | 插件是否启用                       |
 | `background.useFront`     |    `Boolean`    |    `true`    | 前景图/背景图。 在代码上面还是下面 |
 | `background.useDefault`   |    `Boolean`    |    `true`    | 是否使用默认图片                   |
 | `background.style`        |    `Object`     |     `{}`     | 自定义样式                         |
@@ -45,7 +56,27 @@ ext install background
 | `background.customImages` | `Array<String>` |     `[]`     | 自定义图片                         |
 | `background.loop`         |    `Boolean`    |   `false`    | 循环模式，会重复显示图片           |
 
-`style` 指的是 [css style](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS)，通过自定义样式可以改变背景图的展示。
+> `style` 指的是 [css style](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS)，通过自定义样式可以改变背景图的展示。
+
+### 全屏配置
+
+> 会覆盖默认配置
+
+| 名称                    |   类型   | 默认值 | 描述         |
+| :---------------------- | :------: | :----: | :----------- |
+| `background.fullscreen` | `Object` | `null` | 设置全屏背景 |
+
+example:
+
+```json
+{
+  "background.fullscreen": {
+    "image": "https://pathtoimage.png", // 图片的url
+    "opacity": 0.91, // 建议值 0.85 ~ 0.95
+    "size": "cover" // css, 建议使用 `cover`自适应，或者 `contain`、`200px 200px`
+  }
+}
+```
 
 ## 一些示例
 
@@ -88,15 +119,14 @@ ext install background
 }
 ```
 
-5. 自定义样式 - 全屏
-
-[Related Issue](https://github.com/shalldie/vscode-background/issues/268)
+5. 全屏
 
 ```json
 {
-  "background.style": {
-    "background-size": "cover",
-    "position": "fixed"
+  "background.fullscreen": {
+    "image": "https://pathtoimage.png", // 图片的url
+    "opacity": 0.91, // 建议值 0.85 ~ 0.95
+    "size": "cover" // css, 建议使用 `cover`自适应，或者 `contain`、`200px 200px`
   }
 }
 ```

@@ -1,3 +1,8 @@
+## ver1.2.2 (2022/10.31)
+
+    add feature fullscreen.
+    添加全屏背景图支持。
+
 ## ver1.2.1 (2022/7/20)
 
     fix loading local image.
