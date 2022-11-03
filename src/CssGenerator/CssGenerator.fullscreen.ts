@@ -30,12 +30,12 @@ export class FullScreenCssGenerator extends AbsCssGenerator<FullScreenGeneratorO
         options.image = (await this.normalizeImages([options.image]))[0];
 
         return `
-        body{
-			background-size: ${options.size};
-			background-repeat: no-repeat;
-			background-position: center;
-			opacity:${options.opacity};
-			background-image:url('${options.image}');
-		}`;
+        body {
+            background-size: ${options.size};
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity:${options.opacity};
+            background-image:url('${options.image}');
+        }`;
     }
 }
