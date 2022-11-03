@@ -7,7 +7,7 @@ import { randomUUID } from 'crypto';
 
 // libs
 import vscode, { Disposable } from 'vscode';
-import sudo from 'sudo-prompt';
+import sudo from '@vscode/sudo-prompt';
 
 // self
 import { vsHelp } from './vsHelp';
