@@ -1,4 +1,4 @@
-import { defBase64 } from '../defBase64';
+import { builtin } from '../builtin';
 import { AbsCssGenerator } from './CssGenerator.base';
 
 /**
@@ -58,7 +58,7 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
         };
         const { useDefault, customImages, style, styles, useFront, loop, useVscodeFileProtocol } = options;
 
-        const images = useDefault ? defBase64 : customImages;
+        const images = useDefault ? builtin : customImages;
 
         // ------ 默认样式 ------
         const defStyle = this.getStyleByOptions(style, useFront);
