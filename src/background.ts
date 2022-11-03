@@ -14,6 +14,7 @@ import { vsHelp } from './vsHelp';
 import { vscodePath } from './vscodePath';
 import { VERSION, BACKGROUND_VER, ENCODE } from './constants';
 import { CssGenerator, TCssGeneratorOptions } from './CssGenerator';
+import { utils } from './utils';
 
 /**
  * 配置类型
@@ -211,11 +212,11 @@ class Background implements Disposable {
      * 安装插件，hack css
      *
      * @private
-     * @param {boolean} [refresh] 需要强制更新
+     * @param {boolean} [refresh=false] 需要强制更新
      * @returns {void}
      * @memberof Background
      */
-    private async install(refresh?: boolean): Promise<void> {
+    private async install(refresh = false): Promise<void> {
         const lastConfig = this.config; // 之前的配置
         const config = vscode.workspace.getConfiguration('background') as TConfigType; // 当前用户配置
 
@@ -239,20 +240,31 @@ class Background implements Disposable {
         // 4.如果关闭插件
         if (!config.enabled) {
             await this.uninstall();
-            await vsHelp.showInfoRestart('Background has been uninstalled! Please restart.');
+            vsHelp.showInfoRestart('Background has been uninstalled! Please restart.');
             return;
         }
 
-        // 自定义的样式内容
-        const content = (await CssGenerator.create(config)).trimEnd(); // 去除末尾空白
+        // 5.应用配置到css文件
+        try {
+            // 该动作需要加锁，涉及多次文件读写
+            await utils.lock();
 
-        // 添加到原有样式(尝试删除旧样式)中
-        let cssContent = await this.getCssContent();
-        cssContent = this.clearCssContent(cssContent);
-        cssContent += content;
+            const content = (await CssGenerator.create(config)).trimEnd(); // 去除末尾空白
 
-        if (await this.saveCssContent(cssContent)) {
-            await vsHelp.showInfoRestart('Background has been changed! Please restart.');
+            // 添加到原有样式(尝试删除旧样式)中
+            let cssContent = await this.getCssContent();
+            cssContent = this.clearCssContent(cssContent);
+            // 异常case return
+            if (!cssContent.trim().length) {
+                return;
+            }
+            cssContent += content;
+
+            if (await this.saveCssContent(cssContent)) {
+                vsHelp.showInfoRestart('Background has been changed! Please restart.');
+            }
+        } finally {
+            await utils.unlock();
         }
     }
 
@@ -291,7 +303,14 @@ class Background implements Disposable {
         }
 
         // 监听文件改变
-        this.disposables.push(vscode.workspace.onDidChangeConfiguration(() => this.install()));
+        this.disposables.push(
+            vscode.workspace.onDidChangeConfiguration(async () => {
+                // 0~500ms 的延时，对于可能的多实例，错开对于文件的操作
+                // 虽然有锁了，但这样更安心 =。=
+                await utils.sleep(~~(Math.random() * 500));
+                this.install();
+            })
+        );
     }
 
     /**
@@ -317,12 +336,19 @@ class Background implements Disposable {
      */
     public async uninstall(): Promise<boolean> {
         try {
+            await utils.lock();
             let content = await this.getCssContent();
             content = this.clearCssContent(content);
+            // 异常case return
+            if (!content.trim().length) {
+                return false;
+            }
             return this.saveCssContent(content);
         } catch (ex) {
             console.log(ex);
             return false;
+        } finally {
+            await utils.unlock();
         }
     }
 

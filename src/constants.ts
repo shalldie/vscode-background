@@ -1,3 +1,4 @@
+import path from 'path';
 import pkg from '../package.json';
 
 /** 版本号 */
@@ -17,3 +18,6 @@ export const EXTENSION_NAME: string = pkg.name;
 
 /** 扩展ID */
 export const EXTENSION_ID = `${PUBLISHER}.${EXTENSION_NAME}`;
+
+/** 文件锁路径 */
+export const LOCK_PATH = path.join(__dirname, '../', `${EXTENSION_ID}.lock`);
