@@ -131,6 +131,6 @@
   },
   "dependencies": {
     "lockfile": "^1.0.4",
-    "sudo-prompt": "^9.2.1"
+    "@vscode/sudo-prompt": "^9.3.1"
   }
 }
