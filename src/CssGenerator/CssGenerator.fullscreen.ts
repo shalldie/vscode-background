@@ -10,6 +10,7 @@ export class FullScreenGeneratorOptions {
     image = '';
     opacity = 0.91; // 建议在 0.85 ~ 0.95 之间微调
     size = 'cover' as 'cover' | 'contain';
+    useVscodeFileProtocol = false;
 }
 
 /**
@@ -27,7 +28,7 @@ export class FullScreenCssGenerator extends AbsCssGenerator<FullScreenGeneratorO
             ...options
         };
 
-        options.image = (await this.normalizeImages([options.image]))[0];
+        options.image = (await this.normalizeImages([options.image], options.useVscodeFileProtocol))[0];
 
         return `
         body {

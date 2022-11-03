@@ -111,6 +111,11 @@
             "size": "cover"
           },
           "markdownDescription": "Feature - fullscreen, may overwrite other config.\n\n全屏，会覆盖其它配置。"
+        },
+        "background.lab.useVscodeFileUri": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "[实验性] 使用 vscode-file:// 协议而不是 data: 协议(base64)处理本地文件"
         }
       }
     }

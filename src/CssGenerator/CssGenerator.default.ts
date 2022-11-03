@@ -14,6 +14,7 @@ export class DefaultGeneratorOptions {
     styles: Array<any> = [];
     customImages: string[] = [];
     loop = false;
+    useVscodeFileProtocol = false;
 }
 
 /**
@@ -55,7 +56,7 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
             ...new DefaultGeneratorOptions(),
             ...options
         };
-        const { useDefault, customImages, style, styles, useFront, loop } = options;
+        const { useDefault, customImages, style, styles, useFront, loop, useVscodeFileProtocol } = options;
 
         const images = useDefault ? defBase64 : customImages;
 
@@ -71,7 +72,7 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
           当检测到配置文件使用 file 协议时, 需要将图片读取并转为 base64, 而后再插入到 css 中
         */
 
-        const list = await this.normalizeImages(images);
+        const list = await this.normalizeImages(images, useVscodeFileProtocol);
 
         // ------ 组合样式 ------
         const imageStyleContent = list
