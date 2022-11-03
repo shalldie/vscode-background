@@ -1,3 +1,9 @@
+## ver1.2.3 (2022/11.3)
+
+    #306, #329
+    fix css broken caused by mutiple write.
+    修复多实例写入造成的css损坏。
+
 ## ver1.2.2 (2022/10.31)
 
     add feature fullscreen.

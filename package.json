@@ -2,7 +2,7 @@
   "name": "background",
   "displayName": "background",
   "description": "Bring background images to your vscode",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "vscode:uninstall": "node ./out/uninstall",
