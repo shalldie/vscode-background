@@ -1,8 +1,8 @@
 import path from 'path';
-import vscode from 'vscode';
+import { vscode } from './vsc';
 
 // 基础目录
-const base = path.dirname(require.main.filename);
+const base = path.dirname(require.main!.filename);
 
 // css文件路径
 const cssName = 'workbench.desktop.main.css';
@@ -16,7 +16,7 @@ const cssPath = (() => {
     const webPath = getCssPath(webCssName);
 
     // See https://code.visualstudio.com/api/references/vscode-api#env
-    switch (vscode.env.appHost) {
+    switch (vscode?.env.appHost) {
         case 'desktop':
             return defPath;
         case 'web':

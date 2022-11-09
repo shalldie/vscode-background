@@ -1,7 +1,7 @@
-import fsp from 'fs/promises';
+import fs from 'fs';
 import path from 'path';
 import { URL } from 'url';
-import { VERSION, BACKGROUND_VER } from '../constants';
+import { VERSION, BACKGROUND_VER } from '../../constants';
 
 export abstract class AbsCssGenerator<T = any> {
     /**
@@ -14,7 +14,7 @@ export abstract class AbsCssGenerator<T = any> {
      */
     protected async loadImageBase64FromFileProtocol(url: string): Promise<string> {
         const fileUrl = new URL(url);
-        const buffer = await fsp.readFile(fileUrl);
+        const buffer = await fs.promises.readFile(fileUrl);
         const extName = path.extname(fileUrl.pathname).substring(1);
 
         return `data:image/${extName};base64,${buffer.toString('base64')}`;

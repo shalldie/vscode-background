@@ -4,7 +4,7 @@
 import vscode from 'vscode';
 import { background } from './background';
 import { EXTENSION_ID, VERSION } from './constants';
-import { vsHelp } from './vsHelp';
+import { vsHelp } from './utils/vsHelp';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed

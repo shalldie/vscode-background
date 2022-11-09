@@ -1,4 +1,4 @@
-import { defBase64 } from '../defBase64';
+import { defBase64 } from '../../constants';
 import { AbsCssGenerator } from './CssGenerator.base';
 
 /**
@@ -33,7 +33,7 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
      * @return {*}  {string}
      * @memberof DefaultCssGenerator
      */
-    protected getStyleByOptions(options: object, useFront: boolean): string {
+    protected getStyleByOptions(options: any, useFront: boolean): string {
         const styleArr: string[] = [];
         for (const k in options) {
             // 在使用背景图时，排除掉 pointer-events
