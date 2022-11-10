@@ -1,4 +1,4 @@
-## ver1.2.5
+## ver1.2.5 (2022/11/10)
 
     #337
     Add a hook to remove background images, when plugin has been uninstalled.
