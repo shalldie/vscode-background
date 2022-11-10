@@ -16,11 +16,11 @@
 
 import fs from 'fs';
 import { CssFile } from './background/CssFile';
-import { TOUCH_FILE_PATH } from './constants';
+import { ENCODING, TOUCH_FILE_PATH } from './constants';
 
 async function uninstall() {
     try {
-        const cssFilePath = (await fs.promises.readFile(TOUCH_FILE_PATH, 'utf-8')).trim();
+        const cssFilePath = (await fs.promises.readFile(TOUCH_FILE_PATH, ENCODING)).trim();
         if (!cssFilePath) {
             return;
         }

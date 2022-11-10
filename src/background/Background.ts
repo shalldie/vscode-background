@@ -6,7 +6,7 @@ import vscode, { Disposable } from 'vscode';
 
 // self
 import { vsHelp } from '../utils/vsHelp';
-import { ENCODE, TOUCH_FILE_PATH } from '../constants';
+import { ENCODING, TOUCH_FILE_PATH } from '../constants';
 import { CssGenerator, TCssGeneratorOptions } from './CssGenerator';
 import { utils } from '../utils';
 import { CssFile, ECSSEditType } from './CssFile';
@@ -64,7 +64,7 @@ export class Background implements Disposable {
             // 提示
             vscode.commands.executeCommand('extension.background.info');
             // 标识插件已启动过
-            await fs.promises.writeFile(TOUCH_FILE_PATH, vscodePath.cssPath, ENCODE);
+            await fs.promises.writeFile(TOUCH_FILE_PATH, vscodePath.cssPath, ENCODING);
 
             return true;
         }

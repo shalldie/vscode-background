@@ -11,7 +11,7 @@ import { randomUUID } from 'crypto';
 
 // self
 import { vscode } from '../utils/vsc';
-import { VERSION, BACKGROUND_VER, ENCODE } from '../constants';
+import { VERSION, BACKGROUND_VER, ENCODING } from '../constants';
 import { utils } from '../utils';
 
 /**
@@ -80,7 +80,7 @@ export class CssFile {
      * @memberof CssFile
      */
     public getContent(): Promise<string> {
-        return fs.promises.readFile(this.filePath, ENCODE);
+        return fs.promises.readFile(this.filePath, ENCODING);
     }
 
     /**
@@ -96,7 +96,7 @@ export class CssFile {
         }
         try {
             await fs.promises.access(this.filePath, fsConstants.W_OK);
-            await fs.promises.writeFile(this.filePath, content, ENCODE);
+            await fs.promises.writeFile(this.filePath, content, ENCODING);
             return true;
         } catch (e: any) {
             if (!vscode) {
@@ -138,7 +138,7 @@ export class CssFile {
      */
     private async saveContentToTemp(content: string) {
         const tempPath = path.join(tmpdir(), `vscode-background-${randomUUID()}.css`);
-        await fs.promises.writeFile(tempPath, content, ENCODE);
+        await fs.promises.writeFile(tempPath, content, ENCODING);
         return tempPath;
     }
 

@@ -8,7 +8,7 @@ export const VERSION: string = pkg.version;
 export const BACKGROUND_VER = 'background.ver';
 
 /** 文件编码 */
-export const ENCODE = 'utf-8';
+export const ENCODING = 'utf-8';
 
 /** 发布者 */
 export const PUBLISHER: string = pkg.publisher;
