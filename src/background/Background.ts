@@ -26,6 +26,11 @@ type TConfigType = vscode.WorkspaceConfiguration & TCssGeneratorOptions;
 export class Background implements Disposable {
     // #region fields 字段
 
+    /**
+     * css文件操作对象
+     *
+     * @memberof Background
+     */
     public cssFile = new CssFile(vscodePath.cssPath); // 没必要继承，组合就行
 
     /**
