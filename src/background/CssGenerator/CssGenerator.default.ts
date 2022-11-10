@@ -34,19 +34,13 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
      * @memberof DefaultCssGenerator
      */
     protected getStyleByOptions(options: any, useFront: boolean): string {
-        const styleArr: string[] = [];
-        for (const k in options) {
-            // 在使用背景图时，排除掉 pointer-events
-            if (!useFront && ~['pointer-events', 'z-index'].indexOf(k)) {
-                continue;
-            }
+        // 在使用背景图时，排除掉 pointer-events 和 z-index
+        const excludeKeys = useFront ? [] : ['pointer-events', 'z-index'];
 
-            // eslint-disable-next-line
-            if (options.hasOwnProperty(k)) {
-                styleArr.push(`${k}:${options[k]}`);
-            }
-        }
-        return styleArr.join(';') + ';';
+        return Object.entries(options)
+            .filter(([key]) => !excludeKeys.includes(key))
+            .map(([key, value]) => `${key}: ${value};`)
+            .join('');
     }
 
     protected async getCss(options: DefaultGeneratorOptions) {
