@@ -2,9 +2,9 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import vscode from 'vscode';
-import { background } from './background';
+import { Background } from './background';
 import { EXTENSION_ID, VERSION } from './constants';
-import { vsHelp } from './vsHelp';
+import { vsHelp } from './utils/vsHelp';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -30,6 +30,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 
     context.subscriptions.push(disposable);
 
+    const background = new Background();
     await background.setup();
     context.subscriptions.push(background);
 

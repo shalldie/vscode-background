@@ -1,3 +1,9 @@
+## ver1.2.5
+
+    #337
+    Add a hook to remove background images, when plugin has been uninstalled.
+    当插件被卸载时，添加钩子去清理背景图。
+
 ## ver1.2.3 (2022/11.3)
 
     #306, #329

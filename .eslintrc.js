@@ -16,6 +16,7 @@ module.exports = {
         'prefer-const': ['error', { destructuring: 'all' }],
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/interface-name-prefix': 'off',
-        '@typescript-eslint/ban-types': 'off'
+        '@typescript-eslint/ban-types': 'off',
+        '@typescript-eslint/no-non-null-assertion': 'off'
     }
 };

@@ -141,7 +141,7 @@ This is the reason:
 
 ## Uninstall
 
-    two ways
+    three ways
 
     1. (recommended)
 
@@ -150,6 +150,12 @@ This is the reason:
     2.
 
     Set the config  {"background.enabled": false}  in settings.json, then uninstall the plugin.
+
+    3. An unfriendly way:
+
+    If you uninstall this plugin directly, don't worry.
+    Exit vscode completely, then open, then reload. Now it's clean :D
+    (I know it's strange... Because of the limit of vscode)
 
 ## Contributors 🙏
 

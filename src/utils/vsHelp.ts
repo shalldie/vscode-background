@@ -7,7 +7,7 @@ export const vsHelp = {
      * @param {string} content 提示内容
      * @returns {Thenable<string>}
      */
-    showInfo(content: string): Thenable<string> {
+    showInfo(content: string) {
         return vscode.window.showInformationMessage(content);
     },
 
