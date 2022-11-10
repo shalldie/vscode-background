@@ -1,5 +1,5 @@
 import { defBase64 } from '../../constants';
-import { AbsCssGenerator } from './CssGenerator.base';
+import { AbsCssGenerator, css } from './CssGenerator.base';
 
 /**
  * 默认配置
@@ -44,59 +44,50 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
     }
 
     protected async getCss(options: DefaultGeneratorOptions) {
-        // 处理默认参数
-        options = {
+        const { useDefault, customImages, style, styles, useFront, loop } = {
             ...new DefaultGeneratorOptions(),
             ...options
         };
-        const { useDefault, customImages, style, styles, useFront, loop } = options;
 
-        const images = useDefault ? defBase64 : customImages;
+        // ------ 处理图片 ------
+        const images = await this.normalizeImages(useDefault ? defBase64 : customImages);
 
         // ------ 默认样式 ------
         const defStyle = this.getStyleByOptions(style, useFront);
 
         // ------ 在前景图时使用 ::after ------
-        const frontContent = useFront ? '::after' : '::before';
+        const frontContent = useFront ? 'after' : 'before';
 
-        /*
-          图片预处理
-          在 v1.51.1 版本之后, vscode 将工作区放入 sandbox 中运行并添加了 file 协议的访问限制, 导致使用 file 协议的背景图片无法显示
-          当检测到配置文件使用 file 协议时, 需要将图片读取并转为 base64, 而后再插入到 css 中
-        */
+        // ------ 生成背景图片样式 ------
+        const imageStyles = images.map((image, index) => {
+            const styleContent = defStyle + this.getStyleByOptions(styles[index] || {}, useFront);
+            const nthChild = loop ? `${images.length}n + ${index + 1}` : `${index + 1}`;
 
-        const list = await this.normalizeImages(images);
-
-        // ------ 组合样式 ------
-        const imageStyleContent = list
-            .map((img, index) => {
-                // ------ nth-child ------
-                // nth-child(1)
-                let nthChildIndex = index + 1 + '';
-                // nth-child(3n + 1)
-                if (loop) {
-                    nthChildIndex = `${images.length}n + ${nthChildIndex}`;
+            return css`
+                // code editor
+                &:nth-child(${nthChild}) .editor-container .overflow-guard > .monaco-scrollable-element::${frontContent} {
+                    background-image: url('${image}');
+                    ${styleContent}
                 }
+                // home screen
+                &:nth-child(${nthChild}) .empty::before {
+                    background-image: url('${image}');
+                    ${styleContent}
+                }
+            `;
+        });
 
-                // ------ style ------
-                const styleContent = defStyle + this.getStyleByOptions(styles[index] || {}, useFront);
+        // ------ 添加最外层的选择器 ------
+        const source = css`
+            [id='workbench.parts.editor'] .split-view-view {
+                ${imageStyles}
+                // 处理一块背景色遮挡 
+                .editor-container .overflow-guard > .monaco-scrollable-element > .monaco-editor-background {
+                    background: none;
+                }
+            }
+        `;
 
-                return (
-                    // code editor
-                    `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) ` +
-                    `.editor-container .editor-instance>.monaco-editor ` +
-                    `.overflow-guard>.monaco-scrollable-element${frontContent}{background-image: url('${img}');${styleContent}}` +
-                    '\n' +
-                    // home screen
-                    `[id="workbench.parts.editor"] .split-view-view:nth-child(${nthChildIndex}) ` +
-                    `.empty::before { background-image: url('${img}');${styleContent} }` +
-                    '\n' +
-                    // 处理一块背景色遮挡
-                    '[id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element>.monaco-editor-background{background: none;}'
-                );
-            })
-            .join('\n');
-
-        return imageStyleContent;
+        return this.compileCSS(source);
     }
 }
