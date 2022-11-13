@@ -58,33 +58,27 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
         // ------ 在前景图时使用 ::after ------
         const frontContent = useFront ? 'after' : 'before';
 
-        // ------ 生成背景图片样式 ------
-        const imageStyles = images.map((image, index) => {
-            const styleContent = defStyle + this.getStyleByOptions(styles[index] || {}, useFront);
-            const nthChild = loop ? `${images.length}n + ${index + 1}` : `${index + 1}`;
-
-            return css`
-                // code editor
-                &:nth-child(${nthChild}) .editor-container .overflow-guard > .monaco-scrollable-element::${frontContent} {
-                    background-image: url('${image}');
-                    ${styleContent}
-                }
-                // home screen
-                &:nth-child(${nthChild}) .empty::before {
-                    background-image: url('${image}');
-                    ${styleContent}
-                }
-            `;
-        });
-
-        // ------ 添加最外层的选择器 ------
+        // ------ 生成样式 ------
+        // prettier-ignore
         return css`
-            [id='workbench.parts.editor'] .split-view-view {
-                ${imageStyles}
-                // 处理一块背景色遮挡 
+            [id="workbench.parts.editor"] .split-view-view {
+                // 处理一块背景色遮挡
                 .editor-container .overflow-guard > .monaco-scrollable-element > .monaco-editor-background {
                     background: none;
                 }
+                // 背景图片样式
+                ${images.map((image, index) => {
+                    const styleContent = defStyle + this.getStyleByOptions(styles[index] || {}, useFront);
+                    const nthChild = loop ? `${images.length}n + ${index + 1}` : `${index + 1}`;
+
+                    return css`
+                        &:nth-child(${nthChild}) .editor-container .overflow-guard > .monaco-scrollable-element::${frontContent},
+                        &:nth-child(${nthChild}) .empty::before {
+                            background-image: url("${image}");
+                            ${styleContent}
+                        }
+                    `
+                })}
             }
         `;
     }
