@@ -9,7 +9,16 @@ import { VERSION, BACKGROUND_VER } from '../../constants';
  */
 export function css(template: TemplateStringsArray, ...args: any[]) {
     return template.reduce((prev, curr, i) => {
-        const arg = Array.isArray(args[i]) ? args[i].join('') : args[i];
+        let arg = args[i];
+
+        // 注意顺序, 内嵌函数可能返回 Array
+        if (typeof arg === 'function') {
+            arg = arg();
+        }
+        if (Array.isArray(arg)) {
+            arg = arg.join('');
+        }
+
         return prev + curr + (arg ?? '');
     }, '');
 }
