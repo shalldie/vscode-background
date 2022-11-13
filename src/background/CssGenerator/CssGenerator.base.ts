@@ -63,22 +63,21 @@ export abstract class AbsCssGenerator<T = any> {
     /**
      * 编译 css
      */
-    protected compileCSS(source: string) {
+    private compileCSS(source: string) {
         return serialize(compile(source), stringify);
     }
 
     protected abstract getCss(options: T): Promise<string>;
 
     public async create(options: T) {
-        const imageStyleContent = await this.getCss(options);
+        const source = await this.getCss(options);
+        const styles = this.compileCSS(source);
 
-        const content = `
+        return `
         /*css-background-start*/
         /*${BACKGROUND_VER}.${VERSION}*/
-        ${imageStyleContent}
+        ${styles}
         /*css-background-end*/
         `;
-
-        return content;
     }
 }

@@ -78,7 +78,7 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
         });
 
         // ------ 添加最外层的选择器 ------
-        const source = css`
+        return css`
             [id='workbench.parts.editor'] .split-view-view {
                 ${imageStyles}
                 // 处理一块背景色遮挡 
@@ -87,7 +87,5 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
                 }
             }
         `;
-
-        return this.compileCSS(source);
     }
 }

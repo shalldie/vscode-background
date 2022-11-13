@@ -29,7 +29,7 @@ export class FullScreenCssGenerator extends AbsCssGenerator<FullScreenGeneratorO
         // ------ 处理图片 ------
         image = (await this.normalizeImages([image]))[0];
 
-        const styles = css`
+        return css`
             body {
                 background-size: ${size};
                 background-repeat: no-repeat;
@@ -38,7 +38,5 @@ export class FullScreenCssGenerator extends AbsCssGenerator<FullScreenGeneratorO
                 background-image: url('${image}');
             }
         `;
-
-        return this.compileCSS(styles);
     }
 }
