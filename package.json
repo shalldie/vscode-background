@@ -118,6 +118,7 @@
   "devDependencies": {
     "@types/lockfile": "^1.0.2",
     "@types/node": "^16.11.45",
+    "@types/stylis": "^4.0.2",
     "@types/vscode": "^1.40.0",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
@@ -130,7 +131,8 @@
     "vsce": "^2.9.1"
   },
   "dependencies": {
+    "@vscode/sudo-prompt": "^9.3.1",
     "lockfile": "^1.0.4",
-    "@vscode/sudo-prompt": "^9.3.1"
+    "stylis": "^4.1.3"
   }
 }
