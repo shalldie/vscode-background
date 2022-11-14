@@ -37,12 +37,10 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
         // 在使用背景图时，排除掉 pointer-events 和 z-index
         const excludeKeys = useFront ? [] : ['pointer-events', 'z-index'];
 
-        return (
-            Object.entries(options)
-                .filter(([key]) => !excludeKeys.includes(key))
-                .map(([key, value]) => `${key}: ${value}`)
-                .join(';') + ';'
-        );
+        return Object.entries(options)
+            .filter(([key]) => !excludeKeys.includes(key))
+            .map(([key, value]) => `${key}: ${value};`)
+            .join('');
     }
 
     protected async getCss(options: DefaultGeneratorOptions) {
