@@ -71,7 +71,9 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
                     const nthChild = loop ? `${images.length}n + ${index + 1}` : `${index + 1}`;
 
                     return css`
+                        /* code editor */
                         &:nth-child(${nthChild}) .editor-container .overflow-guard > .monaco-scrollable-element::${frontContent},
+                        /* home screen */
                         &:nth-child(${nthChild}) .empty::before {
                             background-image: url('${image}');
                             ${styleContent}
