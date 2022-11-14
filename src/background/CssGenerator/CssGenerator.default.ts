@@ -73,7 +73,7 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
 
                         return css`
                             &:nth-child(${nthChild}) .editor-container .overflow-guard > .monaco-scrollable-element::${frontContent},
-                        &:nth-child(${nthChild}) .empty::before {
+                            &:nth-child(${nthChild}) .empty::before {
                                 background-image: url('${image}');
                                 ${styleContent}
                             }
