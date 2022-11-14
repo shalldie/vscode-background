@@ -66,20 +66,18 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
                     background: none;
                 }
                 // 背景图片样式
-                ${images
-                    .map((image, index) => {
-                        const styleContent = defStyle + this.getStyleByOptions(styles[index] || {}, useFront);
-                        const nthChild = loop ? `${images.length}n + ${index + 1}` : `${index + 1}`;
+                ${images.map((image, index) => {
+                    const styleContent = defStyle + this.getStyleByOptions(styles[index] || {}, useFront);
+                    const nthChild = loop ? `${images.length}n + ${index + 1}` : `${index + 1}`;
 
-                        return css`
-                            &:nth-child(${nthChild}) .editor-container .overflow-guard > .monaco-scrollable-element::${frontContent},
-                            &:nth-child(${nthChild}) .empty::before {
-                                background-image: url('${image}');
-                                ${styleContent}
-                            }
-                        `;
-                    })
-                    .join('')}
+                    return css`
+                        &:nth-child(${nthChild}) .editor-container .overflow-guard > .monaco-scrollable-element::${frontContent},
+                        &:nth-child(${nthChild}) .empty::before {
+                            background-image: url('${image}');
+                            ${styleContent}
+                        }
+                    `;
+                })}
             }
         `;
     }
