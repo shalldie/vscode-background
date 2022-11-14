@@ -1,11 +1,16 @@
 import fs from 'fs';
 import path from 'path';
 import { URL } from 'url';
-import { compile, serialize, stringify } from 'stylis';
+import * as stylis from 'stylis';
 import { VERSION, BACKGROUND_VER } from '../../constants';
 
 /**
  * 用于触发开发工具 css in js 语言支持
+ *
+ * @export
+ * @param {TemplateStringsArray} template
+ * @param {...any[]} args
+ * @return {*}
  */
 export function css(template: TemplateStringsArray, ...args: any[]) {
     return template.reduce((prev, curr, i) => {
@@ -62,9 +67,14 @@ export abstract class AbsCssGenerator<T = any> {
 
     /**
      * 编译 css
+     *
+     * @private
+     * @param {string} source
+     * @return {*}
+     * @memberof AbsCssGenerator
      */
     private compileCSS(source: string) {
-        return serialize(compile(source), stringify);
+        return stylis.serialize(stylis.compile(source), stylis.stringify);
     }
 
     protected abstract getCss(options: T): Promise<string>;

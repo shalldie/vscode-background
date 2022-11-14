@@ -37,10 +37,12 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
         // 在使用背景图时，排除掉 pointer-events 和 z-index
         const excludeKeys = useFront ? [] : ['pointer-events', 'z-index'];
 
-        return Object.entries(options)
-            .filter(([key]) => !excludeKeys.includes(key))
-            .map(([key, value]) => `${key}: ${value};`)
-            .join('');
+        return (
+            Object.entries(options)
+                .filter(([key]) => !excludeKeys.includes(key))
+                .map(([key, value]) => `${key}: ${value}`)
+                .join(';') + ';'
+        );
     }
 
     protected async getCss(options: DefaultGeneratorOptions) {
@@ -59,26 +61,27 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
         const frontContent = useFront ? 'after' : 'before';
 
         // ------ 生成样式 ------
-        // prettier-ignore
         return css`
-            [id="workbench.parts.editor"] .split-view-view {
+            [id='workbench.parts.editor'] .split-view-view {
                 // 处理一块背景色遮挡
                 .editor-container .overflow-guard > .monaco-scrollable-element > .monaco-editor-background {
                     background: none;
                 }
                 // 背景图片样式
-                ${images.map((image, index) => {
-                    const styleContent = defStyle + this.getStyleByOptions(styles[index] || {}, useFront);
-                    const nthChild = loop ? `${images.length}n + ${index + 1}` : `${index + 1}`;
+                ${images
+                    .map((image, index) => {
+                        const styleContent = defStyle + this.getStyleByOptions(styles[index] || {}, useFront);
+                        const nthChild = loop ? `${images.length}n + ${index + 1}` : `${index + 1}`;
 
-                    return css`
-                        &:nth-child(${nthChild}) .editor-container .overflow-guard > .monaco-scrollable-element::${frontContent},
+                        return css`
+                            &:nth-child(${nthChild}) .editor-container .overflow-guard > .monaco-scrollable-element::${frontContent},
                         &:nth-child(${nthChild}) .empty::before {
-                            background-image: url("${image}");
-                            ${styleContent}
-                        }
-                    `
-                })}
+                                background-image: url('${image}');
+                                ${styleContent}
+                            }
+                        `;
+                    })
+                    .join('')}
             }
         `;
     }
