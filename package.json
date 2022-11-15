@@ -117,6 +117,11 @@
           "default": false,
           "markdownDescription": "Feature - rotating, may overwrite other config.\n\n轮播，会覆盖其它配置。"
         },
+        "background.rotating.fullscreen": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Feature - rotating, may overwrite other config.\n\n轮播，会覆盖其它配置。"
+        },
         "background.rotating.duration": {
           "type": "string",
           "default": "60s",

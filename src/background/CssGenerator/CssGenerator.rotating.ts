@@ -6,6 +6,10 @@ export class RotatingGeneratorOptions {
      * 启用轮播
      */
     enabled = false;
+    /**
+     * 全屏幕轮播
+     */
+    fullscreen = false;
     duration = '60s';
 }
 
@@ -21,11 +25,16 @@ export class RotatingCssGenerator extends AbsCssGenerator<TrueRotatingGeneratorO
      * @return {*}  {string}
      * @memberof DefaultCssGenerator
      */
-    protected getStyleByOptions(options: object, useFront: boolean): string {
+    protected static getStyleByOptions(options: object, useFront: boolean, isFullScreen?: boolean): string {
         const styleArr: string[] = [];
         for (const k in options) {
-            // 在使用背景图时，排除掉 pointer-events
+            // 在使用before伪类背景图时，排除掉 pointer-events
             if (!useFront && ~['pointer-events', 'z-index'].indexOf(k)) {
+                continue;
+            }
+
+            // 在使用全屏背景图时，排除掉 透明度
+            if (isFullScreen && ~['opacity'].indexOf(k)) {
                 continue;
             }
 
@@ -43,10 +52,111 @@ export class RotatingCssGenerator extends AbsCssGenerator<TrueRotatingGeneratorO
         return (100 - 5 * y) / y;
     }
 
+    /**
+     * 获取编辑器范围内的背景图片轮播样式
+     * @param options 扩展设置
+     * @param images 图像数组
+     * @param frames 帧数组
+     * @param defStyle 默认样式
+     * @returns CSS字符串
+     */
+    private static _getNormalCss = async (
+        options: TrueRotatingGeneratorOptions,
+        images: string[],
+        frames: [number, number][],
+        defStyle: string
+    ) => {
+        const keyframesMap = new Map<string, string>();
+        const customstyles = new Array<string>();
+        const selectors = new Array<string>();
+
+        // ------ 在前景图时使用 ::after ------
+        const frontContent = options.useFront ? '::after' : '::before';
+
+        images.forEach((image, imageIndex) => {
+            // ------ nth-child ------
+            // nth-child(1)
+            let nthChildIndex = imageIndex + 1 + '';
+            // nth-child(3n + 1)
+            if (options.loop) {
+                nthChildIndex = `${images.length}n + ${nthChildIndex}`;
+            }
+
+            // ------ style ------
+            const styleContent = defStyle + this.getStyleByOptions(options.styles[imageIndex] || {}, options.useFront);
+
+            const _codeEditor = `#workbench\\.parts\\.editor .split-view-view:nth-child(${nthChildIndex}) .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element${frontContent}`;
+            const _emptyScreen = `#workbench\\.parts\\.editor .split-view-view:nth-child(${nthChildIndex}) .empty${frontContent}`;
+            selectors.push(`${_codeEditor},\n${_emptyScreen}`);
+            customstyles.push(styleContent);
+
+            const keyframesName = `vscode-background-images-${imageIndex}`;
+            let keyframes = `@keyframes ${keyframesName}{`;
+            frames.forEach(([start, end], frameIndex) => {
+                // 实际使用的图片应为 图片索引 + 帧索引
+                let trueIndex = imageIndex + frameIndex;
+                if (trueIndex >= images.length) {
+                    // 当 真实索引 超出图片数组长度时从数组第一个重新计算
+                    trueIndex = trueIndex - images.length;
+                }
+
+                keyframes += `${start}%,${end}%{background-image: url('${images[trueIndex]}');}`;
+            });
+            keyframes += `100%,100%{background-image: url('${images[imageIndex]}');}`;
+            keyframes += '}';
+
+            keyframesMap.set(keyframesName, keyframes);
+        });
+
+        const keyframesNames = Array.from(keyframesMap.keys());
+        const keyframesValues = Array.from(keyframesMap.values());
+        let trueStyle = '';
+        selectors.forEach((selector, index) => {
+            const currentStyle = customstyles[index];
+            const currentKeyFrames = keyframesNames[index];
+            trueStyle += selector + '\n{';
+            trueStyle += `animation: ${currentKeyFrames} ${options.duration} infinite linear;`;
+            trueStyle += currentStyle;
+            trueStyle += '}\n';
+        });
+
+        return (
+            trueStyle +
+            // 处理一块背景色遮挡
+            '#workbench\\.parts\\.editor .split-view-view .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element>.monaco-editor-background{background: none;}\n' +
+            [...keyframesValues].reduce((str, current) => str + '\n' + current, '')
+        );
+    };
+
+    private static _getFullscreenCss = async (
+        options: TrueRotatingGeneratorOptions,
+        images: string[],
+        frames: [number, number][],
+        defStyle: string
+    ) => {
+        // ------ 在前景图时使用 ::after ------
+        const frontContent = options.useFront ? '::after' : '::before';
+        let keyframes = '@keyframes vscode-background-images{';
+        frames.forEach(([start, end], index) => {
+            keyframes += `${start}%,${end}%{background-image: url('${images[index]}');}`;
+        });
+        keyframes += `100%,100%{background-image: url('${images[0]}');}`;
+        keyframes += '}';
+
+        // log: 当设置为after时背景可能不会生效，需要设置z-index大于0
+        return (
+            `body${frontContent}\n` +
+            `{animation: vscode-background-images ${options.duration} infinite linear;${defStyle}}\n` +
+            keyframes
+        );
+    };
+
     protected async getCss(options: TrueRotatingGeneratorOptions): Promise<string> {
         const interval = RotatingCssGenerator._getInterval(options.customImages.length);
         const images = await this.normalizeImages(options.customImages);
         const frames = new Array<[number, number]>();
+        // ------ 默认样式 ------
+        const defStyle = RotatingCssGenerator.getStyleByOptions(options.style, options.useFront, options.fullscreen);
         let current = 0;
 
         while (current < 100) {
@@ -56,28 +166,11 @@ export class RotatingCssGenerator extends AbsCssGenerator<TrueRotatingGeneratorO
         }
         if (frames.length !== images.length) throw new Error('不可能抛出的异常');
 
-        let keyframes = '@keyframes vscode-background-images{';
-        frames.forEach(([start, end], index) => {
-            keyframes += `${start}%,${end}%{background-image: url('${images[index]}');}`;
-        });
-        keyframes += `100%,100%{background-image: url('${images[0]}');}`;
-        keyframes += '}';
-
-        // ------ 默认样式 ------
-        const defStyle = this.getStyleByOptions(options.style, options.useFront);
-
-        // ------ 在前景图时使用 ::after ------
-        const frontContent = options.useFront ? '::after' : '::before';
-
-        return (
-            // code editor
-            `[id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element${frontContent},\n` +
-            // home screen
-            `[id="workbench.parts.editor"] .split-view-view .empty::before\n` +
-            `{animation: vscode-background-images ${options.duration} infinite linear;${defStyle}}\n` +
-            // 处理一块背景色遮挡
-            '[id="workbench.parts.editor"] .split-view-view .editor-container .editor-instance>.monaco-editor .overflow-guard>.monaco-scrollable-element>.monaco-editor-background{background: none;}\n' +
-            keyframes
+        return await (options.fullscreen ? RotatingCssGenerator._getFullscreenCss : RotatingCssGenerator._getNormalCss)(
+            options,
+            images,
+            frames,
+            defStyle
         );
     }
 }
