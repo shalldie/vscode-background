@@ -88,6 +88,9 @@ export abstract class AbsCssGenerator<T = any> {
         /*${BACKGROUND_VER}.${VERSION}*/
         ${styles}
         /*css-background-end*/
-        `;
+        `
+            .split('\n')
+            .map(s => s.trim())
+            .join('\n'); // 去掉每行的八个空格
     }
 }
