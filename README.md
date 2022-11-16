@@ -68,8 +68,10 @@ example:
 {
   "background.fullscreen": {
     "image": "https://pathtoimage.png", // url of your image
+    // "image": ["https://pathtoimage.png"], // An array may be useful when set interval for carousel
     "opacity": 0.91, // 0.85 ~ 0.95 recommended
-    "size": "cover" // also css, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`
+    "size": "cover", // also css, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`
+    "interval": 0 // seconds of interval for carousel, default `0` means disabled.
   }
 }
 ```
@@ -121,8 +123,10 @@ You should use protocol **https** instead of **http** for the image, **http** is
 {
   "background.fullscreen": {
     "image": "https://pathtoimage.png", // url of your image
+    // "image": ["https://pathtoimage.png"], // An array may be useful when set interval for carousel
     "opacity": 0.91, // 0.85 ~ 0.95 recommended
-    "size": "cover" // also css, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`
+    "size": "cover", // also css, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`
+    "interval": 0 // seconds of interval for carousel, default `0` means disabled.
   }
 }
 ```

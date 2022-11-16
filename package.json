@@ -108,7 +108,8 @@
           "default": {
             "image": "",
             "opacity": 0.91,
-            "size": "cover"
+            "size": "cover",
+            "interval": 0
           },
           "markdownDescription": "Feature - fullscreen, may overwrite other config.\n\n全屏，会覆盖其它配置。"
         }

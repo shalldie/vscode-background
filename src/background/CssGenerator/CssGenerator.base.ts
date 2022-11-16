@@ -66,6 +66,70 @@ export abstract class AbsCssGenerator<T = any> {
     }
 
     /**
+     * 创建轮播动画 keyframes
+     *
+     * @protected
+     * @param {string[]} images 图片数组
+     * @param {number} interval 切换间隔
+     * @param {string} animationName 动画名称
+     * @return {*}
+     * @memberof AbsCssGenerator
+     */
+    protected createKeyFrames(images: string[], interval: number, animationName: string) {
+        if (images.length <= 1 || interval < 1) {
+            return '';
+        }
+
+        /**
+         * 概设，假设2张图，
+         * pd 为 perDuration，图片的渐变时长百分比
+         *
+         * ---
+         *
+         * 0%         , 50% - pd/2 {img0}
+         * 50% + pd/2 , 100%       {img1}
+         *
+         * 需要3块frame，并进行偏移来保证效果连贯 =>
+         *
+         * 0%               ,  50% - pd - pd/2 {img0}
+         * 50%  - pd + pd/2 , 100% - pd - pd/2 {img1}
+         * 100% - pd        , 100%            {img0}
+         *
+         * 需要 animation-delay 来进行首帧时长偏移
+         */
+
+        const perDuration = 0.6 / (interval * images.length); // 渐变时间/动画总时长，渐变时间在总时长中占比
+        const toPercent = (num: number) => (num * 100).toFixed(3) + '%';
+        const perFrame = 1 / images.length; // 每片时长 eg: 0.5
+
+        const frames = [...images, images[0]].map((url, index) => {
+            let from = index * perFrame - perDuration + perDuration / 2;
+            let to = (index + 1) * perFrame - perDuration - perDuration / 2;
+
+            from = Math.max(from, 0);
+            to = Math.min(to, 1);
+
+            return {
+                from: toPercent(from),
+                to: toPercent(to),
+                url
+            };
+        });
+
+        return css`
+            @keyframes ${animationName} {
+                ${frames.map(({ from, to, url }) => {
+                    return css`
+                        ${from}, ${to} {
+                            background-image: url('${url}');
+                        }
+                    `;
+                })}
+            }
+        `;
+    }
+
+    /**
      * 编译 css
      *
      * @private

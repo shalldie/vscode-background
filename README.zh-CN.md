@@ -72,8 +72,10 @@ example:
 {
   "background.fullscreen": {
     "image": "https://pathtoimage.png", // 图片的url
+    // "image": ["https://pathtoimage.png"], // 当开启轮播图的时候，可以用数组配置多张图片
     "opacity": 0.91, // 建议值 0.85 ~ 0.95
-    "size": "cover" // css, 建议使用 `cover`自适应，或者 `contain`、`200px 200px`
+    "size": "cover", // css, 建议使用 `cover`自适应，或者 `contain`、`200px 200px`
+    "interval": 0 // 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启
   }
 }
 ```
@@ -125,8 +127,10 @@ example:
 {
   "background.fullscreen": {
     "image": "https://pathtoimage.png", // 图片的url
+    // "image": ["https://pathtoimage.png"], // 当开启轮播图的时候，可以用数组配置多张图片
     "opacity": 0.91, // 建议值 0.85 ~ 0.95
-    "size": "cover" // css, 建议使用 `cover`自适应，或者 `contain`、`200px 200px`
+    "size": "cover", // css, 建议使用 `cover`自适应，或者 `contain`、`200px 200px`
+    "interval": 0 // 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启
   }
 }
 ```

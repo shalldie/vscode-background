@@ -7,9 +7,10 @@ import { AbsCssGenerator, css } from './CssGenerator.base';
  * @class FullScreenGeneratorOptions
  */
 export class FullScreenGeneratorOptions {
-    image = '';
+    image = '' as string | string[];
     opacity = 0.91; // 建议在 0.85 ~ 0.95 之间微调
     size = 'cover' as 'cover' | 'contain';
+    interval = 0;
 }
 
 /**
@@ -20,14 +21,30 @@ export class FullScreenGeneratorOptions {
  * @extends {AbsCssGenerator<FullScreenGeneratorOptions>}
  */
 export class FullScreenCssGenerator extends AbsCssGenerator<FullScreenGeneratorOptions> {
+    private getCarouselCss(images: string[], interval: number) {
+        const animationName = 'background-fullscreen-carousel';
+        const keyframeCSS = this.createKeyFrames(images, interval, animationName);
+
+        if (!keyframeCSS) {
+            return '';
+        }
+
+        return css`
+            body {
+                animation: ${animationName} ${images.length * interval}s infinite;
+            }
+            ${keyframeCSS}
+        `;
+    }
+
     protected async getCss(options: FullScreenGeneratorOptions) {
-        let { size, opacity, image } = {
+        const { size, opacity, image, interval } = {
             ...new FullScreenGeneratorOptions(),
             ...options
         };
 
         // ------ 处理图片 ------
-        image = (await this.normalizeImages([image]))[0];
+        const images = await this.normalizeImages(Array.isArray(image) ? image : [image]);
 
         return css`
             body {
@@ -35,8 +52,9 @@ export class FullScreenCssGenerator extends AbsCssGenerator<FullScreenGeneratorO
                 background-repeat: no-repeat;
                 background-position: center;
                 opacity: ${opacity};
-                background-image: url('${image}');
+                background-image: url('${images[0]}');
             }
+            ${this.getCarouselCss(images, interval)}
         `;
     }
 }
