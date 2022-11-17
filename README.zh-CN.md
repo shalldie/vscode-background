@@ -13,7 +13,7 @@
 
 <!-- Bring icons to your Visual Studio Code -->
 
-给 [Visual Studio Code](https://code.visualstudio.com) 添加背景
+给 [Visual Studio Code](https://code.visualstudio.com) 添加背景，`代码区域`、`全屏`、`轮播`、`自定义图片`...
 
 <img width="880" src="https://user-images.githubusercontent.com/9987486/40583705-7105dda8-61c6-11e8-935a-3c5d475a1eb1.gif">
 

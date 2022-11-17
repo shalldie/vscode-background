@@ -11,7 +11,7 @@
 
 ---
 
-Bring background images to your [Visual Studio Code](https://code.visualstudio.com)
+Bring background images to your [Visual Studio Code](https://code.visualstudio.com), `code area`、`fullscreen`、`carousel`、`custom images`...
 
 <img width="880" src="https://user-images.githubusercontent.com/9987486/40583705-7105dda8-61c6-11e8-935a-3c5d475a1eb1.gif">
 
