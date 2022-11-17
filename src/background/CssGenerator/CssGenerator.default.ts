@@ -14,6 +14,7 @@ export class DefaultGeneratorOptions {
     styles: Array<any> = [];
     customImages: string[] = [];
     loop = false;
+    interval = 0;
 }
 
 /**
@@ -27,13 +28,13 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
     /**
      * 通过配置获取样式文本
      *
-     * @protected
+     * @private
      * @param {object} options 用户配置
      * @param {boolean} useFront 是否前景图
      * @return {*}  {string}
      * @memberof DefaultCssGenerator
      */
-    protected getStyleByOptions(options: any, useFront: boolean): string {
+    private getStyleByOptions(options: any, useFront: boolean): string {
         // 在使用背景图时，排除掉 pointer-events 和 z-index
         const excludeKeys = useFront ? [] : ['pointer-events', 'z-index'];
 
@@ -43,8 +44,34 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
             .join('');
     }
 
+    /**
+     * 生成轮播样式
+     *
+     * @private
+     * @param {string[]} images 图片数组
+     * @param {number} interval 切换间隔
+     * @param {number} index 当前panel索引
+     * @return {*}
+     * @memberof DefaultCssGenerator
+     */
+    private getCarouselCss(images: string[], interval: number, index: number) {
+        images = [...images.slice(index), ...images.slice(0, index)];
+
+        const animationName = `background-default-carousel-${index}`;
+        const keyframeCSS = this.createKeyFrames(images, interval, animationName);
+
+        if (!keyframeCSS) {
+            return '';
+        }
+
+        return css`
+            animation: ${animationName} ${images.length * interval}s infinite;
+            ${keyframeCSS}
+        `;
+    }
+
     protected async getCss(options: DefaultGeneratorOptions) {
-        const { useDefault, customImages, style, styles, useFront, loop } = {
+        const { useDefault, customImages, style, styles, useFront, loop, interval } = {
             ...new DefaultGeneratorOptions(),
             ...options
         };
@@ -77,6 +104,7 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
                         &:nth-child(${nthChild}) .empty::before {
                             background-image: url('${image}');
                             ${styleContent}
+                            ${this.getCarouselCss(images, interval, index)}
                         }
                     `;
                 })}

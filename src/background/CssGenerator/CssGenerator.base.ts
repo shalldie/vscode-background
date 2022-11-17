@@ -95,7 +95,6 @@ export abstract class AbsCssGenerator<T = any> {
          * 50%  - pd + pd/2 , 100% - pd - pd/2 {img1}
          * 100% - pd        , 100%            {img0}
          *
-         * 需要 animation-delay 来进行首帧时长偏移
          */
 
         const perDuration = 0.6 / (interval * images.length); // 渐变时间/动画总时长，渐变时间在总时长中占比
@@ -146,6 +145,10 @@ export abstract class AbsCssGenerator<T = any> {
     public async create(options: T) {
         const source = await this.getCss(options);
         const styles = this.compileCSS(source);
+
+        if (process.env.NODE_ENV === 'development') {
+            console.log(styles);
+        }
 
         return `
         /*css-background-start*/

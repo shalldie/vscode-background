@@ -103,6 +103,11 @@
           "default": false,
           "markdownDescription": "Loop your images.\n\n循环使用图片。"
         },
+        "background.interval": {
+          "type": "number",
+          "default": 0,
+          "markdownDescription": "Seconds of interval for carousel, default `0` means disabled.\n\n单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。"
+        },
         "background.fullscreen": {
           "type": "object",
           "default": {
