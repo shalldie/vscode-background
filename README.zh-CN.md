@@ -1,8 +1,8 @@
 # vscode-background
 
-[![Version](https://vsmarketplacebadge.apphb.com/version/shalldie.background.svg?style=flat-square&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
-[![Installs](https://vsmarketplacebadge.apphb.com/installs/shalldie.background.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
-[![Ratings](https://vsmarketplacebadge.apphb.com/rating/shalldie.background.svg?style=flat-square)](https://vsmarketplacebadge.apphb.com/rating/shalldie.background.svg)
+[![Version](https://img.shields.io/visual-studio-marketplace/v/shalldie.background?logo=visualstudiocode&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/shalldie.background?logo=visualstudiocode&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[![Ratings](https://img.shields.io/visual-studio-marketplace/r/shalldie.background?logo=visualstudiocode&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Build Status](https://img.shields.io/github/workflow/status/shalldie/vscode-background/ci?label=build&logo=github&style=flat-square)](https://github.com/shalldie/vscode-background/actions)
 
 [English](./README.md) | [中文](./README.zh-CN.md)
