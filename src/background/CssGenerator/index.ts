@@ -17,7 +17,7 @@ export type TCssGeneratorOptions = DefaultGeneratorOptions & {
  */
 export class CssGenerator {
     public static create(options: TCssGeneratorOptions) {
-        if (options.fullscreen?.image) {
+        if (options.fullscreen?.image?.length) {
             return new FullScreenCssGenerator().create(options.fullscreen);
         }
 

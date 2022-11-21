@@ -1,8 +1,8 @@
 # vscode-background
 
-[![Version](https://vsmarketplacebadge.apphb.com/version/shalldie.background.svg?style=flat-square&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
-[![Installs](https://vsmarketplacebadge.apphb.com/installs/shalldie.background.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
-[![Ratings](https://vsmarketplacebadge.apphb.com/rating/shalldie.background.svg?style=flat-square)](https://vsmarketplacebadge.apphb.com/rating/shalldie.background.svg)
+[![Version](https://img.shields.io/visual-studio-marketplace/v/shalldie.background?logo=visualstudiocode&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/shalldie.background?logo=visualstudiocode&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[![Ratings](https://img.shields.io/visual-studio-marketplace/r/shalldie.background?logo=visualstudiocode&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Build Status](https://img.shields.io/github/workflow/status/shalldie/vscode-background/ci?label=build&logo=github&style=flat-square)](https://github.com/shalldie/vscode-background/actions)
 
 [English](./README.md) | [中文](./README.zh-CN.md)
@@ -13,7 +13,7 @@
 
 <!-- Bring icons to your Visual Studio Code -->
 
-给 [Visual Studio Code](https://code.visualstudio.com) 添加背景
+给 [Visual Studio Code](https://code.visualstudio.com) 添加背景，`代码区域`、`全屏`、`轮播`、`自定义图片`...
 
 <img width="880" src="https://user-images.githubusercontent.com/9987486/40583705-7105dda8-61c6-11e8-935a-3c5d475a1eb1.gif">
 
@@ -72,8 +72,10 @@ example:
 {
   "background.fullscreen": {
     "image": "https://pathtoimage.png", // 图片的url
+    // "image": ["https://pathtoimage.png"], // 当开启轮播图的时候，可以用数组配置多张图片
     "opacity": 0.91, // 建议值 0.85 ~ 0.95
-    "size": "cover" // css, 建议使用 `cover`自适应，或者 `contain`、`200px 200px`
+    "size": "cover", // css, 建议使用 `cover`自适应，或者 `contain`、`200px 200px`
+    "interval": 0 // 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启
   }
 }
 ```
@@ -125,8 +127,10 @@ example:
 {
   "background.fullscreen": {
     "image": "https://pathtoimage.png", // 图片的url
+    // "image": ["https://pathtoimage.png"], // 当开启轮播图的时候，可以用数组配置多张图片
     "opacity": 0.91, // 建议值 0.85 ~ 0.95
-    "size": "cover" // css, 建议使用 `cover`自适应，或者 `contain`、`200px 200px`
+    "size": "cover", // css, 建议使用 `cover`自适应，或者 `contain`、`200px 200px`
+    "interval": 0 // 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启
   }
 }
 ```

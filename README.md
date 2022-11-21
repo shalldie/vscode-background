@@ -1,8 +1,8 @@
 # vscode-background
 
-[![Version](https://vsmarketplacebadge.apphb.com/version/shalldie.background.svg?style=flat-square&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
-[![Installs](https://vsmarketplacebadge.apphb.com/installs/shalldie.background.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
-[![Ratings](https://vsmarketplacebadge.apphb.com/rating/shalldie.background.svg?style=flat-square)](https://vsmarketplacebadge.apphb.com/rating/shalldie.background.svg)
+[![Version](https://img.shields.io/visual-studio-marketplace/v/shalldie.background?logo=visualstudiocode&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/shalldie.background?logo=visualstudiocode&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[![Ratings](https://img.shields.io/visual-studio-marketplace/r/shalldie.background?logo=visualstudiocode&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Build Status](https://img.shields.io/github/workflow/status/shalldie/vscode-background/ci?label=build&logo=github&style=flat-square)](https://github.com/shalldie/vscode-background/actions)
 
 [English](./README.md) | [中文](./README.zh-CN.md)
@@ -11,7 +11,7 @@
 
 ---
 
-Bring background images to your [Visual Studio Code](https://code.visualstudio.com)
+Bring background images to your [Visual Studio Code](https://code.visualstudio.com), `code area`、`fullscreen`、`carousel`、`custom images`...
 
 <img width="880" src="https://user-images.githubusercontent.com/9987486/40583705-7105dda8-61c6-11e8-935a-3c5d475a1eb1.gif">
 
@@ -68,8 +68,10 @@ example:
 {
   "background.fullscreen": {
     "image": "https://pathtoimage.png", // url of your image
+    // "image": ["https://pathtoimage.png"], // An array may be useful when set interval for carousel
     "opacity": 0.91, // 0.85 ~ 0.95 recommended
-    "size": "cover" // also css, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`
+    "size": "cover", // also css, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`
+    "interval": 0 // seconds of interval for carousel, default `0` means disabled.
   }
 }
 ```
@@ -121,8 +123,10 @@ You should use protocol **https** instead of **http** for the image, **http** is
 {
   "background.fullscreen": {
     "image": "https://pathtoimage.png", // url of your image
+    // "image": ["https://pathtoimage.png"], // An array may be useful when set interval for carousel
     "opacity": 0.91, // 0.85 ~ 0.95 recommended
-    "size": "cover" // also css, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`
+    "size": "cover", // also css, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`
+    "interval": 0 // seconds of interval for carousel, default `0` means disabled.
   }
 }
 ```
