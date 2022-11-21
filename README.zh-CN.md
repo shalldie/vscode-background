@@ -66,14 +66,15 @@ ext install background
 
 ### 默认配置
 
-| 名称                      |      类型       |    默认值    | 描述                               |
-| :------------------------ | :-------------: | :----------: | :--------------------------------- |
-| `background.useFront`     |    `Boolean`    |    `true`    | 前景图/背景图。 在代码上面还是下面 |
-| `background.useDefault`   |    `Boolean`    |    `true`    | 是否使用默认图片                   |
-| `background.style`        |    `Object`     |     `{}`     | 自定义样式                         |
-| `background.styles`       | `Array<Object>` | `[{},{},{}]` | 每个图片的独立样式                 |
-| `background.customImages` | `Array<String>` |     `[]`     | 自定义图片                         |
-| `background.loop`         |    `Boolean`    |   `false`    | 循环模式，会重复显示图片           |
+| 名称                      |      类型       |    默认值    | 描述                                              |
+| :------------------------ | :-------------: | :----------: | :------------------------------------------------ |
+| `background.useFront`     |    `Boolean`    |    `true`    | 前景图/背景图。 在代码上面还是下面                |
+| `background.useDefault`   |    `Boolean`    |    `true`    | 是否使用默认图片                                  |
+| `background.style`        |    `Object`     |     `{}`     | 自定义样式                                        |
+| `background.styles`       | `Array<Object>` | `[{},{},{}]` | 每个图片的独立样式                                |
+| `background.customImages` | `Array<String>` |     `[]`     | 自定义图片                                        |
+| `background.loop`         |    `Boolean`    |   `false`    | 循环模式，会重复显示图片                          |
+| `background.interval`     |    `Number`     |     `0`      | 设置图片轮播切换间隔 `秒` 数，默认 `0` 表示不开启 |
 
 > `style` 指的是 [css style](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS)，通过自定义样式可以改变背景图的展示。
 
@@ -94,7 +95,7 @@ example:
     // "image": ["https://pathtoimage.png"], // 当开启轮播图的时候，可以用数组配置多张图片
     "opacity": 0.91, // 建议值 0.85 ~ 0.95
     "size": "cover", // css, 建议使用 `cover`自适应，或者 `contain`、`200px 200px`
-    "interval": 0 // 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启
+    "interval": 0 // 设置图片轮播切换间隔 `秒` 数，默认 `0` 表示不开启
   }
 }
 ```
