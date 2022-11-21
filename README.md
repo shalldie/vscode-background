@@ -9,7 +9,7 @@
 <!-- 封面区域 -->
 <div align="center">
 
-![logo](images/logo.png)
+![logo](https://user-images.githubusercontent.com/9987486/40583704-6accf3a4-61c6-11e8-8c00-a636b9c3ec65.png)
 
 <h1><b>vscode-background</b></h1>
 
