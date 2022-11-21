@@ -1,19 +1,38 @@
-# vscode-background
-
-[![Version](https://img.shields.io/visual-studio-marketplace/v/shalldie.background?logo=visualstudiocode&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
-[![Installs](https://img.shields.io/visual-studio-marketplace/i/shalldie.background?logo=visualstudiocode&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
-[![Ratings](https://img.shields.io/visual-studio-marketplace/r/shalldie.background?logo=visualstudiocode&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
-[![Build Status](https://img.shields.io/github/workflow/status/shalldie/vscode-background/ci?label=build&logo=github&style=flat-square)](https://github.com/shalldie/vscode-background/actions)
+<!-- 中英文切换 -->
+<div align="right">
 
 [English](./README.md) | [中文](./README.zh-CN.md)
 
-[GitHub](https://github.com/shalldie/vscode-background) | [Vscode Market](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+</div>
+<!-- 中英文切换 end -->
+
+<!-- 封面区域 -->
+<div align="center">
+
+![logo](images/logo.png)
+
+<h1><b>vscode-background</b></h1>
+
+### 给 [Visual Studio Code](https://code.visualstudio.com) 添加背景
+
+`代码区域`、`全屏`、`轮播`、`自定义图片/样式`...
+
+[GitHub](https://github.com/shalldie/vscode-background) | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+
+[![Version](https://img.shields.io/visual-studio-marketplace/v/shalldie.background?logo=visualstudiocode&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/shalldie.background?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[![Ratings](https://img.shields.io/visual-studio-marketplace/r/shalldie.background?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[![Stars](https://img.shields.io/github/stars/shalldie/vscode-background?logo=github&style=flat-square)](https://github.com/shalldie/vscode-background)
+[![Build Status](https://img.shields.io/github/workflow/status/shalldie/vscode-background/ci?label=build&logo=github&style=flat-square)](https://github.com/shalldie/vscode-background/actions)
+[![License](https://img.shields.io/github/license/shalldie/vscode-background?style=flat-square)](https://github.com/shalldie/vscode-background)
+
+</div>
+
+<!-- 封面区域 end -->
 
 ---
 
-<!-- Bring icons to your Visual Studio Code -->
-
-给 [Visual Studio Code](https://code.visualstudio.com) 添加背景，`代码区域`、`全屏`、`轮播`、`自定义图片`...
+代码区域
 
 <img width="880" src="https://user-images.githubusercontent.com/9987486/40583705-7105dda8-61c6-11e8-935a-3c5d475a1eb1.gif">
 

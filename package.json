@@ -24,7 +24,7 @@
   "engines": {
     "vscode": "^1.40.0"
   },
-  "icon": "vscode-background-logo.png",
+  "icon": "images/logo.png",
   "categories": [
     "Other"
   ],
