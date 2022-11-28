@@ -49,22 +49,22 @@
     ],
     "configuration": {
       "type": "object",
-      "title": "Plugin background config. background 插件配置",
+      "title": "background",
       "properties": {
         "background.enabled": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Plugin background enabled.\n\nbackground 插件是否启用"
+          "markdownDescription": "Plugin background enabled.\n\nbackground 插件是否启用\n\n拡張機能の有効化"
         },
         "background.useFront": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "If use front image,which means image is placed on the top of your code.\n\n是否使用前景图，这样会使图片放在代码的顶部"
+          "markdownDescription": "If use front image,which means image is placed on the top of your code.\n\n是否使用前景图，这样会使图片放在代码的顶部\n\n画像を最前面に表示するかどうかを制御します。"
         },
         "background.useDefault": {
           "type": "boolean",
           "default": true,
-          "description": "Use default images.\n\n使用默认图片"
+          "markdownDescription": "Use default images.\n\n使用默认图片\n\nデフォルトの画像を使用するかどうか制御します。"
         },
         "background.style": {
           "type": "object",
@@ -79,7 +79,7 @@
             "background-repeat": "no-repeat",
             "opacity": 1
           },
-          "markdownDescription": "Custom common style.\n\n自定义各项公有样式."
+          "markdownDescription": "Custom common style.\n\n自定义各项公有样式.\n\n全ての画像に適応されるCSSを制御します。"
         },
         "background.styles": {
           "type": "array",
@@ -88,7 +88,7 @@
             {},
             {}
           ],
-          "markdownDescription": "Each style of backgrounds.\n\n每一个背景图的独有样式。"
+          "markdownDescription": "Each style of backgrounds.\n\n每一个背景图的独有样式\n\n個別の画像に適応されるCSSを制御します。"
         },
         "background.customImages": {
           "type": "array",
@@ -96,17 +96,17 @@
           "items": {
             "type": "string"
           },
-          "markdownDescription": "Your custom images. 自己定制背景图\n\nExample:\n\n`https://a.com/b.png`\n\nor\n\n`file:///a/b.jpg`"
+          "markdownDescription": "Your custom images. 自己定制背景图\n\n表示させる画像を制御します。\n\nExample:\n\n`https://a.com/b.png`\n\nor\n\n`file:///a/b.jpg`"
         },
         "background.loop": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Loop your images.\n\n循环使用图片。"
+          "markdownDescription": "Loop your images.\n\n循环使用图片。\n\n画像をループさせるかどうかを制御します。"
         },
         "background.interval": {
           "type": "number",
           "default": 0,
-          "markdownDescription": "Seconds of interval for carousel, default `0` to disabled.\n\n单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。"
+          "markdownDescription": "Seconds of interval for carousel, default `0` to disabled.\n\n单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。\n\n次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。"
         },
         "background.fullscreen": {
           "type": "object",
@@ -116,7 +116,7 @@
             "size": "cover",
             "interval": 0
           },
-          "markdownDescription": "Feature - fullscreen, may overwrite other config.\n\n全屏，会覆盖其它配置。"
+          "markdownDescription": "Feature - fullscreen, may overwrite other config.\n\n全屏，会覆盖其它配置。\n\nフルスクリーン表示の設定（他の設定を上書きする可能性があります。）"
         }
       }
     }
@@ -125,7 +125,7 @@
     "@types/lockfile": "^1.0.2",
     "@types/node": "^16.11.45",
     "@types/stylis": "^4.0.2",
-    "@types/vscode": "^1.40.0",
+    "@types/vscode": "^1.73.1",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
     "eslint": "^8.19.0",
