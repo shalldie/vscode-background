@@ -77,7 +77,7 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
         };
 
         // ------ 处理图片 ------
-        const images = await this.normalizeImages(useDefault ? defBase64 : customImages);
+        const images = this.normalizeImageUrls(useDefault ? defBase64 : customImages);
 
         // ------ 默认样式 ------
         const defStyle = this.getStyleByOptions(style, useFront);
