@@ -44,7 +44,7 @@ export class FullScreenCssGenerator extends AbsCssGenerator<FullScreenGeneratorO
         };
 
         // ------ 处理图片 ------
-        const images = await this.normalizeImages(Array.isArray(image) ? image : [image]);
+        const images = this.normalizeImageUrls(Array.isArray(image) ? image : [image]);
 
         return css`
             body {
