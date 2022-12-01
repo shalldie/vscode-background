@@ -99,7 +99,8 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
 
                     return css`
                         /* code editor */
-                        &:nth-child(${nthChild}) .editor-container .overflow-guard > .monaco-scrollable-element::${frontContent},
+                        //Although very forced, ":not([style*="height: 20px;"])" excludes the search bar.
+                        &:nth-child(${nthChild}) .editor-container .overflow-guard > .monaco-scrollable-element:not([style*="height: 20px;"])::${frontContent},
                         /* home screen */
                         &:nth-child(${nthChild}) .empty::before {
                             background-image: url('${image}');
