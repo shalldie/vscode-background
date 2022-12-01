@@ -37,14 +37,14 @@ export abstract class AbsCssGenerator<T = any> {
      * @memberof AbsCssGenerator
      */
     protected normalizeImageUrls(images: string[]) {
-        return images.map(item => {
-            if (item.startsWith('file://')) {
-                // file:///Users/foo/bar.png => vscode-file://vscode-app/Users/foo/bar.png
-                const url = item.replace('file://', 'vscode-file://vscode-app');
-                return vscode.Uri.parse(url).toString();
-            } else {
-                return item;
+        return images.map(imageUrl => {
+            if (!imageUrl.startsWith('file://')) {
+                return imageUrl;
             }
+
+            // file:///Users/foo/bar.png => vscode-file://vscode-app/Users/foo/bar.png
+            const url = imageUrl.replace('file://', 'vscode-file://vscode-app');
+            return vscode.Uri.parse(url).toString();
         });
     }
 
