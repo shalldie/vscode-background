@@ -22,7 +22,7 @@
     "url": "https://github.com/shalldie/vscode-background.git"
   },
   "engines": {
-    "vscode": "^1.73.1"
+    "vscode": "^1.40.0"
   },
   "icon": "images/logo.png",
   "categories": [

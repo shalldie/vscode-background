@@ -13,7 +13,7 @@
 
 <h1><b>vscode-background</b></h1>
 
-### [Visual Studio Code](https://code.visualstudio.com)にも背景画像を。
+### [Visual Studio Code](https://code.visualstudio.com) にも背景画像を。
 
 `エディターごとの画像表示`、`全画面の画像表示`、`画像の切り替わり`、`画像・CSSのカスタマイズ`...
 
@@ -44,11 +44,15 @@
 
 サイドバーの拡張機能タブから`background`を検索！
 
+```
+ext install background
+```
+
 ## カスタマイズ
 
 `settings.json`からユーザー設定をカスタマイズすることができます。
 
-[settings.jsonとは](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson) | [設定方法](https://github.com/shalldie/vscode-background/issues/274)
+[settings.json とは](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson) | [設定方法](https://github.com/shalldie/vscode-background/issues/274)
 
 ## コンフィグ
 
@@ -64,11 +68,12 @@
 | :------------------------ | :-------------: | :----------: | :-------------------------------------------------------------------------- |
 | `background.useFront`     |    `Boolean`    |    `true`    | 画像を最前面に表示するかどうかを制御します。                                |
 | `background.useDefault`   |    `Boolean`    |    `true`    | デフォルトの画像を使用するかどうかを制御します。                            |
-| `background.style`        |    `Object`     |     `{}`     | 全ての画像に適応されるCSSを制御します。                                     |
-| `background.styles`       | `Array<Object>` | `[{},{},{}]` | 個別の画像に適応されるCSSを制御します。                                     |
+| `background.style`        |    `Object`     |     `{}`     | 全ての画像に適応される CSS を制御します。                                   |
+| `background.styles`       | `Array<Object>` | `[{},{},{}]` | 個別の画像に適応される CSS を制御します。                                   |
 | `background.customImages` | `Array<String>` |     `[]`     | 画像のパスを指定してください。                                              |
 | `background.loop`         |    `Boolean`    |   `false`    | 画像をリピートするかどうかを制御します。                                    |
 | `background.interval`     |    `Number`     |     `0`      | 次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。 |
+
 > `CSS`について知る [css style](https://developer.mozilla.org/ja/docs/Learn/CSS/First_steps/What_is_CSS)
 
 ### フルスクリーン設定
@@ -79,7 +84,19 @@
 | :---------------------- | :------: | :--------: | :-------------------------- |
 | `background.fullscreen` | `Object` |   `null`   | Set the image to fullscreen |
 
+example:
 
+```json
+{
+  "background.fullscreen": {
+    "image": "https://pathtoimage.png", // URLもしくはファイルパス(file:///~/~.png)
+    // "image": ["https://pathtoimage.png"], // 配列を使用することで複数の画像を設定できます
+    "opacity": 0.91, // 0.85 ~ 0.95 がおすすめです
+    "size": "cover", // CSSのbackground-sizeに相当します。`cover` ,`contain`,`200px 200px` のように設定します
+    "interval": 0 // 次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。
+  }
+}
+```
 
 ## 使用例
 
@@ -93,8 +110,7 @@
 
 2. カスタムイメージを使用する
 
- **https**通信を採用しているリンクを使用する必要があります。  
- http通信はVSCodeにより制限されています。
+**https** 通信を採用しているリンクを使用する必要があります， http 通信は VSCode により制限されています。
 
 ```json
 {
@@ -103,7 +119,7 @@
 }
 ```
 
-1. カスタムCSS - 透明度
+3. カスタム CSS - 透明度
 
 ```json
 {
@@ -113,12 +129,12 @@
 }
 ```
 
-4. カスタムCSS - 画像サイズ
+4. カスタム CSS - 画像サイズ
 
 ```json
 {
   "background.style": {
-    "background-size": "300px 460px"//"横幅 縦幅"
+    "background-size": "300px 460px" //"横幅 縦幅"
   }
 }
 ```
@@ -131,7 +147,7 @@
     "image": "https://pathtoimage.png", // URLもしくはファイルパス(file:///~/~.png)
     // "image": ["https://pathtoimage.png"], // 配列を使用することで複数の画像を設定できます
     "opacity": 0.91, // 0.85 ~ 0.95 がおすすめです
-    "size": "cover", // CSSのbackground-sizeに相当します。"cover" ,"contain","200px 200px"のように設定します
+    "size": "cover", // CSSのbackground-sizeに相当します。`cover` ,`contain`,`200px 200px` のように設定します
     "interval": 0 // 次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。
   }
 }
@@ -139,9 +155,9 @@
 
 ## 警告
 
-> **この拡張機能は、VSCode本体のCSSファイルを編集することで機能します。**
-> そのため、初回インストール時または vscode 更新時に警告が表示されます。
->  [二度と表示しない] をクリックして非表示にできます。
+> **この拡張機能は、VSCode 本体の CSS ファイルを編集することで機能します。**
+>
+> そのため、初回インストール時または vscode 更新時に警告が表示されます，[二度と表示しない] をクリックして非表示にできます。
 
 ![](https://user-images.githubusercontent.com/9987486/40583926-b1fb5398-61ca-11e8-8271-4ac650d158d3.png)
 
@@ -156,7 +172,7 @@
     1. (おすすめ)
 
     F1キーを押し、コマンドパネルを開ます。
-    「Background -Uninstall (remove extension)」と入力して、  
+    「Background -Uninstall (remove extension)」と入力して、
     自動アンインストールします。
 
     2.
@@ -185,7 +201,7 @@
 
 ## チェンジログ
 
- [チェンジログ](https://github.com/shalldie/vscode-background/blob/master/CHANGELOG.md)で全ての変更を確認できます。
+[チェンジログ](https://github.com/shalldie/vscode-background/blob/master/CHANGELOG.md)で全ての変更を確認できます。
 
 ## よくある質問
 
