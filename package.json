@@ -125,7 +125,7 @@
     "@types/lockfile": "^1.0.2",
     "@types/node": "^16.11.45",
     "@types/stylis": "^4.0.2",
-    "@types/vscode": "^1.40.0",
+    "@types/vscode": "^1.69.0",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
     "eslint": "^8.19.0",
