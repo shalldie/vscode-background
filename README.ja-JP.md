@@ -172,7 +172,7 @@ example:
     1. (おすすめ)
 
     F1キーを押し、コマンドパネルを開ます。
-    「Background -Uninstall (remove extension)」と入力して、
+    「Background - Uninstall (remove extension)」と入力して、
     自動アンインストールします。
 
     2.
