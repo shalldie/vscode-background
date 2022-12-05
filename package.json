@@ -22,7 +22,7 @@
     "url": "https://github.com/shalldie/vscode-background.git"
   },
   "engines": {
-    "vscode": "^1.40.0"
+    "vscode": "^1.69.0"
   },
   "icon": "images/logo.png",
   "categories": [
@@ -40,31 +40,31 @@
     "commands": [
       {
         "command": "extension.background.info",
-        "title": "Background - Info"
+        "title": "%extension.background.command.info.title%"
       },
       {
         "command": "extension.background.uninstall",
-        "title": "Background - Uninstall (remove extension)"
+        "title": "%extension.background.command.uninstall.title%"
       }
     ],
     "configuration": {
       "type": "object",
-      "title": "Plugin background config. background 插件配置",
+      "title": "background",
       "properties": {
         "background.enabled": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Plugin background enabled.\n\nbackground 插件是否启用"
+          "markdownDescription": "%extension.background.enabled.description%"
         },
         "background.useFront": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "If use front image,which means image is placed on the top of your code.\n\n是否使用前景图，这样会使图片放在代码的顶部"
+          "markdownDescription": "%extension.background.useFront.description%"
         },
         "background.useDefault": {
           "type": "boolean",
           "default": true,
-          "description": "Use default images.\n\n使用默认图片"
+          "markdownDescription": "%extension.background.useDefault.description%"
         },
         "background.style": {
           "type": "object",
@@ -79,7 +79,7 @@
             "background-repeat": "no-repeat",
             "opacity": 1
           },
-          "markdownDescription": "Custom common style.\n\n自定义各项公有样式."
+          "markdownDescription": "%extension.background.style.description%"
         },
         "background.styles": {
           "type": "array",
@@ -88,7 +88,7 @@
             {},
             {}
           ],
-          "markdownDescription": "Each style of backgrounds.\n\n每一个背景图的独有样式。"
+          "markdownDescription": "%extension.background.styles.description%"
         },
         "background.customImages": {
           "type": "array",
@@ -96,17 +96,17 @@
           "items": {
             "type": "string"
           },
-          "markdownDescription": "Your custom images. 自己定制背景图\n\nExample:\n\n`https://a.com/b.png`\n\nor\n\n`file:///a/b.jpg`"
+          "markdownDescription": "%extension.background.customImages.description%"
         },
         "background.loop": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Loop your images.\n\n循环使用图片。"
+          "markdownDescription": "%extension.background.loop.description%"
         },
         "background.interval": {
           "type": "number",
           "default": 0,
-          "markdownDescription": "Seconds of interval for carousel, default `0` to disabled.\n\n单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。"
+          "markdownDescription": "%extension.background.interval.description%"
         },
         "background.fullscreen": {
           "type": "object",
@@ -116,7 +116,7 @@
             "size": "cover",
             "interval": 0
           },
-          "markdownDescription": "Feature - fullscreen, may overwrite other config.\n\n全屏，会覆盖其它配置。"
+          "markdownDescription": "%extension.background.fullscreen.description%"
         }
       }
     }
@@ -125,7 +125,7 @@
     "@types/lockfile": "^1.0.2",
     "@types/node": "^16.11.45",
     "@types/stylis": "^4.0.2",
-    "@types/vscode": "^1.40.0",
+    "@types/vscode": "^1.69.0",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
     "eslint": "^8.19.0",
