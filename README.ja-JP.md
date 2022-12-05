@@ -180,11 +180,11 @@ example:
     setting.jsonで{"background.enabled": false}  と変更してから　　
     手動でアンインストールします。
 
-    3. An unfriendly way:
+    3. 非友好的な方法：
 
-    If you uninstall this plugin directly, don't worry.
-    Exit vscode completely, then open, then reload. Now it's clean :D
-    (I know it's strange... Because of the limit of vscode)
+    もしあなたがこのプラグインを直接アンインストールしたら、心配しないでください
+    次にvscodeを完全に終了し、開いてもう一度再起動すると、画像がなくなり、、、
+    （変なのは私も知っていますが、とにかくvscodeの制限＝。＝）
 
 ## 貢献者 🙏
 
@@ -218,11 +218,12 @@ example:
 
 ---
 
-    Q: The extension runs based on the modified vscode CSS file, and will try to raise the right within a limited time.
-       If it stop working for some reason, what if users need to change their permissions?
+    Q: プラグインは、vscode css ファイルの変更に基づいて実行され、権限がない場合は権限の昇格を試みます。
+       ユーザーが何らかの理由で機能せず、自分でアクセス許可を変更する必要がある場合はどうなりますか?
 
-    A: In windows,click right button on the vscode's icon,then check the [run with the administrator authority].
-    A: in mac/linux, try this: https://github.com/shalldie/vscode-background/issues/6 .
+
+    A: Windows では、vscode のアイコンを右クリックし、[管理者として実行] を選択します。
+    A: Mac/Linux では、https://github.com/shalldie/vscode-background/issues/6 を試してください。
 
 ---
 
