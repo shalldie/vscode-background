@@ -59,20 +59,20 @@ Os requisitos definidos pelo usuário podem ser alterados usando a configuraçã
 
 ### Configuração Base
 
-| Nome                 |   Tipo    | Padrão | Descrição                   |
-| :------------------- | :-------: | :-----: | :---------------------------- |
-| `background.enabled` | `Boolean` | `true`  | Habilita ou desabilita este plugin |
+| Nome                 |   Tipo    | Padrão | Descrição                          |
+| :------------------- | :-------: | :----: | :--------------------------------- |
+| `background.enabled` | `Boolean` | `true` | Habilita ou desabilita este plugin |
 
 ### Configuração Padrão
 
-| Nome                      |      Tipo       |   Padrão    | Descrição                                                |
-| :------------------------ | :-------------: | :----------: | :--------------------------------------------------------- |
-| `background.useFront`     |    `Boolean`    |    `true`    | Define se a imagem ficara à frente ou por trás de seu codigo|
-| `background.useDefault`   |    `Boolean`    |    `true`    | Quando utilizar ou não as imagens de fundo padrão          |
-| `background.style`        |    `Object`     |     `{}`     | Personalizar o estilo                                      |
-| `background.styles`       | `Array<Object>` | `[{},{},{}]` | Adicionar estilo personalizado para uma imagem             |
-| `background.customImages` | `Array<String>` |     `[]`     | Adiciona suas imagens personalizadas                       |
-| `background.loop`         |    `Boolean`    |   `false`    | Modo de `loop`, deve repetir suas imagens                  |
+| Nome                      |      Tipo       |    Padrão    | Descrição                                                            |
+| :------------------------ | :-------------: | :----------: | :------------------------------------------------------------------- |
+| `background.useFront`     |    `Boolean`    |    `true`    | Define se a imagem ficara à frente ou por trás de seu codigo         |
+| `background.useDefault`   |    `Boolean`    |    `true`    | Quando utilizar ou não as imagens de fundo padrão                    |
+| `background.style`        |    `Object`     |     `{}`     | Personalizar o estilo                                                |
+| `background.styles`       | `Array<Object>` | `[{},{},{}]` | Adicionar estilo personalizado para uma imagem                       |
+| `background.customImages` | `Array<String>` |     `[]`     | Adiciona suas imagens personalizadas                                 |
+| `background.loop`         |    `Boolean`    |   `false`    | Modo de `loop`, deve repetir suas imagens                            |
 | `background.interval`     |    `Number`     |     `0`      | Segundos de intervalo para o carousel, utilize `0` para desabilitar. |
 
 > `style` significa [css style](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS), que permite a criação de planos de fundo atrativos.
@@ -81,8 +81,8 @@ Os requisitos definidos pelo usuário podem ser alterados usando a configuraçã
 
 > pode sobrescrever a configuração padrão
 
-| Name                    |   Type   | Default | Description                 |
-| :---------------------- | :------: | :-----: | :-------------------------- |
+| Name                    |   Type   | Default | Description                     |
+| :---------------------- | :------: | :-----: | :------------------------------ |
 | `background.fullscreen` | `Object` | `null`  | Define a imagem como Tela Cheia |
 
 example:
@@ -94,6 +94,7 @@ example:
     // "image": ["https://pathtoimage.png"], // Um array pode ser util ao definir um intervalo para o carousel
     "opacity": 0.91, // 0.85 ~ 0.95 recomendado
     "size": "cover", // também css, use `cover` para auto-adaptação (recomendado)，ou `contain`、`200px 200px`
+    "position": "center", // Equivalente a `background-position`, por omissão `center`
     "interval": 0 // segundos de intervalo para o carousel, use default `0` para desabilitar.
   }
 }
@@ -149,6 +150,7 @@ Voce deve utilizar o protocolo **https** ao invés de **http** para a imagem, **
     // "image": ["https://pathtoimage.png"], // Um array pode ser util ao definir um intervalo para o carousel
     "opacity": 0.91, // 0.85 ~ 0.95 recomendado
     "size": "cover", // também css, use `cover` para auto-adaptação (recomendado)，ou `contain`、`200px 200px`
+    "position": "center", // Equivalente a `background-position`, por omissão `center`
     "interval": 0 // segundos de intervalo para o carousel, use default `0` para desabilitar.
   }
 }

@@ -114,6 +114,7 @@
             "image": "",
             "opacity": 0.91,
             "size": "cover",
+            "position": "center",
             "interval": 0
           },
           "markdownDescription": "%extension.background.fullscreen.description%"

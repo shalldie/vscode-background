@@ -10,6 +10,7 @@ export class FullScreenGeneratorOptions {
     image = '' as string | string[];
     opacity = 0.91; // 建议在 0.85 ~ 0.95 之间微调
     size = 'cover' as 'cover' | 'contain';
+    position = 'center';
     interval = 0;
 }
 
@@ -38,7 +39,7 @@ export class FullScreenCssGenerator extends AbsCssGenerator<FullScreenGeneratorO
     }
 
     protected async getCss(options: FullScreenGeneratorOptions) {
-        const { size, opacity, image, interval } = {
+        const { size, position, opacity, image, interval } = {
             ...new FullScreenGeneratorOptions(),
             ...options
         };
@@ -50,7 +51,7 @@ export class FullScreenCssGenerator extends AbsCssGenerator<FullScreenGeneratorO
             body {
                 background-size: ${size};
                 background-repeat: no-repeat;
-                background-position: center;
+                background-position: ${position};
                 opacity: ${opacity};
                 background-image: url('${images[0]}');
             }
