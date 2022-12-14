@@ -93,6 +93,7 @@ example:
     // "image": ["https://pathtoimage.png"], // An array may be useful when set interval for carousel
     "opacity": 0.91, // 0.85 ~ 0.95 recommended
     "size": "cover", // also css, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`
+    "position": "center", // alias to `background-position`, default `center`
     "interval": 0 // seconds of interval for carousel, default `0` to disabled.
   }
 }
@@ -148,6 +149,7 @@ You should use protocol **https** instead of **http** for the image, **http** is
     // "image": ["https://pathtoimage.png"], // An array may be useful when set interval for carousel
     "opacity": 0.91, // 0.85 ~ 0.95 recommended
     "size": "cover", // also css, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`
+    "position": "center", // alias to `background-position`, default `center`
     "interval": 0 // seconds of interval for carousel, default `0` to disabled.
   }
 }

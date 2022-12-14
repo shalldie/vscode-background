@@ -93,6 +93,7 @@ example:
     // "image": ["https://pathtoimage.png"], // 配列を使用することで複数の画像を設定できます
     "opacity": 0.91, // 0.85 ~ 0.95 がおすすめです
     "size": "cover", // CSSのbackground-sizeに相当します。`cover` ,`contain`,`200px 200px` のように設定します
+    "position": "center", // 同` background-position `，デフォルト` center `
     "interval": 0 // 次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。
   }
 }
@@ -148,6 +149,7 @@ example:
     // "image": ["https://pathtoimage.png"], // 配列を使用することで複数の画像を設定できます
     "opacity": 0.91, // 0.85 ~ 0.95 がおすすめです
     "size": "cover", // CSSのbackground-sizeに相当します。`cover` ,`contain`,`200px 200px` のように設定します
+    "position": "center", // 同` background-position `，デフォルト` center `
     "interval": 0 // 次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。
   }
 }
