@@ -1,3 +1,9 @@
+## ver1.2.8 (2022/12/15)
+
+    merge #359, #357
+    全屏模式自定义 position。添加巴西语翻译。
+    custom `position` in `fullscreen`. Add PT-BR translate.
+
 ## ver1.2.7 (2022/12/5)
 
     fix #350
