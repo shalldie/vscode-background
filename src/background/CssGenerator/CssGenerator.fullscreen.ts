@@ -51,6 +51,7 @@ export class FullScreenCssGenerator extends AbsCssGenerator<FullScreenGeneratorO
             body {
                 background-size: ${size};
                 background-repeat: no-repeat;
+                background-attachment: fixed; // 兼容 code-server，其他的不影响
                 background-position: ${position};
                 opacity: ${opacity};
                 background-image: url('${images[0]}');
