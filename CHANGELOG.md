@@ -1,3 +1,9 @@
+## ver1.2.9 (2023/2/14)
+
+    fix #372
+    修复在code-server中全屏不居中的问题
+    Fix the problem that the full screen is not centered in code-server
+
 ## ver1.2.8 (2022/12/15)
 
     merge #359, #357
