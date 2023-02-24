@@ -118,6 +118,14 @@
             "interval": 0
           },
           "markdownDescription": "%extension.background.fullscreen.description%"
+        },
+        "background.advanced": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "default": null,
+          "markdownDescription": "%extension.background.advanced.description%"
         }
       }
     }

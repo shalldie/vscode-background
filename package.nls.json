@@ -10,5 +10,6 @@
     "extension.background.customImages.description": "Your custom images.\n\nExample:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
     "extension.background.loop.description": "Loop your images.",
     "extension.background.interval.description": "Seconds of interval for carousel, default `0` to disabled",
-    "extension.background.fullscreen.description": "Feature - fullscreen, may overwrite other config"
+    "extension.background.fullscreen.description": "Feature - fullscreen, may overwrite other config",
+    "extension.background.advanced.description": "**For Professional User.**  \nThis option provides more customization capabilities than the default mode. `#workbench.colorCustomizations#` may help you."
 }
