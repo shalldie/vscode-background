@@ -87,7 +87,7 @@ export class Background implements Disposable {
      */
     private async install(refresh = false): Promise<void> {
         const lastConfig = this.config; // 之前的配置
-        const config = vscode.workspace.getConfiguration('background') as TConfigType; // 当前用户配置
+        const config = { ...vscode.workspace.getConfiguration('background') } as TConfigType; // 当前用户配置
 
         // 1.如果配置文件改变的时候，当前插件配置没有改变，则返回
         if (!refresh && JSON.stringify(lastConfig) == JSON.stringify(config)) {
@@ -105,6 +105,11 @@ export class Background implements Disposable {
 
         // 3.保存当前配置
         this.config = config; // 更新配置
+
+        // 处理 useDefault 默认值, 如果用户没有配置图片则开启它
+        if (config.useDefault === null) {
+            config.useDefault = !(config.customImages.length > 0 || config.fullscreen?.image);
+        }
 
         // 4.如果关闭插件
         if (!config.enabled) {

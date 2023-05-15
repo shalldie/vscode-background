@@ -63,7 +63,7 @@
         },
         "background.useDefault": {
           "type": "boolean",
-          "default": true,
+          "default": null,
           "markdownDescription": "%extension.background.useDefault.description%"
         },
         "background.style": {
