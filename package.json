@@ -94,7 +94,9 @@
           "type": "array",
           "default": [],
           "items": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^https://|file://",
+            "patternErrorMessage": "%extension.background.urlProtocol.error%"
           },
           "markdownDescription": "%extension.background.customImages.description%"
         },
@@ -116,6 +118,13 @@
             "size": "cover",
             "position": "center",
             "interval": 0
+          },
+          "properties": {
+            "image": {
+              "type": "string",
+              "pattern": "^https://|file://",
+              "patternErrorMessage": "%extension.background.urlProtocol.error%"
+            }
           },
           "markdownDescription": "%extension.background.fullscreen.description%"
         }
