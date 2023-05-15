@@ -10,5 +10,7 @@
     "extension.background.customImages.description": "表示させる画像を制御します。\n\nパスの入力例:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
     "extension.background.loop.description": "画像をループさせるかどうかを制御します。",
     "extension.background.interval.description": "次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。",
-    "extension.background.fullscreen.description": "フルスクリーン表示の設定（他の設定を上書きする可能性があります。）"
+    "extension.background.fullscreen.description": "フルスクリーン表示の設定（他の設定を上書きする可能性があります。）",
+
+    "extension.background.urlProtocol.error": "画像パスには https または file プロトコルを使用する必要があります"
 }
