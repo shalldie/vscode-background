@@ -139,13 +139,13 @@
     "@types/vscode": "^1.69.0",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
+    "@vscode/vsce": "^2.19.0",
     "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.1",
     "prettier": "^2.7.1",
-    "typescript": "^4.7.4",
-    "vsce": "^2.15.0"
+    "typescript": "^4.7.4"
   },
   "dependencies": {
     "@vscode/sudo-prompt": "^9.3.1",
