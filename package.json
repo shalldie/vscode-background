@@ -64,7 +64,8 @@
         "background.useDefault": {
           "type": "boolean",
           "default": null,
-          "markdownDescription": "%extension.background.useDefault.description%"
+          "markdownDescription": "%extension.background.useDefault.description%",
+          "deprecationMessage": "%extension.background.useDefault.deprecation%"
         },
         "background.style": {
           "type": "object",
