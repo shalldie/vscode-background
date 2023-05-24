@@ -96,7 +96,7 @@
           "default": [],
           "items": {
             "type": "string",
-            "pattern": "^https://|file://",
+            "pattern": "^(https://|file://)",
             "patternErrorMessage": "%extension.background.urlProtocol.error%"
           },
           "markdownDescription": "%extension.background.customImages.description%"
@@ -123,7 +123,7 @@
           "properties": {
             "image": {
               "type": "string",
-              "pattern": "^https://|file://",
+              "pattern": "^(https://|file://)",
               "patternErrorMessage": "%extension.background.urlProtocol.error%"
             }
           },
