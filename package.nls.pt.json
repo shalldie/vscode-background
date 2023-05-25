@@ -5,10 +5,13 @@
     "extension.background.enabled.description": "Plugin de background habilitado",
     "extension.background.useFront.description": "Caso utilize este parametro, significa que a imagem ficará por cima de seu codigo",
     "extension.background.useDefault.description": "Utiliza as imagens padrão",
+    "extension.background.useDefault.deprecation": "Ele será removido na próxima versão, exclua este item de configuração",
     "extension.background.style.description": "Estilo comum personalizado",
     "extension.background.styles.description": "Cada estilo dos backgrounds",
     "extension.background.customImages.description": "Suas imagens personalizadas.\n\nExemplo:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
     "extension.background.loop.description": "Faça um Loop de suas imagens",
     "extension.background.interval.description": "Segundos de intervalo do carousel, utilize o padrão `0` para desabilitar",
-    "extension.background.fullscreen.description": "Funcionalidade - fullscreen, pode sobrescrever as outras configurações"
+    "extension.background.fullscreen.description": "Funcionalidade - fullscreen, pode sobrescrever as outras configurações",
+
+    "extension.background.urlProtocol.error": "O caminho da imagem deve usar https ou protocolo de file"
 }
