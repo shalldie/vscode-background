@@ -1,1 +1,5 @@
 blank_issues_enabled: true
+contact_links:
+  - name: 📜 Docs
+    url: https://github.com/shalldie/vscode-background
+    about: Please prioritize checking if the answer can be found in README. | 请优先查看 README 中是否可以找到答案。

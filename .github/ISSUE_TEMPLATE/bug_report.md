@@ -1,6 +1,6 @@
 ---
 name: 🐛 Bug Report | 错误报告
-about: Please describe in detail the problems you encountered in the process of using. | 请详细描述您使用过程中遇到的问题。
+about: Create a report to help us improve. | 请报告bug帮助我们完善项目。
 title: "[Bug Report] Some problem..."
 labels: bug
 ---
