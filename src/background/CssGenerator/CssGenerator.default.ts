@@ -1,5 +1,6 @@
 import { defBase64 } from '../../constants';
 import { AbsCssGenerator, css } from './CssGenerator.base';
+import { ColorThemeKind } from 'vscode';
 
 /**
  * 默认配置
@@ -10,9 +11,12 @@ import { AbsCssGenerator, css } from './CssGenerator.base';
 export class DefaultGeneratorOptions {
     useFront = true;
     useDefault = true;
+    useThemeMode = true;
+    curMode!: Exclude<ColorThemeKind, ColorThemeKind.HighContrast | ColorThemeKind.HighContrastLight>;
     style: any = {};
     styles: Array<any> = [];
     customImages: string[] = [];
+    darkCustomImages: string[] = [];
     loop = false;
     interval = 0;
 }
@@ -70,14 +74,23 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
         `;
     }
 
+    private getImages(options: DefaultGeneratorOptions) {
+        const { useThemeMode, curMode, customImages, darkCustomImages } = options;
+        if (useThemeMode && curMode === ColorThemeKind.Dark) {
+            return darkCustomImages ?? customImages;
+        }
+        return customImages;
+    }
+
     protected async getCss(options: DefaultGeneratorOptions) {
-        const { useDefault, customImages, style, styles, useFront, loop, interval } = {
+        const { useDefault, style, styles, useFront, loop, interval } = {
             ...new DefaultGeneratorOptions(),
             ...options
         };
 
         // ------ 处理图片 ------
-        const images = this.normalizeImageUrls(useDefault ? defBase64 : customImages);
+        const modeImages = this.getImages(options);
+        const images = this.normalizeImageUrls(useDefault ? defBase64 : modeImages);
 
         // ------ 默认样式 ------
         const defStyle = this.getStyleByOptions(style, useFront);

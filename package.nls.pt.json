@@ -13,5 +13,6 @@
     "extension.background.interval.description": "Segundos de intervalo do carousel, utilize o padrão `0` para desabilitar",
     "extension.background.fullscreen.description": "Funcionalidade - fullscreen, pode sobrescrever as outras configurações",
 
-    "extension.background.urlProtocol.error": "O caminho da imagem deve usar https ou protocolo de file"
+    "extension.background.urlProtocol.error": "O caminho da imagem deve usar https ou protocolo de file",
+    "extension.background.useThemeMode.description": "Você deseja usar o modo claro/escuro do tema? Isso permitirá o uso de listas de imagens diferentes em cada modo."
 }

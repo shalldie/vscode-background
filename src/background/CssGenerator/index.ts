@@ -1,3 +1,4 @@
+import { ColorThemeKind } from 'vscode';
 import { DefaultCssGenerator, DefaultGeneratorOptions } from './CssGenerator.default';
 import { FullScreenCssGenerator, FullScreenGeneratorOptions } from './CssGenerator.fullscreen';
 
@@ -7,6 +8,7 @@ import { FullScreenCssGenerator, FullScreenGeneratorOptions } from './CssGenerat
 export type TCssGeneratorOptions = DefaultGeneratorOptions & {
     enabled: boolean;
     fullscreen?: FullScreenGeneratorOptions;
+    darkFullscreen?: FullScreenGeneratorOptions;
 };
 
 /**
@@ -18,9 +20,16 @@ export type TCssGeneratorOptions = DefaultGeneratorOptions & {
 export class CssGenerator {
     public static create(options: TCssGeneratorOptions) {
         if (options.fullscreen?.image?.length) {
-            return new FullScreenCssGenerator().create(options.fullscreen);
+            const modeImages = CssGenerator.getImages(options);
+            return new FullScreenCssGenerator().create(modeImages!);
         }
 
         return new DefaultCssGenerator().create(options);
+    }
+    public static getImages(options: TCssGeneratorOptions) {
+        if (options.useThemeMode && options.curMode === ColorThemeKind.Dark) {
+            return options.darkFullscreen ?? options.fullscreen;
+        }
+        return options.fullscreen;
     }
 }

@@ -34,6 +34,13 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     await background.setup();
     context.subscriptions.push(background);
 
+    // 订阅主题模式的变更 dark <=> light
+    context.subscriptions.push(
+        vscode.window.onDidChangeActiveColorTheme(async () => {
+            // TODO: debounce
+            await background.refresh();
+        })
+    );
     context.subscriptions.push(
         vscode.commands.registerCommand('extension.background.uninstall', async () => {
             if (!(await background.hasInstalled())) {

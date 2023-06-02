@@ -2,7 +2,7 @@
 import fs from 'fs';
 
 // libs
-import vscode, { Disposable } from 'vscode';
+import vscode, { ColorThemeKind, Disposable, window } from 'vscode';
 
 // self
 import { vsHelp } from '../utils/vsHelp';
@@ -111,6 +111,15 @@ export class Background implements Disposable {
             config.useDefault = !(config.customImages.length > 0 || config.fullscreen?.image);
         }
 
+        // 开启模式匹配时, 高对比模式 (HighContrast|HighContrastLight)
+        if (
+            config.useThemeMode &&
+            [ColorThemeKind.HighContrast, ColorThemeKind.HighContrastLight].includes(window.activeColorTheme.kind)
+        ) {
+            // console.log('高对比模式.');
+            return;
+        }
+
         // 4.如果关闭插件
         if (!config.enabled) {
             await this.uninstall();
@@ -123,7 +132,15 @@ export class Background implements Disposable {
             // 该动作需要加锁，涉及多次文件读写
             await utils.lock();
 
-            const content = (await CssGenerator.create(config)).trimEnd(); // 去除末尾空白
+            const content = (
+                await CssGenerator.create({
+                    ...config,
+                    curMode: window.activeColorTheme.kind as Exclude<
+                        ColorThemeKind,
+                        ColorThemeKind.HighContrast | ColorThemeKind.HighContrastLight
+                    >
+                })
+            ).trimEnd(); // 去除末尾空白
 
             // 添加到原有样式(尝试删除旧样式)中
             let cssContent = await this.cssFile.getContent();
@@ -181,6 +198,10 @@ export class Background implements Disposable {
      */
     public hasInstalled(): Promise<boolean> {
         return this.cssFile.hasInstalled();
+    }
+
+    refresh() {
+        return this.install(true);
     }
 
     /**

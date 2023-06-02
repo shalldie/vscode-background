@@ -13,5 +13,6 @@
     "extension.background.interval.description": "次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。",
     "extension.background.fullscreen.description": "フルスクリーン表示の設定（他の設定を上書きする可能性があります。）",
 
-    "extension.background.urlProtocol.error": "画像パスには https または file プロトコルを使用する必要があります"
+    "extension.background.urlProtocol.error": "画像パスには https または file プロトコルを使用する必要があります",
+    "extension.background.useThemeMode.description": "テーマのライト/ダークモードを使用しますか？これにより、異なるモードで異なる画像リストが使用されます。"
 }
