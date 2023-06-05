@@ -1,3 +1,9 @@
+## ver1.2.10 (2023/6/5)
+
+    fix #392, merge #393
+    添加对图片协议的校验
+    Add verification of image protocol
+
 ## ver1.2.9 (2023/2/14)
 
     fix #372
