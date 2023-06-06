@@ -5,13 +5,14 @@
     "extension.background.enabled.description": "拡張機能の有効化を制御します",
     "extension.background.useFront.description": "画像を最前面に表示するかどうかを制御します。",
     "extension.background.useDefault.description": "デフォルトの画像を使用するかどうか制御します。",
-    "extension.background.useDefault.deprecation": "次のバージョンでは削除される予定です。この設定項目を削除してください",
     "extension.background.style.description": "全ての画像に適応されるCSSを制御します。",
     "extension.background.styles.description": "個別の画像に適応されるCSSを制御します。",
     "extension.background.customImages.description": "表示させる画像を制御します。\n\nパスの入力例:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
     "extension.background.loop.description": "画像をループさせるかどうかを制御します。",
     "extension.background.interval.description": "次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。",
+
     "extension.background.fullscreen.description": "フルスクリーン表示の設定（他の設定を上書きする可能性があります。）",
 
+    "extension.background.common.deprecation": "次のバージョンでは削除される予定です。この設定項目を削除してください",
     "extension.background.urlProtocol.error": "画像パスには https または file プロトコルを使用する必要があります"
 }

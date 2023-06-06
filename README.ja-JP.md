@@ -67,11 +67,9 @@ ext install background
 | 設定                      |     タイプ      |  デフォルト  | 説明                                                                        |
 | :------------------------ | :-------------: | :----------: | :-------------------------------------------------------------------------- |
 | `background.useFront`     |    `Boolean`    |    `true`    | 画像を最前面に表示するかどうかを制御します。                                |
-| `background.useDefault`   |    `Boolean`    |    `true`    | デフォルトの画像を使用するかどうかを制御します。                            |
 | `background.style`        |    `Object`     |     `{}`     | 全ての画像に適応される CSS を制御します。                                   |
 | `background.styles`       | `Array<Object>` | `[{},{},{}]` | 個別の画像に適応される CSS を制御します。                                   |
 | `background.customImages` | `Array<String>` |     `[]`     | 画像のパスを指定してください。                                              |
-| `background.loop`         |    `Boolean`    |   `false`    | 画像をリピートするかどうかを制御します。                                    |
 | `background.interval`     |    `Number`     |     `0`      | 次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。 |
 
 > `CSS`について知る [css style](https://developer.mozilla.org/ja/docs/Learn/CSS/First_steps/What_is_CSS)
@@ -80,17 +78,16 @@ ext install background
 
 > デフォルト設定を上書きする可能性があります。
 
-| 設定                    |  タイプ  | デフォルト | 説明                        |
-| :---------------------- | :------: | :--------: | :-------------------------- |
-| `background.fullscreen` | `Object` |   `null`   | Set the image to fullscreen |
+| 設定                    |  タイプ  | デフォルト | 説明                         |
+| :---------------------- | :------: | :--------: | :--------------------------- |
+| `background.fullscreen` | `Object` |   `null`   | Set the images to fullscreen |
 
 example:
 
 ```json
 {
   "background.fullscreen": {
-    "image": "https://pathtoimage.png", // URLもしくはファイルパス(file:///~/~.png)
-    // "image": ["https://pathtoimage.png"], // 配列を使用することで複数の画像を設定できます
+    "images": ["https://pathtoimage.png"], // URLもしくはファイルパス(file:///~/~.png)
     "opacity": 0.91, // 0.85 ~ 0.95 がおすすめです
     "size": "cover", // CSSのbackground-sizeに相当します。`cover` ,`contain`,`200px 200px` のように設定します
     "position": "center", // 同` background-position `，デフォルト` center `
@@ -115,7 +112,6 @@ example:
 
 ```json
 {
-  "background.useDefault": false,
   "background.customImages": ["https://a.com/b.png", "file:///Users/somepath/a.jpg"]
 }
 ```
@@ -145,8 +141,7 @@ example:
 ```json
 {
   "background.fullscreen": {
-    "image": "https://pathtoimage.png", // URLもしくはファイルパス(file:///~/~.png)
-    // "image": ["https://pathtoimage.png"], // 配列を使用することで複数の画像を設定できます
+    "images": ["https://pathtoimage.png"], // URLもしくはファイルパス(file:///~/~.png)
     "opacity": 0.91, // 0.85 ~ 0.95 がおすすめです
     "size": "cover", // CSSのbackground-sizeに相当します。`cover` ,`contain`,`200px 200px` のように設定します
     "position": "center", // 同` background-position `，デフォルト` center `

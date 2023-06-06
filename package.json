@@ -65,7 +65,7 @@
           "type": "boolean",
           "default": null,
           "markdownDescription": "%extension.background.useDefault.description%",
-          "deprecationMessage": "%extension.background.useDefault.deprecation%"
+          "deprecationMessage": "%extension.background.common.deprecation%"
         },
         "background.style": {
           "type": "object",
@@ -104,7 +104,8 @@
         "background.loop": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "%extension.background.loop.description%"
+          "markdownDescription": "%extension.background.loop.description%",
+          "deprecationMessage": "%extension.background.common.deprecation%"
         },
         "background.interval": {
           "type": "number",
@@ -115,6 +116,7 @@
           "type": "object",
           "default": {
             "image": "",
+            "images": [],
             "opacity": 0.91,
             "size": "cover",
             "position": "center",
@@ -125,6 +127,16 @@
               "type": "string",
               "pattern": "^(https://|file://)",
               "patternErrorMessage": "%extension.background.urlProtocol.error%"
+            },
+            "images": {
+              "type": "array",
+              "default": [],
+              "items": {
+                "type": "string",
+                "pattern": "^(https://|file://)",
+                "patternErrorMessage": "%extension.background.urlProtocol.error%"
+              },
+              "markdownDescription": "%extension.background.customImages.description%"
             }
           },
           "markdownDescription": "%extension.background.fullscreen.description%"
