@@ -41,7 +41,7 @@ export class FullScreenCssGenerator extends AbsCssGenerator<FullScreenGeneratorO
         }
 
         return css`
-            body {
+            body :has([id='workbench.parts.editor']) {
                 animation: ${animationName} ${images.length * interval}s infinite;
             }
             ${keyframeCSS}
@@ -66,7 +66,7 @@ export class FullScreenCssGenerator extends AbsCssGenerator<FullScreenGeneratorO
         const nextImages = this.normalizeImageUrls(allImages);
 
         return css`
-            body {
+            body :has([id='workbench.parts.editor']) {
                 background-size: ${size};
                 background-repeat: no-repeat;
                 background-attachment: fixed; // 兼容 code-server，其他的不影响
