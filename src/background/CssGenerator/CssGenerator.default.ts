@@ -9,10 +9,16 @@ import { AbsCssGenerator, css } from './CssGenerator.base';
  */
 export class DefaultGeneratorOptions {
     useFront = true;
+    /**
+     * @deprecated
+     */
     useDefault = true;
     style: any = {};
     styles: Array<any> = [];
     customImages: string[] = [];
+    /**
+     * @deprecated
+     */
     loop = false;
     interval = 0;
 }

@@ -67,11 +67,9 @@ User defined requirements can be met by changing the configuration(`settings.jso
 | Name                      |      Type       |   Default    | Description                                                |
 | :------------------------ | :-------------: | :----------: | :--------------------------------------------------------- |
 | `background.useFront`     |    `Boolean`    |    `true`    | Set the image to front or back of your code                |
-| `background.useDefault`   |    `Boolean`    |    `true`    | Whether or not to use default images                       |
 | `background.style`        |    `Object`     |     `{}`     | Customize style                                            |
 | `background.styles`       | `Array<Object>` | `[{},{},{}]` | Add custom Style for individual image                      |
 | `background.customImages` | `Array<String>` |     `[]`     | Add your custom images                                     |
-| `background.loop`         |    `Boolean`    |   `false`    | `loop` mode, may repeat your images                        |
 | `background.interval`     |    `Number`     |     `0`      | Seconds of interval for carousel, default `0` to disabled. |
 
 > `style` means [css style](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS), which allows you to create great-looking background.
@@ -80,17 +78,16 @@ User defined requirements can be met by changing the configuration(`settings.jso
 
 > may overwrite the default config
 
-| Name                    |   Type   | Default | Description                 |
-| :---------------------- | :------: | :-----: | :-------------------------- |
-| `background.fullscreen` | `Object` | `null`  | Set the image to fullscreen |
+| Name                    |   Type   | Default | Description                  |
+| :---------------------- | :------: | :-----: | :--------------------------- |
+| `background.fullscreen` | `Object` | `null`  | Set the images to fullscreen |
 
 example:
 
 ```json
 {
   "background.fullscreen": {
-    "image": "https://pathtoimage.png", // url of your image
-    // "image": ["https://pathtoimage.png"], // An array may be useful when set interval for carousel
+    "images": ["https://pathtoimage.png"], // urls of your images
     "opacity": 0.91, // 0.85 ~ 0.95 recommended
     "size": "cover", // also css, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`
     "position": "center", // alias to `background-position`, default `center`
@@ -115,7 +112,6 @@ You should use protocol **https** instead of **http** for the image, **http** is
 
 ```json
 {
-  "background.useDefault": false,
   "background.customImages": ["https://a.com/b.png", "file:///Users/somepath/a.jpg"]
 }
 ```
@@ -145,8 +141,7 @@ You should use protocol **https** instead of **http** for the image, **http** is
 ```json
 {
   "background.fullscreen": {
-    "image": "https://pathtoimage.png", // url of your image
-    // "image": ["https://pathtoimage.png"], // An array may be useful when set interval for carousel
+    "images": ["https://pathtoimage.png"], // urls of your images
     "opacity": 0.91, // 0.85 ~ 0.95 recommended
     "size": "cover", // also css, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`
     "position": "center", // alias to `background-position`, default `center`

@@ -108,7 +108,11 @@ export class Background implements Disposable {
 
         // 处理 useDefault 默认值, 如果用户没有配置图片则开启它
         if (config.useDefault === null) {
-            config.useDefault = !(config.customImages.length > 0 || config.fullscreen?.image);
+            config.useDefault = !(
+                config.customImages.length ||
+                config.fullscreen?.image?.length ||
+                config.fullscreen?.images?.length
+            );
         }
 
         // 4.如果关闭插件
