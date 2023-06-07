@@ -78,9 +78,9 @@ ext install background
 
 > デフォルト設定を上書きする可能性があります。
 
-| 設定                    |  タイプ  | デフォルト | 説明                         |
-| :---------------------- | :------: | :--------: | :--------------------------- |
-| `background.fullscreen` | `Object` |   `null`   | Set the images to fullscreen |
+| 設定                    |  タイプ  | デフォルト | 説明                 |
+| :---------------------- | :------: | :--------: | :------------------- |
+| `background.fullscreen` | `Object` |   `null`   | 全画面画像を設定する |
 
 example:
 
