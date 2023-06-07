@@ -12,6 +12,7 @@
     "extension.background.interval.description": "单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。",
 
     "extension.background.fullscreen.description": "全屏，会覆盖其它配置。",
+    "extension.background.fullscreen.image.deprecation": "已弃用，请使用 `images` 代替。",
 
     "extension.background.common.deprecation": "将在下个版本移除, 请删除此配置项",
     "extension.background.urlProtocol.error": "图片路径必须使用 https 或者 file 协议"

@@ -126,7 +126,8 @@
             "image": {
               "type": "string",
               "pattern": "^(https://|file://)",
-              "patternErrorMessage": "%extension.background.urlProtocol.error%"
+              "patternErrorMessage": "%extension.background.urlProtocol.error%",
+              "deprecationMessage": "%extension.background.fullscreen.image.deprecation%"
             },
             "images": {
               "type": "array",
