@@ -1,3 +1,9 @@
+## ver1.2.11 (2023/6/8)
+
+    fix #374, #328, merge #399
+    调整字段，更新全屏图片加载时机
+    Adjust the fields and update the loading time of the full screen image
+
 ## ver1.2.10 (2023/6/5)
 
     fix #392, merge #393
