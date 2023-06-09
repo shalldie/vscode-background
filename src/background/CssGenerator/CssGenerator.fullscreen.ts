@@ -1,4 +1,8 @@
+import vscode from 'vscode';
 import { AbsCssGenerator, css } from './CssGenerator.base';
+
+// 从 1.78.0 开始使用 Chromium:108+，支持 :has 选择器
+const BODY_SELECTOR = parseFloat(vscode.version) >= 1.78 ? `body:has([id='workbench.parts.editor'])` : 'body';
 
 /**
  * 全屏配置
@@ -41,7 +45,7 @@ export class FullScreenCssGenerator extends AbsCssGenerator<FullScreenGeneratorO
         }
 
         return css`
-            body:has([id='workbench.parts.editor']) {
+            ${BODY_SELECTOR} {
                 animation: ${animationName} ${images.length * interval}s infinite;
             }
             ${keyframeCSS}
@@ -66,7 +70,7 @@ export class FullScreenCssGenerator extends AbsCssGenerator<FullScreenGeneratorO
         const nextImages = this.normalizeImageUrls(allImages);
 
         return css`
-            body:has([id='workbench.parts.editor']) {
+            ${BODY_SELECTOR} {
                 background-size: ${size};
                 background-repeat: no-repeat;
                 background-attachment: fixed; // 兼容 code-server，其他的不影响

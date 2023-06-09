@@ -1,3 +1,9 @@
+## ver1.2.12 (2023/6/10)
+
+    fix #400, #401
+    兼容低版本vsocde全屏css选择器
+    Compatible with lower version vsocde full screen CSS selector
+
 ## ver1.2.11 (2023/6/8)
 
     fix #374, #328, merge #399
