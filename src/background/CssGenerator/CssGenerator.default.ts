@@ -107,7 +107,7 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
                         /* code editor */
                         &:nth-child(${nthChild}) .editor-instance>.monaco-editor .overflow-guard > .monaco-scrollable-element::${frontContent},
                         /* home screen */
-                        &:nth-child(${nthChild}) .empty::before {
+                        &:nth-child(${nthChild}) .editor-group-container.empty::before {
                             background-image: url('${image}');
                             ${styleContent}
                             ${this.getCarouselCss(images, interval, index)}
