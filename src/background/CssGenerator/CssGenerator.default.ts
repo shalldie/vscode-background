@@ -9,10 +9,6 @@ import { AbsCssGenerator, css } from './CssGenerator.base';
  */
 export class DefaultGeneratorOptions {
     useFront = true;
-    /**
-     * @deprecated
-     */
-    useDefault = true;
     style: any = {};
     styles: Array<any> = [];
     customImages: string[] = [];
@@ -73,13 +69,13 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
     }
 
     protected async getCss(options: DefaultGeneratorOptions) {
-        const { useDefault, customImages, style, styles, useFront, interval } = {
+        const { customImages, style, styles, useFront, interval } = {
             ...new DefaultGeneratorOptions(),
             ...options
         };
 
         // ------ 处理图片 ------
-        const images = this.normalizeImageUrls(useDefault ? defBase64 : customImages);
+        const images = customImages.length ? this.normalizeImageUrls(customImages) : defBase64;
 
         // ------ 默认样式 ------
         const defStyle = this.getStyleByOptions(style, useFront);

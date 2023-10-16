@@ -4,7 +4,6 @@
 
     "extension.background.enabled.description": "Plugin de background habilitado",
     "extension.background.useFront.description": "Caso utilize este parametro, significa que a imagem ficará por cima de seu codigo",
-    "extension.background.useDefault.description": "Utiliza as imagens padrão",
     "extension.background.style.description": "Estilo comum personalizado",
     "extension.background.styles.description": "Cada estilo dos backgrounds",
     "extension.background.customImages.description": "Suas imagens personalizadas.\n\nExemplo:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",

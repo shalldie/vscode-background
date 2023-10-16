@@ -4,7 +4,6 @@
 
     "extension.background.enabled.description": "Plugin background enabled.",
     "extension.background.useFront.description": "If use front image,which means image is placed on the top of your code.",
-    "extension.background.useDefault.description": "Use default images.",
     "extension.background.style.description": "Custom common style.",
     "extension.background.styles.description": "Each style of backgrounds.",
     "extension.background.customImages.description": "Your custom images.\n\nExample:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
