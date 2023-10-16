@@ -101,12 +101,6 @@
           },
           "markdownDescription": "%extension.background.customImages.description%"
         },
-        "background.loop": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "%extension.background.loop.description%",
-          "deprecationMessage": "%extension.background.common.deprecation%"
-        },
         "background.interval": {
           "type": "number",
           "default": 0,

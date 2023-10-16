@@ -8,7 +8,6 @@
     "extension.background.style.description": "自定义各项公有样式",
     "extension.background.styles.description": "每一个背景图的独有样式",
     "extension.background.customImages.description": "自己定制背景图\n\n例如:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
-    "extension.background.loop.description": "循环使用图片",
     "extension.background.interval.description": "单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。",
 
     "extension.background.fullscreen.description": "全屏，会覆盖其它配置。",

@@ -8,7 +8,6 @@
     "extension.background.style.description": "Estilo comum personalizado",
     "extension.background.styles.description": "Cada estilo dos backgrounds",
     "extension.background.customImages.description": "Suas imagens personalizadas.\n\nExemplo:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
-    "extension.background.loop.description": "Faça um Loop de suas imagens",
     "extension.background.interval.description": "Segundos de intervalo do carousel, utilize o padrão `0` para desabilitar",
 
     "extension.background.fullscreen.description": "Funcionalidade - fullscreen, pode sobrescrever as outras configurações",

@@ -16,10 +16,6 @@ export class DefaultGeneratorOptions {
     style: any = {};
     styles: Array<any> = [];
     customImages: string[] = [];
-    /**
-     * @deprecated
-     */
-    loop = false;
     interval = 0;
 }
 
@@ -77,7 +73,7 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
     }
 
     protected async getCss(options: DefaultGeneratorOptions) {
-        const { useDefault, customImages, style, styles, useFront, loop, interval } = {
+        const { useDefault, customImages, style, styles, useFront, interval } = {
             ...new DefaultGeneratorOptions(),
             ...options
         };
@@ -101,7 +97,7 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
                 // 背景图片样式
                 ${images.map((image, index) => {
                     const styleContent = defStyle + this.getStyleByOptions(styles[index] || {}, useFront);
-                    const nthChild = loop ? `${images.length}n + ${index + 1}` : `${index + 1}`;
+                    const nthChild = `${images.length}n + ${index + 1}`;
 
                     return css`
                         /* code editor */
