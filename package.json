@@ -40,10 +40,12 @@
     "commands": [
       {
         "command": "extension.background.info",
+        "category": "Background",
         "title": "%extension.background.command.info.title%"
       },
       {
         "command": "extension.background.uninstall",
+        "category": "Background",
         "title": "%extension.background.command.uninstall.title%"
       }
     ],

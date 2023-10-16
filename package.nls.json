@@ -1,6 +1,6 @@
 {
-    "extension.background.command.info.title": "Background - Info",
-    "extension.background.command.uninstall.title": "Background - Uninstall",
+    "extension.background.command.info.title": "View plugin info",
+    "extension.background.command.uninstall.title": "Uninstall plugin",
 
     "extension.background.enabled.description": "Plugin background enabled.",
     "extension.background.useFront.description": "If use front image,which means image is placed on the top of your code.",

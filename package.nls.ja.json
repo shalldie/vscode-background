@@ -1,6 +1,6 @@
 {
-    "extension.background.command.info.title": "Background - 詳細情報",
-    "extension.background.command.uninstall.title": "Background - アンインストール",
+    "extension.background.command.info.title": "詳細情報を見て",
+    "extension.background.command.uninstall.title": "拡張機能をアンインストール",
 
     "extension.background.enabled.description": "拡張機能の有効化を制御します",
     "extension.background.useFront.description": "画像を最前面に表示するかどうかを制御します。",

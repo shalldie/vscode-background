@@ -1,6 +1,6 @@
 {
-    "extension.background.command.info.title": "Background - Info",
-    "extension.background.command.uninstall.title": "Background - Desinstalação",
+    "extension.background.command.info.title": "Ver informações do plugin",
+    "extension.background.command.uninstall.title": "Desinstalar plugin",
 
     "extension.background.enabled.description": "Plugin de background habilitado",
     "extension.background.useFront.description": "Caso utilize este parametro, significa que a imagem ficará por cima de seu codigo",

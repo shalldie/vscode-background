@@ -1,6 +1,6 @@
 {
-    "extension.background.command.info.title": "Background - Info",
-    "extension.background.command.uninstall.title": "Background - Uninstall",
+    "extension.background.command.info.title": "查看插件信息",
+    "extension.background.command.uninstall.title": "卸载插件",
 
     "extension.background.enabled.description": "background 插件是否启用",
     "extension.background.useFront.description": "是否使用前景图，这样会使图片放在代码的顶部",
