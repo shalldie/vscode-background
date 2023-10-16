@@ -10,7 +10,6 @@
     "extension.background.interval.description": "Segundos de intervalo do carousel, utilize o padrão `0` para desabilitar",
 
     "extension.background.fullscreen.description": "Funcionalidade - fullscreen, pode sobrescrever as outras configurações",
-    "extension.background.fullscreen.image.deprecation": "Obsoleto, use `images` em vez disso",
 
     "extension.background.common.deprecation": "Ele será removido na próxima versão, exclua este item de configuração",
     "extension.background.urlProtocol.error": "O caminho da imagem deve usar https ou protocolo de file"

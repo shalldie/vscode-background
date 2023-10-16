@@ -13,12 +13,6 @@ const BODY_SELECTOR = parseFloat(vscode.version) >= 1.78 ? `body:has([id='workbe
 export class FullScreenGeneratorOptions {
     /**
      * 图片
-     * @deprecated
-     * @memberof FullScreenGeneratorOptions
-     */
-    image = '' as string | string[];
-    /**
-     * 图片
      * @memberof FullScreenGeneratorOptions
      */
     images = [] as string[];
@@ -53,21 +47,13 @@ export class FullScreenCssGenerator extends AbsCssGenerator<FullScreenGeneratorO
     }
 
     protected async getCss(options: FullScreenGeneratorOptions) {
-        const { size, position, opacity, image, images, interval } = {
+        const { size, position, opacity, images, interval } = {
             ...new FullScreenGeneratorOptions(),
             ...options
         };
 
         // ------ 处理图片 ------
-        const allImages = images.slice();
-        // 兼容下 image 字段
-        if (Array.isArray(image)) {
-            allImages.push(...image);
-        }
-        if (typeof image === 'string' && image.length) {
-            allImages.push(image);
-        }
-        const nextImages = this.normalizeImageUrls(allImages);
+        const nextImages = this.normalizeImageUrls(images);
 
         return css`
             ${BODY_SELECTOR} {

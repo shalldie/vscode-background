@@ -103,7 +103,6 @@
         "background.fullscreen": {
           "type": "object",
           "default": {
-            "image": "",
             "images": [],
             "opacity": 0.91,
             "size": "cover",
@@ -111,12 +110,6 @@
             "interval": 0
           },
           "properties": {
-            "image": {
-              "type": "string",
-              "pattern": "^(https://|file://)",
-              "patternErrorMessage": "%extension.background.urlProtocol.error%",
-              "deprecationMessage": "%extension.background.fullscreen.image.deprecation%"
-            },
             "images": {
               "type": "array",
               "default": [],
