@@ -66,14 +66,8 @@
         "background.style": {
           "type": "object",
           "default": {
-            "content": "''",
-            "pointer-events": "none",
-            "position": "absolute",
-            "z-index": "99",
-            "width": "100%",
-            "height": "100%",
             "background-position": "100% 100%",
-            "background-repeat": "no-repeat",
+            "background-size": "auto",
             "opacity": 1
           },
           "markdownDescription": "%extension.background.style.description%"

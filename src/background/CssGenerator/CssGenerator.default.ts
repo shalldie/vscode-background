@@ -100,7 +100,14 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
                         &:nth-child(${nthChild}) .editor-instance>.monaco-editor .overflow-guard > .monaco-scrollable-element::${frontContent},
                         /* home screen */
                         &:nth-child(${nthChild}) .editor-group-container.empty::before {
+                            content: '';
+                            width: 100%;
+                            height: 100%;
+                            position: absolute;
+                            z-index: ${useFront ? 99 : 'initial'};
+                            pointer-events: ${useFront ? 'none' : 'initial'};
                             background-image: url('${image}');
+                            background-repeat: no-repeat;
                             ${styleContent}
                             ${this.getCarouselCss(images, interval, index)}
                         }
