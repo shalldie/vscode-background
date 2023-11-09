@@ -1,18 +1,15 @@
 {
-    "extension.background.command.info.title": "Background - Info",
-    "extension.background.command.uninstall.title": "Background - Uninstall",
+    "extension.background.command.info.title": "查看插件信息",
+    "extension.background.command.uninstall.title": "卸载插件",
 
     "extension.background.enabled.description": "background 插件是否启用",
     "extension.background.useFront.description": "是否使用前景图，这样会使图片放在代码的顶部",
-    "extension.background.useDefault.description": "使用默认图片",
     "extension.background.style.description": "自定义各项公有样式",
     "extension.background.styles.description": "每一个背景图的独有样式",
     "extension.background.customImages.description": "自己定制背景图\n\n例如:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
-    "extension.background.loop.description": "循环使用图片",
     "extension.background.interval.description": "单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。",
 
     "extension.background.fullscreen.description": "全屏，会覆盖其它配置。",
-    "extension.background.fullscreen.image.deprecation": "已弃用，请使用 `images` 代替。",
 
     "extension.background.common.deprecation": "将在下个版本移除, 请删除此配置项",
     "extension.background.urlProtocol.error": "图片路径必须使用 https 或者 file 协议"

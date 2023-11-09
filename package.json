@@ -40,10 +40,12 @@
     "commands": [
       {
         "command": "extension.background.info",
+        "category": "Background",
         "title": "%extension.background.command.info.title%"
       },
       {
         "command": "extension.background.uninstall",
+        "category": "Background",
         "title": "%extension.background.command.uninstall.title%"
       }
     ],
@@ -61,23 +63,11 @@
           "default": true,
           "markdownDescription": "%extension.background.useFront.description%"
         },
-        "background.useDefault": {
-          "type": "boolean",
-          "default": null,
-          "markdownDescription": "%extension.background.useDefault.description%",
-          "deprecationMessage": "%extension.background.common.deprecation%"
-        },
         "background.style": {
           "type": "object",
           "default": {
-            "content": "''",
-            "pointer-events": "none",
-            "position": "absolute",
-            "z-index": "99999",
-            "width": "100%",
-            "height": "100%",
             "background-position": "100% 100%",
-            "background-repeat": "no-repeat",
+            "background-size": "auto",
             "opacity": 1
           },
           "markdownDescription": "%extension.background.style.description%"
@@ -101,12 +91,6 @@
           },
           "markdownDescription": "%extension.background.customImages.description%"
         },
-        "background.loop": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "%extension.background.loop.description%",
-          "deprecationMessage": "%extension.background.common.deprecation%"
-        },
         "background.interval": {
           "type": "number",
           "default": 0,
@@ -115,7 +99,6 @@
         "background.fullscreen": {
           "type": "object",
           "default": {
-            "image": "",
             "images": [],
             "opacity": 0.91,
             "size": "cover",
@@ -123,12 +106,6 @@
             "interval": 0
           },
           "properties": {
-            "image": {
-              "type": "string",
-              "pattern": "^(https://|file://)",
-              "patternErrorMessage": "%extension.background.urlProtocol.error%",
-              "deprecationMessage": "%extension.background.fullscreen.image.deprecation%"
-            },
             "images": {
               "type": "array",
               "default": [],

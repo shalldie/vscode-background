@@ -9,17 +9,9 @@ import { AbsCssGenerator, css } from './CssGenerator.base';
  */
 export class DefaultGeneratorOptions {
     useFront = true;
-    /**
-     * @deprecated
-     */
-    useDefault = true;
     style: any = {};
     styles: Array<any> = [];
     customImages: string[] = [];
-    /**
-     * @deprecated
-     */
-    loop = false;
     interval = 0;
 }
 
@@ -77,13 +69,13 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
     }
 
     protected async getCss(options: DefaultGeneratorOptions) {
-        const { useDefault, customImages, style, styles, useFront, loop, interval } = {
+        const { customImages, style, styles, useFront, interval } = {
             ...new DefaultGeneratorOptions(),
             ...options
         };
 
         // ------ 处理图片 ------
-        const images = this.normalizeImageUrls(useDefault ? defBase64 : customImages);
+        const images = customImages.length ? this.normalizeImageUrls(customImages) : defBase64;
 
         // ------ 默认样式 ------
         const defStyle = this.getStyleByOptions(style, useFront);
@@ -101,14 +93,21 @@ export class DefaultCssGenerator extends AbsCssGenerator<DefaultGeneratorOptions
                 // 背景图片样式
                 ${images.map((image, index) => {
                     const styleContent = defStyle + this.getStyleByOptions(styles[index] || {}, useFront);
-                    const nthChild = loop ? `${images.length}n + ${index + 1}` : `${index + 1}`;
+                    const nthChild = `${images.length}n + ${index + 1}`;
 
                     return css`
                         /* code editor */
                         &:nth-child(${nthChild}) .editor-instance>.monaco-editor .overflow-guard > .monaco-scrollable-element::${frontContent},
                         /* home screen */
-                        &:nth-child(${nthChild}) .empty::before {
+                        &:nth-child(${nthChild}) .editor-group-container.empty::before {
+                            content: '';
+                            width: 100%;
+                            height: 100%;
+                            position: absolute;
+                            z-index: ${useFront ? 99 : 'initial'};
+                            pointer-events: ${useFront ? 'none' : 'initial'};
                             background-image: url('${image}');
+                            background-repeat: no-repeat;
                             ${styleContent}
                             ${this.getCarouselCss(images, interval, index)}
                         }
