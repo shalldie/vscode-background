@@ -1,3 +1,9 @@
+## ver1.2.13 (2023/11/13)
+
+    merge #420, fix #416, #412, #399
+    修复了一些样式、配置的问题。
+    Fix some problems with css and config.
+
 ## ver1.2.12 (2023/6/10)
 
     fix #400, #401
