@@ -1,5 +1,6 @@
 {
     "extension.background.command.info.title": "查看插件信息",
+    "extension.background.command.reinstall.title": "重新注入",
     "extension.background.command.uninstall.title": "卸载插件",
 
     "extension.background.enabled.description": "background 插件是否启用",

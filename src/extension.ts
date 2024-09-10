@@ -35,6 +35,12 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     context.subscriptions.push(background);
 
     context.subscriptions.push(
+        vscode.commands.registerCommand('extension.background.reinstall', async () => {
+            await background.install(true); // 强制更新
+        })
+    );
+
+    context.subscriptions.push(
         vscode.commands.registerCommand('extension.background.uninstall', async () => {
             if (!(await background.hasInstalled())) {
                 return;
