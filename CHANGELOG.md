@@ -1,3 +1,8 @@
+## ver1.2.15 (2024/10/06)
+
+    merge #466
+    update vscode base dir.
+
 ## ver1.2.13 (2023/11/13)
 
     merge #420, fix #416, #412, #399
