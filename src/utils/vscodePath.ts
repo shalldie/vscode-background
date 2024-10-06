@@ -1,15 +1,13 @@
 import path from 'path';
 import { vscode } from './vsc';
 
-const getBase = () => {
+// 基础目录
+const base = (() => {
     const mainFilename = require.main?.filename;
     const vscodeInstallPath = vscode?.env.appRoot;
     const base = mainFilename?.length ? path.dirname(mainFilename) : path.join(vscodeInstallPath!, 'out');
     return base;
-};
-
-// 基础目录
-const base = getBase();
+})();
 
 // css文件路径
 const cssName = 'workbench.desktop.main.css';
