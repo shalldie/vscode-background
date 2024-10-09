@@ -1,13 +1,26 @@
 'use strict';
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-import vscode from 'vscode';
+import vscode, { MarkdownString, StatusBarAlignment, StatusBarItem } from 'vscode';
 import { Background } from './background';
 import { EXTENSION_ID, VERSION } from './constants';
 import { vsHelp } from './utils/vsHelp';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
+
+export const statusbar: StatusBarItem = (() => {
+    const item: StatusBarItem = vscode.window.createStatusBarItem(StatusBarAlignment.Right);
+
+    item.command = 'extension.background.showAllCommands';
+    item.name = 'Background';
+    item.text = '$(file-media) Background';
+    item.tooltip = new MarkdownString(['#### Background', 'Show all background commands.'].join('\n'));
+    item.show();
+
+    return item;
+})();
+
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
     // Use the console to output diagnostic information (console.log) and errors (console.error)
     // This line of code will only be executed once when your extension is activated
@@ -54,6 +67,13 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
             }
         })
     );
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand(statusbar.command as string, async () => {
+            vscode.commands.executeCommand('workbench.action.quickOpen', '> background: ');
+        })
+    );
+    context.subscriptions.push(statusbar);
 }
 
 // this method is called when your extension is deactivated
