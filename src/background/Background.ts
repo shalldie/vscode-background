@@ -77,15 +77,18 @@ export class Background implements Disposable {
         return false;
     }
 
+    // #endregion
+
+    // #region public methods
+
     /**
      * 安装插件，hack css
      *
-     * @private
      * @param {boolean} [refresh=false] 需要强制更新
      * @returns {void}
      * @memberof Background
      */
-    private async install(refresh = false): Promise<void> {
+    public async install(refresh = false): Promise<void> {
         const lastConfig = this.config; // 之前的配置
         const config = { ...vscode.workspace.getConfiguration('background') } as TConfigType; // 当前用户配置
 
@@ -136,10 +139,6 @@ export class Background implements Disposable {
             await utils.unlock();
         }
     }
-
-    // #endregion
-
-    // #region public methods
 
     /**
      * 初始化

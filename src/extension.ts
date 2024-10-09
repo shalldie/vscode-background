@@ -8,6 +8,19 @@ import { vsHelp } from './utils/vsHelp';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
+
+export const statusbar = (() => {
+    const item = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right);
+
+    item.command = 'extension.background.showAllCommands';
+    item.name = 'Background';
+    item.text = '$(file-media) Background';
+    item.tooltip = new vscode.MarkdownString(['#### Background', 'Show all background commands.'].join('\n'));
+    item.show();
+
+    return item;
+})();
+
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
     // Use the console to output diagnostic information (console.log) and errors (console.error)
     // This line of code will only be executed once when your extension is activated
@@ -35,6 +48,12 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     context.subscriptions.push(background);
 
     context.subscriptions.push(
+        vscode.commands.registerCommand('extension.background.install', async () => {
+            await background.install(true); // 强制更新
+        })
+    );
+
+    context.subscriptions.push(
         vscode.commands.registerCommand('extension.background.uninstall', async () => {
             if (!(await background.hasInstalled())) {
                 return;
@@ -44,10 +63,17 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
                 // 当且仅当成功删除样式时才会卸载扩展
                 // 否则可能导致没有成功删掉样式时扩展就被卸载掉
                 await vscode.commands.executeCommand('workbench.extensions.uninstallExtension', EXTENSION_ID);
-                await vsHelp.showInfoRestart('background extension has been uninstalled. See you next time!');
+                await vsHelp.showInfoRestart('Background extension has been uninstalled. See you next time!');
             }
         })
     );
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand(statusbar.command as string, async () => {
+            vscode.commands.executeCommand('workbench.action.quickOpen', '> background: ');
+        })
+    );
+    context.subscriptions.push(statusbar);
 }
 
 // this method is called when your extension is deactivated
