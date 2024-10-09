@@ -1,7 +1,7 @@
 'use strict';
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-import vscode, { MarkdownString, StatusBarAlignment, StatusBarItem } from 'vscode';
+import vscode from 'vscode';
 import { Background } from './background';
 import { EXTENSION_ID, VERSION } from './constants';
 import { vsHelp } from './utils/vsHelp';
@@ -9,13 +9,13 @@ import { vsHelp } from './utils/vsHelp';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
-export const statusbar: StatusBarItem = (() => {
-    const item: StatusBarItem = vscode.window.createStatusBarItem(StatusBarAlignment.Right);
+export const statusbar = (() => {
+    const item = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right);
 
     item.command = 'extension.background.showAllCommands';
     item.name = 'Background';
     item.text = '$(file-media) Background';
-    item.tooltip = new MarkdownString(['#### Background', 'Show all background commands.'].join('\n'));
+    item.tooltip = new vscode.MarkdownString(['#### Background', 'Show all background commands.'].join('\n'));
     item.show();
 
     return item;
