@@ -35,7 +35,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     context.subscriptions.push(background);
 
     context.subscriptions.push(
-        vscode.commands.registerCommand('extension.background.reinstall', async () => {
+        vscode.commands.registerCommand('extension.background.install', async () => {
             await background.install(true); // 强制更新
         })
     );
@@ -50,7 +50,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
                 // 当且仅当成功删除样式时才会卸载扩展
                 // 否则可能导致没有成功删掉样式时扩展就被卸载掉
                 await vscode.commands.executeCommand('workbench.extensions.uninstallExtension', EXTENSION_ID);
-                await vsHelp.showInfoRestart('background extension has been uninstalled. See you next time!');
+                await vsHelp.showInfoRestart('Background extension has been uninstalled. See you next time!');
             }
         })
     );

@@ -44,9 +44,9 @@
         "title": "%extension.background.command.info.title%"
       },
       {
-        "command": "extension.background.reinstall",
+        "command": "extension.background.install",
         "category": "Background",
-        "title": "%extension.background.command.reinstall.title%"
+        "title": "%extension.background.command.install.title%"
       },
       {
         "command": "extension.background.uninstall",
