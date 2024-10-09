@@ -1,3 +1,9 @@
+## ver1.2.16 (2024/10/09)
+
+    #468, #458
+    add statusbar to show all commands.
+    添加状态栏按钮，用于快速展示所有命令。
+
 ## ver1.2.15 (2024/10/06)
 
     merge #466
