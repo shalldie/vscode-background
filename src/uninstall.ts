@@ -15,6 +15,7 @@
  */
 
 import fs from 'fs';
+
 import { CssFile } from './background/CssFile';
 import { ENCODING, TOUCH_FILE_PATH } from './constants';
 

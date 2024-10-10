@@ -1,4 +1,5 @@
 import path from 'path';
+
 import pkg from '../../package.json';
 
 /** 版本号 */

@@ -1,13 +1,18 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es6",
-        "rootDir": "src",
-        "outDir": "out",
-        "esModuleInterop": true,
-        "lib": ["es6"],
-        "sourceMap": true,
-        "strict": true
-    },
-    "exclude": ["node_modules", ".vscode-test"]
+	"compilerOptions": {
+		"module": "Node16",
+		"target": "ES2022",
+		"outDir": "out",
+		"lib": [
+			"ES2022"
+		],
+		"sourceMap": true,
+		"rootDir": "src",
+		"esModuleInterop": true,
+		"strict": true   /* enable all strict type-checking options */
+		/* Additional Checks */
+		// "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
+		// "noFallthroughCasesInSwitch": true, /* Report errors for fallthrough cases in switch statement. */
+		// "noUnusedParameters": true,  /* Report errors on unused parameters. */
+	}
 }

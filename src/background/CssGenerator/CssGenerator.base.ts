@@ -1,6 +1,7 @@
-import vscode from 'vscode';
 import * as stylis from 'stylis';
-import { VERSION, BACKGROUND_VER } from '../../constants';
+import vscode from 'vscode';
+
+import { BACKGROUND_VER, VERSION } from '../../constants';
 
 /**
  * 用于触发开发工具 css in js 语言支持

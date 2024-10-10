@@ -1,16 +1,13 @@
-// sys
 import fs from 'fs';
 
-// libs
 import vscode, { Disposable } from 'vscode';
 
-// self
-import { vsHelp } from '../utils/vsHelp';
 import { ENCODING, TOUCH_FILE_PATH } from '../constants';
-import { CssGenerator, TCssGeneratorOptions } from './CssGenerator';
 import { utils } from '../utils';
-import { CssFile, ECSSEditType } from './CssFile';
 import { vscodePath } from '../utils/vscodePath';
+import { vsHelp } from '../utils/vsHelp';
+import { CssFile, ECSSEditType } from './CssFile';
+import { CssGenerator, TCssGeneratorOptions } from './CssGenerator';
 
 /**
  * 配置类型
@@ -67,6 +64,7 @@ export class Background implements Disposable {
 
         if (firstLoad) {
             // 提示
+            // vscode.env.language
             vscode.commands.executeCommand('extension.background.info');
             // 标识插件已启动过
             await fs.promises.writeFile(TOUCH_FILE_PATH, vscodePath.cssPath, ENCODING);
@@ -93,7 +91,7 @@ export class Background implements Disposable {
         const config = { ...vscode.workspace.getConfiguration('background') } as TConfigType; // 当前用户配置
 
         // 1.如果配置文件改变的时候，当前插件配置没有改变，则返回
-        if (!refresh && JSON.stringify(lastConfig) == JSON.stringify(config)) {
+        if (!refresh && JSON.stringify(lastConfig) === JSON.stringify(config)) {
             // console.log('配置文件未改变.')
             return;
         }
@@ -152,7 +150,7 @@ export class Background implements Disposable {
         const editType = await this.cssFile.getEditType(); // css 文件目前状态
 
         // 如果是第一次加载插件，或者旧版本
-        if (firstload || editType == ECSSEditType.IsOld || editType == ECSSEditType.NoModified) {
+        if (firstload || editType === ECSSEditType.IsOld || editType === ECSSEditType.NoModified) {
             await this.install(true);
         }
 

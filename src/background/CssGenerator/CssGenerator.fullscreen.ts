@@ -1,8 +1,9 @@
 import vscode from 'vscode';
+
 import { AbsCssGenerator, css } from './CssGenerator.base';
 
 // 从 1.78.0 开始使用 Chromium:108+，支持 :has 选择器
-const BODY_SELECTOR = parseFloat(vscode.version) >= 1.78 ? `body:has([id='workbench.parts.editor'])` : 'body';
+const BODY_SELECTOR = `body:has([id='workbench.parts.editor'])`;
 
 /**
  * 全屏配置

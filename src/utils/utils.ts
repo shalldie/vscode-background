@@ -1,6 +1,7 @@
-import lockfile from 'lockfile';
-import { LOCK_PATH } from '../constants';
 import sudo from '@vscode/sudo-prompt';
+import lockfile from 'lockfile';
+
+import { LOCK_PATH } from '../constants';
 
 /**
  * 等待若干时间

@@ -1,7 +1,9 @@
 'use strict';
+
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import vscode from 'vscode';
+
 import { Background } from './background';
 import { EXTENSION_ID, VERSION } from './constants';
 import { vsHelp } from './utils/vsHelp';

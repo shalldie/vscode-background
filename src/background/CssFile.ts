@@ -3,16 +3,14 @@
  * 需要考虑无 vscode api 的情况
  */
 
-// sys
-import { tmpdir } from 'os';
-import fs, { constants as fsConstants } from 'fs';
-import path from 'path';
 import { randomUUID } from 'crypto';
+import fs, { constants as fsConstants } from 'fs';
+import { tmpdir } from 'os';
+import path from 'path';
 
-// self
-import { vscode } from '../utils/vsc';
-import { VERSION, BACKGROUND_VER, ENCODING } from '../constants';
+import { BACKGROUND_VER, ENCODING, VERSION } from '../constants';
 import { utils } from '../utils';
+import { vscode } from '../utils/vsc';
 
 /**
  * css文件修改状态类型
