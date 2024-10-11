@@ -3,7 +3,7 @@
 import vscode from 'vscode';
 
 import { Background } from './background';
-import { EXTENSION_ID, VERSION } from './constants';
+import { EXTENSION_ID } from './constants';
 import { vsHelp } from './utils/vsHelp';
 
 // this method is called when your extension is activated
@@ -22,37 +22,19 @@ export const statusbar = (() => {
 })();
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
-    // Use the console to output diagnostic information (console.log) and errors (console.error)
-    // This line of code will only be executed once when your extension is activated
-    // console.log('Congratulations, your extension "background" is now active!');
-
-    // The command has been defined in the package.json file
-    // Now provide the implementation of the command with  registerCommand
-    // The commandId parameter must match the command field in package.json
-    const disposable = vscode.commands.registerCommand('extension.background.info', function () {
-        background.showWelcome();
-        // 无换行
-        // https://github.com/Microsoft/vscode/blob/8616dbae8bc2abf7972a45449b0fb6b2b2d0f429/src/vs/workbench/common/notifications.ts#L412-L413
-        // vsHelp.showInfo(
-        //     [
-        //         //
-        //         `Welcome to use background@${VERSION}!`,
-        //         'You can config it in `settings.json`.'
-        //     ].join(' ')
-        // );
-    });
-
-    context.subscriptions.push(disposable);
-
     const background = new Background();
     await background.setup();
     context.subscriptions.push(background);
 
     context.subscriptions.push(
+        vscode.commands.registerCommand('extension.background.info', function () {
+            background.showWelcome();
+        })
+    );
+
+    context.subscriptions.push(
         vscode.commands.registerCommand('extension.background.install', async () => {
-            if (!background.config.enabled) {
-                await background.config.update('enabled', true);
-            }
+            await background.config.update('enabled', true, true);
             await background.applyPatch();
             vscode.commands.executeCommand('workbench.action.reloadWindow');
         })
@@ -60,7 +42,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 
     context.subscriptions.push(
         vscode.commands.registerCommand('extension.background.disable', async () => {
-            await background.config.update('enabled', false);
+            await background.config.update('enabled', false, true);
             await background.uninstall();
             vscode.commands.executeCommand('workbench.action.reloadWindow');
         })
@@ -90,6 +72,4 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 }
 
 // this method is called when your extension is deactivated
-export function deactivate(): void {
-    // vscode.window.showInformationMessage('deactivated!');
-}
+export function deactivate(): void {}

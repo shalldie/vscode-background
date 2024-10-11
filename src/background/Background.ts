@@ -4,13 +4,13 @@ import path from 'path';
 
 import vscode, { Disposable, Uri } from 'vscode';
 
-import { ENCODING, EXTENSION_NAME, TOUCH_FILE_PATH } from '../constants';
+import { ENCODING, EXTENSION_NAME, TOUCH_FILE_PATH, VERSION } from '../constants';
 import { utils } from '../utils';
 import { vscodePath } from '../utils/vscodePath';
 import { vsHelp } from '../utils/vsHelp';
 import { CssFile, ECSSEditType } from './CssFile';
 import { CssGenerator, TCssGeneratorOptions } from './CssGenerator';
-import { JsFile } from './JsFile';
+import { EJsEditType, JsFile } from './JsFile';
 
 /**
  * 配置类型
@@ -85,7 +85,9 @@ export class Background implements Disposable {
         const docDir = path.join(__dirname, '../../docs');
         const docName = /^zh/.test(vscode.env.language) ? 'WELCOME.zh-CN.md' : 'WELCOME.md';
 
+        // welcome 内容
         let content = await fs.promises.readFile(path.join(docDir, docName), ENCODING);
+        // 替换图片内联为base64
         content = content.replace(/\.\.\/images[^\)]+/g, (relativePath: string) => {
             const imgPath = path.join(vscodePath.extensionRoot, 'images', relativePath);
 
@@ -94,7 +96,13 @@ export class Background implements Disposable {
                 Buffer.from(fs.readFileSync(imgPath)).toString('base64')
             );
         });
-
+        // 替换变量
+        const paramsMap = {
+            VERSION
+        };
+        for (const [key, value] of Object.entries(paramsMap)) {
+            content = content.replaceAll('${' + key + '}', value);
+        }
         const targetPath = path.join(tmpdir(), 'welcome-to-background.md');
         await fs.promises.writeFile(targetPath, content, ENCODING);
         vscode.commands.executeCommand('markdown.showPreviewToSide', Uri.file(targetPath));
@@ -115,6 +123,13 @@ export class Background implements Disposable {
         await this.cssFile.uninstall();
     }
 
+    /**
+     * 配置改变，confirm 并提示应用&重启
+     *
+     * @private
+     * @return {*}
+     * @memberof Background
+     */
     private async onConfigChange() {
         const hasInstalled = await this.jsFile.hasInstalled();
         const enabled = this.config.enabled;
@@ -157,7 +172,9 @@ export class Background implements Disposable {
         })();
         `;
 
-        this.jsFile.applyPatch(scriptContent);
+        await utils.lock();
+        await this.jsFile.applyPatch(scriptContent);
+        await utils.unlock();
     }
 
     // #endregion
@@ -230,15 +247,19 @@ export class Background implements Disposable {
      * @memberof Background
      */
     public async setup(): Promise<void> {
-        await this.removeLegacyCssPatch();
-        const firstload = await this.checkFirstload(); // 是否初次加载插件
+        await this.removeLegacyCssPatch(); // 移除旧版本patch
+        await this.checkFirstload(); // 是否初次加载插件
 
-        const editType = await this.cssFile.getEditType(); // css 文件目前状态
+        const editType = await this.jsFile.getEditType(); // css 文件目前状态
 
-        // 如果是第一次加载插件，或者旧版本
-        // if (firstload || editType === ECSSEditType.IsOld || editType === ECSSEditType.NoModified) {
-        //     await this.install(true);
-        // }
+        // 如果「开启」状态，文件不是「latest」，则进行更新
+        if (this.config.enabled) {
+            // 此时一般为 vscode更新、background更新
+            if ([EJsEditType.IsOld, EJsEditType.NoModified].includes(editType)) {
+                await this.applyPatch();
+                vsHelp.showInfoRestart('Background has been changed! Please restart.');
+            }
+        }
 
         // 监听文件改变
         this.disposables.push(

@@ -56,7 +56,7 @@ export class JsFile {
      * @return {*}  {Promise<EJsEditType>}
      * @memberof JsFile
      */
-    private async getEditType(): Promise<EJsEditType> {
+    public async getEditType(): Promise<EJsEditType> {
         const hasInstalled = await this.hasInstalled();
         if (!hasInstalled) {
             return EJsEditType.NoModified;
