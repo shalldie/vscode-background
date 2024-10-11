@@ -1,6 +1,8 @@
+import fs from 'fs';
 import path from 'path';
 
 import { vscode } from './vsc';
+import { vsHelp } from './vsHelp';
 
 // 基础目录
 const base = (() => {
@@ -10,16 +12,12 @@ const base = (() => {
     return base;
 })();
 
-// css文件路径
-const cssName = 'workbench.desktop.main.css';
-// https://github.com/microsoft/vscode/pull/141263
-const webCssName = 'workbench.web.main.css';
-
 const cssPath = (() => {
     const getCssPath = (cssFileName: string) => path.join(base, 'vs', 'workbench', cssFileName);
 
-    const defPath = getCssPath(cssName);
-    const webPath = getCssPath(webCssName);
+    const defPath = getCssPath('workbench.desktop.main.css');
+    // https://github.com/microsoft/vscode/pull/141263
+    const webPath = getCssPath('workbench.web.main.css');
 
     // See https://code.visualstudio.com/api/references/vscode-api#env
     switch (vscode?.env.appHost) {
@@ -31,20 +29,21 @@ const cssPath = (() => {
     }
 })();
 
-// electron 入口文件所在文件夹
-const indexDir = path.join(base, 'vs', 'workbench', 'electron-browser', 'bootstrap');
+// /Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/code/electron-sandbox/workbench/workbench.js
+const jsPath = path.join(base, 'vs/code/electron-sandbox/workbench/workbench.js');
 
 export const vscodePath = {
     /**
      * 基础目录
      */
     base,
+    extensionRoot: path.join(__dirname, '../../'),
     /**
      * css文件路径
      */
     cssPath,
     /**
-     * electron 入口文件所在文件夹
+     * js 入口文件
      */
-    indexDir
+    jsPath
 };

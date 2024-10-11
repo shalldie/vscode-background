@@ -1,13 +1,16 @@
 import fs from 'fs';
+import { tmpdir } from 'os';
+import path from 'path';
 
-import vscode, { Disposable } from 'vscode';
+import vscode, { Disposable, Uri } from 'vscode';
 
-import { ENCODING, TOUCH_FILE_PATH } from '../constants';
+import { ENCODING, EXTENSION_NAME, TOUCH_FILE_PATH } from '../constants';
 import { utils } from '../utils';
 import { vscodePath } from '../utils/vscodePath';
 import { vsHelp } from '../utils/vsHelp';
 import { CssFile, ECSSEditType } from './CssFile';
 import { CssGenerator, TCssGeneratorOptions } from './CssGenerator';
+import { JsFile } from './JsFile';
 
 /**
  * 配置类型
@@ -30,6 +33,8 @@ export class Background implements Disposable {
      */
     public cssFile = new CssFile(vscodePath.cssPath); // 没必要继承，组合就行
 
+    public jsFile = new JsFile(vscodePath.jsPath);
+
     /**
      * 当前用户配置
      *
@@ -37,7 +42,9 @@ export class Background implements Disposable {
      * @type {TConfigType}
      * @memberof Background
      */
-    private config: TConfigType = vscode.workspace.getConfiguration('background') as TConfigType;
+    public get config() {
+        return vscode.workspace.getConfiguration('background') as TConfigType;
+    }
 
     /**
      * 需要释放的资源
@@ -64,15 +71,93 @@ export class Background implements Disposable {
 
         if (firstLoad) {
             // 提示
-            // vscode.env.language
-            vscode.commands.executeCommand('extension.background.info');
+            this.showWelcome();
             // 标识插件已启动过
             await fs.promises.writeFile(TOUCH_FILE_PATH, vscodePath.cssPath, ENCODING);
-
             return true;
         }
 
         return false;
+    }
+
+    public async showWelcome() {
+        // 欢迎页
+        const docDir = path.join(__dirname, '../../docs');
+        const docName = /^zh/.test(vscode.env.language) ? 'WELCOME.zh-CN.md' : 'WELCOME.md';
+
+        let content = await fs.promises.readFile(path.join(docDir, docName), ENCODING);
+        content = content.replace(/\.\.\/images[^\)]+/g, (relativePath: string) => {
+            const imgPath = path.join(vscodePath.extensionRoot, 'images', relativePath);
+
+            return (
+                `data:image/${path.extname(imgPath).slice(1) || 'png'};base64,` +
+                Buffer.from(fs.readFileSync(imgPath)).toString('base64')
+            );
+        });
+
+        const targetPath = path.join(tmpdir(), 'welcome-to-background.md');
+        await fs.promises.writeFile(targetPath, content, ENCODING);
+        vscode.commands.executeCommand('markdown.showPreviewToSide', Uri.file(targetPath));
+    }
+
+    /**
+     * 移除旧版本css文件中的patch
+     *
+     * @private
+     * @return {*}
+     * @memberof Background
+     */
+    private async removeLegacyCssPatch() {
+        const hasInstalled = await this.cssFile.hasInstalled();
+        if (!hasInstalled) {
+            return;
+        }
+        await this.cssFile.uninstall();
+    }
+
+    private async onConfigChange() {
+        const hasInstalled = await this.jsFile.hasInstalled();
+        const enabled = this.config.enabled;
+
+        // 禁用
+        if (!enabled) {
+            if (hasInstalled) {
+                await this.jsFile.uninstall();
+                vsHelp.showInfoRestart('Background has been disabled! Please restart.');
+            }
+            return;
+        }
+
+        // 更新，需要二次确认
+        const confirm = await vscode.window.showInformationMessage('Configuration has been changed, click to update.', {
+            title: 'Update and restart'
+        });
+
+        if (!confirm) {
+            return;
+        }
+
+        await this.applyPatch();
+        vscode.commands.executeCommand('workbench.action.reloadWindow');
+    }
+
+    public async applyPatch() {
+        // 禁用时候，不处理
+        if (!this.config.enabled) {
+            return;
+        }
+
+        const cssTxt = await CssGenerator.create(this.config);
+
+        const scriptContent = `
+        (function(){
+        var style = document.createElement('style');
+        style.textContent = ${JSON.stringify(cssTxt)};
+        document.body.appendChild(style);
+        })();
+        `;
+
+        this.jsFile.applyPatch(scriptContent);
     }
 
     // #endregion
@@ -105,7 +190,7 @@ export class Background implements Disposable {
         }
 
         // 3.保存当前配置
-        this.config = config; // 更新配置
+        // this.config = config; // 更新配置
 
         // 4.如果关闭插件
         if (!config.enabled) {
@@ -145,22 +230,33 @@ export class Background implements Disposable {
      * @memberof Background
      */
     public async setup(): Promise<void> {
+        await this.removeLegacyCssPatch();
         const firstload = await this.checkFirstload(); // 是否初次加载插件
 
         const editType = await this.cssFile.getEditType(); // css 文件目前状态
 
         // 如果是第一次加载插件，或者旧版本
-        if (firstload || editType === ECSSEditType.IsOld || editType === ECSSEditType.NoModified) {
-            await this.install(true);
-        }
+        // if (firstload || editType === ECSSEditType.IsOld || editType === ECSSEditType.NoModified) {
+        //     await this.install(true);
+        // }
 
         // 监听文件改变
         this.disposables.push(
-            vscode.workspace.onDidChangeConfiguration(async () => {
+            vscode.workspace.onDidChangeConfiguration(async ex => {
+                const hasChanged = ex.affectsConfiguration(EXTENSION_NAME);
+                if (!hasChanged) {
+                    return;
+                }
+
+                this.onConfigChange();
+
+                // await this.applyPatch();
+                // vsHelp.showInfoRestart('Background has been changed! Please restart.');
+
                 // 0~500ms 的延时，对于可能的多实例，错开对于文件的操作
                 // 虽然有锁了，但这样更安心 =。=
-                await utils.sleep(~~(Math.random() * 500));
-                this.install();
+                // await utils.sleep(~~(Math.random() * 500));
+                // this.install();
             })
         );
     }
@@ -172,7 +268,7 @@ export class Background implements Disposable {
      * @memberof Background
      */
     public hasInstalled(): Promise<boolean> {
-        return this.cssFile.hasInstalled();
+        return this.jsFile.hasInstalled();
     }
 
     /**
@@ -182,7 +278,8 @@ export class Background implements Disposable {
      * @memberof Background
      */
     public uninstall(): Promise<boolean> {
-        return this.cssFile.uninstall();
+        // return this.cssFile.uninstall();
+        return this.jsFile.uninstall();
     }
 
     /**

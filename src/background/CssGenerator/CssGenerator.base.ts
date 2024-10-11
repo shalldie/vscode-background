@@ -131,7 +131,7 @@ export abstract class AbsCssGenerator<T = any> {
         const styles = this.compileCSS(source);
 
         if (process.env.NODE_ENV === 'development') {
-            console.log(styles);
+            // console.log(styles);
         }
 
         return `

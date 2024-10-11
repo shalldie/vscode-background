@@ -1,6 +1,7 @@
 {
     "extension.background.command.info.title": "View plugin info",
-    "extension.background.command.install.title": "Installs and enables the background.",
+    "extension.background.command.install.title": "Install and enable the background.",
+    "extension.background.command.disable.title": "Disable the background.",
     "extension.background.command.uninstall.title": "Uninstall plugin",
 
     "extension.background.enabled.description": "Plugin background enabled.",

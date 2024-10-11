@@ -47,6 +47,11 @@
         "title": "%extension.background.command.install.title%"
       },
       {
+        "command": "extension.background.disable",
+        "category": "Background",
+        "title": "%extension.background.command.disable.title%"
+      },
+      {
         "command": "extension.background.uninstall",
         "category": "Background",
         "title": "%extension.background.command.uninstall.title%"

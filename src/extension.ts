@@ -1,5 +1,3 @@
-'use strict';
-
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import vscode from 'vscode';
@@ -32,15 +30,16 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     // Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
     const disposable = vscode.commands.registerCommand('extension.background.info', function () {
+        background.showWelcome();
         // 无换行
         // https://github.com/Microsoft/vscode/blob/8616dbae8bc2abf7972a45449b0fb6b2b2d0f429/src/vs/workbench/common/notifications.ts#L412-L413
-        vsHelp.showInfo(
-            [
-                //
-                `Welcome to use background@${VERSION}!`,
-                'You can config it in `settings.json`.'
-            ].join(' ')
-        );
+        // vsHelp.showInfo(
+        //     [
+        //         //
+        //         `Welcome to use background@${VERSION}!`,
+        //         'You can config it in `settings.json`.'
+        //     ].join(' ')
+        // );
     });
 
     context.subscriptions.push(disposable);
@@ -51,7 +50,19 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 
     context.subscriptions.push(
         vscode.commands.registerCommand('extension.background.install', async () => {
-            await background.install(true); // 强制更新
+            if (!background.config.enabled) {
+                await background.config.update('enabled', true);
+            }
+            await background.applyPatch();
+            vscode.commands.executeCommand('workbench.action.reloadWindow');
+        })
+    );
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand('extension.background.disable', async () => {
+            await background.config.update('enabled', false);
+            await background.uninstall();
+            vscode.commands.executeCommand('workbench.action.reloadWindow');
         })
     );
 
