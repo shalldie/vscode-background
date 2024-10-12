@@ -104,6 +104,70 @@
           "default": 0,
           "markdownDescription": "%extension.background.interval.description%"
         },
+        "background.editor": {
+          "type": "object",
+          "default": {
+            "useFront": true,
+            "style": {
+              "background-position": "100% 100%",
+              "background-size": "auto",
+              "opacity": 1
+            },
+            "styles": [
+              {},
+              {},
+              {}
+            ],
+            "images": [],
+            "interval": 0,
+            "random": false
+          },
+          "properties": {
+            "useFront": {
+              "type": "boolean",
+              "default": true,
+              "markdownDescription": "%extension.background.useFront.description%"
+            },
+            "style": {
+              "type": "object",
+              "default": {
+                "background-position": "100% 100%",
+                "background-size": "auto",
+                "opacity": 1
+              },
+              "markdownDescription": "%extension.background.style.description%"
+            },
+            "styles": {
+              "type": "array",
+              "default": [
+                {},
+                {},
+                {}
+              ],
+              "markdownDescription": "%extension.background.styles.description%"
+            },
+            "images": {
+              "type": "array",
+              "default": [],
+              "items": {
+                "type": "string",
+                "pattern": "^(https://|file://)",
+                "patternErrorMessage": "%extension.background.urlProtocol.error%"
+              },
+              "markdownDescription": "%extension.background.customImages.description%"
+            },
+            "interval": {
+              "type": "number",
+              "default": 0,
+              "markdownDescription": "%extension.background.interval.description%"
+            },
+            "random": {
+              "type": "boolean",
+              "default": false,
+              "markdownDescription": "%extension.background.random.description%"
+            }
+          }
+        },
         "background.fullscreen": {
           "type": "object",
           "default": {
@@ -111,7 +175,8 @@
             "opacity": 0.91,
             "size": "cover",
             "position": "center",
-            "interval": 0
+            "interval": 0,
+            "random": false
           },
           "properties": {
             "images": {
@@ -135,6 +200,7 @@
     "@types/lockfile": "^1.0.4",
     "@types/node": "20.x",
     "@types/stylis": "^4.2.6",
+    "@types/uglify-js": "^3.17.5",
     "@types/vscode": "^1.94.0",
     "@typescript-eslint/eslint-plugin": "^8.7.0",
     "@typescript-eslint/parser": "^8.7.0",
@@ -149,6 +215,7 @@
   "dependencies": {
     "@vscode/sudo-prompt": "^9.3.1",
     "lockfile": "^1.0.4",
-    "stylis": "^4.3.4"
+    "stylis": "^4.3.4",
+    "uglify-js": "^3.19.3"
   }
 }

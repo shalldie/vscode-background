@@ -8,14 +8,14 @@ import { ENCODING, EXTENSION_NAME, TOUCH_FILE_PATH, VERSION } from '../constants
 import { utils } from '../utils';
 import { vscodePath } from '../utils/vscodePath';
 import { vsHelp } from '../utils/vsHelp';
-import { CssFile, ECSSEditType } from './CssFile';
-import { CssGenerator, TCssGeneratorOptions } from './CssGenerator';
+import { CssFile } from './CssFile';
 import { EJsEditType, JsFile } from './JsFile';
+import { PatchGenerator, TPatchGeneratorConfig } from './PatchGenerator';
 
 /**
  * 配置类型
  */
-type TConfigType = vscode.WorkspaceConfiguration & TCssGeneratorOptions;
+type TConfigType = vscode.WorkspaceConfiguration & TPatchGeneratorConfig;
 
 /**
  * 插件逻辑类
@@ -162,15 +162,7 @@ export class Background implements Disposable {
             return;
         }
 
-        const cssTxt = await CssGenerator.create(this.config);
-
-        const scriptContent = `
-        (function(){
-        var style = document.createElement('style');
-        style.textContent = ${JSON.stringify(cssTxt)};
-        document.body.appendChild(style);
-        })();
-        `;
+        const scriptContent = PatchGenerator.create(this.config as any);
 
         await utils.lock();
         await this.jsFile.applyPatch(scriptContent);
@@ -180,65 +172,6 @@ export class Background implements Disposable {
     // #endregion
 
     // #region public methods
-
-    /**
-     * 安装插件，hack css
-     *
-     * @param {boolean} [refresh=false] 需要强制更新
-     * @returns {void}
-     * @memberof Background
-     */
-    public async install(refresh = false): Promise<void> {
-        const lastConfig = this.config; // 之前的配置
-        const config = { ...vscode.workspace.getConfiguration('background') } as TConfigType; // 当前用户配置
-
-        // 1.如果配置文件改变的时候，当前插件配置没有改变，则返回
-        if (!refresh && JSON.stringify(lastConfig) === JSON.stringify(config)) {
-            // console.log('配置文件未改变.')
-            return;
-        }
-
-        // 之后操作有两种：1.初次加载  2.配置文件改变
-
-        // 2.两次配置均为，未启动插件
-        if (!lastConfig.enabled && !config.enabled) {
-            // console.log('两次配置均为，未启动插件');
-            return;
-        }
-
-        // 3.保存当前配置
-        // this.config = config; // 更新配置
-
-        // 4.如果关闭插件
-        if (!config.enabled) {
-            await this.uninstall();
-            vsHelp.showInfoRestart('Background has been uninstalled! Please restart.');
-            return;
-        }
-
-        // 5.应用配置到css文件
-        try {
-            // 该动作需要加锁，涉及多次文件读写
-            await utils.lock();
-
-            const content = (await CssGenerator.create(config)).trimEnd(); // 去除末尾空白
-
-            // 添加到原有样式(尝试删除旧样式)中
-            let cssContent = await this.cssFile.getContent();
-            cssContent = this.cssFile.clearContent(cssContent);
-            // 异常case return
-            if (!cssContent.trim().length) {
-                return;
-            }
-            cssContent += content;
-
-            if (await this.cssFile.saveContent(cssContent)) {
-                vsHelp.showInfoRestart('Background has been changed! Please restart.');
-            }
-        } finally {
-            await utils.unlock();
-        }
-    }
 
     /**
      * 初始化

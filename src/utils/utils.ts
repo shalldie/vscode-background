@@ -72,11 +72,22 @@ function sudoExec(cmd: string, options: { name?: string } = {}): Promise<any> {
 }
 
 /**
+ * wrap with IIFE
+ *
+ * @param {string} source
+ * @return {*}
+ */
+function withIIFE(source: string) {
+    return `;(function() { ${source} })();`;
+}
+
+/**
  * 工具包
  */
 export const utils = {
     sleep,
     lock,
     unlock,
-    sudoExec
+    sudoExec,
+    withIIFE
 };
