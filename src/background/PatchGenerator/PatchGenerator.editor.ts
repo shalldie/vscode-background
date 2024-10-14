@@ -20,16 +20,10 @@ export class EditorPatchGenerator extends AbsPatchGenerator<EditorPatchGenerator
     private readonly cssvariable = '--background-editor-img';
 
     private get curConfig() {
-        const defConfig = new EditorPatchGeneratorConfig();
-        const userConfig = this.config;
-
+        // 默认值实际在 package.json 中定义，会 deep merge
         const cur: EditorPatchGeneratorConfig = {
-            ...defConfig,
-            ...userConfig,
-            style: {
-                ...defConfig.style,
-                ...userConfig.style
-            }
+            ...new EditorPatchGeneratorConfig(),
+            ...this.config
         };
         // ------ 处理图片 ------
         cur.images = this.normalizeImageUrls(cur.images);

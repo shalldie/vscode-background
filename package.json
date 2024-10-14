@@ -69,7 +69,8 @@
         "background.useFront": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "%extension.background.useFront.description%"
+          "markdownDescription": "%extension.background.useFront.description%",
+          "markdownDeprecationMessage": "%extension.background.common.deprecation%"
         },
         "background.style": {
           "type": "object",
@@ -78,7 +79,8 @@
             "background-size": "auto",
             "opacity": 1
           },
-          "markdownDescription": "%extension.background.style.description%"
+          "markdownDescription": "%extension.background.style.description%",
+          "markdownDeprecationMessage": "%extension.background.common.deprecation%"
         },
         "background.styles": {
           "type": "array",
@@ -87,7 +89,8 @@
             {},
             {}
           ],
-          "markdownDescription": "%extension.background.styles.description%"
+          "markdownDescription": "%extension.background.styles.description%",
+          "markdownDeprecationMessage": "%extension.background.common.deprecation%"
         },
         "background.customImages": {
           "type": "array",
@@ -97,12 +100,14 @@
             "pattern": "^(https://|file://)",
             "patternErrorMessage": "%extension.background.urlProtocol.error%"
           },
-          "markdownDescription": "%extension.background.customImages.description%"
+          "markdownDescription": "%extension.background.customImages.description%",
+          "markdownDeprecationMessage": "%extension.background.common.deprecation%"
         },
         "background.interval": {
           "type": "number",
           "default": 0,
-          "markdownDescription": "%extension.background.interval.description%"
+          "markdownDescription": "%extension.background.interval.description%",
+          "markdownDeprecationMessage": "%extension.background.common.deprecation%"
         },
         "background.editor": {
           "type": "object",
@@ -126,7 +131,7 @@
             "useFront": {
               "type": "boolean",
               "default": true,
-              "markdownDescription": "%extension.background.useFront.description%"
+              "markdownDescription": "%extension.background.editor.useFront%"
             },
             "style": {
               "type": "object",
@@ -135,7 +140,7 @@
                 "background-size": "auto",
                 "opacity": 1
               },
-              "markdownDescription": "%extension.background.style.description%"
+              "markdownDescription": "%extension.background.editor.style%"
             },
             "styles": {
               "type": "array",
@@ -144,7 +149,7 @@
                 {},
                 {}
               ],
-              "markdownDescription": "%extension.background.styles.description%"
+              "markdownDescription": "%extension.background.editor.styles%"
             },
             "images": {
               "type": "array",
@@ -154,19 +159,20 @@
                 "pattern": "^(https://|file://)",
                 "patternErrorMessage": "%extension.background.urlProtocol.error%"
               },
-              "markdownDescription": "%extension.background.customImages.description%"
+              "markdownDescription": "%extension.background.editor.images%"
             },
             "interval": {
               "type": "number",
               "default": 0,
-              "markdownDescription": "%extension.background.interval.description%"
+              "markdownDescription": "%extension.background.editor.interval%"
             },
             "random": {
               "type": "boolean",
               "default": false,
-              "markdownDescription": "%extension.background.random.description%"
+              "markdownDescription": "%extension.background.editor.random%"
             }
-          }
+          },
+          "markdownDescription": "%extension.background.editor.description%"
         },
         "background.fullscreen": {
           "type": "object",
@@ -187,10 +193,103 @@
                 "pattern": "^(https://|file://)",
                 "patternErrorMessage": "%extension.background.urlProtocol.error%"
               },
-              "markdownDescription": "%extension.background.customImages.description%"
+              "markdownDescription": "%extension.background.fullscreen.images%"
+            },
+            "opacity": {
+              "type": "number",
+              "default": 0.91,
+              "markdownDescription": "%extension.background.fullscreen.opacity%"
+            },
+            "size": {
+              "type": "string",
+              "default": "cover",
+              "markdownDescription": "%extension.background.fullscreen.size%"
+            },
+            "position": {
+              "type": "string",
+              "default": "center",
+              "markdownDescription": "%extension.background.fullscreen.position%"
+            },
+            "interval": {
+              "type": "number",
+              "default": 0,
+              "markdownDescription": "%extension.background.fullscreen.interval%"
+            },
+            "random": {
+              "type": "boolean",
+              "default": false,
+              "markdownDescription": "%extension.background.fullscreen.random%"
             }
           },
           "markdownDescription": "%extension.background.fullscreen.description%"
+        },
+        "background.sidebar": {
+          "type": "object",
+          "default": {
+            "images": [],
+            "opacity": 0.2,
+            "size": "cover",
+            "position": "center",
+            "interval": 0,
+            "random": false
+          },
+          "properties": {
+            "images": {
+              "$ref": "#/properties/background.fullscreen/properties/images"
+            },
+            "opacity": {
+              "type": "number",
+              "default": 0.2,
+              "markdownDescription": "%extension.background.fullscreen.opacity%"
+            },
+            "size": {
+              "$ref": "#/properties/background.fullscreen/properties/size"
+            },
+            "position": {
+              "$ref": "#/properties/background.fullscreen/properties/position"
+            },
+            "interval": {
+              "$ref": "#/properties/background.fullscreen/properties/interval"
+            },
+            "random": {
+              "$ref": "#/properties/background.fullscreen/properties/random"
+            }
+          },
+          "markdownDescription": "%extension.background.sidebar.description%"
+        },
+        "background.panel": {
+          "type": "object",
+          "default": {
+            "images": [],
+            "opacity": 0.2,
+            "size": "cover",
+            "position": "center",
+            "interval": 0,
+            "random": false
+          },
+          "properties": {
+            "images": {
+              "$ref": "#/properties/background.fullscreen/properties/images"
+            },
+            "opacity": {
+              "type": "number",
+              "default": 0.2,
+              "markdownDescription": "%extension.background.fullscreen.opacity%"
+            },
+            "size": {
+              "$ref": "#/properties/background.fullscreen/properties/size"
+            },
+            "position": {
+              "$ref": "#/properties/background.fullscreen/properties/position"
+            },
+            "interval": {
+              "$ref": "#/properties/background.fullscreen/properties/interval"
+            },
+            "random": {
+              "$ref": "#/properties/background.fullscreen/properties/random"
+            }
+          },
+          "markdownDescription": "%extension.background.panel.description%"
         }
       }
     }

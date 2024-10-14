@@ -10,9 +10,9 @@ export class FullscreenPatchGeneratorConfig {
 }
 
 export class FullscreenPatchGenerator extends AbsPatchGenerator<FullscreenPatchGeneratorConfig> {
-    private readonly cssvariable = '--background-fullscreen-img';
+    protected cssvariable = '--background-fullscreen-img';
 
-    private get curConfig() {
+    protected get curConfig() {
         const cur = {
             ...new FullscreenPatchGeneratorConfig(),
             ...this.config
@@ -23,7 +23,7 @@ export class FullscreenPatchGenerator extends AbsPatchGenerator<FullscreenPatchG
     }
 
     protected getStyle(): string {
-        const { size, position, opacity, images, interval } = this.curConfig;
+        const { size, position, opacity } = this.curConfig;
 
         return css`
             body {
