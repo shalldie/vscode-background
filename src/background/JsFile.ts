@@ -85,9 +85,9 @@ export class JsFile {
     }
 
     public async applyPatch(patchContent: string) {
-        if (!patchContent.length) {
-            return;
-        }
+        // if (!patchContent.length) {
+        //     return;
+        // }
 
         let content = await this.getContent();
         content = this.clearPatches(content);

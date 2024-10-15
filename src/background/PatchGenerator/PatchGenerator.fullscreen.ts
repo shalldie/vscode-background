@@ -9,10 +9,10 @@ export class FullscreenPatchGeneratorConfig {
     random = false;
 }
 
-export class FullscreenPatchGenerator extends AbsPatchGenerator<FullscreenPatchGeneratorConfig> {
+export class FullscreenPatchGenerator<T extends FullscreenPatchGeneratorConfig> extends AbsPatchGenerator<T> {
     protected cssvariable = '--background-fullscreen-img';
 
-    protected get curConfig() {
+    protected get curConfig(): T {
         const cur = {
             ...new FullscreenPatchGeneratorConfig(),
             ...this.config

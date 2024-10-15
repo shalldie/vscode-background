@@ -7,6 +7,14 @@
 
 import { AbsPatchGenerator, css } from './PatchGenerator.base';
 
+export class LegacyEditorPatchGeneratorConfig {
+    useFront = true;
+    style: Record<string, string> = {};
+    styles: Array<Record<string, string>> = [];
+    customImages: string[] = [];
+    interval = 0;
+}
+
 export class EditorPatchGeneratorConfig {
     useFront = true;
     style: Record<string, string> = {};
@@ -17,6 +25,32 @@ export class EditorPatchGeneratorConfig {
 }
 
 export class EditorPatchGenerator extends AbsPatchGenerator<EditorPatchGeneratorConfig> {
+    /**
+     * 兼容旧版本配置
+     *
+     * @static
+     * @param {LegacyEditorPatchGeneratorConfig} legacy
+     * @param {EditorPatchGeneratorConfig} config
+     * @return {*}  {EditorPatchGeneratorConfig}
+     * @memberof EditorPatchGenerator
+     */
+    public static mergeLegacyConfig(
+        legacy: LegacyEditorPatchGeneratorConfig,
+        config: EditorPatchGeneratorConfig
+    ): EditorPatchGeneratorConfig {
+        // 没有v1配置，或者配置了v2配置。直接使用v2
+        if (!legacy.customImages.length || config.images.length) {
+            return config;
+        }
+
+        // 反之，把v1配置按照v2格式返回
+        return {
+            ...legacy,
+            images: legacy.customImages,
+            random: false
+        };
+    }
+
     private readonly cssvariable = '--background-editor-img';
 
     private get curConfig() {

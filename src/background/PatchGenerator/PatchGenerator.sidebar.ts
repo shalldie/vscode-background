@@ -5,7 +5,7 @@ export class SidebarPatchGeneratorConfig extends FullscreenPatchGeneratorConfig 
     opacity = 0.2; // 建议在 0.1~0.3 左右
 }
 
-export class SidebarPatchGenerator extends FullscreenPatchGenerator {
+export class SidebarPatchGenerator extends FullscreenPatchGenerator<SidebarPatchGeneratorConfig> {
     protected cssvariable = '--background-sidebar-img';
 
     protected get curConfig() {

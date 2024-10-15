@@ -4,7 +4,7 @@ import path from 'path';
 
 import vscode, { Disposable, Uri } from 'vscode';
 
-import { ENCODING, EXTENSION_NAME, TOUCH_FILE_PATH, VERSION } from '../constants';
+import { ENCODING, EXTENSION_NAME, TOUCH_JSFILE_PATH, VERSION } from '../constants';
 import { utils } from '../utils';
 import { vscodePath } from '../utils/vscodePath';
 import { vsHelp } from '../utils/vsHelp';
@@ -67,13 +67,13 @@ export class Background implements Disposable {
      * @memberof Background
      */
     private async checkFirstload(): Promise<boolean> {
-        const firstLoad = !fs.existsSync(TOUCH_FILE_PATH);
+        const firstLoad = !fs.existsSync(TOUCH_JSFILE_PATH);
 
         if (firstLoad) {
             // 提示
             this.showWelcome();
             // 标识插件已启动过
-            await fs.promises.writeFile(TOUCH_FILE_PATH, vscodePath.cssPath, ENCODING);
+            await fs.promises.writeFile(TOUCH_JSFILE_PATH, vscodePath.jsPath, ENCODING);
             return true;
         }
 
@@ -162,7 +162,7 @@ export class Background implements Disposable {
             return;
         }
 
-        const scriptContent = PatchGenerator.create(this.config as any);
+        const scriptContent = PatchGenerator.create(this.config);
 
         await utils.lock();
         await this.jsFile.applyPatch(scriptContent);
@@ -196,21 +196,13 @@ export class Background implements Disposable {
 
         // 监听文件改变
         this.disposables.push(
-            vscode.workspace.onDidChangeConfiguration(async ex => {
+            vscode.workspace.onDidChangeConfiguration(ex => {
                 const hasChanged = ex.affectsConfiguration(EXTENSION_NAME);
                 if (!hasChanged) {
                     return;
                 }
 
                 this.onConfigChange();
-
-                // await this.applyPatch();
-                // vsHelp.showInfoRestart('Background has been changed! Please restart.');
-
-                // 0~500ms 的延时，对于可能的多实例，错开对于文件的操作
-                // 虽然有锁了，但这样更安心 =。=
-                // await utils.sleep(~~(Math.random() * 500));
-                // this.install();
             })
         );
     }
@@ -231,8 +223,8 @@ export class Background implements Disposable {
      * @return {*}  {Promise<boolean>} 是否成功卸载
      * @memberof Background
      */
-    public uninstall(): Promise<boolean> {
-        // return this.cssFile.uninstall();
+    public async uninstall(): Promise<boolean> {
+        await this.removeLegacyCssPatch();
         return this.jsFile.uninstall();
     }
 

@@ -1,7 +1,11 @@
 import uglifyjs from 'uglify-js';
 
 import { utils } from '../../utils';
-import { EditorPatchGenerator, EditorPatchGeneratorConfig } from './PatchGenerator.editor';
+import {
+    EditorPatchGenerator,
+    EditorPatchGeneratorConfig,
+    LegacyEditorPatchGeneratorConfig
+} from './PatchGenerator.editor';
 import { FullscreenPatchGenerator, FullscreenPatchGeneratorConfig } from './PatchGenerator.fullscreen';
 import { PanelPatchGenerator, PanelPatchGeneratorConfig } from './PatchGenerator.panel';
 import { SidebarPatchGenerator, SidebarPatchGeneratorConfig } from './PatchGenerator.sidebar';
@@ -12,12 +16,12 @@ export type TPatchGeneratorConfig = {
     sidebar: SidebarPatchGeneratorConfig;
     panel: PanelPatchGeneratorConfig;
     fullscreen: FullscreenPatchGeneratorConfig;
-};
+} & LegacyEditorPatchGeneratorConfig;
 
 export class PatchGenerator {
     public static create(options: TPatchGeneratorConfig) {
         const script = [
-            new EditorPatchGenerator(options.editor).create(), // editor,
+            new EditorPatchGenerator(EditorPatchGenerator.mergeLegacyConfig(options, options.editor)).create(), // editor,
             new SidebarPatchGenerator(options.sidebar).create(), // sidebar
             new PanelPatchGenerator(options.panel).create(), // panel
             new FullscreenPatchGenerator(options.fullscreen).create() // fullscreen

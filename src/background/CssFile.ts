@@ -36,6 +36,7 @@ export enum ECSSEditType {
 /**
  * css 文件相关操作
  *
+ * @deprecated
  * @export
  * @class CssFile
  */

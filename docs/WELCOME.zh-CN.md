@@ -1,6 +1,6 @@
 # vscode-background
 
-欢迎使用 `background@${VERSION}`，新版本带来了更多的功能，使你拥有更好的编码体验！
+欢迎使用 `background@${VERSION}`，新版本拥有更多的功能，会给你带来更好的编码体验！
 
 ## 更多的可配置区域
 

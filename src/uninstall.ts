@@ -16,16 +16,16 @@
 
 import fs from 'fs';
 
-import { CssFile } from './background/CssFile';
-import { ENCODING, TOUCH_FILE_PATH } from './constants';
+import { JsFile } from './background/JsFile';
+import { ENCODING, TOUCH_JSFILE_PATH } from './constants';
 
 async function uninstall() {
     try {
-        const cssFilePath = (await fs.promises.readFile(TOUCH_FILE_PATH, ENCODING)).trim();
-        if (!cssFilePath) {
+        const jsFilePath = (await fs.promises.readFile(TOUCH_JSFILE_PATH, ENCODING)).trim();
+        if (!jsFilePath) {
             return;
         }
-        const file = new CssFile(cssFilePath);
+        const file = new JsFile(jsFilePath);
         const hasInstalled = await file.hasInstalled();
         if (!hasInstalled) {
             return;
