@@ -21,6 +21,12 @@
 }
 ```
 
+## 快捷命令
+
+点击状态栏右下角「Background」按钮，可以快速弹出 background 所有命令：
+
+<img width="660" src="../images/commands.png">
+
 ## 从 v1 迁移
 
 > v1 的配置已经过时，需要进行迁移。当前保持一定的兼容性。
