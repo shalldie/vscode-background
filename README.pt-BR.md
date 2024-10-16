@@ -1,3 +1,5 @@
+## Deprecated! We need someone to help translate the document
+
 <!-- 中英文切换 -->
 <div align="right">
 

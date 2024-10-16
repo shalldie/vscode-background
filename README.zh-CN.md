@@ -30,7 +30,7 @@
 
 <img width="760" src="images/section.png">
 
-全屏
+`全屏`
 
 <img width="760" src="images/fullscreen.png">
 
@@ -40,10 +40,10 @@
 
 ## 安装
 
-<!-- To install the extension just execute the following command in the Command Palette of Visual Studio Code -->
+有两种安装方式：
 
-1. 从 [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background) 安装
-2. 在 vscode 里搜索 `shalldie.background`
+1. 从 [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background) 安装。
+2. 在 vscode 里搜索 `shalldie.background`。
 
 ## 自定义
 
@@ -61,41 +61,66 @@
 | :------------------- | :-------: | :----: | :----------- |
 | `background.enabled` | `Boolean` | `true` | 插件是否启用 |
 
-### 自定义背景图
+### Editor 编辑器区域配置
 
-editor:
+通过 `background.editor` 设置编辑器区域配置。
+
+| 名称       |    类型    |    默认值    | 描述                                                   |
+| :--------- | :--------: | :----------: | :----------------------------------------------------- |
+| `useFront` | `boolean`  |    `true`    | 把图片放在代码的上方或下方。                           |
+| `style`    |  `object`  |     `{}`     | 自定义图片样式。                                       |
+| `styles`   | `object[]` | `[{},{},{}]` | 为每一个图片自定义样式。                               |
+| `images`   | `string[]` |     `[]`     | 自定义图片，支持 `https` 和 `file` 协议。              |
+| `interval` |  `number`  |     `0`      | 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。 |
+| `random`   | `boolean`  |   `false`    | 是否随机展示图片。                                     |
+
+> `style` 指的是 [css style](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS)， 通过自定义样式可以改变背景图的展示。
+
+example:
 
 ```json
 {
   "background.editor": {
-    "useFront": true, // 前景图/背景图。 在代码上面还是下面
-    // 自定义样式，通过自定义样式可以改变背景图的展示。
+    "useFront": true,
     "style": {
       "background-position": "100% 100%",
       "background-size": "auto",
       "opacity": 1
     },
-    "styles": [{}, {}, {}], // 每个图片的独立样式
-    // 自定义图片地址，仅支持 https 和 file 协议
+    "styles": [{}, {}, {}],
+    // 本地图片可以拖到浏览器中，快速从地址栏得到file协议的地址
     "images": ["https://pathtoimage.png", "file:///path/to/local/file"],
-    "interval": 0, // 设置图片轮播切换间隔 `秒` 数，默认 `0` 表示不开启
-    "random": false // 是否随机展示图片
+    "interval": 10,
+    "random": false
   }
 }
 ```
 
-全屏-fullscreen、侧边栏-sidebar、面板-panel：
+### 全屏、侧边栏、面板 区域配置
+
+通过 `background.fullscreen`、`background.sidebar`、`background.panel` 来进行这些区域的配置。
+
+| 名称       |    类型    |    默认值     | 描述                                                                                   |
+| :--------- | :--------: | :-----------: | :------------------------------------------------------------------------------------- |
+| `images`   | `string[]` |     `[]`      | 自定义图片，支持 `https` 和 `file` 协议。                                              |
+| `opacity`  |  `number`  | `0.91`、`0.2` | 透明度，全屏建议 `0.85 ~ 0.95`，其它建议 `0.1 ~ 0.3`。                                 |
+| `size`     |  `string`  |    `cover`    | 等同 css `background-size`, 建议使用 `cover` 来自适应，或者 `contain`、`200px 200px`。 |
+| `position` |  `string`  |   `center`    | 等同 css `background-position`， 默认值 `center`。                                     |
+| `interval` |  `Number`  |      `0`      | 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。                                 |
+| `random`   | `Boolean`  |    `false`    | 是否随机展示图片。                                                                     |
+
+example:
 
 ```json
 {
   "background.fullscreen": {
-    // 自定义图片地址，仅支持 https 和 file 协议
+    // 本地图片可以拖到浏览器中，快速从地址栏得到file协议的地址
     "images": ["https://pathtoimage.png", "file:///path/to/local/file"],
-    "opacity": 0.91, // 建议值 0.85 ~ 0.95
-    "size": "cover", // css, 建议使用 `cover`自适应，或者 `contain`、`200px 200px`
-    "position": "center", // 同 `background-position`, 默认 `center`
-    "interval": 0, // 设置图片轮播切换间隔 `秒` 数，默认 `0` 表示不开启
-    "random": false // 是否随机展示图片，默认 `false`
+    "opacity": 0.91,
+    "size": "cover",
+    "position": "center",
+    "interval": 0,
+    "random": false
   },
   // `sidebar`、`panel` 的配置与 `fullscreen` 一致
   "background.sidebar": {},
@@ -156,6 +181,10 @@ editor:
 ## 更新日志
 
 可以从 [这里](https://github.com/shalldie/vscode-background/blob/master/CHANGELOG.md) 查看所有的变更内容。
+
+## 从 v1 迁移
+
+v1 的配置已经过时，当前保持一定的兼容性，请参考 [migration-from-v1.md](docs/migration-from-v1.md) 进行迁移。
 
 ## 高频问题导航
 

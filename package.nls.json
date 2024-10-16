@@ -9,21 +9,21 @@
     "extension.background.style.description": "Custom common style.",
     "extension.background.styles.description": "Each style of backgrounds.",
     "extension.background.customImages.description": "Your custom images.\n\nExample:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
-    "extension.background.interval.description": "Seconds of interval for carousel, default `0` to disabled",
+    "extension.background.interval.description": "Seconds of interval for carousel, default `0` to disabled.",
 
     "extension.background.editor.description": "Editor section config.",
-    "extension.background.editor.useFront": "If use front image,which means image is placed on the top of your code.",
+    "extension.background.editor.useFront": "Place the image above or below the code.",
     "extension.background.editor.style": "Custom style for images.",
     "extension.background.editor.styles": "Each style of editor section image.",
     "extension.background.editor.images": "Your custom images.\n\nExample:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
-    "extension.background.editor.interval": "Seconds of interval for carousel, default `0` to disabled",
+    "extension.background.editor.interval": "Seconds of interval for carousel, default `0` to disabled.",
     "extension.background.editor.random": "Whether to randomly display images.",
 
     "extension.background.fullscreen.description": "Fullscreen section config.",
     "extension.background.fullscreen.images": "Your custom images.\n\nExample:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
-    "extension.background.fullscreen.opacity": "Opacity of the image.",
+    "extension.background.fullscreen.opacity": "Opacity of the image, `0.85 ~ 0.95` recommended if fullscreen，others `0.1 ~ 0.3`.",
     "extension.background.fullscreen.size": "Alias to `background-size`, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`.",
-    "extension.background.fullscreen.position": "Alias to `background-position`, default `center`",
+    "extension.background.fullscreen.position": "Alias to `background-position`, default `center`.",
     "extension.background.fullscreen.interval": "Seconds of interval for carousel, default `0` to disabled.",
     "extension.background.fullscreen.random": "Whether to randomly display images.",
 
@@ -31,5 +31,5 @@
     "extension.background.panel.description": "Panel section config.",
 
     "extension.background.common.deprecation": "*Deprecated*, it has been moved to `background.editor`.",
-    "extension.background.urlProtocol.error": "The image url must use https or file protocol"
+    "extension.background.urlProtocol.error": "The image url must use https or file protocol."
 }
