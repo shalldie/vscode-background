@@ -98,7 +98,7 @@ export class JsFile {
             '// vscode-background-end'
         ].join('\n');
 
-        this.saveContent(content);
+        await this.saveContent(content);
     }
 
     /**

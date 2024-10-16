@@ -29,8 +29,9 @@ const cssPath = (() => {
     }
 })();
 
-// /Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/code/electron-sandbox/workbench/workbench.js
-const jsPath = path.join(base, 'vs/code/electron-sandbox/workbench/workbench.js');
+// /Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/workbench/workbench.desktop.main.js
+export const workbenchKey = 'vs/workbench/workbench.desktop.main.js';
+const jsPath = path.join(base, workbenchKey);
 
 export const vscodePath = {
     /**

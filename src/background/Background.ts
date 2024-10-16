@@ -196,11 +196,15 @@ export class Background implements Disposable {
 
         // 监听文件改变
         this.disposables.push(
-            vscode.workspace.onDidChangeConfiguration(ex => {
+            vscode.workspace.onDidChangeConfiguration(async ex => {
                 const hasChanged = ex.affectsConfiguration(EXTENSION_NAME);
                 if (!hasChanged) {
                     return;
                 }
+
+                // 0~500ms 的延时，对于可能的多实例，错开对于文件的操作
+                // 虽然有锁了，但这样更安心 =。=
+                await utils.sleep(~~(Math.random() * 500));
 
                 this.onConfigChange();
             })

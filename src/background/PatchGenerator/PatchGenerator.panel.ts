@@ -2,7 +2,7 @@ import { css } from './PatchGenerator.base';
 import { FullscreenPatchGenerator, FullscreenPatchGeneratorConfig } from './PatchGenerator.fullscreen';
 
 export class PanelPatchGeneratorConfig extends FullscreenPatchGeneratorConfig {
-    opacity = 0.2; // 建议在 0.1~0.3 左右
+    opacity = 0.2; // 建议在 0.1 ~ 0.3 左右
 }
 
 export class PanelPatchGenerator extends FullscreenPatchGenerator<PanelPatchGeneratorConfig> {

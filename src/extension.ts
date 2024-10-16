@@ -36,7 +36,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         vscode.commands.registerCommand('extension.background.install', async () => {
             await background.config.update('enabled', true, true);
             await background.applyPatch();
-            vscode.commands.executeCommand('workbench.action.reloadWindow');
+            await vscode.commands.executeCommand('workbench.action.reloadWindow');
         })
     );
 
@@ -44,7 +44,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         vscode.commands.registerCommand('extension.background.disable', async () => {
             await background.config.update('enabled', false, true);
             await background.uninstall();
-            vscode.commands.executeCommand('workbench.action.reloadWindow');
+            await vscode.commands.executeCommand('workbench.action.reloadWindow');
         })
     );
 
