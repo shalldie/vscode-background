@@ -1,6 +1,6 @@
 # Contributing Guide
 
-[English](./CONTRIBUTING.md) | [中文](./CONTRIBUTING.zh-CN.md)
+[English](./contributing.md) | [中文](./contributing.zh-CN.md)
 
 Welcome! We are really excited that you are interested in contributing to `vscode-background`. Before submitting your contribution, please make sure to take a moment and read through the following guide:
 

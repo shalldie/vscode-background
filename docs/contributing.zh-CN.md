@@ -1,6 +1,6 @@
 # 贡献指南
 
-[English](./CONTRIBUTING.md) | [中文](./CONTRIBUTING.zh-CN.md)
+[English](./contributing.md) | [中文](./contributing.zh-CN.md)
 
 很高兴你有兴趣为 `vscode-background` 做贡献。在提交您的 pr 之前，请务必花点时间阅读以下指南：
 

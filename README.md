@@ -136,35 +136,15 @@ Click the 「Background」 button on the right-bottom of statusbar, all commands
 
 <img width="660" src="images/commands.png">
 
-## Warns
+## Common Issues
 
 > **This extension works by editting the vscode's js file.**
->
-> So, a warning appears while the first time to install or vscode update. U can click the [never show again] to avoid it.
 
-<img width="560" src="https://user-images.githubusercontent.com/9987486/40583926-b1fb5398-61ca-11e8-8271-4ac650d158d3.png">
-
-This is the reason:
-
-<img width="560" src="https://user-images.githubusercontent.com/9987486/40583775-91d4c8d6-61c7-11e8-9048-8c5538a32399.png">
+Please refer to the [Common Issues](docs/common-issues.md) if you met some problems.
 
 ## Uninstall
 
-    three ways
-
-    1. (recommended)
-
-    Click the 「Background」 button on the right-bottom of statusbar, choose `Uninstall the extension`, automatically complete uninstall.
-
-    2.
-
-    Set the config  {"background.enabled": false}  in settings.json, then uninstall the plugin.
-
-    3. An unfriendly way:
-
-    If you uninstall this plugin directly, don't worry.
-    Exit vscode completely, then open, then reload. Now it's clean :D
-    (I know it's strange... Because of the limit of vscode)
+Please refer to [Common Issues#how-to-uninstall](docs/common-issues.md#how-to-uninstall).
 
 ## Contributors 🙏
 
@@ -180,17 +160,17 @@ This is the reason:
 [<img alt="rogeraabbccdd" src="https://avatars.githubusercontent.com/u/15815422?v=4" width="80">](https://github.com/rogeraabbccdd)
 [<img alt="rogeraabbccdd" src="https://avatars.githubusercontent.com/u/86603229?v=4" width="80">](https://github.com/SatoMasahiro2005)
 
-## CHANGELOG
+## Contributing Guide
 
-You can checkout all our changes in our [change log](https://github.com/shalldie/vscode-background/blob/master/CHANGELOG.md).
+Refer to [Contributing Guide](docs/contributing.md).
+
+## Change Log
+
+You can checkout all our changes in our [CHANGELOG](https://github.com/shalldie/vscode-background/blob/master/CHANGELOG.md).
 
 ## Migration from v1
 
 The configuration of v1 is outdated and currently maintains a certain level of compatibility. Please refer to [migration-from-v1.md](docs/migration-from-v1.md) for migration.
-
-## High-frequency problems navigation
-
-Click [here](https://github.com/shalldie/vscode-background/issues/352) to see the high-frequency problems navigation.
 
 ## LICENSE
 

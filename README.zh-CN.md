@@ -134,35 +134,15 @@ example:
 
 <img width="660" src="images/commands.png">
 
-## 注意
+## 常见问题
 
 > **本插件是通过修改 vscode 的 js 文件的方式运行**
->
-> 所以会在初次安装，或者 vscode 升级的时候，出现以下提示，请选择 【不再提示】:
 
-<img width="560" src="https://user-images.githubusercontent.com/9987486/40583926-b1fb5398-61ca-11e8-8271-4ac650d158d3.png">
-
-原因：
-
-<img width="560" src="https://user-images.githubusercontent.com/9987486/40583775-91d4c8d6-61c7-11e8-9048-8c5538a32399.png">
+如果遇到问题请查看 [常见问题](docs/common-issues.zh-CN.md)
 
 ## 卸载
 
-    三种方式
-
-    方式1. (推荐)
-
-    点击状态栏右下角「Background」按钮，选择「卸载插件」，完成自动化卸载。
-
-    方式2.
-
-    在 settings.json 中设置 {"background.enabled": false} ，然后再删除插件。
-
-    方式3.（不推荐）
-
-    如果直接删除了vscode，别担心。
-    接着完全退出vscode，打开然后再次重启一遍，图片就没了，，，
-    （我也知道挺奇怪，总之是因为vscode的限制 =。=）
+请查看 [常见问题#如何删除插件](docs/common-issues.zh-CN.md#如何删除插件)
 
 ## 感谢这些朋友的 pr 🙏
 
@@ -178,6 +158,10 @@ example:
 [<img alt="rogeraabbccdd" src="https://avatars.githubusercontent.com/u/15815422?v=4" width="80">](https://github.com/rogeraabbccdd)
 [<img alt="rogeraabbccdd" src="https://avatars.githubusercontent.com/u/86603229?v=4" width="80">](https://github.com/SatoMasahiro2005)
 
+## 贡献指南
+
+这里是 [贡献指南](docs/contributing.zh-CN.md)。
+
 ## 更新日志
 
 可以从 [这里](https://github.com/shalldie/vscode-background/blob/master/CHANGELOG.md) 查看所有的变更内容。
@@ -185,10 +169,6 @@ example:
 ## 从 v1 迁移
 
 v1 的配置已经过时，当前保持一定的兼容性，请参考 [migration-from-v1.md](docs/migration-from-v1.md) 进行迁移。
-
-## 高频问题导航
-
-可以从 [这里](https://github.com/shalldie/vscode-background/issues/352) 查看高频率遇到的问题汇总。
 
 ## 协议
 
