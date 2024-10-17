@@ -15,7 +15,7 @@
 
 ### Bring background images to your [Visual Studio Code](https://code.visualstudio.com)
 
-`code area`、`fullscreen`、`carousel`、`custom images/styles`...
+`fullscreen`、`editor`、`sidebar`、`panel`、`carousel`、`custom images/styles`...
 
 [GitHub](https://github.com/shalldie/vscode-background) | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 

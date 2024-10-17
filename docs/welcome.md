@@ -1,35 +1,39 @@
 # vscode-background
 
-欢迎使用 `background@${VERSION}`，新版本拥有更多的功能，会给你带来更好的编码体验！
+Welcome to use `background@${VERSION}`, the new version has more features and will bring you a better coding experience!
 
-## 更多的可配置区域
+## More configurable sections
 
-每块区域都可以自定义 `图片`、`轮播`、`随机展示`、`样式` 等。
+Each section can be customized with features such as `custom images/styles`、`carousel`、`random display`...
 
 <img src="../images/containers.png" width="800" />
 
-## 更清晰简洁的配置
+## Clear and concise configuration
 
-每块区域对应独立配置，查看 [README.md](https://github.com/shalldie/vscode-background) 了解更多。
+Each section has independent configuration, see [README.md](https://github.com/shalldie/vscode-background) to learn more.
 
 ```json
 {
-  "background.sidebar": {...},   // 侧边栏
-  "background.editor": {...},    // 编辑器
-  "background.panel": {...},     // 面板
-  "background.fullscreen": {...} // 全屏
+  "background.sidebar": {...},   // sidebar
+  "background.editor": {...},    // editor
+  "background.panel": {...},     // panel
+  "background.fullscreen": {...} // fullscreen
 }
 ```
 
-## 快捷命令
+## Quick Command
 
-点击状态栏右下角「Background」按钮，可以快速弹出 background 所有命令：
+Click the 「Background」 button on the right-bottom of statusbar, all commands of `background` will appear:
 
 <img width="660" src="../images/commands.png">
 
-## 从 v1 迁移
+## No more warnings
 
-> v1 的配置已经过时，需要进行迁移。当前保持一定的兼容性。
+No more warnings about `Your Code installation appears to be corrupt`.
+
+## Migration from v1
+
+> The configuration of v1 is outdated and needs to be migrated. Currently maintaining a certain level of compatibility.
 
 v1:
 
@@ -43,7 +47,7 @@ v1:
 }
 ```
 
-v2，迁移到 `background.editor`:
+v2, migrated to `background.editor`:
 
 ```json
 {
