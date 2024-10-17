@@ -1,6 +1,7 @@
 import uglifyjs from 'uglify-js';
 
 import { utils } from '../../utils';
+import { ChecksumsPatchGenerator } from './PatchGenerator.checksums';
 import {
     EditorPatchGenerator,
     EditorPatchGeneratorConfig,
@@ -21,6 +22,7 @@ export type TPatchGeneratorConfig = {
 export class PatchGenerator {
     public static create(options: TPatchGeneratorConfig) {
         const script = [
+            new ChecksumsPatchGenerator().create(), // fix checksums
             new EditorPatchGenerator(EditorPatchGenerator.mergeLegacyConfig(options, options.editor)).create(), // editor,
             new SidebarPatchGenerator(options.sidebar).create(), // sidebar
             new PanelPatchGenerator(options.panel).create(), // panel

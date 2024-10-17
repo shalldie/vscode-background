@@ -129,7 +129,7 @@ var curIndex = -1;
 function getNextImages() {
     if (random) {
         return images.slice().sort(function () {
-            return Math.random() > 0.5;
+            return Math.random() > 0.5 ? 1 : -1;
         });
     }
 
