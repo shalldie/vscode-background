@@ -30,8 +30,7 @@ const cssPath = (() => {
 })();
 
 // /Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/workbench/workbench.desktop.main.js
-export const workbenchKey = 'vs/workbench/workbench.desktop.main.js';
-const jsPath = path.join(base, workbenchKey);
+const jsPath = path.join(base, 'vs/workbench/workbench.desktop.main.js');
 
 export const vscodePath = {
     /**
@@ -44,7 +43,7 @@ export const vscodePath = {
      */
     cssPath,
     /**
-     * js 入口文件
+     * js 文件地址
      */
     jsPath
 };

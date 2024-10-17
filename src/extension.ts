@@ -9,7 +9,7 @@ import { vsHelp } from './utils/vsHelp';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
-export const statusbar = (() => {
+function getStatusbar() {
     const item = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right);
 
     item.command = 'extension.background.showAllCommands';
@@ -19,12 +19,16 @@ export const statusbar = (() => {
     item.show();
 
     return item;
-})();
+}
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
     const background = new Background();
-    await background.setup();
+
     context.subscriptions.push(background);
+    const ok = await background.setup();
+    if (ok === false) {
+        return;
+    }
 
     context.subscriptions.push(
         vscode.commands.registerCommand('extension.background.info', function () {
@@ -63,6 +67,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         })
     );
 
+    const statusbar = getStatusbar();
     context.subscriptions.push(
         vscode.commands.registerCommand(statusbar.command as string, async () => {
             vscode.commands.executeCommand('workbench.action.quickOpen', '> background: ');

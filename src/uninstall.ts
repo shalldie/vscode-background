@@ -7,16 +7,12 @@
  */
 
 /**
- * 使用的相关兼容性文件需要引用到具体文件，避免二次导出
- * 涉及文件：
- * `utils/vsc` // uninstall 中用到这个文件的
- * `background/CssFile`
- * `utils` 目录
+ * 使用到的依赖需要引用到具体文件，避免二次导出
  */
 
 import fs from 'fs';
 
-import { JsFile } from './background/JsFile';
+import { JsPatchFile } from './background/PatchFile/PatchFile.javascript';
 import { ENCODING, TOUCH_JSFILE_PATH } from './constants';
 
 async function uninstall() {
@@ -25,13 +21,13 @@ async function uninstall() {
         if (!jsFilePath) {
             return;
         }
-        const file = new JsFile(jsFilePath);
-        const hasInstalled = await file.hasInstalled();
-        if (!hasInstalled) {
+        const file = new JsPatchFile(jsFilePath);
+        const hasPatched = await file.hasPatched();
+        if (!hasPatched) {
             return;
         }
 
-        await file.uninstall();
+        await file.restore();
         console.log('vscode background has been auto uninstalled.');
     } catch (ex: any) {
         console.error('vscode background uninstalled fail: ' + ex.message);
