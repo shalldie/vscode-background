@@ -6,6 +6,8 @@ import { AbsPatchGenerator, css } from './PatchGenerator.base';
 // integrity.prompt
 
 const Translations = [
+    // en, default
+    'installation appears to be corrupt. Please reinstall.',
     // cs
     'je pravděpodobně poškozená. Proveďte prosím přeinstalaci.',
     // de
@@ -33,14 +35,12 @@ const Translations = [
     // zh-hans
     '安装似乎损坏。请重新安装。',
     // zh-hant
-    '安裝似乎已損毀。請重新安裝。',
-    // en, default
-    'Your Code installation appears to be corrupt'
+    '安裝似乎已損毀。請重新安裝。'
 ];
 
 export class ChecksumsPatchGenerator extends AbsPatchGenerator<any> {
     constructor() {
-        super({ images: ['1'] });
+        super({ images: [''] });
     }
     /**
      * fix checksums with css. LOL
@@ -56,6 +56,6 @@ export class ChecksumsPatchGenerator extends AbsPatchGenerator<any> {
                     display: none;
                 }
             `
-        ).join('');
+        ).join(' ');
     }
 }
