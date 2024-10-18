@@ -26,8 +26,8 @@
 3. 不推荐：
 
    - 如果直接删除了vscode，别担心。
-   - `完全` 退出 vscode，打开 vscode。
-   - 再次重启 vscode，图片会被清理掉。
+   - `完全` 退出 vscode，`打开` vscode。
+   - `再次` 重启 vscode，图片会被清理掉。
    - ，，，这是一种奇怪的 vscode 的限制。
 
 ## (Mac) read-only file system，扩展无法正常运行

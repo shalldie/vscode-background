@@ -26,8 +26,8 @@ three ways:
 3. Not recommended:
 
    - If you uninstall this extension directly, don't worry.
-   - Exit vscode `completely`, then open vscode.
-   - Reload again, now it's clean.
+   - Exit vscode `completely`, then `open` vscode.
+   - `Reload` again, now it's clean.
    - ... It's a strange limit of vscode.
 
 ## (Mac) read-only file system
