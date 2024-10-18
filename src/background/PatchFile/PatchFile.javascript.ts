@@ -13,10 +13,6 @@ import { AbsPatchFile } from './PatchFile.base';
  */
 export class JsPatchFile extends AbsPatchFile {
     public async applyPatches(patchContent: string) {
-        // if (!patchContent.length) {
-        //     return;
-        // }
-
         let content = await this.getBackup();
         content += [
             //
