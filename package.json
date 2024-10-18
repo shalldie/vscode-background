@@ -2,7 +2,7 @@
   "name": "background",
   "displayName": "background",
   "description": "Bring background images to your vscode",
-  "version": "2.0.0-rc.1",
+  "version": "2.0.0-rc.2",
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "vscode:uninstall": "node ./out/uninstall",
@@ -69,7 +69,6 @@
         "background.useFront": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "%extension.background.useFront.description%",
           "markdownDeprecationMessage": "%extension.background.common.deprecation%"
         },
         "background.style": {
@@ -79,7 +78,6 @@
             "background-size": "auto",
             "opacity": 1
           },
-          "markdownDescription": "%extension.background.style.description%",
           "markdownDeprecationMessage": "%extension.background.common.deprecation%"
         },
         "background.styles": {
@@ -89,7 +87,6 @@
             {},
             {}
           ],
-          "markdownDescription": "%extension.background.styles.description%",
           "markdownDeprecationMessage": "%extension.background.common.deprecation%"
         },
         "background.customImages": {
@@ -100,13 +97,11 @@
             "pattern": "^(https://|file://)",
             "patternErrorMessage": "%extension.background.urlProtocol.error%"
           },
-          "markdownDescription": "%extension.background.customImages.description%",
           "markdownDeprecationMessage": "%extension.background.common.deprecation%"
         },
         "background.interval": {
           "type": "number",
           "default": 0,
-          "markdownDescription": "%extension.background.interval.description%",
           "markdownDeprecationMessage": "%extension.background.common.deprecation%"
         },
         "background.editor": {

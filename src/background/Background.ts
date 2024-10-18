@@ -4,8 +4,8 @@ import path from 'path';
 
 import vscode, { Disposable, Uri } from 'vscode';
 
-import { ENCODING, EXTENSION_NAME, TOUCH_JSFILE_PATH, VERSION } from '../constants';
 import { utils } from '../utils';
+import { ENCODING, EXTENSION_NAME, TOUCH_JSFILE_PATH, VERSION } from '../utils/constants';
 import { vscodePath } from '../utils/vscodePath';
 import { vsHelp } from '../utils/vsHelp';
 import { CssFile } from './CssFile';

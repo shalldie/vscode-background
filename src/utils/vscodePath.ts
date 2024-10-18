@@ -1,8 +1,6 @@
-import fs from 'fs';
 import path from 'path';
 
 import { vscode } from './vsc';
-import { vsHelp } from './vsHelp';
 
 // 基础目录
 const base = (() => {

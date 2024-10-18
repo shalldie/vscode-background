@@ -1,4 +1,4 @@
-import { BACKGROUND_VER, VERSION } from '../../constants';
+import { BACKGROUND_VER, VERSION } from '../../utils/constants';
 import { AbsPatchFile } from './PatchFile.base';
 
 // vscode-background-start background.ver.2.0.0

@@ -34,6 +34,8 @@
 ## 从 v1 迁移
 
 > v1 的配置已经过时，需要进行迁移。当前保持一定的兼容性。
+>
+> 可以从这里 [下载v1版本中的默认图片](<(https://github.com/shalldie/vscode-background/issues/106#issuecomment-392311967)>)。
 
 v1:
 

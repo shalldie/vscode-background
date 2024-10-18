@@ -3,7 +3,7 @@
 import vscode from 'vscode';
 
 import { Background } from './background';
-import { EXTENSION_ID } from './constants';
+import { EXTENSION_ID } from './utils/constants';
 import { vsHelp } from './utils/vsHelp';
 
 // this method is called when your extension is activated

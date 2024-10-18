@@ -34,6 +34,8 @@ No more warnings about `Your Code installation appears to be corrupt`.
 ## Migration from v1
 
 > The configuration of v1 is outdated and needs to be migrated. Currently maintaining a certain level of compatibility.
+>
+> You can download the default images of v1 version [from here](https://github.com/shalldie/vscode-background/issues/106#issuecomment-392311967).
 
 v1:
 

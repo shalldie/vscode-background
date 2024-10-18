@@ -13,7 +13,7 @@
 import fs from 'fs';
 
 import { JsPatchFile } from './background/PatchFile/PatchFile.javascript';
-import { ENCODING, TOUCH_JSFILE_PATH } from './constants';
+import { ENCODING, TOUCH_JSFILE_PATH } from './utils/constants';
 
 async function uninstall() {
     try {

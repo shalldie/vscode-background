@@ -45,3 +45,22 @@
 
 Snap 使用 [SquashFS](https://en.wikipedia.org/wiki/SquashFS) 存储包，这是一个压缩的只读文件系统。
 可以使用 deb 或者 rpm 来安装 vscode。
+
+## 想继续使用v1版本的默认图片？
+
+可以从这里 [下载v1版本中的默认图片](<(https://github.com/shalldie/vscode-background/issues/106#issuecomment-392311967)>)，或者使用下方配置：
+
+```json
+{
+  "background.editor": {
+    "style": {
+      "opacity": 0.6
+    },
+    "images": [
+      "https://user-images.githubusercontent.com/9987486/40583669-d6189844-61c5-11e8-89e3-c52ad153da09.png",
+      "https://user-images.githubusercontent.com/9987486/40583670-d6478c9e-61c5-11e8-9551-6b55eacc7b8d.png",
+      "https://user-images.githubusercontent.com/9987486/40583671-d676c6e4-61c5-11e8-94cb-34ec4a12fa01.png"
+    ]
+  }
+}
+```

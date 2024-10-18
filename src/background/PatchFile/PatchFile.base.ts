@@ -3,8 +3,8 @@ import fs, { constants as fsConstants } from 'fs';
 import { tmpdir } from 'os';
 import path from 'path';
 
-import { BACKGROUND_VER, ENCODING, VERSION } from '../../constants';
 import { utils } from '../../utils';
+import { BACKGROUND_VER, ENCODING, VERSION } from '../../utils/constants';
 import { vscode } from '../../utils/vsc';
 
 export enum EFilePatchType {
