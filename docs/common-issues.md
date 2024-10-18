@@ -8,7 +8,7 @@ Local images can be dragged into the browser to quickly get the file protocol ad
 
 ## Warn `Your Code installation appears to be corrupt`
 
-It may appear after directly deleting the extension, refer to `How to uninstall` section.
+Starting from v2.0, this issue should not occur again. Regardless, you can refer to `How to uninstall` section.
 
 ## Disable/Uninstall doesn't remove background images
 

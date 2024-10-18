@@ -23,11 +23,5 @@ export const EXTENSION_ID = `${PUBLISHER}.${EXTENSION_NAME}`;
 /** 文件锁路径 */
 export const LOCK_PATH = path.join(__dirname, '../../', `${EXTENSION_ID}.lock`);
 
-/**
- * 版本临时文件，存放css路径
- * @deprecated
- */
-export const TOUCH_FILE_PATH = path.join(__dirname, `../../vscb.${VERSION}.touch`);
-
 /** 版本临时文件，存放js路径、标识初次安装 */
 export const TOUCH_JSFILE_PATH = path.join(__dirname, `../../vscb.${VERSION}.js.touch`);
