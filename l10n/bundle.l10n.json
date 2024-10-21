@@ -1,0 +1,12 @@
+{
+  "Show all background commands.": "Show all background commands.",
+  "Background extension has been uninstalled. See you next time!": "Background extension has been uninstalled. See you next time!",
+  "Restart vscode": "Restart vscode",
+  "Welcome to use background@{version}!": "Welcome to use background@{version}!",
+  "More": "More",
+  "Background has been disabled! Please restart.": "Background has been disabled! Please restart.",
+  "Configuration has been changed, click to update.": "Configuration has been changed, click to update.",
+  "Update and restart": "Update and restart",
+  "Backup files failed to save.": "Backup files failed to save.",
+  "Background has been changed! Please restart.": "Background has been changed! Please restart."
+}

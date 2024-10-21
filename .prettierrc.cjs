@@ -9,7 +9,7 @@ module.exports = {
     arrowParens: 'avoid',
     overrides: [
         {
-            files: ['*.md', 'package(-lock)?.json', '*.ya?ml'],
+            files: ['*.md', '*.json', '*.ya?ml'],
             options: {
                 singleQuote: false,
                 tabWidth: 2

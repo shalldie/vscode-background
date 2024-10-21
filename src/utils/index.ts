@@ -2,8 +2,14 @@ import sudo from '@vscode/sudo-prompt';
 import lockfile from 'lockfile';
 
 import { LOCK_PATH } from './constants';
+import { vscode } from './vsc';
 
 export namespace utils {
+    /**
+     * if zh-CN
+     */
+    export const isZHCN = /^zh/.test(vscode?.env.language || '');
+
     /**
      * 等待若干时间
      *

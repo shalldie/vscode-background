@@ -1,6 +1,6 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-import vscode from 'vscode';
+import vscode, { l10n } from 'vscode';
 
 import { Background } from './background';
 import { EXTENSION_ID } from './utils/constants';
@@ -15,7 +15,7 @@ function getStatusbar() {
     item.command = 'extension.background.showAllCommands';
     item.name = 'Background';
     item.text = '$(file-media) Background';
-    item.tooltip = new vscode.MarkdownString(['#### Background', 'Show all background commands.'].join('\n'));
+    item.tooltip = new vscode.MarkdownString(['#### Background', l10n.t('Show all background commands.')].join('\n'));
     item.show();
 
     return item;
@@ -62,7 +62,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
                 // 当且仅当成功删除样式时才会卸载扩展
                 // 否则可能导致没有成功删掉样式时扩展就被卸载掉
                 await vscode.commands.executeCommand('workbench.extensions.uninstallExtension', EXTENSION_ID);
-                await vsHelp.showInfoRestart('Background extension has been uninstalled. See you next time!');
+                await vsHelp.showInfoRestart(l10n.t('Background extension has been uninstalled. See you next time!'));
             }
         })
     );

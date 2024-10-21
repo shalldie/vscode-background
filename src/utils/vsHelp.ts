@@ -1,16 +1,6 @@
-import vscode from 'vscode';
+import vscode, { l10n } from 'vscode';
 
 export const vsHelp = {
-    /**
-     * 展示信息提示框
-     *
-     * @param {string} content 提示内容
-     * @returns {Thenable<string>}
-     */
-    showInfo(content: string) {
-        return vscode.window.showInformationMessage(content);
-    },
-
     /**
      * 提示信息并重启
      *
@@ -18,7 +8,7 @@ export const vsHelp = {
      * @returns {Thenable<void>}
      */
     showInfoRestart(content: string): Thenable<void> {
-        return vscode.window.showInformationMessage(content, { title: 'Restart vscode' }).then(function (item) {
+        return vscode.window.showInformationMessage(content, { title: l10n.t('Restart vscode') }).then(function (item) {
             if (!item) return;
             vscode.commands.executeCommand('workbench.action.reloadWindow');
         });

@@ -2,7 +2,7 @@ import fs from 'fs';
 import { tmpdir } from 'os';
 import path from 'path';
 
-import vscode, { Disposable, Uri } from 'vscode';
+import vscode, { Disposable, l10n, Uri } from 'vscode';
 
 import { utils } from '../utils';
 import { ENCODING, EXTENSION_NAME, TOUCH_JSFILE_PATH, VERSION } from '../utils/constants';
@@ -71,7 +71,22 @@ export class Background implements Disposable {
 
         if (firstLoad) {
             // 提示
-            this.showWelcome();
+
+            vscode.window
+                .showInformationMessage(l10n.t('Welcome to use background@{version}!', { version: VERSION }), {
+                    title: l10n.t('More')
+                })
+                .then(confirm => {
+                    if (!confirm) {
+                        return;
+                    }
+                    this.showWelcome();
+                });
+
+            // 新版本强制提示下吧
+            if (VERSION === '2.0.0') {
+                this.showWelcome();
+            }
             // 标识插件已启动过
             await fs.promises.writeFile(TOUCH_JSFILE_PATH, vscodePath.jsPath, ENCODING);
             return true;
@@ -138,15 +153,18 @@ export class Background implements Disposable {
         if (!enabled) {
             if (hasInstalled) {
                 await this.uninstall();
-                vsHelp.showInfoRestart('Background has been disabled! Please restart.');
+                vsHelp.showInfoRestart(l10n.t('Background has been disabled! Please restart.'));
             }
             return;
         }
 
         // 更新，需要二次确认
-        const confirm = await vscode.window.showInformationMessage('Configuration has been changed, click to update.', {
-            title: 'Update and restart'
-        });
+        const confirm = await vscode.window.showInformationMessage(
+            l10n.t('Configuration has been changed, click to update.'),
+            {
+                title: l10n.t('Update and restart')
+            }
+        );
 
         if (!confirm) {
             return;
@@ -181,7 +199,7 @@ export class Background implements Disposable {
         await this.jsFile.setup(); // backup
 
         if (!this.jsFile.hasBackup) {
-            vscode.window.showErrorMessage('Backup files failed to save.');
+            vscode.window.showErrorMessage(l10n.t('Backup files failed to save.'));
             return false;
         }
 
@@ -194,7 +212,7 @@ export class Background implements Disposable {
             // 此时一般为 vscode更新、background更新
             if ([EFilePatchType.Legacy, EFilePatchType.None].includes(patchType)) {
                 await this.applyPatch();
-                vsHelp.showInfoRestart('Background has been changed! Please restart.');
+                vsHelp.showInfoRestart(l10n.t('Background has been changed! Please restart.'));
             }
         }
 
