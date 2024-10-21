@@ -9,7 +9,7 @@
 <!-- 封面区域 -->
 <div align="center">
 
-![logo](https://user-images.githubusercontent.com/9987486/40583704-6accf3a4-61c6-11e8-8c00-a636b9c3ec65.png)
+![logo](./images/logo.png)
 
 <h1><b>vscode-background</b></h1>
 
@@ -28,11 +28,11 @@
 
 Multiple sections, `editor`、`sidebar`、`panel`
 
-<img width="760" src="images/section.png">
+<img width="760" src="./images/section.png">
 
 `fullscreen`
 
-<img width="760" src="images/fullscreen.png">
+<img width="760" src="./images/fullscreen.png">
 
 </div>
 
@@ -55,7 +55,7 @@ User defined requirements can be met by changing the configuration(`settings.jso
 
 ## Config
 
-<img width="760" src="images/containers.png">
+<img width="760" src="./images/containers.png">
 
 ### Global Config
 
@@ -102,14 +102,14 @@ example:
 
 Edit `background.fullscreen`、`background.sidebar`、`background.panel` to config these sections.
 
-| 名称       |    类型    |    默认值     | 描述                                                                                             |
+| Name       |    Type    |    Default    | Description                                                                                      |
 | :--------- | :--------: | :-----------: | :----------------------------------------------------------------------------------------------- |
 | `images`   | `string[]` |     `[]`      | Your custom images, support `https` and `file` protocol.                                         |
 | `opacity`  |  `number`  | `0.91`、`0.2` | Opacity of the image, `0.85 ~ 0.95` recommended if fullscreen，others `0.1 ~ 0.3`.               |
 | `size`     |  `string`  |    `cover`    | Alias to `background-size`, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`. |
 | `position` |  `string`  |   `center`    | Alias to `background-position`, default `center`.                                                |
-| `interval` |  `Number`  |      `0`      | Seconds of interval for carousel, default `0` to disabled.                                       |
-| `random`   | `Boolean`  |    `false`    | Whether to randomly display images.                                                              |
+| `interval` |  `number`  |      `0`      | Seconds of interval for carousel, default `0` to disabled.                                       |
+| `random`   | `boolean`  |    `false`    | Whether to randomly display images.                                                              |
 
 example：
 
@@ -134,7 +134,7 @@ example：
 
 Click the 「Background」 button on the right-bottom of statusbar, all commands of `background` will appear:
 
-<img width="660" src="images/commands.png">
+<img width="660" src="./images/commands.png">
 
 ## Common Issues
 

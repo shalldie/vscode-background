@@ -9,7 +9,7 @@
 <!-- 封面区域 -->
 <div align="center">
 
-![logo](images/logo.png)
+![logo](./images/logo.png)
 
 <h1><b>vscode-background</b></h1>
 
@@ -28,11 +28,11 @@
 
 多区域，`editor`、`sidebar`、`panel`
 
-<img width="760" src="images/section.png">
+<img width="760" src="./images/section.png">
 
 `全屏`
 
-<img width="760" src="images/fullscreen.png">
+<img width="760" src="./images/fullscreen.png">
 
 </div>
 
@@ -53,7 +53,7 @@
 
 ## 配置项
 
-<img width="760" src="images/containers.png">
+<img width="760" src="./images/containers.png">
 
 ### 全局配置
 
@@ -106,8 +106,8 @@ example:
 | `opacity`  |  `number`  | `0.91`、`0.2` | 透明度，全屏建议 `0.85 ~ 0.95`，其它建议 `0.1 ~ 0.3`。                                 |
 | `size`     |  `string`  |    `cover`    | 等同 css `background-size`, 建议使用 `cover` 来自适应，或者 `contain`、`200px 200px`。 |
 | `position` |  `string`  |   `center`    | 等同 css `background-position`， 默认值 `center`。                                     |
-| `interval` |  `Number`  |      `0`      | 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。                                 |
-| `random`   | `Boolean`  |    `false`    | 是否随机展示图片。                                                                     |
+| `interval` |  `number`  |      `0`      | 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。                                 |
+| `random`   | `boolean`  |    `false`    | 是否随机展示图片。                                                                     |
 
 example:
 
@@ -132,7 +132,7 @@ example:
 
 点击状态栏右下角「Background」按钮，可以快速弹出 background 所有命令：
 
-<img width="660" src="images/commands.png">
+<img width="660" src="./images/commands.png">
 
 ## 常见问题
 

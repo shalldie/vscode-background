@@ -29,7 +29,7 @@
 
 3. 不推荐：
 
-   - 如果直接删除了vscode，别担心。
+   - 如果直接删除了插件，别担心。
    - `完全` 退出 vscode，`打开` vscode。
    - `再次` 重启 vscode，图片会被清理掉。
    - ，，，这是一种奇怪的 vscode 的限制。
@@ -48,7 +48,7 @@ Snap 使用 [SquashFS](https://en.wikipedia.org/wiki/SquashFS) 存储包，这�
 
 ## 想继续使用v1版本的默认图片？
 
-可以从这里 [下载v1版本中的默认图片](<(https://github.com/shalldie/vscode-background/issues/106#issuecomment-392311967)>)，或者使用下方配置：
+可以从这里 [下载v1版本中的默认图片](https://github.com/shalldie/vscode-background/issues/106#issuecomment-392311967)，或者使用下方配置：
 
 ```json
 {

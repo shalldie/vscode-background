@@ -4,7 +4,7 @@
 
 ## 更多的可配置区域
 
-每块区域都可以自定义 `图片/样式`、`轮播`、`随机展示`、`` 等。
+每块区域都可以自定义 `图片/样式`、`轮播`、`随机展示` 等。
 
 <img src="../images/containers.png" width="800" />
 
@@ -35,7 +35,7 @@
 
 > v1 的配置已经过时，需要进行迁移。当前保持一定的兼容性。
 >
-> 可以从这里 [下载v1版本中的默认图片](<(https://github.com/shalldie/vscode-background/issues/106#issuecomment-392311967)>)。
+> 可以从这里 [下载v1版本中的默认图片](https://github.com/shalldie/vscode-background/issues/106#issuecomment-392311967)。
 
 v1:
 
