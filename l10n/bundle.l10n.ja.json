@@ -1,7 +1,7 @@
 {
   "Show all background commands.": "backgroundのすべてのコマンドを表示します。",
   "Background extension has been uninstalled. See you next time!": "Backgroundはアンインストールされています。また今度！",
-  "Restart vscode": "重启 vscode",
+  "Restart vscode": "vscodeの再起動",
   "Welcome to use background@{version}!": "ようこそbackground@{version}!",
   "More": "詳細",
   "Background has been disabled! Please restart.": "Backgroundは無効になっています！再起動してください。",
