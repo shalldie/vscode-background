@@ -226,7 +226,7 @@ export class Background implements Disposable {
 
                 // 0~500ms 的延时，对于可能的多实例，错开对于文件的操作
                 // 虽然有锁了，但这样更安心 =。=
-                await utils.sleep(~~(Math.random() * 500));
+                await utils.sleep(200 + ~~(Math.random() * 800));
 
                 this.onConfigChange();
             })

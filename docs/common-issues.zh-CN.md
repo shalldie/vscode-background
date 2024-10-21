@@ -46,6 +46,15 @@
 Snap 使用 [SquashFS](https://en.wikipedia.org/wiki/SquashFS) 存储包，这是一个压缩的只读文件系统。
 可以使用 deb 或者 rpm 来安装 vscode。
 
+## vscode 崩溃 [#306](https://github.com/shalldie/vscode-background/issues/306)
+
+无论何时，如果发生vscode崩溃的极端情况，可以按照下方方式手工修复：
+
+1. 打开文件目录：
+   - windows: `%LocalAppData%\Programs\Microsoft VS Code\resources\app\out\vs\workbench`
+   - mac: `/Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/workbench`
+2. 使用备份文件 `workbench.desktop.main.js.background-backup` 替换掉 `workbench.desktop.main.js`。
+
 ## 想继续使用v1版本的默认图片？
 
 可以从这里 [下载v1版本中的默认图片](https://github.com/shalldie/vscode-background/issues/106#issuecomment-392311967)，或者使用下方配置：

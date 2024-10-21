@@ -46,6 +46,15 @@ three ways:
 Snap use [SquashFS](https://en.wikipedia.org/wiki/SquashFS) to storage packages, it's a compressed readonly file system.
 Try to install vscode using deb or rpm.
 
+## VSCode crashes [#306](https://github.com/shalldie/vscode-background/issues/306)
+
+Whenever there is an extreme situation where vscode crashes, you can manually fix it as follows:
+
+1. Open the directory:
+   - windows: `%LocalAppData%\Programs\Microsoft VS Code\resources\app\out\vs\workbench`
+   - mac: `/Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/workbench`
+2. Replace `workbench.desktop.main.js` with the backup file `workbench.desktop.main.js.background-backup`.
+
 ## Prefer v1 default images?
 
 You can download the default images of v1 version [from here](https://github.com/shalldie/vscode-background/issues/106#issuecomment-392311967), or use the config below:
