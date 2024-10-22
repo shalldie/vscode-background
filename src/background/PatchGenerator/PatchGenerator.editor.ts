@@ -39,7 +39,8 @@ export class EditorPatchGenerator extends AbsPatchGenerator<EditorPatchGenerator
         config: EditorPatchGeneratorConfig
     ): EditorPatchGeneratorConfig {
         // 没有v1配置，或者配置了v2配置。直接使用v2
-        if (!legacy.customImages.length || config.images.length) {
+        // 插件原地更新（vsix）的时候，config 可能找不到。
+        if (!legacy?.customImages.length || config?.images.length) {
             return config;
         }
 

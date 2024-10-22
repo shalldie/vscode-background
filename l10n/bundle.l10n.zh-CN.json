@@ -1,12 +1,12 @@
 {
-  "Show all background commands.": "查看 background 所有命令。",
-  "Background extension has been uninstalled. See you next time!": "Background 已经卸载，下次见！",
-  "Restart vscode": "重启 vscode",
-  "Welcome to use background@{version}!": "欢迎使用 background@{version}!",
-  "More": "更多",
-  "Background has been disabled! Please restart.": "Background 已经禁用！ 请重启。",
-  "Configuration has been changed, click to update.": "配置已改变，点击更新。",
-  "Update and restart": "更新并重启",
-  "Backup files failed to save.": "Backup files failed to save.",
-  "Background has been changed! Please restart.": "Background 已经改变！请重启。"
+    "Show `background` commands": "查看 `background` 命令",
+    "Background extension has been uninstalled. See you next time!": "Background 已经卸载，下次见！",
+    "Restart vscode": "重启 vscode",
+    "Welcome to use background@{version}!": "欢迎使用 background@{version}!",
+    "More": "更多",
+    "Background has been disabled! Please restart.": "Background 已经禁用！ 请重启。",
+    "Configuration has been changed, click to update.": "配置已改变，点击更新。",
+    "Update and restart": "更新并重启",
+    "Backup files failed to save.": "Backup files failed to save.",
+    "Background has been changed! Please restart.": "Background 已经改变！请重启。"
 }

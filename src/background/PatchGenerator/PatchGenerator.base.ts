@@ -72,7 +72,7 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
     }
 
     public create() {
-        if (!this.config.images.length) {
+        if (!this.config?.images.length) {
             return '';
         }
 

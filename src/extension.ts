@@ -15,7 +15,7 @@ function getStatusbar() {
     item.command = 'extension.background.showAllCommands';
     item.name = 'Background';
     item.text = '$(file-media) Background';
-    item.tooltip = new vscode.MarkdownString(['#### Background', l10n.t('Show all background commands.')].join('\n'));
+    item.tooltip = new vscode.MarkdownString(l10n.t('Show `background` commands'));
     item.show();
 
     return item;
@@ -54,10 +54,6 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 
     context.subscriptions.push(
         vscode.commands.registerCommand('extension.background.uninstall', async () => {
-            if (!(await background.hasInstalled())) {
-                return;
-            }
-
             if (await background.uninstall()) {
                 // 当且仅当成功删除样式时才会卸载扩展
                 // 否则可能导致没有成功删掉样式时扩展就被卸载掉
