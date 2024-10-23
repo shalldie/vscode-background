@@ -1,4 +1,15 @@
-## v2.0
+## v2.0 (2024/10/23) (#462)
+
+<img width="380" src="./images/containers.png">
+
+This is a major version that has added more features, which will bring you a better coding experience!
+
+1. More configurable sections: `fullscreen`, `sidebar`, `editor`, `panel`.
+2. Clear and concise configuration.
+3. Added quick commands that can be invoked through the 「Background」 button in the bottom-right corner of the statusbar.
+4. No more warnings about `Your Code installation appears to be corrupt` !!!
+5. Added support for multiple languages (l10n).
+6. More content can be found in [README.md](./README.md)，[Migration from v1](./docs/migration-from-v1.md)。
 
 这是一个大版本，增加了更多的功能，会给你带来更好的编码体验！
 
