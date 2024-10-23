@@ -71,7 +71,6 @@ export class Background implements Disposable {
 
         if (firstLoad) {
             // 提示
-
             vscode.window
                 .showInformationMessage(l10n.t('Welcome to use background@{version}!', { version: VERSION }), {
                     title: l10n.t('More')
@@ -84,7 +83,7 @@ export class Background implements Disposable {
                 });
 
             // 新版本强制提示下吧
-            if (VERSION === '2.0.0') {
+            if (VERSION === '2.0.0' || true) {
                 this.showWelcome();
             }
             // 标识插件已启动过
