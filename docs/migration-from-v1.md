@@ -37,9 +37,6 @@ You can download the default images of v1 version [from here](https://github.com
 ```json
 {
   "background.editor": {
-    "style": {
-      "opacity": 0.6
-    },
     "images": [
       "https://user-images.githubusercontent.com/9987486/40583669-d6189844-61c5-11e8-89e3-c52ad153da09.png",
       "https://user-images.githubusercontent.com/9987486/40583670-d6478c9e-61c5-11e8-9551-6b55eacc7b8d.png",
