@@ -1,17 +1,30 @@
 {
-    "extension.background.command.info.title": "View plugin info",
-    "extension.background.command.install.title": "Installs and enables the background.",
-    "extension.background.command.uninstall.title": "Uninstall plugin",
+    "extension.background.command.info.title": "Welcome to background.",
+    "extension.background.command.install.title": "Install and enable the background.",
+    "extension.background.command.disable.title": "Disable the background.",
+    "extension.background.command.uninstall.title": "Uninstall the extension.",
 
-    "extension.background.enabled.description": "Plugin background enabled.",
-    "extension.background.useFront.description": "If use front image,which means image is placed on the top of your code.",
-    "extension.background.style.description": "Custom common style.",
-    "extension.background.styles.description": "Each style of backgrounds.",
-    "extension.background.customImages.description": "Your custom images.\n\nExample:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
-    "extension.background.interval.description": "Seconds of interval for carousel, default `0` to disabled",
+    "extension.background.enabled.description": "Whether to enable background extension.",
 
-    "extension.background.fullscreen.description": "Feature - fullscreen, may overwrite other config",
+    "extension.background.editor.description": "Editor section config.",
+    "extension.background.editor.useFront": "Place the image above or below the code.",
+    "extension.background.editor.style": "Custom style for images.",
+    "extension.background.editor.styles": "Each style of editor section image.",
+    "extension.background.editor.images": "Your custom images.\n\nExample:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
+    "extension.background.editor.interval": "Seconds of interval for carousel, default `0` to disabled.",
+    "extension.background.editor.random": "Whether to randomly display images.",
 
-    "extension.background.common.deprecation": "It will be removed in the next version, please delete this configuration item",
-    "extension.background.urlProtocol.error": "The image url must use https or file protocol"
+    "extension.background.fullscreen.description": "Fullscreen section config.",
+    "extension.background.fullscreen.images": "Your custom images.\n\nExample:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
+    "extension.background.fullscreen.opacity": "Opacity of the image, `0.85 ~ 0.95` recommended if fullscreen，others `0.1 ~ 0.3`.",
+    "extension.background.fullscreen.size": "Alias to `background-size`, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`.",
+    "extension.background.fullscreen.position": "Alias to `background-position`, default `center`.",
+    "extension.background.fullscreen.interval": "Seconds of interval for carousel, default `0` to disabled.",
+    "extension.background.fullscreen.random": "Whether to randomly display images.",
+
+    "extension.background.sidebar.description": "sidebar section config.",
+    "extension.background.panel.description": "Panel section config.",
+
+    "extension.background.common.deprecation": "*Deprecated*, it has been moved to `background.editor`.",
+    "extension.background.urlProtocol.error": "The image url must use https or file protocol."
 }

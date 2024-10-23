@@ -9,13 +9,13 @@
 <!-- 封面区域 -->
 <div align="center">
 
-![logo](https://user-images.githubusercontent.com/9987486/40583704-6accf3a4-61c6-11e8-8c00-a636b9c3ec65.png)
+![logo](./images/logo.png)
 
 <h1><b>vscode-background</b></h1>
 
 ### Bring background images to your [Visual Studio Code](https://code.visualstudio.com)
 
-`code area`、`fullscreen`、`carousel`、`custom images/styles`...
+`fullscreen`、`editor`、`sidebar`、`panel`、`carousel`、`custom images/styles`...
 
 [GitHub](https://github.com/shalldie/vscode-background) | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
@@ -26,27 +26,26 @@
 [![Build Status](https://img.shields.io/github/actions/workflow/status/shalldie/vscode-background/ci.yml?branch=master&label=build&style=flat-square)](https://github.com/shalldie/vscode-background/actions)
 [![License](https://img.shields.io/github/license/shalldie/vscode-background?style=flat-square)](https://github.com/shalldie/vscode-background)
 
+Multiple sections, `editor`、`sidebar`、`panel`
+
+<img width="760" src="./images/section.png">
+
+`fullscreen`
+
+<img width="760" src="./images/fullscreen.png">
+
+</div>
+
 </div>
 
 <!-- 封面区域 end -->
 
----
-
-Code Area
-
-<img width="880" src="https://user-images.githubusercontent.com/9987486/40583705-7105dda8-61c6-11e8-935a-3c5d475a1eb1.gif">
-
-Fullscreen
-
-<img width="880" src="https://user-images.githubusercontent.com/9987486/198958380-6eaf96c7-3aa2-4fce-b27e-6f33c8d4e2c1.png">
-
 ## Installation
 
-To install the extension just execute the following command in the Command Palette of Visual Studio Code
+There are 2 ways to install this extension:
 
-```
-ext install background
-```
+1. Install from [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background).
+2. Search `shalldie.background` from vscode.
 
 ## Custom
 
@@ -56,129 +55,96 @@ User defined requirements can be met by changing the configuration(`settings.jso
 
 ## Config
 
-### Base Config
+<img width="760" src="./images/containers.png">
 
-| Name                 |   Type    | Default | Description                   |
-| :------------------- | :-------: | :-----: | :---------------------------- |
-| `background.enabled` | `Boolean` | `true`  | Enable or disable this plugin |
+### Global Config
 
-### Default Config
+| Name                 |   Type    | Default | Description                             |
+| :------------------- | :-------: | :-----: | :-------------------------------------- |
+| `background.enabled` | `Boolean` | `true`  | Whether to enable background extension. |
 
-| Name                      |      Type       |   Default    | Description                                                |
-| :------------------------ | :-------------: | :----------: | :--------------------------------------------------------- |
-| `background.useFront`     |    `Boolean`    |    `true`    | Set the image to front or back of your code                |
-| `background.style`        |    `Object`     |     `{}`     | Customize style                                            |
-| `background.styles`       | `Array<Object>` | `[{},{},{}]` | Add custom Style for individual image                      |
-| `background.customImages` | `Array<String>` |     `[]`     | Add your custom images                                     |
-| `background.interval`     |    `Number`     |     `0`      | Seconds of interval for carousel, default `0` to disabled. |
+### Editor Section Config
+
+Edit `background.editor` to config editor section.
+
+| Name       |    Type    |   Default    | Description                                                |
+| :--------- | :--------: | :----------: | :--------------------------------------------------------- |
+| `useFront` | `boolean`  |    `true`    | Place the image above or below the code.                   |
+| `style`    |  `object`  |     `{}`     | Custom style for images.                                   |
+| `styles`   | `object[]` | `[{},{},{}]` | Each style of editor section image.                        |
+| `images`   | `string[]` |     `[]`     | Your custom images, support `https` and `file` protocol.   |
+| `interval` |  `number`  |     `0`      | Seconds of interval for carousel, default `0` to disabled. |
+| `random`   | `boolean`  |   `false`    | Whether to randomly display images.                        |
 
 > `style` means [css style](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS), which allows you to create great-looking background.
-
-### Fullscreen Config
-
-> may overwrite the default config
-
-| Name                    |   Type   | Default | Description                  |
-| :---------------------- | :------: | :-----: | :--------------------------- |
-| `background.fullscreen` | `Object` | `null`  | Set the images to fullscreen |
 
 example:
 
 ```json
 {
-  "background.fullscreen": {
-    "images": ["https://pathtoimage.png"], // urls of your images
-    "opacity": 0.91, // 0.85 ~ 0.95 recommended
-    "size": "cover", // also css, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`
-    "position": "center", // alias to `background-position`, default `center`
-    "interval": 0 // seconds of interval for carousel, default `0` to disabled.
+  "background.editor": {
+    "useFront": true,
+    "style": {
+      "background-position": "100% 100%",
+      "background-size": "auto",
+      "opacity": 1
+    },
+    "styles": [{}, {}, {}],
+    // Local images can be dragged into the browser to quickly get the file protocol address from the address bar
+    "images": ["https://pathtoimage.png", "file:///path/to/local/file"],
+    "interval": 0,
+    "random": false
   }
 }
 ```
 
-## Examples
+### Fullscreen、Sidebar、Panel Section Config
 
-1. disable this extension
+Edit `background.fullscreen`、`background.sidebar`、`background.panel` to config these sections.
 
-```json
-{
-  "background.enabled": false
-}
-```
+| Name       |    Type    |    Default    | Description                                                                                      |
+| :--------- | :--------: | :-----------: | :----------------------------------------------------------------------------------------------- |
+| `images`   | `string[]` |     `[]`      | Your custom images, support `https` and `file` protocol.                                         |
+| `opacity`  |  `number`  | `0.91`、`0.2` | Opacity of the image, `0.85 ~ 0.95` recommended if fullscreen，others `0.1 ~ 0.3`.               |
+| `size`     |  `string`  |    `cover`    | Alias to `background-size`, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`. |
+| `position` |  `string`  |   `center`    | Alias to `background-position`, default `center`.                                                |
+| `interval` |  `number`  |      `0`      | Seconds of interval for carousel, default `0` to disabled.                                       |
+| `random`   | `boolean`  |    `false`    | Whether to randomly display images.                                                              |
 
-2. custom images
-
-You should use protocol **https** instead of **http** for the image, **http** is not support by vscode any more.
-
-```json
-{
-  "background.customImages": ["https://a.com/b.png", "file:///Users/somepath/a.jpg"]
-}
-```
-
-3. custom style - opacity
-
-```json
-{
-  "background.style": {
-    "opacity": 0.6
-  }
-}
-```
-
-4. custom style - image size
-
-```json
-{
-  "background.style": {
-    "background-size": "300px 460px"
-  }
-}
-```
-
-5. full screen
+example：
 
 ```json
 {
   "background.fullscreen": {
-    "images": ["https://pathtoimage.png"], // urls of your images
-    "opacity": 0.91, // 0.85 ~ 0.95 recommended
-    "size": "cover", // also css, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`
-    "position": "center", // alias to `background-position`, default `center`
-    "interval": 0 // seconds of interval for carousel, default `0` to disabled.
-  }
+    // Local images can be dragged into the browser to quickly get the file protocol address from the address bar
+    "images": ["https://pathtoimage.png", "file:///path/to/local/file"],
+    "opacity": 0.91,
+    "size": "cover",
+    "position": "center",
+    "interval": 0,
+    "random": false
+  },
+  // `sidebar` and `panel` have the same config as `fullscreen`
+  "background.sidebar": {},
+  "background.panel": {}
 }
 ```
 
-## Warns
+## Quick Command
 
-> **This extension works by editting the vscode's css file.**
->
-> So, a warning appears while the first time to install or vscode update. U can click the [never show again] to avoid it.
+Click the 「Background」 button on the right-bottom of statusbar, all commands of `background` will appear:
 
-![](https://user-images.githubusercontent.com/9987486/40583926-b1fb5398-61ca-11e8-8271-4ac650d158d3.png)
+<img width="660" src="./images/commands.png">
 
-This is the reason:
+## Common Issues
 
-![](https://user-images.githubusercontent.com/9987486/40583775-91d4c8d6-61c7-11e8-9048-8c5538a32399.png)
+> **This extension works by editting the vscode's js file.**
+
+Please refer to the [Common Issues](docs/common-issues.md) if you met some problems.
 
 ## Uninstall
 
-    three ways
-
-    1. (recommended)
-
-    press `F1` to open Command Palette, enter and chose `Background - Uninstall (remove extension)` , automatically complete uninstall.
-
-    2.
-
-    Set the config  {"background.enabled": false}  in settings.json, then uninstall the plugin.
-
-    3. An unfriendly way:
-
-    If you uninstall this plugin directly, don't worry.
-    Exit vscode completely, then open, then reload. Now it's clean :D
-    (I know it's strange... Because of the limit of vscode)
+Please refer to [Common Issues#how-to-uninstall](docs/common-issues.md#how-to-uninstall).
 
 ## Contributors 🙏
 
@@ -194,31 +160,17 @@ This is the reason:
 [<img alt="rogeraabbccdd" src="https://avatars.githubusercontent.com/u/15815422?v=4" width="80">](https://github.com/rogeraabbccdd)
 [<img alt="rogeraabbccdd" src="https://avatars.githubusercontent.com/u/86603229?v=4" width="80">](https://github.com/SatoMasahiro2005)
 
-## CHANGELOG
+## Contributing Guide
 
-You can checkout all our changes in our [change log](https://github.com/shalldie/vscode-background/blob/master/CHANGELOG.md).
+Refer to [Contributing Guide](docs/contributing.md).
 
-## Q&A
+## Change Log
 
----
+You can checkout all our changes in our [CHANGELOG](https://github.com/shalldie/vscode-background/blob/master/CHANGELOG.md).
 
-    Q: How to remove [unsupported] tag?
-    A: see here: https://github.com/lehni/vscode-fix-checksums
+## Migration from v1
 
----
-
-    Q: It seems that nothing happens after installing the extension in MAC?
-    A: In Mac, move `vscode` from `Download` to `Applications`.
-
----
-
-    Q: The extension runs based on the modified vscode CSS file, and will try to raise the right within a limited time.
-       If it stop working for some reason, what if users need to change their permissions?
-
-    A: In windows,click right button on the vscode's icon,then check the [run with the administrator authority].
-    A: in mac/linux, try this: https://github.com/shalldie/vscode-background/issues/6 .
-
----
+The configuration of v1 is outdated and currently maintains a certain level of compatibility. Please refer to [migration-from-v1.md](docs/migration-from-v1.md) for migration.
 
 ## LICENSE
 

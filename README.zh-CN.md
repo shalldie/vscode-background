@@ -9,13 +9,13 @@
 <!-- 封面区域 -->
 <div align="center">
 
-![logo](https://user-images.githubusercontent.com/9987486/40583704-6accf3a4-61c6-11e8-8c00-a636b9c3ec65.png)
+![logo](./images/logo.png)
 
 <h1><b>vscode-background</b></h1>
 
 ### 给 [Visual Studio Code](https://code.visualstudio.com) 添加背景
 
-`代码区域`、`全屏`、`轮播`、`自定义图片/样式`...
+`全屏`、`编辑器`、`侧边栏`、`面板`、`轮播`、`自定义图片/样式`...
 
 [GitHub](https://github.com/shalldie/vscode-background) | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
@@ -26,29 +26,24 @@
 [![Build Status](https://img.shields.io/github/actions/workflow/status/shalldie/vscode-background/ci.yml?branch=master&label=build&style=flat-square)](https://github.com/shalldie/vscode-background/actions)
 [![License](https://img.shields.io/github/license/shalldie/vscode-background?style=flat-square)](https://github.com/shalldie/vscode-background)
 
+多区域，`editor`、`sidebar`、`panel`
+
+<img width="760" src="./images/section.png">
+
+`全屏`
+
+<img width="760" src="./images/fullscreen.png">
+
 </div>
 
 <!-- 封面区域 end -->
 
----
-
-代码区域
-
-<img width="880" src="https://user-images.githubusercontent.com/9987486/40583705-7105dda8-61c6-11e8-935a-3c5d475a1eb1.gif">
-
-全屏
-
-<img width="880" src="https://user-images.githubusercontent.com/9987486/198958380-6eaf96c7-3aa2-4fce-b27e-6f33c8d4e2c1.png">
-
 ## 安装
 
-<!-- To install the extension just execute the following command in the Command Palette of Visual Studio Code -->
+有两种安装方式：
 
-在命令选项板（command/ctl + p）中输入以下命令快速定位到插件：
-
-```
-ext install background
-```
+1. 从 [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background) 安装。
+2. 在 vscode 里搜索 `shalldie.background`。
 
 ## 自定义
 
@@ -58,129 +53,96 @@ ext install background
 
 ## 配置项
 
-### 基础配置
+<img width="760" src="./images/containers.png">
+
+### 全局配置
 
 | 名称                 |   类型    | 默认值 | 描述         |
 | :------------------- | :-------: | :----: | :----------- |
 | `background.enabled` | `Boolean` | `true` | 插件是否启用 |
 
-### 默认配置
+### Editor 编辑器区域配置
 
-| 名称                      |      类型       |    默认值    | 描述                                              |
-| :------------------------ | :-------------: | :----------: | :------------------------------------------------ |
-| `background.useFront`     |    `Boolean`    |    `true`    | 前景图/背景图。 在代码上面还是下面                |
-| `background.style`        |    `Object`     |     `{}`     | 自定义样式                                        |
-| `background.styles`       | `Array<Object>` | `[{},{},{}]` | 每个图片的独立样式                                |
-| `background.customImages` | `Array<String>` |     `[]`     | 自定义图片                                        |
-| `background.interval`     |    `Number`     |     `0`      | 设置图片轮播切换间隔 `秒` 数，默认 `0` 表示不开启 |
+通过 `background.editor` 设置编辑器区域配置。
 
-> `style` 指的是 [css style](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS)，通过自定义样式可以改变背景图的展示。
+| 名称       |    类型    |    默认值    | 描述                                                   |
+| :--------- | :--------: | :----------: | :----------------------------------------------------- |
+| `useFront` | `boolean`  |    `true`    | 把图片放在代码的上方或下方。                           |
+| `style`    |  `object`  |     `{}`     | 自定义图片样式。                                       |
+| `styles`   | `object[]` | `[{},{},{}]` | 为每一个图片自定义样式。                               |
+| `images`   | `string[]` |     `[]`     | 自定义图片，支持 `https` 和 `file` 协议。              |
+| `interval` |  `number`  |     `0`      | 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。 |
+| `random`   | `boolean`  |   `false`    | 是否随机展示图片。                                     |
 
-### 全屏配置
+> `style` 指的是 [css style](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS)， 通过自定义样式可以改变背景图的展示。
 
-> 会覆盖默认配置
+example:
 
-| 名称                    |   类型   | 默认值 | 描述         |
-| :---------------------- | :------: | :----: | :----------- |
-| `background.fullscreen` | `Object` | `null` | 设置全屏背景 |
+```json
+{
+  "background.editor": {
+    "useFront": true,
+    "style": {
+      "background-position": "100% 100%",
+      "background-size": "auto",
+      "opacity": 1
+    },
+    "styles": [{}, {}, {}],
+    // 本地图片可以拖到浏览器中，快速从地址栏得到file协议的地址
+    "images": ["https://pathtoimage.png", "file:///path/to/local/file"],
+    "interval": 10,
+    "random": false
+  }
+}
+```
+
+### 全屏、侧边栏、面板 区域配置
+
+通过 `background.fullscreen`、`background.sidebar`、`background.panel` 来进行这些区域的配置。
+
+| 名称       |    类型    |    默认值     | 描述                                                                                   |
+| :--------- | :--------: | :-----------: | :------------------------------------------------------------------------------------- |
+| `images`   | `string[]` |     `[]`      | 自定义图片，支持 `https` 和 `file` 协议。                                              |
+| `opacity`  |  `number`  | `0.91`、`0.2` | 透明度，全屏建议 `0.85 ~ 0.95`，其它建议 `0.1 ~ 0.3`。                                 |
+| `size`     |  `string`  |    `cover`    | 等同 css `background-size`, 建议使用 `cover` 来自适应，或者 `contain`、`200px 200px`。 |
+| `position` |  `string`  |   `center`    | 等同 css `background-position`， 默认值 `center`。                                     |
+| `interval` |  `number`  |      `0`      | 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。                                 |
+| `random`   | `boolean`  |    `false`    | 是否随机展示图片。                                                                     |
 
 example:
 
 ```json
 {
   "background.fullscreen": {
-    "images": ["https://pathtoimage.png"], // 图片的url
-    "opacity": 0.91, // 建议值 0.85 ~ 0.95
-    "size": "cover", // css, 建议使用 `cover`自适应，或者 `contain`、`200px 200px`
-    "position": "center", // 同 `background-position`, 默认 `center`
-    "interval": 0 // 设置图片轮播切换间隔 `秒` 数，默认 `0` 表示不开启
-  }
+    // 本地图片可以拖到浏览器中，快速从地址栏得到file协议的地址
+    "images": ["https://pathtoimage.png", "file:///path/to/local/file"],
+    "opacity": 0.91,
+    "size": "cover",
+    "position": "center",
+    "interval": 0,
+    "random": false
+  },
+  // `sidebar`、`panel` 的配置与 `fullscreen` 一致
+  "background.sidebar": {},
+  "background.panel": {}
 }
 ```
 
-## 一些示例
+## 快捷命令
 
-1. 关闭插件
+点击状态栏右下角「Background」按钮，可以快速弹出 background 所有命令：
 
-```json
-{
-  "background.enabled": false
-}
-```
+<img width="660" src="./images/commands.png">
 
-2. 自定义图片
+## 常见问题
 
-**http** 协议的外链图片在当前版本不能使用(vscode 限制)，需要用 **https** 协议开头的外链地址。
+> **本插件是通过修改 vscode 的 js 文件的方式运行**
 
-```json
-{
-  "background.customImages": ["https://a.com/b.png", "file:///Users/somepath/a.jpg"]
-}
-```
-
-3. 自定义样式 - 透明度
-
-```json
-{
-  "background.style": {
-    "opacity": 0.6
-  }
-}
-```
-
-4. 自定义样式 - 图片尺寸
-
-```json
-{
-  "background.style": {
-    "background-size": "300px 460px"
-  }
-}
-```
-
-5. 全屏
-
-```json
-{
-  "background.fullscreen": {
-    "images": ["https://pathtoimage.png"], // 图片的url
-    "opacity": 0.91, // 建议值 0.85 ~ 0.95
-    "size": "cover", // css, 建议使用 `cover`自适应，或者 `contain`、`200px 200px`
-    "position": "center", // 同 `background-position`, 默认 `center`
-    "interval": 0 // 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启
-  }
-}
-```
-
-## 注意
-
-> **本插件是通过修改 vscode 的 css 文件的方式运行**
->
-> 所以会在初次安装，或者 vscode 升级的时候，出现以下提示，请选择 【不再提示】:
-
-![](https://user-images.githubusercontent.com/9987486/40583926-b1fb5398-61ca-11e8-8271-4ac650d158d3.png)
-
-原因：
-
-![](https://user-images.githubusercontent.com/9987486/40583775-91d4c8d6-61c7-11e8-9048-8c5538a32399.png)
+如果遇到问题请查看 [常见问题](docs/common-issues.zh-CN.md)
 
 ## 卸载
 
-    三种方式
-
-    方式1. (推荐)
-
-    使用 `F1` 打开命令面板，输入并选择 `Background - Uninstall (remove extension)` ，完成自动化卸载。
-
-    方式2.
-
-    在 settings.json 中设置 {"background.enabled": false} ，然后再删除插件。
-
-    方式3.（不推荐）
-
-    如果直接删除了vscode，别担心。
-    接着完全退出vscode，打开然后再次重启一遍，图片就没了，，，
-    （我也知道挺奇怪，总之是因为vscode的限制 =。=）
+请查看 [常见问题#如何删除插件](docs/common-issues.zh-CN.md#如何删除插件)
 
 ## 感谢这些朋友的 pr 🙏
 
@@ -196,31 +158,17 @@ example:
 [<img alt="rogeraabbccdd" src="https://avatars.githubusercontent.com/u/15815422?v=4" width="80">](https://github.com/rogeraabbccdd)
 [<img alt="rogeraabbccdd" src="https://avatars.githubusercontent.com/u/86603229?v=4" width="80">](https://github.com/SatoMasahiro2005)
 
+## 贡献指南
+
+这里是 [贡献指南](docs/contributing.zh-CN.md)。
+
 ## 更新日志
 
 可以从 [这里](https://github.com/shalldie/vscode-background/blob/master/CHANGELOG.md) 查看所有的变更内容。
 
-## Q&A
+## 从 v1 迁移
 
----
-
-    Q: 怎么去除顶部的[不受信任]的标志（强迫症）？
-    A: 参考另一个插件: https://github.com/lehni/vscode-fix-checksums
-
----
-
-    Q: Mac 下安装完插件后，似乎没有反应？
-    A:在 Mac 下，把 vscode 从 `下载` 移动到 `应用` 中
-
----
-
-    Q: 插件基于修改 vscode css 文件运行，无权限时会尝试提权。
-       如果因为某种原因不work了，用户需要自行改变权限怎么办呢？
-
-    A: 在 windows 中，可以右键单击vscode的图标，选择【以管理员身份运行】。
-    A: 在 mac/linux 中，请尝试：https://github.com/shalldie/vscode-background/issues/6
-
----
+v1 的配置已经过时，当前保持一定的兼容性，请参考 [migration-from-v1.md](docs/migration-from-v1.md) 进行迁移。
 
 ## 协议
 

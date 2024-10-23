@@ -1,21 +1,21 @@
-// sys
 import fs from 'fs';
+import { tmpdir } from 'os';
+import path from 'path';
 
-// libs
-import vscode, { Disposable } from 'vscode';
+import vscode, { Disposable, l10n, Uri } from 'vscode';
 
-// self
-import { vsHelp } from '../utils/vsHelp';
-import { ENCODING, TOUCH_FILE_PATH } from '../constants';
-import { CssGenerator, TCssGeneratorOptions } from './CssGenerator';
 import { utils } from '../utils';
-import { CssFile, ECSSEditType } from './CssFile';
+import { ENCODING, EXTENSION_NAME, TOUCH_JSFILE_PATH, VERSION } from '../utils/constants';
 import { vscodePath } from '../utils/vscodePath';
+import { vsHelp } from '../utils/vsHelp';
+import { CssFile } from './CssFile';
+import { EFilePatchType, JsPatchFile } from './PatchFile';
+import { PatchGenerator, TPatchGeneratorConfig } from './PatchGenerator';
 
 /**
  * 配置类型
  */
-type TConfigType = vscode.WorkspaceConfiguration & TCssGeneratorOptions;
+type TConfigType = vscode.WorkspaceConfiguration & TPatchGeneratorConfig;
 
 /**
  * 插件逻辑类
@@ -27,11 +27,13 @@ export class Background implements Disposable {
     // #region fields 字段
 
     /**
-     * css文件操作对象
+     * 老版本css文件操作对象
      *
      * @memberof Background
      */
     public cssFile = new CssFile(vscodePath.cssPath); // 没必要继承，组合就行
+
+    public jsFile = new JsPatchFile(vscodePath.jsPath);
 
     /**
      * 当前用户配置
@@ -40,7 +42,9 @@ export class Background implements Disposable {
      * @type {TConfigType}
      * @memberof Background
      */
-    private config: TConfigType = vscode.workspace.getConfiguration('background') as TConfigType;
+    public get config() {
+        return vscode.workspace.getConfiguration('background') as TConfigType;
+    }
 
     /**
      * 需要释放的资源
@@ -63,18 +67,120 @@ export class Background implements Disposable {
      * @memberof Background
      */
     private async checkFirstload(): Promise<boolean> {
-        const firstLoad = !fs.existsSync(TOUCH_FILE_PATH);
+        const firstLoad = !fs.existsSync(TOUCH_JSFILE_PATH);
 
         if (firstLoad) {
             // 提示
-            vscode.commands.executeCommand('extension.background.info');
-            // 标识插件已启动过
-            await fs.promises.writeFile(TOUCH_FILE_PATH, vscodePath.cssPath, ENCODING);
+            vscode.window
+                .showInformationMessage(l10n.t('Welcome to use background@{version}!', { version: VERSION }), {
+                    title: l10n.t('More')
+                })
+                .then(confirm => {
+                    if (!confirm) {
+                        return;
+                    }
+                    this.showWelcome();
+                });
 
+            // 新版本强制提示下吧
+            if (VERSION === '2.0.0' || true) {
+                this.showWelcome();
+            }
+            // 标识插件已启动过
+            await fs.promises.writeFile(TOUCH_JSFILE_PATH, vscodePath.jsPath, ENCODING);
             return true;
         }
 
         return false;
+    }
+
+    public async showWelcome() {
+        // 欢迎页
+        const docDir = path.join(__dirname, '../../docs');
+        const docName = /^zh/.test(vscode.env.language) ? 'welcome.zh-CN.md' : 'welcome.md';
+
+        // welcome 内容
+        let content = await fs.promises.readFile(path.join(docDir, docName), ENCODING);
+        // 替换图片内联为base64
+        content = content.replace(/\.\.\/images[^\")]+/g, (relativePath: string) => {
+            const imgPath = path.join(vscodePath.extensionRoot, 'images', relativePath);
+
+            return (
+                `data:image/${path.extname(imgPath).slice(1) || 'png'};base64,` +
+                Buffer.from(fs.readFileSync(imgPath)).toString('base64')
+            );
+        });
+        // 替换变量
+        const paramsMap = {
+            VERSION
+        };
+        for (const [key, value] of Object.entries(paramsMap)) {
+            content = content.replaceAll('${' + key + '}', value);
+        }
+        const targetPath = path.join(tmpdir(), 'welcome-to-background.md');
+        await fs.promises.writeFile(targetPath, content, ENCODING);
+        vscode.commands.executeCommand('markdown.showPreviewToSide', Uri.file(targetPath));
+    }
+
+    /**
+     * 移除旧版本css文件中的patch
+     *
+     * @private
+     * @return {*}
+     * @memberof Background
+     */
+    private async removeLegacyCssPatch() {
+        const hasInstalled = await this.cssFile.hasInstalled();
+        if (!hasInstalled) {
+            return;
+        }
+        await this.cssFile.uninstall();
+    }
+
+    /**
+     * 配置改变，confirm 并提示应用&重启
+     *
+     * @private
+     * @return {*}
+     * @memberof Background
+     */
+    private async onConfigChange() {
+        const hasInstalled = await this.hasInstalled();
+        const enabled = this.config.enabled;
+
+        // 禁用
+        if (!enabled) {
+            if (hasInstalled) {
+                await this.uninstall();
+                vsHelp.showInfoRestart(l10n.t('Background has been disabled! Please restart.'));
+            }
+            return;
+        }
+
+        // 更新，需要二次确认
+        const confirm = await vscode.window.showInformationMessage(
+            l10n.t('Configuration has been changed, click to update.'),
+            {
+                title: l10n.t('Update and restart')
+            }
+        );
+
+        if (!confirm) {
+            return;
+        }
+
+        await this.applyPatch();
+        vscode.commands.executeCommand('workbench.action.reloadWindow');
+    }
+
+    public async applyPatch() {
+        // 禁用时候，不处理
+        if (!this.config.enabled) {
+            return;
+        }
+
+        const scriptContent = PatchGenerator.create(this.config);
+        await this.jsFile.applyPatches(scriptContent);
     }
 
     // #endregion
@@ -82,87 +188,46 @@ export class Background implements Disposable {
     // #region public methods
 
     /**
-     * 安装插件，hack css
-     *
-     * @param {boolean} [refresh=false] 需要强制更新
-     * @returns {void}
-     * @memberof Background
-     */
-    public async install(refresh = false): Promise<void> {
-        const lastConfig = this.config; // 之前的配置
-        const config = { ...vscode.workspace.getConfiguration('background') } as TConfigType; // 当前用户配置
-
-        // 1.如果配置文件改变的时候，当前插件配置没有改变，则返回
-        if (!refresh && JSON.stringify(lastConfig) == JSON.stringify(config)) {
-            // console.log('配置文件未改变.')
-            return;
-        }
-
-        // 之后操作有两种：1.初次加载  2.配置文件改变
-
-        // 2.两次配置均为，未启动插件
-        if (!lastConfig.enabled && !config.enabled) {
-            // console.log('两次配置均为，未启动插件');
-            return;
-        }
-
-        // 3.保存当前配置
-        this.config = config; // 更新配置
-
-        // 4.如果关闭插件
-        if (!config.enabled) {
-            await this.uninstall();
-            vsHelp.showInfoRestart('Background has been uninstalled! Please restart.');
-            return;
-        }
-
-        // 5.应用配置到css文件
-        try {
-            // 该动作需要加锁，涉及多次文件读写
-            await utils.lock();
-
-            const content = (await CssGenerator.create(config)).trimEnd(); // 去除末尾空白
-
-            // 添加到原有样式(尝试删除旧样式)中
-            let cssContent = await this.cssFile.getContent();
-            cssContent = this.cssFile.clearContent(cssContent);
-            // 异常case return
-            if (!cssContent.trim().length) {
-                return;
-            }
-            cssContent += content;
-
-            if (await this.cssFile.saveContent(cssContent)) {
-                vsHelp.showInfoRestart('Background has been changed! Please restart.');
-            }
-        } finally {
-            await utils.unlock();
-        }
-    }
-
-    /**
      * 初始化
      *
      * @return {*}  {Promise<void>}
      * @memberof Background
      */
-    public async setup(): Promise<void> {
-        const firstload = await this.checkFirstload(); // 是否初次加载插件
+    public async setup(): Promise<any> {
+        await this.removeLegacyCssPatch(); // 移除旧版本patch
+        await this.jsFile.setup(); // backup
 
-        const editType = await this.cssFile.getEditType(); // css 文件目前状态
+        if (!this.jsFile.hasBackup) {
+            vscode.window.showErrorMessage(l10n.t('Backup files failed to save.'));
+            return false;
+        }
 
-        // 如果是第一次加载插件，或者旧版本
-        if (firstload || editType == ECSSEditType.IsOld || editType == ECSSEditType.NoModified) {
-            await this.install(true);
+        await this.checkFirstload(); // 是否初次加载插件
+
+        const patchType = await this.jsFile.getPatchType(); // css 文件目前状态
+
+        // 如果「开启」状态，文件不是「latest」，则进行更新
+        if (this.config.enabled) {
+            // 此时一般为 vscode更新、background更新
+            if ([EFilePatchType.Legacy, EFilePatchType.None].includes(patchType)) {
+                await this.applyPatch();
+                vsHelp.showInfoRestart(l10n.t('Background has been changed! Please restart.'));
+            }
         }
 
         // 监听文件改变
         this.disposables.push(
-            vscode.workspace.onDidChangeConfiguration(async () => {
+            vscode.workspace.onDidChangeConfiguration(async ex => {
+                const hasChanged = ex.affectsConfiguration(EXTENSION_NAME);
+                if (!hasChanged) {
+                    return;
+                }
+
                 // 0~500ms 的延时，对于可能的多实例，错开对于文件的操作
                 // 虽然有锁了，但这样更安心 =。=
-                await utils.sleep(~~(Math.random() * 500));
-                this.install();
+                await utils.sleep(200 + ~~(Math.random() * 800));
+
+                this.onConfigChange();
             })
         );
     }
@@ -174,7 +239,7 @@ export class Background implements Disposable {
      * @memberof Background
      */
     public hasInstalled(): Promise<boolean> {
-        return this.cssFile.hasInstalled();
+        return this.jsFile.hasPatched();
     }
 
     /**
@@ -183,8 +248,9 @@ export class Background implements Disposable {
      * @return {*}  {Promise<boolean>} 是否成功卸载
      * @memberof Background
      */
-    public uninstall(): Promise<boolean> {
-        return this.cssFile.uninstall();
+    public async uninstall(): Promise<boolean> {
+        await this.removeLegacyCssPatch();
+        return this.jsFile.restore();
     }
 
     /**
