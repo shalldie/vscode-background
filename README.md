@@ -168,6 +168,10 @@ Refer to [Contributing Guide](docs/contributing.md).
 
 You can checkout all our changes in our [CHANGELOG](https://github.com/shalldie/vscode-background/blob/master/CHANGELOG.md).
 
+## Share Your Images
+
+We share background images [here](https://github.com/shalldie/vscode-background/issues/106).
+
 ## Migration from v1
 
 The configuration of v1 is outdated and currently maintains a certain level of compatibility. Please refer to [migration-from-v1.md](docs/migration-from-v1.md) for migration.

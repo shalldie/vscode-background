@@ -166,6 +166,10 @@ example:
 
 可以从 [这里](https://github.com/shalldie/vscode-background/blob/master/CHANGELOG.md) 查看所有的变更内容。
 
+## 分享图片
+
+我们在 [这里](https://github.com/shalldie/vscode-background/issues/106) 分享背景图。
+
 ## 从 v1 迁移
 
 v1 的配置已经过时，当前保持一定的兼容性，请参考 [migration-from-v1.md](docs/migration-from-v1.md) 进行迁移。
