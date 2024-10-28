@@ -1,3 +1,15 @@
+## v2.0.1 (2024/10/28)
+
+1. Add `0.8` opacity to minimap by default. (#475)
+2. Fix `background.editor.styles` should follow `images`. (#476)
+
+---
+
+1. 现在会默认给 `minimap` 添加一个0.8的透明度。 (#475)
+2. 修复了 `background.editor.styles` 没有跟随 `images` 的问题。 (#476)
+
+---
+
 ## v2.0.0 (2024/10/23) (#462)
 
 <img width="380" src="./images/containers.png">
