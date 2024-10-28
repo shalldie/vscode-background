@@ -1,7 +1,7 @@
 <!-- 中英文切换 -->
 <div align="right">
 
-[English](./README.md) | [中文](./README.zh-CN.md) | [日本語](./README.ja-JP.md) | [Portugues](./README.pt-BR.md)
+[English](./README.md) | **中文** | [日本語](./README.ja-JP.md) | [Portugues](./README.pt-BR.md)
 
 </div>
 <!-- 中英文切换 end -->
@@ -17,7 +17,7 @@
 
 `全屏`、`编辑器`、`侧边栏`、`面板`、`轮播`、`自定义图片/样式`...
 
-[GitHub](https://github.com/shalldie/vscode-background) | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+再看看 [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
 [![Version](https://img.shields.io/visual-studio-marketplace/v/shalldie.background?logo=visualstudiocode&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/shalldie.background?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
@@ -47,9 +47,9 @@
 
 ## 自定义
 
-可以通过调整配置（in `settings.json`）来满足个性化需求。
+可以通过调整配置（`settings.json`）来满足个性化需求。
 
-[settings.json 是什么](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson) | [怎么打开](https://github.com/shalldie/vscode-background/issues/274)
+[`settings.json` 是什么](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson) | [怎么打开](https://github.com/shalldie/vscode-background/issues/274)
 
 ## 配置项
 
