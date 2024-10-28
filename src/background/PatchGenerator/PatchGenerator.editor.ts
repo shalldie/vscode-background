@@ -1,10 +1,3 @@
-/**
- * FIXME:
- * 1. styles 目前还没有跟随 interval 一起变动
- * 2. 保持对v1的兼容
- * 3. 提供默认图片能力
- */
-
 import { AbsPatchGenerator, css } from './PatchGenerator.base';
 
 export class LegacyEditorPatchGeneratorConfig {
@@ -52,7 +45,13 @@ export class EditorPatchGenerator extends AbsPatchGenerator<EditorPatchGenerator
         };
     }
 
-    private readonly cssvariable = '--background-editor-img';
+    /**
+     * 用于每张图片独立样式的占位符前缀， template.replace(placeholder, dynamicStyle) => style
+     *
+     * @private
+     * @memberof EditorPatchGenerator
+     */
+    private readonly cssplaceholder = '--background-editor-placeholder';
 
     private get curConfig() {
         // 默认值实际在 package.json 中定义，会 deep merge
@@ -75,25 +74,41 @@ export class EditorPatchGenerator extends AbsPatchGenerator<EditorPatchGenerator
             .join('');
     }
 
-    protected getStyle(): string {
+    private get imageStyles() {
         const { images, style, styles, useFront } = this.curConfig;
 
-        // ------ 默认样式 ------
-        const defStyle = this.getStyleByOptions(style, useFront);
+        return images.map((img, index) => {
+            return this.getStyleByOptions(
+                {
+                    ...style,
+                    ...styles[index],
+                    'background-image': `url(${img})`
+                },
+                useFront
+            );
+        });
+    }
+
+    private get styleTemplate() {
+        const { images, useFront } = this.curConfig;
 
         // ------ 在前景图时使用 ::after ------
         const frontContent = useFront ? 'after' : 'before';
 
         // ------ 生成样式 ------
-        return css`
+        return this.compileCSS(css`
+            /* minimap */
+            .minimap {
+                opacity: 0.8;
+            }
+
             [id='workbench.parts.editor'] .split-view-view {
-                // 处理一块背景色遮挡
+                /* 处理一块背景色遮挡 */
                 .editor-container .overflow-guard > .monaco-scrollable-element > .monaco-editor-background {
                     background: none;
                 }
-                // 背景图片样式
+                /* 背景图片样式 */
                 ${images.map((_img, index) => {
-                    const styleContent = defStyle + this.getStyleByOptions(styles[index] || {}, useFront);
                     const nthChild = `${images.length}n + ${index + 1}`;
 
                     return css`
@@ -108,54 +123,67 @@ export class EditorPatchGenerator extends AbsPatchGenerator<EditorPatchGenerator
                             z-index: ${useFront ? 99 : 'initial'};
                             pointer-events: ${useFront ? 'none' : 'initial'};
                             transition: 0.3s;
-                            background-image: var(${this.cssvariable + (index % images.length)});
                             background-repeat: no-repeat;
-                            ${styleContent}
+                            /* placeholder，用于动态替换css */
+                            ${this.cssplaceholder + (index % images.length)}: #000;
+                            ${this.cssplaceholder + '-end'}: #000;
                         }
                     `;
                 })}
             }
-        `;
+        `);
     }
 
     protected getScript(): string {
-        const { images, interval, random } = this.curConfig;
+        const { interval, random } = this.curConfig;
         return `
-var cssvariable = '${this.cssvariable}';
-var images = ${JSON.stringify(images)};
-var interval = ${interval};
-var random = ${random};
-var curIndex = -1;
+// options
+const styleTemplate = ${JSON.stringify(this.styleTemplate)};
+const cssplaceholder = '${this.cssplaceholder}';
+const imageStyles = ${JSON.stringify(this.imageStyles)};
+const interval = ${interval};
+const random = ${random};
 
-function getNextImages() {
+// variables
+let curIndex = -1;
+
+const style = (() => {
+    const ele = document.createElement('style');
+    document.head.appendChild(ele);
+    return ele;
+})();
+
+function getNextStyles() {
+    // 如果随机，乱序后返回
     if (random) {
-        return images.slice().sort(function () {
-            return Math.random() > 0.5 ? 1 : -1;
-        });
+        return imageStyles.slice().sort(() => Math.random() - 0.5);
     }
 
+    // 其它按照自增索引返回
     curIndex++;
-    curIndex = curIndex % images.length;
-
-    return images.map(function (_img, index) {
-        var imgIndex = curIndex + index;
-        imgIndex = imgIndex % images.length;
-        return images[imgIndex];
+    curIndex = curIndex % imageStyles.length;
+    return imageStyles.map((_s, index) => {
+        const sIndex = (curIndex + index) % imageStyles.length;
+        return imageStyles[sIndex];
     });
 }
 
-function setNextImages() {
-    const nextImages = getNextImages();
-    for (var i = 0; i < images.length; i++) {
-        document.body.style.setProperty(cssvariable + i, 'url(' + nextImages[i] + ')');
+// replace placeholders with nextStyles in styleTemplate
+function setNextStyles() {
+    let curStyle = styleTemplate;
+    const nextStyles = getNextStyles();
+    for (let i = 0; i < nextStyles.length; i++) {
+        const reg = new RegExp(cssplaceholder + i + '[^;]+;', 'g');
+        curStyle = curStyle.replace(reg, nextStyles[i]);
     }
+    style.textContent = curStyle;
 }
 
 if (interval > 0) {
-    setInterval(setNextImages, interval * 1000);
+    setInterval(setNextStyles, interval * 1000);
 }
 
-setNextImages();
-        `;
+setNextStyles();
+`;
     }
 }
