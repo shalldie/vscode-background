@@ -1,7 +1,7 @@
 <!-- 中英文切换 -->
 <div align="right">
 
-[English](./README.md) | [中文](./README.zh-CN.md) | [日本語](./README.ja-JP.md) | [Portugues](./README.pt-BR.md)
+**English** | [中文](./README.zh-CN.md) | [日本語](./README.ja-JP.md) | [Portugues](./README.pt-BR.md)
 
 </div>
 <!-- 中英文切换 end -->
@@ -17,7 +17,7 @@
 
 `fullscreen`、`editor`、`sidebar`、`panel`、`carousel`、`custom images/styles`...
 
-[GitHub](https://github.com/shalldie/vscode-background) | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+Also see in [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
 [![Version](https://img.shields.io/visual-studio-marketplace/v/shalldie.background?logo=visualstudiocode&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/shalldie.background?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
@@ -51,7 +51,7 @@ There are 2 ways to install this extension:
 
 User defined requirements can be met by changing the configuration(`settings.json`).
 
-[what's settings.json](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson) | [where is](https://github.com/shalldie/vscode-background/issues/274)
+[what's `settings.json`](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson) | [where?](https://github.com/shalldie/vscode-background/issues/274)
 
 ## Config
 
