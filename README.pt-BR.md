@@ -3,7 +3,7 @@
 <!-- 中英文切换 -->
 <div align="right">
 
-[English](./README.md) | [中文](./README.zh-CN.md) | [日本語](./README.ja-JP.md) | [Portugues](./README.pt-BR.md)
+[English](./README.md) | [中文](./README.zh-CN.md) | [日本語](./README.ja-JP.md) | **Portugues**
 
 </div>
 <!-- 中英文切换 end -->
@@ -19,7 +19,7 @@
 
 `code area`、`fullscreen`、`carousel`、`custom images/styles`...
 
-[GitHub](https://github.com/shalldie/vscode-background) | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+Por favor, dê outra olhada no [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
 [![Version](https://img.shields.io/visual-studio-marketplace/v/shalldie.background?logo=visualstudiocode&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/shalldie.background?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
