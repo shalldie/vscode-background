@@ -17,7 +17,7 @@
 
 `全屏`、`编辑器`、`侧边栏`、`面板`、`轮播`、`自定义图片/样式`...
 
-再看看 [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[GitHub](https://github.com/shalldie/vscode-background) | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
 [![Version](https://img.shields.io/visual-studio-marketplace/v/shalldie.background?logo=visualstudiocode&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/shalldie.background?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
