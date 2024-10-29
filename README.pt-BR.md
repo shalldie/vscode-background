@@ -19,7 +19,7 @@
 
 `code area`、`fullscreen`、`carousel`、`custom images/styles`...
 
-Por favor, dê outra olhada no [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[GitHub](https://github.com/shalldie/vscode-background) | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
 [![Version](https://img.shields.io/visual-studio-marketplace/v/shalldie.background?logo=visualstudiocode&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/shalldie.background?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
