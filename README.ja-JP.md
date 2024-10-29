@@ -19,7 +19,7 @@
 
 `エディターごとの画像表示`、`全画面の画像表示`、`画像の切り替わり`、`画像・CSSのカスタマイズ`...
 
-[Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background) をもう一度見てください
+[GitHub](https://github.com/shalldie/vscode-background) | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
 [![Version](https://img.shields.io/visual-studio-marketplace/v/shalldie.background?logo=visualstudiocode&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/shalldie.background?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
