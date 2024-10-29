@@ -26,7 +26,7 @@
 [![Build Status](https://img.shields.io/github/actions/workflow/status/shalldie/vscode-background/ci.yml?branch=master&label=build&style=flat-square)](https://github.com/shalldie/vscode-background/actions)
 [![License](https://img.shields.io/github/license/shalldie/vscode-background?style=flat-square)](https://github.com/shalldie/vscode-background)
 
-多区域，`editor`、`sidebar`、`panel`
+多区域，`编辑器`、`侧边栏`、`面板`
 
 <img width="760" src="./images/section.png">
 
