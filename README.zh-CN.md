@@ -1,7 +1,7 @@
 <!-- 中英文切换 -->
 <div align="right">
 
-[English](./README.md) | [中文](./README.zh-CN.md) | [日本語](./README.ja-JP.md) | [Portugues](./README.pt-BR.md)
+[English](./README.md) | **中文** | [日本語](./README.ja-JP.md) | [Portugues](./README.pt-BR.md)
 
 </div>
 <!-- 中英文切换 end -->
@@ -26,7 +26,7 @@
 [![Build Status](https://img.shields.io/github/actions/workflow/status/shalldie/vscode-background/ci.yml?branch=master&label=build&style=flat-square)](https://github.com/shalldie/vscode-background/actions)
 [![License](https://img.shields.io/github/license/shalldie/vscode-background?style=flat-square)](https://github.com/shalldie/vscode-background)
 
-多区域，`editor`、`sidebar`、`panel`
+多区域，`编辑器`、`侧边栏`、`面板`
 
 <img width="760" src="./images/section.png">
 
@@ -47,9 +47,9 @@
 
 ## 自定义
 
-可以通过调整配置（in `settings.json`）来满足个性化需求。
+可以通过调整配置（`settings.json`）来满足个性化需求。
 
-[settings.json 是什么](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson) | [怎么打开](https://github.com/shalldie/vscode-background/issues/274)
+[`settings.json` 是什么](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson) | [怎么打开](https://github.com/shalldie/vscode-background/issues/274)
 
 ## 配置项
 
