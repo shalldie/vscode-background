@@ -70,13 +70,13 @@ Edit `background.editor` to config editor section.
 | Name       |    Type    |   Default    | Description                                                |
 | :--------- | :--------: | :----------: | :--------------------------------------------------------- |
 | `useFront` | `boolean`  |    `true`    | Place the image above or below the code.                   |
-| `style`    |  `object`  |     `{}`     | Custom style for images.                                   |
+| `style`    |  `object`  |     `{}`     | Custom style for images. [MDN Reference][mdn-css]          |
 | `styles`   | `object[]` | `[{},{},{}]` | Each style of editor section image.                        |
 | `images`   | `string[]` |     `[]`     | Your custom images, support `https` and `file` protocol.   |
 | `interval` |  `number`  |     `0`      | Seconds of interval for carousel, default `0` to disabled. |
 | `random`   | `boolean`  |   `false`    | Whether to randomly display images.                        |
 
-> `style` means [css style](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS), which allows you to create great-looking background.
+[mdn-css]: https://developer.mozilla.org/docs/Web/CSS
 
 example:
 
@@ -102,14 +102,18 @@ example:
 
 Edit `background.fullscreen`、`background.sidebar`、`background.panel` to config these sections.
 
-| Name       |    Type    |    Default    | Description                                                                                      |
-| :--------- | :--------: | :-----------: | :----------------------------------------------------------------------------------------------- |
-| `images`   | `string[]` |     `[]`      | Your custom images, support `https` and `file` protocol.                                         |
-| `opacity`  |  `number`  | `0.91`、`0.2` | Opacity of the image, `0.85 ~ 0.95` recommended if fullscreen，others `0.1 ~ 0.3`.               |
-| `size`     |  `string`  |    `cover`    | Alias to `background-size`, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`. |
-| `position` |  `string`  |   `center`    | Alias to `background-position`, default `center`.                                                |
-| `interval` |  `number`  |      `0`      | Seconds of interval for carousel, default `0` to disabled.                                       |
-| `random`   | `boolean`  |    `false`    | Whether to randomly display images.                                                              |
+| Name       |    Type    | Default  | Description                                                                              |
+| :--------- | :--------: | :------: | :--------------------------------------------------------------------------------------- |
+| `images`   | `string[]` |   `[]`   | Your custom images, support `https` and `file` protocol.                                 |
+| `opacity`  |  `number`  |  `0.2`   | Opacity of the images, alias to [opacity][mdn-opacity], `0.1 ~ 0.3` recommended.         |
+| `size`     |  `string`  | `cover`  | Alias to [background-size][mdn-background-size], `cover` to self-adaption (recommended). |
+| `position` |  `string`  | `center` | Alias to [background-position][mdn-background-position], default `center`.               |
+| `interval` |  `number`  |   `0`    | Seconds of interval for carousel, default `0` to disabled.                               |
+| `random`   | `boolean`  | `false`  | Whether to randomly display images.                                                      |
+
+[mdn-opacity]: https://developer.mozilla.org/docs/Web/CSS/opacity
+[mdn-background-size]: https://developer.mozilla.org/docs/Web/CSS/background-size
+[mdn-background-position]: https://developer.mozilla.org/docs/Web/CSS/background-position
 
 example：
 

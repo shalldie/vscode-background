@@ -8,7 +8,7 @@
 
     "extension.background.editor.description": "Editor section config.",
     "extension.background.editor.useFront": "Place the image above or below the code.",
-    "extension.background.editor.style": "Custom style for images.",
+    "extension.background.editor.style": "Custom style for images. [MDN Reference](https://developer.mozilla.org/docs/Web/CSS)",
     "extension.background.editor.styles": "Each style of editor section image.",
     "extension.background.editor.images": "Your custom images.\n\nExample:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
     "extension.background.editor.interval": "Seconds of interval for carousel, default `0` to disabled.",
@@ -16,9 +16,9 @@
 
     "extension.background.fullscreen.description": "Fullscreen section config.",
     "extension.background.fullscreen.images": "Your custom images.\n\nExample:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
-    "extension.background.fullscreen.opacity": "Opacity of the image, `0.85 ~ 0.95` recommended if fullscreen，others `0.1 ~ 0.3`.",
-    "extension.background.fullscreen.size": "Alias to `background-size`, `cover` to self-adaption (recommended)，or `contain`、`200px 200px`.",
-    "extension.background.fullscreen.position": "Alias to `background-position`, default `center`.",
+    "extension.background.fullscreen.opacity": "Opacity of the images, alias to [opacity](https://developer.mozilla.org/docs/Web/CSS/opacity),\n\n`0.1 ~ 0.3` recommended, it will be reset to the default `0.2` if exceeds the limit range `0 ~ 0.6`.",
+    "extension.background.fullscreen.size": "Alias to [background-size](https://developer.mozilla.org/docs/Web/CSS/background-size), `cover` to self-adaption (recommended).",
+    "extension.background.fullscreen.position": "Alias to [background-position](https://developer.mozilla.org/docs/Web/CSS/background-position), default `center`.",
     "extension.background.fullscreen.interval": "Seconds of interval for carousel, default `0` to disabled.",
     "extension.background.fullscreen.random": "Whether to randomly display images.",
 
