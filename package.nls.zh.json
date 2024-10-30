@@ -16,9 +16,9 @@
 
     "extension.background.fullscreen.description": "全屏区域配置。",
     "extension.background.fullscreen.images": "自定义图片。\n\nExample:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
-    "extension.background.fullscreen.opacity": "透明度，全屏建议 `0.85 ~ 0.95`，其它建议 `0.1 ~ 0.3`。",
-    "extension.background.fullscreen.size": "等同 css `background-size`, 建议使用 `cover` 来自适应，或者 `contain`、`200px 200px`。",
-    "extension.background.fullscreen.position": "等同 css `background-position`， 默认值 `center`。",
+    "extension.background.fullscreen.opacity": "透明度，等同 css [opacity](https://developer.mozilla.org/docs/Web/CSS/opacity)，\n\n建议 `0.1 ~ 0.3`，超出限制范围 `0 ~ 0.6` 会重置为 `0.2`。",
+    "extension.background.fullscreen.size": "等同 css [background-size](https://developer.mozilla.org/docs/Web/CSS/background-size), 建议使用 `cover` 来自适应。",
+    "extension.background.fullscreen.position": "等同 css [background-position](https://developer.mozilla.org/docs/Web/CSS/background-position)， 默认值 `center`。",
     "extension.background.fullscreen.interval": "单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。",
     "extension.background.fullscreen.random": "是否随机展示图片。",
 

@@ -68,13 +68,13 @@
 | 名称       |    类型    |    默认值    | 描述                                                   |
 | :--------- | :--------: | :----------: | :----------------------------------------------------- |
 | `useFront` | `boolean`  |    `true`    | 把图片放在代码的上方或下方。                           |
-| `style`    |  `object`  |     `{}`     | 自定义图片样式。                                       |
+| `style`    |  `object`  |     `{}`     | 自定义图片样式。 [MDN Reference][mdn-css]              |
 | `styles`   | `object[]` | `[{},{},{}]` | 为每一个图片自定义样式。                               |
 | `images`   | `string[]` |     `[]`     | 自定义图片，支持 `https` 和 `file` 协议。              |
 | `interval` |  `number`  |     `0`      | 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。 |
 | `random`   | `boolean`  |   `false`    | 是否随机展示图片。                                     |
 
-> `style` 指的是 [css style](https://developer.mozilla.org/docs/Web/CSS)， 通过自定义样式可以改变背景图的展示。
+[mdn-css]: https://developer.mozilla.org/docs/Web/CSS
 
 example:
 
@@ -100,14 +100,18 @@ example:
 
 通过 `background.fullscreen`、`background.sidebar`、`background.panel` 来进行这些区域的配置。
 
-| 名称       |    类型    |    默认值     | 描述                                                                                   |
-| :--------- | :--------: | :-----------: | :------------------------------------------------------------------------------------- |
-| `images`   | `string[]` |     `[]`      | 自定义图片，支持 `https` 和 `file` 协议。                                              |
-| `opacity`  |  `number`  | `0.91`、`0.2` | 透明度，全屏建议 `0.85 ~ 0.95`，其它建议 `0.1 ~ 0.3`。                                 |
-| `size`     |  `string`  |    `cover`    | 等同 css `background-size`, 建议使用 `cover` 来自适应，或者 `contain`、`200px 200px`。 |
-| `position` |  `string`  |   `center`    | 等同 css `background-position`， 默认值 `center`。                                     |
-| `interval` |  `number`  |      `0`      | 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。                                 |
-| `random`   | `boolean`  |    `false`    | 是否随机展示图片。                                                                     |
+| 名称       |    类型    |    默认值     | 描述                                                                         |
+| :--------- | :--------: | :-----------: | :--------------------------------------------------------------------------- |
+| `images`   | `string[]` |     `[]`      | 自定义图片，支持 `https` 和 `file` 协议。                                    |
+| `opacity`  |  `number`  | `0.91`、`0.2` | 透明度，等同 css [opacity][mdn-opacity]，建议 `0.1 ~ 0.3`。                  |
+| `size`     |  `string`  |    `cover`    | 等同 css [background-size][mdn-background-size], 建议使用 `cover` 来自适应。 |
+| `position` |  `string`  |   `center`    | 等同 css [background-position][mdn-background-position]， 默认值 `center`。  |
+| `interval` |  `number`  |      `0`      | 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。                       |
+| `random`   | `boolean`  |    `false`    | 是否随机展示图片。                                                           |
+
+[mdn-opacity]: https://developer.mozilla.org/docs/Web/CSS/opacity
+[mdn-background-size]: https://developer.mozilla.org/docs/Web/CSS/background-size
+[mdn-background-position]: https://developer.mozilla.org/docs/Web/CSS/background-position
 
 example:
 
