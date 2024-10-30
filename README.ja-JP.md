@@ -1,5 +1,3 @@
-## Deprecated! We need someone to help translate the document
-
 <!-- 中英文切换 -->
 <div align="right">
 
@@ -28,27 +26,26 @@
 [![Build Status](https://img.shields.io/github/actions/workflow/status/shalldie/vscode-background/ci.yml?branch=master&label=build&style=flat-square)](https://github.com/shalldie/vscode-background/actions)
 [![License](https://img.shields.io/github/license/shalldie/vscode-background?style=flat-square)](https://github.com/shalldie/vscode-background)
 
+`エディタ`、`サイドバー`、`パネル`、個別に設定
+
+<img width="760" src="./images/section.png">
+
+`フルスクリーン`
+
+<img width="760" src="./images/fullscreen.png">
+
+</div>
+
 </div>
 
 <!-- 封面区域 end -->
 
----
-
-エディターごとの画像
-
-<img width="880" src="https://user-images.githubusercontent.com/9987486/40583705-7105dda8-61c6-11e8-935a-3c5d475a1eb1.gif">
-
-背景画像の全画面表示
-
-<img width="880" src="https://user-images.githubusercontent.com/9987486/198958380-6eaf96c7-3aa2-4fce-b27e-6f33c8d4e2c1.png">
-
 ## インストール
 
-サイドバーの拡張機能タブから`background`を検索！
+2つの方法でインストールできます：
 
-```
-ext install background
-```
+1. [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)からインストール
+2. vscodeの拡張機能タブから`shalldie.background`を検索
 
 ## カスタマイズ
 
@@ -58,132 +55,96 @@ ext install background
 
 ## コンフィグ
 
-### 基本設定
+<img width="760" src="./images/containers.png">
 
-| 設定                 |  タイプ   | デフォルト | 説明                                       |
+### グローバル設定
+
+| 設定                 |     型    | デフォルト | 説明                                       |
 | :------------------- | :-------: | :--------: | :----------------------------------------- |
 | `background.enabled` | `Boolean` |   `true`   | 拡張機能を有効化するかどうかを制御します。 |
 
-### デフォルト設定
+### エディタ部分の設定
 
-| 設定                      |     タイプ      |  デフォルト  | 説明                                                                        |
-| :------------------------ | :-------------: | :----------: | :-------------------------------------------------------------------------- |
-| `background.useFront`     |    `Boolean`    |    `true`    | 画像を最前面に表示するかどうかを制御します。                                |
-| `background.style`        |    `Object`     |     `{}`     | 全ての画像に適応される CSS を制御します。                                   |
-| `background.styles`       | `Array<Object>` | `[{},{},{}]` | 個別の画像に適応される CSS を制御します。                                   |
-| `background.customImages` | `Array<String>` |     `[]`     | 画像のパスを指定してください。                                              |
-| `background.interval`     |    `Number`     |     `0`      | 次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。 |
+エディタ部分の設定を行うには、`background.editor`を編集します．
+
+| 設定       |     型     |   デフォルト  | 説明                                                                                |
+| :--------- | :--------: | :----------: | :-------------------------------------------------------------------------------- |
+| `useFront` | `boolean`  |    `true`    | 画像を最前面に表示するかどうかを制御します。                                          |
+| `style`    |  `object`  |     `{}`     | 全ての画像に適応される CSS を制御します。                                            |
+| `styles`   | `object[]` | `[{},{},{}]` | 個別の画像に適応される CSS を制御します。                                            |
+| `images`   | `string[]` |     `[]`     | `https`または`file`プロトコルで画像のパスを指定してください。複数指定することもできます。|
+| `interval` | `number`   |     `0`      | 次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。             |
+| `random`   | `boolean`  |   `false`    | 画像の表示順をランダムにするかを制御します。                                          |
 
 > `CSS`について知る [css style](https://developer.mozilla.org/ja/docs/Learn/CSS/First_steps/What_is_CSS)
 
-### フルスクリーン設定
+設定例：
 
-> デフォルト設定を上書きする可能性があります。
+```json
+{
+  "background.editor": {
+    "useFront": true,
+    "style": {
+      "background-position": "100% 100%",
+      "background-size": "auto",
+      "opacity": 1
+    },
+    "styles": [{}, {}, {}],
+    // Local images can be dragged into the browser to quickly get the file protocol address from the address bar
+    "images": ["https://pathtoimage.png", "file:///path/to/local/file"],
+    "interval": 0,
+    "random": false
+  }
+}
+```
 
-| 設定                    |  タイプ  | デフォルト | 説明                 |
-| :---------------------- | :------: | :--------: | :------------------- |
-| `background.fullscreen` | `Object` |   `null`   | 全画面画像を設定する |
+### フルスクリーン、サイドバー、パネル部分の設定
+
+フルスクリーン、サイドバー、パネル部分を設定するには、`background.fullscreen`、`background.sidebar`、`background.panel`を編集します。
+
+| 設定       |     型     |   デフォルト   | 説明                                                                                      |
+| :--------- | :--------: | :-----------: | :----------------------------------------------------------------------------------------------- |
+| `images`   | `string[]` |     `[]`      | `https`または`file`プロトコルで画像のパスを指定してください。複数指定することもできます。                                         |
+| `opacity`  |  `number`  | `0.91`、`0.2` | 画像の不透明度（opacity）を制御します。フルスクリーン環境では`0.85 ~ 0.95`、それ以外では`0.1 ~ 0.3`が推奨値です。             |
+| `size`     |  `string`  |    `cover`    | `background-size`へのエイリアスです。`cover`（推奨、縦横比を保ったまま領域を覆います）、`contain`、または`200px 200px`のように指定してください。|
+| `position` |  `string`  |   `center`    | `background-position`へのエイリアスです。デフォルト値は`center`です。                                                |
+| `interval` |  `number`  |      `0`      | 次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。                                       |
+| `random`   | `boolean`  |    `false`    | 画像の表示順をランダムにするかを制御します。                                                              |
 
 example:
 
 ```json
 {
   "background.fullscreen": {
-    "images": ["https://pathtoimage.png"], // URLもしくはファイルパス(file:///~/~.png)
-    "opacity": 0.91, // 0.85 ~ 0.95 がおすすめです
-    "size": "cover", // CSSのbackground-sizeに相当します。`cover` ,`contain`,`200px 200px` のように設定します
-    "position": "center", // 同` background-position `，デフォルト` center `
-    "interval": 0 // 次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。
-  }
+    // Local images can be dragged into the browser to quickly get the file protocol address from the address bar
+    "images": ["https://pathtoimage.png", "file:///path/to/local/file"],
+    "opacity": 0.91,
+    "size": "cover",
+    "position": "center",
+    "interval": 0,
+    "random": false
+  },
+  // `sidebar` and `panel` have the same config as `fullscreen`
+  "background.sidebar": {},
+  "background.panel": {}
 }
 ```
 
-## 使用例
+## クイックコマンド
 
-1. 拡張機能を無効化する
+ステータスバーの右下にある「background」をクリックすると、`background`のすべてのコマンドが表示されます：
 
-```json
-{
-  "background.enabled": false
-}
-```
+<img width="660" src="./images/commands.png">
 
-2. カスタムイメージを使用する
+## 注意点
 
-**https** 通信を採用しているリンクを使用する必要があります， http 通信は VSCode により制限されています。
+> **この拡張機能は、VSCode 本体の js ファイルを編集することで機能します。**
 
-```json
-{
-  "background.customImages": ["https://a.com/b.png", "file:///Users/somepath/a.jpg"]
-}
-```
-
-3. カスタム CSS - 透明度
-
-```json
-{
-  "background.style": {
-    "opacity": 0.6
-  }
-}
-```
-
-4. カスタム CSS - 画像サイズ
-
-```json
-{
-  "background.style": {
-    "background-size": "300px 460px" //"横幅 縦幅"
-  }
-}
-```
-
-5. 全画面表示
-
-```json
-{
-  "background.fullscreen": {
-    "images": ["https://pathtoimage.png"], // URLもしくはファイルパス(file:///~/~.png)
-    "opacity": 0.91, // 0.85 ~ 0.95 がおすすめです
-    "size": "cover", // CSSのbackground-sizeに相当します。`cover` ,`contain`,`200px 200px` のように設定します
-    "position": "center", // 同` background-position `，デフォルト` center `
-    "interval": 0 // 次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。
-  }
-}
-```
-
-## 警告
-
-> **この拡張機能は、VSCode 本体の CSS ファイルを編集することで機能します。**
->
-> そのため、初回インストール時または vscode 更新時に警告が表示されます，[二度と表示しない] をクリックして非表示にできます。
-
-![](https://user-images.githubusercontent.com/9987486/40583926-b1fb5398-61ca-11e8-8271-4ac650d158d3.png)
-
-原因:
-
-![](https://user-images.githubusercontent.com/9987486/40583775-91d4c8d6-61c7-11e8-9048-8c5538a32399.png)
+問題が発生した際は、[Common Issues](docs/common-issues.md)を参照してください。
 
 ## アンインストール
 
-    ３つの方法
-
-    1. (おすすめ)
-
-    F1キーを押し、コマンドパネルを開ます。
-    「Background - Uninstall (remove extension)」と入力して、
-    自動アンインストールします。
-
-    2.
-
-    setting.jsonで{"background.enabled": false}  と変更してから　　
-    手動でアンインストールします。
-
-    3. 非友好的な方法：
-
-    もしあなたがこのプラグインを直接アンインストールしたら、心配しないでください
-    次にvscodeを完全に終了し、開いてもう一度再起動すると、画像がなくなり、、、
-    （変なのは私も知っていますが、とにかくvscodeの制限＝。＝）
+[Common Issues#how-to-uninstall](docs/common-issues.md#how-to-uninstall)を参照してください。
 
 ## 貢献者 🙏
 
@@ -199,32 +160,21 @@ example:
 [<img alt="rogeraabbccdd" src="https://avatars.githubusercontent.com/u/15815422?v=4" width="80">](https://github.com/rogeraabbccdd)
 [<img alt="rogeraabbccdd" src="https://avatars.githubusercontent.com/u/86603229?v=4" width="80">](https://github.com/SatoMasahiro2005)
 
+## コントリビューションガイド
+
+[Contributing Guide](docs/contributing.md)を参照してください。
+
 ## チェンジログ
 
 [チェンジログ](https://github.com/shalldie/vscode-background/blob/master/CHANGELOG.md)で全ての変更を確認できます。
 
-## よくある質問
+## 画像をシェアする
 
----
+[こちら](https://github.com/shalldie/vscode-background/issues/106)で背景用の画像のシェアを行っています。
 
-    Q: [Code インストールが壊れている可能性があります。]を消すには?
-    A: 確認してください: https://github.com/lehni/vscode-fix-checksums
-
----
-
-    Q: MACに拡張機能をインストールしましたが、機能しません。
-    A: `Visual Studio Code` を`Download`フォルダー から`Applications`フォルダーに移動してください。
-
----
-
-    Q: プラグインは、vscode css ファイルの変更に基づいて実行され、権限がない場合は権限の昇格を試みます。
-       ユーザーが何らかの理由で機能せず、自分でアクセス許可を変更する必要がある場合はどうなりますか?
-
-
-    A: Windows では、vscode のアイコンを右クリックし、[管理者として実行] を選択します。
-    A: Mac/Linux では、https://github.com/shalldie/vscode-background/issues/6 を試してください。
-
----
+## v1からの移行
+v1における設定は古いものであり、互換性は限定的です。
+設定の移行の際には、[migration-from-v1.md](docs/migration-from-v1.md)を参照してください。
 
 ## ライセンス
 
