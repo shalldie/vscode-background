@@ -8,7 +8,7 @@
 
     "extension.background.editor.description": "编辑器区域配置。",
     "extension.background.editor.useFront": "把图片放在代码的上方或下方。",
-    "extension.background.editor.style": "自定义图片样式。",
+    "extension.background.editor.style": "自定义图片样式。 [MDN Reference](https://developer.mozilla.org/docs/Web/CSS)",
     "extension.background.editor.styles": "为每一个图片自定义样式。",
     "extension.background.editor.images": "自定义图片。\n\nExample:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
     "extension.background.editor.interval": "单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。",

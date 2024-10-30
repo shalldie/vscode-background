@@ -174,7 +174,7 @@
           "type": "object",
           "default": {
             "images": [],
-            "opacity": 0.91,
+            "opacity": 0.2,
             "size": "cover",
             "position": "center",
             "interval": 0,
@@ -193,7 +193,9 @@
             },
             "opacity": {
               "type": "number",
-              "default": 0.91,
+              "default": 0.2,
+              "minimum": 0,
+              "maximum": 0.6,
               "markdownDescription": "%extension.background.fullscreen.opacity%"
             },
             "size": {

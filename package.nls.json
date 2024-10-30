@@ -8,7 +8,7 @@
 
     "extension.background.editor.description": "Editor section config.",
     "extension.background.editor.useFront": "Place the image above or below the code.",
-    "extension.background.editor.style": "Custom style for images.",
+    "extension.background.editor.style": "Custom style for images. [MDN Reference](https://developer.mozilla.org/docs/Web/CSS)",
     "extension.background.editor.styles": "Each style of editor section image.",
     "extension.background.editor.images": "Your custom images.\n\nExample:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
     "extension.background.editor.interval": "Seconds of interval for carousel, default `0` to disabled.",

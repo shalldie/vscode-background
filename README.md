@@ -76,7 +76,7 @@ Edit `background.editor` to config editor section.
 | `interval` |  `number`  |     `0`      | Seconds of interval for carousel, default `0` to disabled. |
 | `random`   | `boolean`  |   `false`    | Whether to randomly display images.                        |
 
-> `style` means [css style](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS), which allows you to create great-looking background.
+> `style` means [css style](https://developer.mozilla.org/docs/Web/CSS), which allows you to create great-looking background.
 
 example:
 

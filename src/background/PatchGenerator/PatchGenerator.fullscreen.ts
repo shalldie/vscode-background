@@ -2,7 +2,7 @@ import { AbsPatchGenerator, css } from './PatchGenerator.base';
 
 export class FullscreenPatchGeneratorConfig {
     images = [] as string[];
-    opacity = 0.91; // 建议在 0.85 ~ 0.95 之间微调
+    opacity = 0.2; // 建议在 0.1 ~ 0.3
     size = 'cover' as 'cover' | 'contain';
     position = 'center';
     interval = 0;
@@ -19,6 +19,11 @@ export class FullscreenPatchGenerator<T extends FullscreenPatchGeneratorConfig> 
         };
         // ------ 处理图片 ------
         cur.images = this.normalizeImageUrls(cur.images);
+        // ------ opacity ------
+        if (cur.opacity < 0 || cur.opacity > 0.6) {
+            cur.opacity = new FullscreenPatchGeneratorConfig().opacity;
+        }
+
         return cur;
     }
 
@@ -26,16 +31,19 @@ export class FullscreenPatchGenerator<T extends FullscreenPatchGeneratorConfig> 
         const { size, position, opacity } = this.curConfig;
 
         return css`
-            body {
+            body::after {
+                content: '';
+                display: block;
+                position: absolute;
+                z-index: 10;
+                inset: 0;
+                pointer-events: none;
                 background-size: ${size};
                 background-repeat: no-repeat;
-                background-attachment: fixed; // 兼容 code-server，其他的不影响
+                /* background-attachment: fixed; // 兼容 code-server，其他的不影响 */
                 background-position: ${position};
                 opacity: ${opacity};
                 transition: 0.3s;
-            }
-            // 从 1.78.0 开始使用 Chromium:108+，支持 :has 选择器
-            body:has([id='workbench.parts.editor']) {
                 background-image: var(${this.cssvariable});
             }
         `;
@@ -44,11 +52,12 @@ export class FullscreenPatchGenerator<T extends FullscreenPatchGeneratorConfig> 
     protected getScript(): string {
         const { images, random, interval } = this.curConfig;
         return `
-var cssvariable = '${this.cssvariable}';
-var images = ${JSON.stringify(images)};
-var random = ${random};
-var interval = ${interval};
-var curIndex = -1;
+const cssvariable = '${this.cssvariable}';
+const images = ${JSON.stringify(images)};
+const random = ${random};
+const interval = ${interval};
+
+let curIndex = -1;
 
 function getNextImg() {
     if (random) {

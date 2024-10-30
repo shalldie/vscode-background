@@ -74,7 +74,7 @@
 | `interval` |  `number`  |     `0`      | 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。 |
 | `random`   | `boolean`  |   `false`    | 是否随机展示图片。                                     |
 
-> `style` 指的是 [css style](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS)， 通过自定义样式可以改变背景图的展示。
+> `style` 指的是 [css style](https://developer.mozilla.org/docs/Web/CSS)， 通过自定义样式可以改变背景图的展示。
 
 example:
 

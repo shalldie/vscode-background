@@ -75,7 +75,7 @@ Os requisitos definidos pelo usuário podem ser alterados usando a configuraçã
 | `background.customImages` | `Array<String>` |     `[]`     | Adiciona suas imagens personalizadas                                 |
 | `background.interval`     |    `Number`     |     `0`      | Segundos de intervalo para o carousel, utilize `0` para desabilitar. |
 
-> `style` significa [css style](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS), que permite a criação de planos de fundo atrativos.
+> `style` significa [css style](https://developer.mozilla.org/docs/Web/CSS), que permite a criação de planos de fundo atrativos.
 
 ### Configuração de Tela cheia
 

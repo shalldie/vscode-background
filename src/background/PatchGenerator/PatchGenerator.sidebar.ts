@@ -1,22 +1,10 @@
 import { css } from './PatchGenerator.base';
 import { FullscreenPatchGenerator, FullscreenPatchGeneratorConfig } from './PatchGenerator.fullscreen';
 
-export class SidebarPatchGeneratorConfig extends FullscreenPatchGeneratorConfig {
-    opacity = 0.2; // 建议在 0.1 ~ 0.3 左右
-}
+export class SidebarPatchGeneratorConfig extends FullscreenPatchGeneratorConfig {}
 
 export class SidebarPatchGenerator extends FullscreenPatchGenerator<SidebarPatchGeneratorConfig> {
     protected cssvariable = '--background-sidebar-img';
-
-    protected get curConfig() {
-        const cur = {
-            ...new SidebarPatchGeneratorConfig(),
-            ...this.config
-        };
-        // ------ 处理图片 ------
-        cur.images = this.normalizeImageUrls(cur.images);
-        return cur;
-    }
 
     protected getStyle(): string {
         const { size, position, opacity } = this.curConfig;
