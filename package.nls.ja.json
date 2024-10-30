@@ -5,14 +5,26 @@
     "extension.background.command.uninstall.title": "拡張機能をアンインストール",
 
     "extension.background.enabled.description": "拡張機能の有効化を制御します",
-    "extension.background.useFront.description": "画像を最前面に表示するかどうかを制御します。",
-    "extension.background.style.description": "全ての画像に適応されるCSSを制御します。",
-    "extension.background.styles.description": "個別の画像に適応されるCSSを制御します。",
-    "extension.background.customImages.description": "表示させる画像を制御します。\n\nパスの入力例:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
-    "extension.background.interval.description": "次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。",
 
-    "extension.background.fullscreen.description": "フルスクリーン表示の設定（他の設定を上書きする可能性があります。）",
+    "extension.background.editor.description": "エディタ部分の設定",
+    "extension.background.editor.useFront": "画像を最前面に表示するかどうかを制御します。",
+    "extension.background.editor.style": "全ての画像に適応されるCSSを制御します。",
+    "extension.background.editor.styles": "エディタ部分の個別の画像に適応されるCSSを制御します。",
+    "extension.background.editor.images": "表示させる画像を制御します。\n\nパスの入力例:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
+    "extension.background.editor.interval": "次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。",
+    "extension.background.editor.random": "画像の表示順をランダムにするかを制御します。",
 
-    "extension.background.common.deprecation": "次のバージョンでは削除される予定です。この設定項目を削除してください",
+    "extension.background.fullscreen.description": "フルスクリーン表示の設定",
+    "extension.background.fullscreen.images": "表示させる画像を制御します。\n\nパスの入力例:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
+    "extension.background.fullscreen.opacity": "画像の不透明度（opacity）を制御します。フルスクリーン環境では`0.85 ~ 0.95`、それ以外では`0.1 ~ 0.3`が推奨値です。",
+    "extension.background.fullscreen.size": "`background-size`へのエイリアスです。`cover`（推奨、縦横比を保ったまま領域を覆います）、`contain`、または`200px 200px`のように指定してください。",
+    "extension.background.fullscreen.position": "`background-position`へのエイリアスです。デフォルト値は`center`です。",
+    "extension.background.fullscreen.interval": "次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。",
+    "extension.background.fullscreen.random": "画像の表示順をランダムにするかを制御します。",
+    
+    "extension.background.sidebar.description": "サイドバー部分の設定",
+    "extension.background.panel.description": "パネル部分の設定",
+
+    "extension.background.common.deprecation": "*この設定項目は削除されました*、`background.editor`に移動しています。",
     "extension.background.urlProtocol.error": "画像パスには https または file プロトコルを使用する必要があります"
 }
