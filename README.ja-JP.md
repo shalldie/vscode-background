@@ -90,7 +90,7 @@
       "opacity": 1
     },
     "styles": [{}, {}, {}],
-    // Local images can be dragged into the browser to quickly get the file protocol address from the address bar
+    // ローカルの画像へのfileプロトコルによるパスは、ブラウザにドラッグアンドドロップすることで簡単に取得できます
     "images": ["https://pathtoimage.png", "file:///path/to/local/file"],
     "interval": 0,
     "random": false
@@ -116,7 +116,7 @@ example:
 ```json
 {
   "background.fullscreen": {
-    // Local images can be dragged into the browser to quickly get the file protocol address from the address bar
+    // ローカルの画像へのfileプロトコルによるパスは、ブラウザにドラッグアンドドロップすることで簡単に取得できます
     "images": ["https://pathtoimage.png", "file:///path/to/local/file"],
     "opacity": 0.91,
     "size": "cover",
@@ -124,7 +124,7 @@ example:
     "interval": 0,
     "random": false
   },
-  // `sidebar` and `panel` have the same config as `fullscreen`
+  // `sidebar`、`panel`も、`fullscreen`と同様の設定項目を持っています
   "background.sidebar": {},
   "background.panel": {}
 }
