@@ -1,7 +1,7 @@
 <!-- 中英文切换 -->
 <div align="right">
 
-[English](./README.md) | [中文](./README.zh-CN.md) | [日本語](./README.ja-JP.md) | [Portugues](./README.pt-BR.md)
+[English](./README.md) | [中文](./README.zh-CN.md) | **日本語** | [Portugues](./README.pt-BR.md)
 
 </div>
 <!-- 中英文切换 end -->
