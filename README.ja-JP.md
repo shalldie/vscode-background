@@ -1,7 +1,7 @@
 <!-- 中英文切换 -->
 <div align="right">
 
-[English](./README.md) | [中文](./README.zh-CN.md) | **日本語** | [Portugues](./README.pt-BR.md)
+[English](./README.md) | [中文](./README.zh-CN.md) | **日本語**
 
 </div>
 <!-- 中英文切换 end -->
@@ -59,7 +59,7 @@
 
 ### グローバル設定
 
-| 設定                 |     型    | デフォルト | 説明                                       |
+| 設定                 |    型     | デフォルト | 説明                                       |
 | :------------------- | :-------: | :--------: | :----------------------------------------- |
 | `background.enabled` | `Boolean` |   `true`   | 拡張機能を有効化するかどうかを制御します。 |
 
@@ -67,16 +67,16 @@
 
 エディタ部分の設定を行うには、`background.editor`を編集します．
 
-| 設定       |     型     |   デフォルト  | 説明                                                                                |
-| :--------- | :--------: | :----------: | :-------------------------------------------------------------------------------- |
-| `useFront` | `boolean`  |    `true`    | 画像を最前面に表示するかどうかを制御します。                                          |
-| `style`    |  `object`  |     `{}`     | 全ての画像に適応される CSS を制御します。                                            |
-| `styles`   | `object[]` | `[{},{},{}]` | 個別の画像に適応される CSS を制御します。                                            |
-| `images`   | `string[]` |     `[]`     | `https`または`file`プロトコルで画像のパスを指定してください。複数指定することもできます。|
-| `interval` | `number`   |     `0`      | 次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。             |
-| `random`   | `boolean`  |   `false`    | 画像の表示順をランダムにするかを制御します。                                          |
+| 設定       |     型     |  デフォルト  | 説明                                                                                      |
+| :--------- | :--------: | :----------: | :---------------------------------------------------------------------------------------- |
+| `useFront` | `boolean`  |    `true`    | 画像を最前面に表示するかどうかを制御します。                                              |
+| `style`    |  `object`  |     `{}`     | 全ての画像に適応される CSS を制御します。 [MDN Reference][mdn-css]                        |
+| `styles`   | `object[]` | `[{},{},{}]` | 個別の画像に適応される CSS を制御します。                                                 |
+| `images`   | `string[]` |     `[]`     | `https`または`file`プロトコルで画像のパスを指定してください。複数指定することもできます。 |
+| `interval` |  `number`  |     `0`      | 次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。               |
+| `random`   | `boolean`  |   `false`    | 画像の表示順をランダムにするかを制御します。                                              |
 
-> `CSS`について知る [css style](https://developer.mozilla.org/ja/docs/Learn/CSS/First_steps/What_is_CSS)
+[mdn-css]: https://developer.mozilla.org/docs/Web/CSS
 
 設定例：
 
@@ -87,7 +87,7 @@
     "style": {
       "background-position": "100% 100%",
       "background-size": "auto",
-      "opacity": 1
+      "opacity": 0.6
     },
     "styles": [{}, {}, {}],
     // ローカルの画像へのfileプロトコルによるパスは、ブラウザにドラッグアンドドロップすることで簡単に取得できます
@@ -102,14 +102,18 @@
 
 フルスクリーン、サイドバー、パネル部分を設定するには、`background.fullscreen`、`background.sidebar`、`background.panel`を編集します。
 
-| 設定       |     型     |   デフォルト   | 説明                                                                                      |
-| :--------- | :--------: | :-----------: | :----------------------------------------------------------------------------------------------- |
-| `images`   | `string[]` |     `[]`      | `https`または`file`プロトコルで画像のパスを指定してください。複数指定することもできます。                                         |
-| `opacity`  |  `number`  | `0.91`、`0.2` | 画像の不透明度（opacity）を制御します。フルスクリーン環境では`0.85 ~ 0.95`、それ以外では`0.1 ~ 0.3`が推奨値です。             |
-| `size`     |  `string`  |    `cover`    | `background-size`へのエイリアスです。`cover`（推奨、縦横比を保ったまま領域を覆います）、`contain`、または`200px 200px`のように指定してください。|
-| `position` |  `string`  |   `center`    | `background-position`へのエイリアスです。デフォルト値は`center`です。                                                |
-| `interval` |  `number`  |      `0`      | 次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。                                       |
-| `random`   | `boolean`  |    `false`    | 画像の表示順をランダムにするかを制御します。                                                              |
+| 設定       |     型     |  デフォルト   | 説明                                                                                                       |
+| :--------- | :--------: | :-----------: | :--------------------------------------------------------------------------------------------------------- |
+| `images`   | `string[]` |     `[]`      | `https`または`file`プロトコルで画像のパスを指定してください。複数指定することもできます。                  |
+| `opacity`  |  `number`  | `0.91`、`0.2` | 画像の不透明度を制御します、[opacity][mdn-opacity]へのエイリアスです。推奨値 `0.1 ～ 0.3`。                |
+| `size`     |  `string`  |    `cover`    | [background-size][mdn-background-size]へのエイリアスです。推奨 `cover`，縦横比を保ったまま領域を覆います。 |
+| `position` |  `string`  |   `center`    | [background-position][mdn-background-position]へのエイリアスです。デフォルト値は `center` です。           |
+| `interval` |  `number`  |      `0`      | 次の画像を表示するまでの秒数を制御します。`0` の場合、画像は変更されません。                               |
+| `random`   | `boolean`  |    `false`    | 画像の表示順をランダムにするかを制御します。                                                               |
+
+[mdn-opacity]: https://developer.mozilla.org/docs/Web/CSS/opacity
+[mdn-background-size]: https://developer.mozilla.org/docs/Web/CSS/background-size
+[mdn-background-position]: https://developer.mozilla.org/docs/Web/CSS/background-position
 
 example:
 
@@ -118,7 +122,7 @@ example:
   "background.fullscreen": {
     // ローカルの画像へのfileプロトコルによるパスは、ブラウザにドラッグアンドドロップすることで簡単に取得できます
     "images": ["https://pathtoimage.png", "file:///path/to/local/file"],
-    "opacity": 0.91,
+    "opacity": 0.2,
     "size": "cover",
     "position": "center",
     "interval": 0,
@@ -173,6 +177,7 @@ example:
 [こちら](https://github.com/shalldie/vscode-background/issues/106)で背景用の画像のシェアを行っています。
 
 ## v1からの移行
+
 v1における設定は古いものであり、互換性は限定的です。
 設定の移行の際には、[migration-from-v1.md](docs/migration-from-v1.md)を参照してください。
 

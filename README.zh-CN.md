@@ -1,7 +1,7 @@
 <!-- 中英文切换 -->
 <div align="right">
 
-[English](./README.md) | **中文** | [日本語](./README.ja-JP.md) | [Portugues](./README.pt-BR.md)
+[English](./README.md) | **中文** | [日本語](./README.ja-JP.md)
 
 </div>
 <!-- 中英文切换 end -->
@@ -85,7 +85,7 @@ example:
     "style": {
       "background-position": "100% 100%",
       "background-size": "auto",
-      "opacity": 1
+      "opacity": 0.6
     },
     "styles": [{}, {}, {}],
     // 本地图片可以拖到浏览器中，快速从地址栏得到file协议的地址
@@ -120,7 +120,7 @@ example:
   "background.fullscreen": {
     // 本地图片可以拖到浏览器中，快速从地址栏得到file协议的地址
     "images": ["https://pathtoimage.png", "file:///path/to/local/file"],
-    "opacity": 0.91,
+    "opacity": 0.2,
     "size": "cover",
     "position": "center",
     "interval": 0,

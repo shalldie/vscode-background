@@ -1,7 +1,7 @@
 <!-- 中英文切换 -->
 <div align="right">
 
-**English** | [中文](./README.zh-CN.md) | [日本語](./README.ja-JP.md) | [Portugues](./README.pt-BR.md)
+**English** | [中文](./README.zh-CN.md) | [日本語](./README.ja-JP.md)
 
 </div>
 <!-- 中英文切换 end -->
@@ -87,7 +87,7 @@ example:
     "style": {
       "background-position": "100% 100%",
       "background-size": "auto",
-      "opacity": 1
+      "opacity": 0.6
     },
     "styles": [{}, {}, {}],
     // Local images can be dragged into the browser to quickly get the file protocol address from the address bar
@@ -122,7 +122,7 @@ example：
   "background.fullscreen": {
     // Local images can be dragged into the browser to quickly get the file protocol address from the address bar
     "images": ["https://pathtoimage.png", "file:///path/to/local/file"],
-    "opacity": 0.91,
+    "opacity": 0.2,
     "size": "cover",
     "position": "center",
     "interval": 0,

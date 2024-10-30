@@ -83,9 +83,9 @@ export class Background implements Disposable {
                 });
 
             // 新版本强制提示下吧
-            if (VERSION === '2.0.0' || true) {
-                this.showWelcome();
-            }
+            // if (VERSION === '2.0.0' || true) {
+            //     this.showWelcome();
+            // }
             // 标识插件已启动过
             await fs.promises.writeFile(TOUCH_JSFILE_PATH, vscodePath.jsPath, ENCODING);
             return true;
@@ -194,7 +194,7 @@ export class Background implements Disposable {
      * @memberof Background
      */
     public async setup(): Promise<any> {
-        await this.removeLegacyCssPatch(); // 移除旧版本patch
+        await this.removeLegacyCssPatch(); // 移除v1旧版本patch
         await this.jsFile.setup(); // backup
 
         if (!this.jsFile.hasBackup) {
