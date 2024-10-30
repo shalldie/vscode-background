@@ -51,7 +51,7 @@
 
 `settings.json`からユーザー設定をカスタマイズすることができます。
 
-[settings.json とは](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson) | [設定方法](https://github.com/shalldie/vscode-background/issues/274)
+[`settings.json` とは](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson) | [設定方法](https://github.com/shalldie/vscode-background/issues/274)
 
 ## コンフィグ
 
