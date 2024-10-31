@@ -236,9 +236,7 @@
               "$ref": "#/properties/background.fullscreen/properties/images"
             },
             "opacity": {
-              "type": "number",
-              "default": 0.2,
-              "markdownDescription": "%extension.background.fullscreen.opacity%"
+              "$ref": "#/properties/background.fullscreen/properties/opacity"
             },
             "size": {
               "$ref": "#/properties/background.fullscreen/properties/size"
@@ -270,9 +268,7 @@
               "$ref": "#/properties/background.fullscreen/properties/images"
             },
             "opacity": {
-              "type": "number",
-              "default": 0.2,
-              "markdownDescription": "%extension.background.fullscreen.opacity%"
+              "$ref": "#/properties/background.fullscreen/properties/opacity"
             },
             "size": {
               "$ref": "#/properties/background.fullscreen/properties/size"
