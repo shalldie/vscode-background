@@ -2,6 +2,10 @@
 
 [English](./common-issues.md) | [中文](./common-issues.zh-CN.md)
 
+## 插件是如何工作的
+
+**本插件是通过修改 vscode 的 js 文件的方式运行**
+
 ## 如何获取本地图片地址
 
 可以把图片拖到浏览器中，然后从地址栏复制得到。
@@ -34,17 +38,27 @@
    - `再次` 重启 vscode，图片会被清理掉。
    - ，，，这是一种奇怪的 vscode 的限制。
 
-## (Mac) read-only file system，扩展无法正常运行
+## read-only file system - 各种无权限问题。
 
-需要 vscode 位于一个有可写权限的位置，尝试以下两种方式：
+需要 `vscode` 位于一个有可写权限的位置.
 
-1. 把 vscode 从 `Download/下载` 目录移动到 `Application/应用` 目录.
-2. 运行 `sudo chmod -R a+w '/Applications/Visual Studio Code.app'` 来提升权限.
+- windows:
+  - 右键 `vscode` 图标，选择 `以管理员身份运行`。
+- mac:
+  - 把 vscode 从 `Download/下载` 目录移动到 `Application/应用` 目录.
+  - 执行 `sudo chmod -R a+rw '/Applications/Visual Studio Code.app'` 来提升权限.
+- linux:
+  - 执行 `sudo chmod -R a+rw /usr/share/code`。
 
-## (Linux) snap: read-only file system [#382](https://github.com/shalldie/vscode-background/issues/382)
+## 不支持的环境
 
-Snap 使用 [SquashFS](https://en.wikipedia.org/wiki/SquashFS) 存储包，这是一个压缩的只读文件系统。
-可以使用 deb 或者 rpm 来安装 vscode。
+- `二进制版本的vscode` 不可用。 [#408](https://github.com/shalldie/vscode-background/issues/408)
+  - e.g. `visual-studio-code-bin`、`visual-studio-code-insiders-bin`、`vscodium-bin` ...
+- `通过snap安装` 不可用。 [#382](https://github.com/shalldie/vscode-background/issues/382)
+  - Error: (Linux) snap: read-only file system
+  - Snap 使用 [SquashFS](https://en.wikipedia.org/wiki/SquashFS) 存储包，这是一个压缩的只读文件系统。可以使用 deb 或者 rpm 来安装 vscode。
+- `vscodium` 不完全支持。
+  - 不会专门支持 vscodium，我不怎么用它。但是欢迎 pr。
 
 ## vscode 崩溃 [#306](https://github.com/shalldie/vscode-background/issues/306)
 
@@ -53,6 +67,7 @@ Snap 使用 [SquashFS](https://en.wikipedia.org/wiki/SquashFS) 存储包，这�
 1. 打开文件目录：
    - windows: `%LocalAppData%\Programs\Microsoft VS Code\resources\app\out\vs\workbench`
    - mac: `/Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/workbench`
+   - linux: `/usr/share/code/resources/app/out/vs/workbench`
 2. 使用备份文件 `workbench.desktop.main.js.background-backup` 替换掉 `workbench.desktop.main.js`。
 
 ## 想继续使用v1版本的默认图片？

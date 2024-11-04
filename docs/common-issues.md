@@ -2,6 +2,10 @@
 
 [English](./common-issues.md) | [中文](./common-issues.zh-CN.md)
 
+## How it works
+
+**This extension works by editting the vscode's js file.**
+
 ## How to get local images' address
 
 Local images can be dragged into the browser to quickly get the file protocol address from the address bar.
@@ -34,17 +38,27 @@ three ways:
    - `Reload` again, now it's clean.
    - ... It's a strange limit of vscode.
 
-## (Mac) read-only file system
+## read-only file system
 
-`vscode` needs to be located in a location with write permission. Try the following two ways:
+`vscode` needs to be located in a location with write permission.
 
-1. Move `Visual Studio Code.app` from `Download` to the `Application` directory.
-2. Run `sudo chmod -R a+w '/Applications/Visual Studio Code.app'` to grant write permissions.
+- windows:
+  - Right click on `vscode` icon, choose `Run as administrator`.
+- mac:
+  - Move `Visual Studio Code.app` from `Download` to the `Application` directory.
+  - Run `sudo chmod -R a+rw '/Applications/Visual Studio Code.app'` to grant write permissions.
+- linux:
+  - Run `sudo chmod -R a+rw /usr/share/code`
 
-## (Linux) snap: read-only file system [#382](https://github.com/shalldie/vscode-background/issues/382)
+## Unsupported environment
 
-Snap use [SquashFS](https://en.wikipedia.org/wiki/SquashFS) to storage packages, it's a compressed readonly file system.
-Try to install vscode using deb or rpm.
+- `Binary version of vscode` is not supported. [#408](https://github.com/shalldie/vscode-background/issues/408)
+  - e.g. `visual-studio-code-bin`、`visual-studio-code-insiders-bin`、`vscodium-bin` ...
+- `Installed by snap` is not supported. [#382](https://github.com/shalldie/vscode-background/issues/382)
+  - Error: (Linux) snap: read-only file system
+  - Snap use SquashFS to storage packages, which is a compressed readonly file system.
+- `vscodium` is not fully supported.
+  - It won't be specifically supported, I don't use it that much. But pr welcome.
 
 ## VSCode crashes [#306](https://github.com/shalldie/vscode-background/issues/306)
 
@@ -53,6 +67,7 @@ Whenever there is an extreme situation where vscode crashes, you can manually fi
 1. Open the directory:
    - windows: `%LocalAppData%\Programs\Microsoft VS Code\resources\app\out\vs\workbench`
    - mac: `/Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/workbench`
+   - linux: `/usr/share/code/resources/app/out/vs/workbench`
 2. Replace `workbench.desktop.main.js` with the backup file `workbench.desktop.main.js.background-backup`.
 
 ## Prefer v1 default images?
