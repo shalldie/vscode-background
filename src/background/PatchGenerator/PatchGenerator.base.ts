@@ -28,7 +28,14 @@ export function css(template: TemplateStringsArray, ...args: any[]) {
 }
 
 export class AbsPatchGenerator<T extends { images: string[] }> {
-    constructor(protected config: T) {}
+    protected config: T;
+
+    constructor(config: T) {
+        this.config = {
+            ...config,
+            images: this.normalizeImageUrls(config?.images || [])
+        };
+    }
 
     /**
      * 归一化图片路径
@@ -70,6 +77,20 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
     protected getScript() {
         return '';
     }
+
+    //     protected getPreload() {
+    //         return `
+    // const images = ${JSON.stringify(this.config?.images || [])};
+
+    // images.forEach(imgLink => {
+    //     const link = document.createElement('link');
+    //     link.rel = 'preload';
+    //     link.as = 'image';
+    //     link.href = imgLink;
+    //     document.head.appendChild(link);
+    // });
+    //         `;
+    //     }
 
     public create() {
         if (!this.config?.images.length) {

@@ -55,13 +55,10 @@ export class EditorPatchGenerator extends AbsPatchGenerator<EditorPatchGenerator
 
     private get curConfig() {
         // 默认值实际在 package.json 中定义，会 deep merge
-        const cur: EditorPatchGeneratorConfig = {
+        return {
             ...new EditorPatchGeneratorConfig(),
             ...this.config
         };
-        // ------ 处理图片 ------
-        cur.images = this.normalizeImageUrls(cur.images);
-        return cur;
     }
 
     private getStyleByOptions(style: Record<string, string>, useFront: boolean): string {

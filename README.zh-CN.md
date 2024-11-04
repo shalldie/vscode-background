@@ -100,14 +100,14 @@ example:
 
 通过 `background.fullscreen`、`background.sidebar`、`background.panel` 来进行这些区域的配置。
 
-| 名称       |    类型    |    默认值     | 描述                                                                         |
-| :--------- | :--------: | :-----------: | :--------------------------------------------------------------------------- |
-| `images`   | `string[]` |     `[]`      | 自定义图片，支持 `https` 和 `file` 协议。                                    |
-| `opacity`  |  `number`  | `0.91`、`0.2` | 透明度，等同 css [opacity][mdn-opacity]，建议 `0.1 ~ 0.3`。                  |
-| `size`     |  `string`  |    `cover`    | 等同 css [background-size][mdn-background-size], 建议使用 `cover` 来自适应。 |
-| `position` |  `string`  |   `center`    | 等同 css [background-position][mdn-background-position]， 默认值 `center`。  |
-| `interval` |  `number`  |      `0`      | 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。                       |
-| `random`   | `boolean`  |    `false`    | 是否随机展示图片。                                                           |
+| 名称       |    类型    |  默认值  | 描述                                                                         |
+| :--------- | :--------: | :------: | :--------------------------------------------------------------------------- |
+| `images`   | `string[]` |   `[]`   | 自定义图片，支持 `https` 和 `file` 协议。                                    |
+| `opacity`  |  `number`  |  `0.1`   | 透明度，等同 css [opacity][mdn-opacity]，建议 `0.1 ~ 0.3`。                  |
+| `size`     |  `string`  | `cover`  | 等同 css [background-size][mdn-background-size], 建议使用 `cover` 来自适应。 |
+| `position` |  `string`  | `center` | 等同 css [background-position][mdn-background-position]， 默认值 `center`。  |
+| `interval` |  `number`  |   `0`    | 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。                       |
+| `random`   | `boolean`  | `false`  | 是否随机展示图片。                                                           |
 
 [mdn-opacity]: https://developer.mozilla.org/docs/Web/CSS/opacity
 [mdn-background-size]: https://developer.mozilla.org/docs/Web/CSS/background-size
@@ -120,7 +120,7 @@ example:
   "background.fullscreen": {
     // 本地图片可以拖到浏览器中，快速从地址栏得到file协议的地址
     "images": ["https://pathtoimage.png", "file:///path/to/local/file"],
-    "opacity": 0.2,
+    "opacity": 0.1,
     "size": "cover",
     "position": "center",
     "interval": 0,

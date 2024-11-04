@@ -22,7 +22,7 @@ export class SidebarPatchGenerator extends FullscreenPatchGenerator<SidebarPatch
                 background-size: ${size};
                 pointer-events: none;
                 opacity: ${opacity};
-                transition: 0.3s;
+                transition: 1s;
                 background-image: var(${this.cssvariable});
             }
         `;

@@ -22,7 +22,7 @@ export class PanelPatchGenerator extends FullscreenPatchGenerator<PanelPatchGene
                 background-size: ${size};
                 pointer-events: none;
                 opacity: ${opacity};
-                transition: 0.3s;
+                transition: 1s;
                 background-image: var(${this.cssvariable});
             }
         `;

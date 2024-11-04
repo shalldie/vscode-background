@@ -105,7 +105,7 @@ Edit `background.fullscreen`、`background.sidebar`、`background.panel` to conf
 | Name       |    Type    | Default  | Description                                                                              |
 | :--------- | :--------: | :------: | :--------------------------------------------------------------------------------------- |
 | `images`   | `string[]` |   `[]`   | Your custom images, support `https` and `file` protocol.                                 |
-| `opacity`  |  `number`  |  `0.2`   | Opacity of the images, alias to [opacity][mdn-opacity], `0.1 ~ 0.3` recommended.         |
+| `opacity`  |  `number`  |  `0.1`   | Opacity of the images, alias to [opacity][mdn-opacity], `0.1 ~ 0.3` recommended.         |
 | `size`     |  `string`  | `cover`  | Alias to [background-size][mdn-background-size], `cover` to self-adaption (recommended). |
 | `position` |  `string`  | `center` | Alias to [background-position][mdn-background-position], default `center`.               |
 | `interval` |  `number`  |   `0`    | Seconds of interval for carousel, default `0` to disabled.                               |
@@ -122,7 +122,7 @@ example：
   "background.fullscreen": {
     // Local images can be dragged into the browser to quickly get the file protocol address from the address bar
     "images": ["https://pathtoimage.png", "file:///path/to/local/file"],
-    "opacity": 0.2,
+    "opacity": 0.1,
     "size": "cover",
     "position": "center",
     "interval": 0,

@@ -2,7 +2,7 @@ import { AbsPatchGenerator, css } from './PatchGenerator.base';
 
 export class FullscreenPatchGeneratorConfig {
     images = [] as string[];
-    opacity = 0.2; // 建议在 0.1 ~ 0.3
+    opacity = 0.1; // 建议在 0.1 ~ 0.3
     size = 'cover' as 'cover' | 'contain';
     position = 'center';
     interval = 0;
@@ -17,8 +17,7 @@ export class FullscreenPatchGenerator<T extends FullscreenPatchGeneratorConfig> 
             ...new FullscreenPatchGeneratorConfig(),
             ...this.config
         };
-        // ------ 处理图片 ------
-        cur.images = this.normalizeImageUrls(cur.images);
+
         // ------ opacity ------
         if (cur.opacity < 0 || cur.opacity > 0.6) {
             cur.opacity = new FullscreenPatchGeneratorConfig().opacity;
@@ -35,7 +34,7 @@ export class FullscreenPatchGenerator<T extends FullscreenPatchGeneratorConfig> 
                 content: '';
                 display: block;
                 position: absolute;
-                z-index: 10;
+                z-index: 1000;
                 inset: 0;
                 pointer-events: none;
                 background-size: ${size};
@@ -43,7 +42,7 @@ export class FullscreenPatchGenerator<T extends FullscreenPatchGeneratorConfig> 
                 /* background-attachment: fixed; // 兼容 code-server，其他的不影响 */
                 background-position: ${position};
                 opacity: ${opacity};
-                transition: 0.3s;
+                transition: 1s;
                 background-image: var(${this.cssvariable});
             }
         `;

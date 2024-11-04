@@ -174,7 +174,7 @@
           "type": "object",
           "default": {
             "images": [],
-            "opacity": 0.2,
+            "opacity": 0.1,
             "size": "cover",
             "position": "center",
             "interval": 0,
@@ -193,7 +193,7 @@
             },
             "opacity": {
               "type": "number",
-              "default": 0.2,
+              "default": 0.1,
               "minimum": 0,
               "maximum": 0.6,
               "markdownDescription": "%extension.background.fullscreen.opacity%"
@@ -225,7 +225,7 @@
           "type": "object",
           "default": {
             "images": [],
-            "opacity": 0.2,
+            "opacity": 0.1,
             "size": "cover",
             "position": "center",
             "interval": 0,
@@ -257,7 +257,7 @@
           "type": "object",
           "default": {
             "images": [],
-            "opacity": 0.2,
+            "opacity": 0.1,
             "size": "cover",
             "position": "center",
             "interval": 0,
