@@ -70,6 +70,36 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
         return stylis.serialize(stylis.compile(source), stylis.stringify);
     }
 
+    protected getPreload() {
+        const images = (this.config?.images || []).filter(n => n.length);
+        // 10个以内图片，做预加载进行优化
+        if (!images.length || images.length > 10) {
+            return '';
+        }
+        return `
+const images = ${JSON.stringify(images)};
+
+const container = (() => {
+    const cid = 'backgroundPreloadContainer';
+    let c = document.getElementById(cid);
+    if (!c) {
+        c = document.createElement('div');
+        c.id = cid;
+        c.style.width = 0;
+        c.style.height = 0;
+        c.style.opacity = 0;
+        c.style.overflow = 'hidden';
+        document.body.appendChild(c);
+    }
+    return c;
+})();
+
+const div = document.createElement('div');
+div.style.backgroundImage = images.map(url => 'url(' + url + ')').join(',');
+container.appendChild(div);
+`;
+    }
+
     protected getStyle() {
         return '';
     }
@@ -77,20 +107,6 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
     protected getScript() {
         return '';
     }
-
-    //     protected getPreload() {
-    //         return `
-    // const images = ${JSON.stringify(this.config?.images || [])};
-
-    // images.forEach(imgLink => {
-    //     const link = document.createElement('link');
-    //     link.rel = 'preload';
-    //     link.as = 'image';
-    //     link.href = imgLink;
-    //     document.head.appendChild(link);
-    // });
-    //         `;
-    //     }
 
     public create() {
         if (!this.config?.images.length) {
@@ -101,6 +117,7 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
         const script = this.getScript().trim();
 
         return [
+            this.getPreload(),
             `
                 var style = document.createElement("style");
                 style.textContent = ${JSON.stringify(style)};
@@ -108,6 +125,7 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
             `,
             script
         ]
+            .filter(n => !!n.length)
             .map(n => utils.withIIFE(n))
             .join(';');
     }
