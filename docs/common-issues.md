@@ -49,16 +49,15 @@ three ways:
   - Run `sudo chmod -R a+rw '/Applications/Visual Studio Code.app'` to grant write permissions.
 - linux:
   - Run `sudo chmod -R a+rw /usr/share/code`
+  - Some Arch Linux: `sudo chmod -R a+rw /opt/visual-studio-code`
 
 ## Unsupported environment
 
-- `Binary version of vscode` is not supported. [#408](https://github.com/shalldie/vscode-background/issues/408)
-  - e.g. `visual-studio-code-bin`、`visual-studio-code-insiders-bin`、`vscodium-bin` ...
 - `Installed by snap` is not supported. [#382](https://github.com/shalldie/vscode-background/issues/382)
   - Error: (Linux) snap: read-only file system
   - Snap use SquashFS to storage packages, which is a compressed readonly file system.
 - `vscodium` is not fully supported.
-  - It won't be specifically supported, I don't use it that much. But pr welcome.
+  - It works fine in most cases. But I don't use it that much, pr welcome.
 
 ## VSCode crashes [#306](https://github.com/shalldie/vscode-background/issues/306)
 
@@ -68,6 +67,7 @@ Whenever there is an extreme situation where vscode crashes, you can manually fi
    - windows: `%LocalAppData%\Programs\Microsoft VS Code\resources\app\out\vs\workbench`
    - mac: `/Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/workbench`
    - linux: `/usr/share/code/resources/app/out/vs/workbench`
+     - Some Arch Linux: `/opt/visual-studio-code/resources/app/out/vs/workbench`
 2. Replace `workbench.desktop.main.js` with the backup file `workbench.desktop.main.js.background-backup`.
 
 ## Prefer v1 default images?
