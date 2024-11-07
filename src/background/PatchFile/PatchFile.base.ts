@@ -135,7 +135,7 @@ export abstract class AbsPatchFile {
                 await vscode.window.showErrorMessage(e.message);
                 return false;
             } finally {
-                await fs.promises.rm(tempFilePath);
+                await fs.promises.rm(tempFilePath, { force: true });
             }
         }
     }
