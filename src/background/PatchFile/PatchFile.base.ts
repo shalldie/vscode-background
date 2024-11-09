@@ -5,7 +5,7 @@ import path from 'path';
 
 import { utils } from '../../utils';
 import { BACKGROUND_VER, ENCODING, VERSION } from '../../utils/constants';
-import { vscode } from '../../utils/vsc';
+import { vsc } from '../../utils/vsc';
 
 export enum EFilePatchType {
     /**
@@ -110,7 +110,7 @@ export abstract class AbsPatchFile {
             await fs.promises.writeFile(filePath, content, ENCODING);
             return true;
         } catch (e: any) {
-            if (!vscode) {
+            if (!vsc) {
                 return false;
             }
             // FIXME：
@@ -120,7 +120,7 @@ export abstract class AbsPatchFile {
             // uname -a
             // Linux code-server-b6cc684df-sqx9h 5.4.0-77-generic #86-Ubuntu SMP Thu Jun 17 02:35:03 UTC 2021 x86_64 GNU/Linux
             const retry = 'Retry with Admin/Sudo';
-            const result = await vscode.window.showErrorMessage(e.message, retry);
+            const result = await vsc.window.showErrorMessage(e.message, retry);
             if (result !== retry) {
                 return false;
             }
@@ -132,7 +132,7 @@ export abstract class AbsPatchFile {
                 await utils.sudoExec(cmdarg, { name: 'Background Extension' });
                 return true;
             } catch (e: any) {
-                await vscode.window.showErrorMessage(e.message);
+                await vsc.window.showErrorMessage(e.message);
                 return false;
             } finally {
                 await fs.promises.rm(tempFilePath, { force: true });
