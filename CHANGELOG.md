@@ -1,3 +1,12 @@
+## v2.0.2 (2024/11/09)
+
+- docs: Update README（README 整理） by @Octopus058 in [#480](https://github.com/shalldie/vscode-background/pull/480)
+- (fix #479) docs: updated localization for Japanese by @shim4stat in [#483](https://github.com/shalldie/vscode-background/pull/483)
+- Feat fullscreen optimization（全屏方案优化） by @shalldie in [#484](https://github.com/shalldie/vscode-background/pull/484)
+- Preload images. 图片预加载 by @shalldie
+- fix(l10n): :bug: 修复插件提示在linux下不显示为中文的问题 (fix #485) by @hbcraft in [#486](https://github.com/shalldie/vscode-background/pull/486)
+- Fix backup when upgrading vscode through package manager in some Linux by @shalldie in [#493](https://github.com/shalldie/vscode-background/pull/493)
+
 ## v2.0.1 (2024/10/28)
 
 1. Add `0.8` opacity to minimap by default. (#475)
