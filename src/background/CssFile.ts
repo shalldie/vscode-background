@@ -10,7 +10,7 @@ import path from 'path';
 
 import { utils } from '../utils';
 import { BACKGROUND_VER, ENCODING, VERSION } from '../utils/constants';
-import { vscode } from '../utils/vsc';
+import { vsc } from '../utils/vsc';
 
 /**
  * css文件修改状态类型
@@ -98,7 +98,7 @@ export class CssFile {
             await fs.promises.writeFile(this.filePath, content, ENCODING);
             return true;
         } catch (e: any) {
-            if (!vscode) {
+            if (!vsc) {
                 return false;
             }
             // FIXME：
@@ -108,7 +108,7 @@ export class CssFile {
             // uname -a
             // Linux code-server-b6cc684df-sqx9h 5.4.0-77-generic #86-Ubuntu SMP Thu Jun 17 02:35:03 UTC 2021 x86_64 GNU/Linux
             const retry = 'Retry with Admin/Sudo';
-            const result = await vscode.window.showErrorMessage(e.message, retry);
+            const result = await vsc.window.showErrorMessage(e.message, retry);
             if (result !== retry) {
                 return false;
             }
@@ -119,7 +119,7 @@ export class CssFile {
                 await utils.sudoExec(cmdarg, { name: 'Visual Studio Code Background Extension' });
                 return true;
             } catch (e: any) {
-                await vscode.window.showErrorMessage(e.message);
+                await vsc.window.showErrorMessage(e.message);
                 return false;
             } finally {
                 await fs.promises.rm(tempFilePath);

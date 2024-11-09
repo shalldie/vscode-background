@@ -68,7 +68,7 @@
    - mac: `/Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/workbench`
    - linux: `/usr/share/code/resources/app/out/vs/workbench`
      - 一些 Arch Linux: `/opt/visual-studio-code/resources/app/out/vs/workbench`
-2. 使用备份文件 `workbench.desktop.main.js.background-backup` 替换掉 `workbench.desktop.main.js`。
+2. 编辑 `workbench.desktop.main.js`，去掉尾部的这部分：`// vscode-background-start...// vscode-background-end`。
 
 ## 想继续使用v1版本的默认图片？
 

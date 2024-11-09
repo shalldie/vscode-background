@@ -1,11 +1,11 @@
 import path from 'path';
 
-import { vscode } from './vsc';
+import { vsc } from './vsc';
 
 // 基础目录
 const base = (() => {
     const mainFilename = require.main?.filename;
-    const vscodeInstallPath = vscode?.env.appRoot;
+    const vscodeInstallPath = vsc?.env.appRoot;
     const base = mainFilename?.length ? path.dirname(mainFilename) : path.join(vscodeInstallPath!, 'out');
     return base;
 })();
@@ -18,7 +18,7 @@ const cssPath = (() => {
     const webPath = getCssPath('workbench.web.main.css');
 
     // See https://code.visualstudio.com/api/references/vscode-api#env
-    switch (vscode?.env.appHost) {
+    switch (vsc?.env.appHost) {
         case 'desktop':
             return defPath;
         case 'web':
