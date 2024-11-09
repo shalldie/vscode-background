@@ -68,7 +68,7 @@ Whenever there is an extreme situation where vscode crashes, you can manually fi
    - mac: `/Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/workbench`
    - linux: `/usr/share/code/resources/app/out/vs/workbench`
      - Some Arch Linux: `/opt/visual-studio-code/resources/app/out/vs/workbench`
-2. Replace `workbench.desktop.main.js` with the backup file `workbench.desktop.main.js.background-backup`.
+2. Edit `workbench.desktop.main.js`, remove the content at the end: `// vscode-background-start...// vscode-background-end`.
 
 ## Prefer v1 default images?
 

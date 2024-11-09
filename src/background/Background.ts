@@ -195,12 +195,6 @@ export class Background implements Disposable {
      */
     public async setup(): Promise<any> {
         await this.removeLegacyCssPatch(); // 移除v1旧版本patch
-        await this.jsFile.setup(); // backup
-
-        if (!this.jsFile.hasBackup) {
-            vscode.window.showErrorMessage(l10n.t('Backup files failed to save.'));
-            return false;
-        }
 
         await this.checkFirstload(); // 是否初次加载插件
 

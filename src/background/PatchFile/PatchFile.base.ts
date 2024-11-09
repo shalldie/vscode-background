@@ -32,31 +32,6 @@ export enum EFilePatchType {
 export abstract class AbsPatchFile {
     constructor(private filePath: string) {}
 
-    private get backupPath() {
-        return this.filePath + '.background-backup';
-    }
-
-    public get hasBackup() {
-        return fs.existsSync(this.backupPath);
-    }
-
-    /**
-     * 初始化，创建备份
-     *
-     * @memberof AbsPatchFile
-     */
-    public async setup() {
-        // 已包含备份文件，忽略
-        if (this.hasBackup) {
-            return;
-        }
-
-        await utils.lock();
-        const content = await this.getContent();
-        await this.saveContentTo(this.backupPath, content);
-        await utils.unlock();
-    }
-
     /**
      * 是否已经修改过
      *
@@ -88,14 +63,6 @@ export abstract class AbsPatchFile {
         }
 
         return EFilePatchType.None;
-    }
-
-    protected async getBackup(): Promise<string> {
-        if (!this.hasBackup) {
-            console.error('backup file is missing: ' + this.backupPath);
-            return '';
-        }
-        return fs.promises.readFile(this.backupPath, ENCODING);
     }
 
     protected getContent(): Promise<string> {
@@ -157,10 +124,23 @@ export abstract class AbsPatchFile {
      */
     public abstract applyPatches(patch: string): Promise<void>;
 
+    /**
+     * Get the clean content without patches.
+     * 清理补丁，得到「干净」的源文件。
+     *
+     * @protected
+     * @abstract
+     * @param {string} content
+     * @return {*}  {string}
+     * @memberof AbsPatchFile
+     */
+    protected abstract cleanPatches(content: string): string;
+
     public async restore() {
         await utils.lock();
-        const backup = await this.getBackup();
-        const ok = await this.write(backup);
+        let content = await this.getContent();
+        content = this.cleanPatches(content);
+        const ok = await this.write(content);
         await utils.unlock();
         return ok;
     }

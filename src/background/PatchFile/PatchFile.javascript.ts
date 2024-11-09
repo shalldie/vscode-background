@@ -13,7 +13,8 @@ import { AbsPatchFile } from './PatchFile.base';
  */
 export class JsPatchFile extends AbsPatchFile {
     public async applyPatches(patchContent: string) {
-        let content = await this.getBackup();
+        let content = await this.getContent();
+        content = this.cleanPatches(content);
         content += [
             //
             `\n// vscode-background-start ${BACKGROUND_VER}.${VERSION}`,
@@ -22,5 +23,10 @@ export class JsPatchFile extends AbsPatchFile {
         ].join('\n');
 
         await this.write(content);
+    }
+
+    protected cleanPatches(content: string): string {
+        content = content.replace(/\n\/\/ vscode-background-start[\s\S]*\/\/ vscode-background-end/, '');
+        return content;
     }
 }
