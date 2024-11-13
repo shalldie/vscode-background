@@ -11,6 +11,15 @@ export namespace utils {
     export const isZHCN = /^zh/.test(vsc?.env.language || '');
 
     /**
+     * if desktop
+     *
+     * desktop: `desktop`
+     * code-server: `server-distro`
+     * See: https://code.visualstudio.com/api/references/vscode-api#env
+     */
+    export const isDesktop = vsc?.env.appHost === 'desktop';
+
+    /**
      * 等待若干时间
      *
      * @export

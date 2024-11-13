@@ -50,6 +50,8 @@ three ways:
 - linux:
   - Run `sudo chmod -R a+rw /usr/share/code`
   - Some Arch Linux: `sudo chmod -R a+rw /opt/visual-studio-code`
+  - Code Server (docker): `sudo chmod -R a+rw '/usr/lib/code-server'`
+    - code-server needs to force browser refresh (avoid caching) for configuration to take effect.
 
 ## Unsupported environment
 

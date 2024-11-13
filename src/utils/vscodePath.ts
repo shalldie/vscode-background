@@ -1,5 +1,6 @@
 import path from 'path';
 
+import { utils } from './index';
 import { vsc } from './vsc';
 
 // 基础目录
@@ -17,18 +18,25 @@ const cssPath = (() => {
     // https://github.com/microsoft/vscode/pull/141263
     const webPath = getCssPath('workbench.web.main.css');
 
-    // See https://code.visualstudio.com/api/references/vscode-api#env
-    switch (vsc?.env.appHost) {
-        case 'desktop':
-            return defPath;
-        case 'web':
-        default:
-            return webPath;
+    if (utils.isDesktop) {
+        return defPath;
     }
+    return webPath;
 })();
 
-// /Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/workbench/workbench.desktop.main.js
-const jsPath = path.join(base, 'vs/workbench/workbench.desktop.main.js');
+const jsPath = (() => {
+    // See https://code.visualstudio.com/api/references/vscode-api#env
+
+    // desktop
+    // /Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/workbench/workbench.desktop.main.js
+    if (utils.isDesktop) {
+        return path.join(base, 'vs/workbench/workbench.desktop.main.js');
+    }
+
+    // code-server
+    // /usr/lib/code-server/lib/vscode/out/vs/code/browser/workbench/workbench.js
+    return path.join(base, 'vs/code/browser/workbench/workbench.js');
+})();
 
 export const vscodePath = {
     /**

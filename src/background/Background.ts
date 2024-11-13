@@ -130,11 +130,13 @@ export class Background implements Disposable {
      * @memberof Background
      */
     private async removeLegacyCssPatch() {
-        const hasInstalled = await this.cssFile.hasInstalled();
-        if (!hasInstalled) {
-            return;
-        }
-        await this.cssFile.uninstall();
+        try {
+            const hasInstalled = await this.cssFile.hasInstalled();
+            if (!hasInstalled) {
+                return;
+            }
+            await this.cssFile.uninstall();
+        } catch (ex) {}
     }
 
     /**
@@ -180,7 +182,7 @@ export class Background implements Disposable {
         }
 
         const scriptContent = PatchGenerator.create(this.config);
-        await this.jsFile.applyPatches(scriptContent);
+        return this.jsFile.applyPatches(scriptContent);
     }
 
     // #endregion
@@ -204,8 +206,9 @@ export class Background implements Disposable {
         if (this.config.enabled) {
             // 此时一般为 vscode更新、background更新
             if ([EFilePatchType.Legacy, EFilePatchType.None].includes(patchType)) {
-                await this.applyPatch();
-                vsHelp.showInfoRestart(l10n.t('Background has been changed! Please restart.'));
+                if (await this.applyPatch()) {
+                    vsHelp.showInfoRestart(l10n.t('Background has been changed! Please restart.'));
+                }
             }
         }
 
@@ -217,9 +220,9 @@ export class Background implements Disposable {
                     return;
                 }
 
-                // 0~500ms 的延时，对于可能的多实例，错开对于文件的操作
+                // 50~550ms 的延时，对于可能的多实例，错开对于文件的操作
                 // 虽然有锁了，但这样更安心 =。=
-                await utils.sleep(200 + ~~(Math.random() * 800));
+                await utils.sleep(50 + ~~(Math.random() * 500));
 
                 this.onConfigChange();
             })

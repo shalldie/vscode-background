@@ -50,6 +50,8 @@
 - linux:
   - 执行 `sudo chmod -R a+rw /usr/share/code`。
   - 一些 Arch Linux: `sudo chmod -R a+rw /opt/visual-studio-code`
+  - Code Server (docker): `sudo chmod -R a+rw '/usr/lib/code-server'`
+    - code-server 需要强制刷新浏览器（避免缓存）来使配置生效。
 
 ## 不支持的环境
 
