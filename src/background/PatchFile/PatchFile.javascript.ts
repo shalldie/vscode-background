@@ -12,7 +12,7 @@ import { AbsPatchFile } from './PatchFile.base';
  * @extends {AbsPatchFile}
  */
 export class JsPatchFile extends AbsPatchFile {
-    public async applyPatches(patchContent: string) {
+    public async applyPatches(patchContent: string): Promise<boolean> {
         let content = await this.getContent();
         content = this.cleanPatches(content);
         content += [
@@ -22,7 +22,7 @@ export class JsPatchFile extends AbsPatchFile {
             '// vscode-background-end'
         ].join('\n');
 
-        await this.write(content);
+        return this.write(content);
     }
 
     protected cleanPatches(content: string): string {

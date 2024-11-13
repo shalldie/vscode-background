@@ -99,7 +99,15 @@ export abstract class AbsPatchFile {
                 await utils.sudoExec(cmdarg, { name: 'Background Extension' });
                 return true;
             } catch (e: any) {
-                await vsc.window.showErrorMessage(e.message);
+                vsc.window.showErrorMessage(e.message, { title: 'Common Issue' }).then(confirm => {
+                    if (!confirm) {
+                        return;
+                    }
+                    const helpLink =
+                        'https://github.com/shalldie/vscode-background/blob/master/docs/common-issues.md#read-only-file-system';
+
+                    vsc!.env!.openExternal(vsc!.Uri.parse(helpLink));
+                });
                 return false;
             } finally {
                 await fs.promises.rm(tempFilePath, { force: true });
@@ -119,10 +127,10 @@ export abstract class AbsPatchFile {
      *
      * @abstract
      * @param {string} patch
-     * @return {*}  {Promise<void>}
+     * @return {*}  {Promise<boolean>}
      * @memberof AbsPatchFile
      */
-    public abstract applyPatches(patch: string): Promise<void>;
+    public abstract applyPatches(patch: string): Promise<boolean>;
 
     /**
      * Get the clean content without patches.
