@@ -1,3 +1,8 @@
+## v2.0.3 (2024/11/14)
+
+- add code-server support (添加了 code-server 支持) by @shalldie in [#498](https://github.com/shalldie/vscode-background/pull/498)
+- fix: add patch lockfile for multiple instances (添加了文件锁应对多实例同时写入) by @shalldie in [#500](https://github.com/shalldie/vscode-background/pull/500)
+
 ## v2.0.2 (2024/11/09)
 
 - docs: Update README（README 整理） by @Octopus058 in [#480](https://github.com/shalldie/vscode-background/pull/480)
