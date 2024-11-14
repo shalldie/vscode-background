@@ -3,7 +3,7 @@ import fs, { constants as fsConstants } from 'fs';
 import { tmpdir } from 'os';
 import path from 'path';
 
-import { utils } from '../../utils';
+import { _ } from '../../utils';
 import { BACKGROUND_VER, ENCODING, VERSION } from '../../utils/constants';
 import { vsc } from '../../utils/vsc';
 
@@ -96,7 +96,7 @@ export abstract class AbsPatchFile {
             try {
                 const mvcmd = process.platform === 'win32' ? 'move /Y' : 'mv -f';
                 const cmdarg = `${mvcmd} "${tempFilePath}" "${filePath}"`;
-                await utils.sudoExec(cmdarg, { name: 'Background Extension' });
+                await _.sudoExec(cmdarg, { name: 'Background Extension' });
                 return true;
             } catch (e: any) {
                 vsc.window.showErrorMessage(e.message, { title: 'Common Issue' }).then(confirm => {
@@ -145,11 +145,15 @@ export abstract class AbsPatchFile {
     protected abstract cleanPatches(content: string): string;
 
     public async restore() {
-        await utils.lock();
-        let content = await this.getContent();
-        content = this.cleanPatches(content);
-        const ok = await this.write(content);
-        await utils.unlock();
-        return ok;
+        try {
+            await _.lock();
+            let content = await this.getContent();
+            content = this.cleanPatches(content);
+            return await this.write(content);
+        } catch {
+            return false;
+        } finally {
+            await _.unlock();
+        }
     }
 }

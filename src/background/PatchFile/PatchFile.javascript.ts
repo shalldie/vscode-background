@@ -1,3 +1,4 @@
+import { _ } from '../../utils';
 import { BACKGROUND_VER, VERSION } from '../../utils/constants';
 import { AbsPatchFile } from './PatchFile.base';
 
@@ -13,16 +14,28 @@ import { AbsPatchFile } from './PatchFile.base';
  */
 export class JsPatchFile extends AbsPatchFile {
     public async applyPatches(patchContent: string): Promise<boolean> {
-        let content = await this.getContent();
-        content = this.cleanPatches(content);
-        content += [
-            //
-            `\n// vscode-background-start ${BACKGROUND_VER}.${VERSION}`,
-            patchContent,
-            '// vscode-background-end'
-        ].join('\n');
+        try {
+            await _.lock();
+            const curContent = await this.getContent();
+            let content = this.cleanPatches(curContent);
+            content += [
+                //
+                `\n// vscode-background-start ${BACKGROUND_VER}.${VERSION}`,
+                patchContent,
+                '// vscode-background-end'
+            ].join('\n');
 
-        return this.write(content);
+            // file unchanged
+            if (curContent === content) {
+                return true;
+            }
+
+            return await this.write(content);
+        } catch {
+            return false;
+        } finally {
+            await _.unlock();
+        }
     }
 
     protected cleanPatches(content: string): string {

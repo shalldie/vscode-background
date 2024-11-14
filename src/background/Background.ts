@@ -4,7 +4,6 @@ import path from 'path';
 
 import vscode, { Disposable, l10n, Uri } from 'vscode';
 
-import { utils } from '../utils';
 import { ENCODING, EXTENSION_NAME, TOUCH_JSFILE_PATH, VERSION } from '../utils/constants';
 import { vscodePath } from '../utils/vscodePath';
 import { vsHelp } from '../utils/vsHelp';
@@ -19,6 +18,7 @@ type TConfigType = vscode.WorkspaceConfiguration & TPatchGeneratorConfig;
 
 /**
  * 插件逻辑类
+ * Extension logic
  *
  * @export
  * @class Background
@@ -36,6 +36,7 @@ export class Background implements Disposable {
     public jsFile = new JsPatchFile(vscodePath.jsPath);
 
     /**
+     * Current config
      * 当前用户配置
      *
      * @private
@@ -219,10 +220,6 @@ export class Background implements Disposable {
                 if (!hasChanged) {
                     return;
                 }
-
-                // 50~550ms 的延时，对于可能的多实例，错开对于文件的操作
-                // 虽然有锁了，但这样更安心 =。=
-                await utils.sleep(50 + ~~(Math.random() * 500));
 
                 this.onConfigChange();
             })
