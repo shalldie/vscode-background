@@ -8,7 +8,7 @@ import fs, { constants as fsConstants } from 'fs';
 import { tmpdir } from 'os';
 import path from 'path';
 
-import { utils } from '../utils';
+import { _ } from '../utils';
 import { BACKGROUND_VER, ENCODING, VERSION } from '../utils/constants';
 import { vsc } from '../utils/vsc';
 
@@ -116,7 +116,7 @@ export class CssFile {
             try {
                 const mvcmd = process.platform === 'win32' ? 'move /Y' : 'mv -f';
                 const cmdarg = `${mvcmd} "${tempFilePath}" "${this.filePath}"`;
-                await utils.sudoExec(cmdarg, { name: 'Visual Studio Code Background Extension' });
+                await _.sudoExec(cmdarg, { name: 'Visual Studio Code Background Extension' });
                 return true;
             } catch (e: any) {
                 await vsc.window.showErrorMessage(e.message);
@@ -177,7 +177,7 @@ export class CssFile {
      */
     public async uninstall(): Promise<boolean> {
         try {
-            await utils.lock();
+            await _.lock();
             let content = await this.getContent();
             content = this.clearContent(content);
             // 异常case return
@@ -189,7 +189,7 @@ export class CssFile {
             console.log(ex);
             return false;
         } finally {
-            await utils.unlock();
+            await _.unlock();
         }
     }
 }

@@ -4,7 +4,7 @@ import lockfile from 'lockfile';
 import { LOCK_PATH } from './constants';
 import { vsc } from './vsc';
 
-export namespace utils {
+export namespace _ {
     /**
      * if zh-CN
      */
@@ -43,7 +43,8 @@ export namespace utils {
             lockfile.lock(
                 LOCK_PATH,
                 {
-                    wait: 5000 // 应该能撑200的并发了，，，>_<#@!
+                    wait: 1000,
+                    retries: 3
                 },
                 err => {
                     if (err) {

@@ -1,7 +1,7 @@
 import * as stylis from 'stylis';
 import vscode from 'vscode';
 
-import { utils } from '../../utils';
+import { _ } from '../../utils';
 
 /**
  * 用于触发开发工具 css in js 语言支持
@@ -126,7 +126,7 @@ container.appendChild(div);
             script
         ]
             .filter(n => !!n.length)
-            .map(n => utils.withIIFE(n))
+            .map(n => _.withIIFE(n))
             .join(';');
     }
 }

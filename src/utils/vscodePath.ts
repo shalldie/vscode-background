@@ -1,6 +1,6 @@
 import path from 'path';
 
-import { utils } from './index';
+import { _ } from './index';
 import { vsc } from './vsc';
 
 // 基础目录
@@ -18,7 +18,7 @@ const cssPath = (() => {
     // https://github.com/microsoft/vscode/pull/141263
     const webPath = getCssPath('workbench.web.main.css');
 
-    if (utils.isDesktop) {
+    if (_.isDesktop) {
         return defPath;
     }
     return webPath;
@@ -29,7 +29,7 @@ const jsPath = (() => {
 
     // desktop
     // /Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/workbench/workbench.desktop.main.js
-    if (utils.isDesktop) {
+    if (_.isDesktop) {
         return path.join(base, 'vs/workbench/workbench.desktop.main.js');
     }
 

@@ -1,6 +1,6 @@
 import uglifyjs from 'uglify-js';
 
-import { utils } from '../../utils';
+import { _ } from '../../utils';
 import { ChecksumsPatchGenerator } from './PatchGenerator.checksums';
 import {
     EditorPatchGenerator,
@@ -28,7 +28,7 @@ export class PatchGenerator {
             new PanelPatchGenerator(options.panel).create(), // panel
             new FullscreenPatchGenerator(options.fullscreen).create() // fullscreen
         ]
-            .map(n => utils.withIIFE(n))
+            .map(n => _.withIIFE(n))
             .join(';');
 
         // return script;
