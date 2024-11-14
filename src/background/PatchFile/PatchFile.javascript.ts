@@ -16,14 +16,19 @@ export class JsPatchFile extends AbsPatchFile {
     public async applyPatches(patchContent: string): Promise<boolean> {
         try {
             await _.lock();
-            let content = await this.getContent();
-            content = this.cleanPatches(content);
+            const curContent = await this.getContent();
+            let content = this.cleanPatches(curContent);
             content += [
                 //
                 `\n// vscode-background-start ${BACKGROUND_VER}.${VERSION}`,
                 patchContent,
                 '// vscode-background-end'
             ].join('\n');
+
+            // file unchanged
+            if (curContent === content) {
+                return true;
+            }
 
             return await this.write(content);
         } catch {
