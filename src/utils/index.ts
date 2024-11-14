@@ -43,8 +43,9 @@ export namespace _ {
             lockfile.lock(
                 LOCK_PATH,
                 {
-                    wait: 1000,
-                    retries: 3
+                    // When multiple VSCode instances are running, all instances' commands need to be executed within the `wait` time
+                    // 在打开了多个vscode实例时，需要所有实例的命令在`wait`时间内执行完毕
+                    wait: 1000 * 30
                 },
                 err => {
                     if (err) {
