@@ -175,6 +175,7 @@
           "default": {
             "images": [],
             "opacity": 0.1,
+            "brightness": 1,
             "size": "cover",
             "position": "center",
             "interval": 0,
@@ -197,6 +198,13 @@
               "minimum": 0,
               "maximum": 0.6,
               "markdownDescription": "%extension.background.fullscreen.opacity%"
+            },
+            "brightness": {
+              "type": "number",
+              "default": 1,
+              "minimum": 0.1,
+              "maximum": 2,
+              "markdownDescription": "%extension.background.fullscreen.brightness%"
             },
             "size": {
               "type": "string",
@@ -226,6 +234,7 @@
           "default": {
             "images": [],
             "opacity": 0.1,
+            "brightness": 1,
             "size": "cover",
             "position": "center",
             "interval": 0,
@@ -237,6 +246,9 @@
             },
             "opacity": {
               "$ref": "#/properties/background.fullscreen/properties/opacity"
+            },
+            "brightness": {
+              "$ref": "#/properties/background.fullscreen/properties/brightness"
             },
             "size": {
               "$ref": "#/properties/background.fullscreen/properties/size"
@@ -258,6 +270,7 @@
           "default": {
             "images": [],
             "opacity": 0.1,
+            "brightness": 1,
             "size": "cover",
             "position": "center",
             "interval": 0,
@@ -269,6 +282,9 @@
             },
             "opacity": {
               "$ref": "#/properties/background.fullscreen/properties/opacity"
+            },
+            "brightness": {
+              "$ref": "#/properties/background.fullscreen/properties/brightness"
             },
             "size": {
               "$ref": "#/properties/background.fullscreen/properties/size"

@@ -106,12 +106,14 @@ Edit `background.fullscreen`、`background.sidebar`、`background.panel` to conf
 | :--------- | :--------: | :------: | :--------------------------------------------------------------------------------------- |
 | `images`   | `string[]` |   `[]`   | Your custom images, support `https` and `file` protocol.                                 |
 | `opacity`  |  `number`  |  `0.1`   | Opacity of the images, alias to [opacity][mdn-opacity], `0.1 ~ 0.3` recommended.         |
+| `brightness`|  `number` |  `1`     | Brightness of the images, alias to [brightness][mdn-brightness]. Value range: `0.1 ~ 2`. |
 | `size`     |  `string`  | `cover`  | Alias to [background-size][mdn-background-size], `cover` to self-adaption (recommended). |
 | `position` |  `string`  | `center` | Alias to [background-position][mdn-background-position], default `center`.               |
 | `interval` |  `number`  |   `0`    | Seconds of interval for carousel, default `0` to disabled.                               |
 | `random`   | `boolean`  | `false`  | Whether to randomly display images.                                                      |
 
 [mdn-opacity]: https://developer.mozilla.org/docs/Web/CSS/opacity
+[mdn-brightness]: https://developer.mozilla.org/zh-CN/docs/Web/CSS/filter-function/brightness
 [mdn-background-size]: https://developer.mozilla.org/docs/Web/CSS/background-size
 [mdn-background-position]: https://developer.mozilla.org/docs/Web/CSS/background-position
 
@@ -123,6 +125,7 @@ example：
     // Local images can be dragged into the browser to quickly get the file protocol address from the address bar
     "images": ["https://pathtoimage.png", "file:///path/to/local/file"],
     "opacity": 0.1,
+    "brightness": 1,
     "size": "cover",
     "position": "center",
     "interval": 0,

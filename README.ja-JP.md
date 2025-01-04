@@ -106,12 +106,14 @@
 | :--------- | :--------: | :--------: | :--------------------------------------------------------------------------------------------------------- |
 | `images`   | `string[]` |    `[]`    | `https`または`file`プロトコルで画像のパスを指定してください。複数指定することもできます。                  |
 | `opacity`  |  `number`  |   `0.1`    | 画像の不透明度を制御します、[opacity][mdn-opacity]へのエイリアスです。推奨値 `0.1 ～ 0.3`。                |
+| `brightness`|  `number` |  `1`       | 明度は CSS の [brightness][mdn-brightness] と同等です。値の範囲は `0.1 ～ 2` です。                  |
 | `size`     |  `string`  |  `cover`   | [background-size][mdn-background-size]へのエイリアスです。推奨 `cover`，縦横比を保ったまま領域を覆います。 |
 | `position` |  `string`  |  `center`  | [background-position][mdn-background-position]へのエイリアスです。デフォルト値は `center` です。           |
 | `interval` |  `number`  |    `0`     | 次の画像を表示するまでの秒数を制御します。`0` の場合、画像は変更されません。                               |
 | `random`   | `boolean`  |  `false`   | 画像の表示順をランダムにするかを制御します。                                                               |
 
 [mdn-opacity]: https://developer.mozilla.org/docs/Web/CSS/opacity
+[mdn-brightness]: https://developer.mozilla.org/zh-CN/docs/Web/CSS/filter-function/brightness
 [mdn-background-size]: https://developer.mozilla.org/docs/Web/CSS/background-size
 [mdn-background-position]: https://developer.mozilla.org/docs/Web/CSS/background-position
 
@@ -123,6 +125,7 @@ example:
     // ローカルの画像へのfileプロトコルによるパスは、ブラウザにドラッグアンドドロップすることで簡単に取得できます
     "images": ["https://pathtoimage.png", "file:///path/to/local/file"],
     "opacity": 0.1,
+    "brightness": 1,
     "size": "cover",
     "position": "center",
     "interval": 0,

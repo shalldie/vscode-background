@@ -17,6 +17,7 @@
     "extension.background.fullscreen.description": "Fullscreen section config.",
     "extension.background.fullscreen.images": "Your custom images.\n\nExample:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
     "extension.background.fullscreen.opacity": "Opacity of the images, alias to [opacity](https://developer.mozilla.org/docs/Web/CSS/opacity),\n\n`0.1 ~ 0.3` recommended, it will be reset to the default `0.1` if exceeds the limit range `0 ~ 0.6`.",
+    "extension.background.fullscreen.brightness": "Brightness of the images, alias to [brightness](https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function/brightness).\n\nAcceptable range: `0.1 ~ 2`. The default value is `1`, which means no brightness change. Any value outside this range will be reset to `1`.",
     "extension.background.fullscreen.size": "Alias to [background-size](https://developer.mozilla.org/docs/Web/CSS/background-size), `cover` to self-adaption (recommended).",
     "extension.background.fullscreen.position": "Alias to [background-position](https://developer.mozilla.org/docs/Web/CSS/background-position), default `center`.",
     "extension.background.fullscreen.interval": "Seconds of interval for carousel, default `0` to disabled.",

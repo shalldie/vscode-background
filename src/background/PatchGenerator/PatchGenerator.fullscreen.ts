@@ -3,6 +3,7 @@ import { AbsPatchGenerator, css } from './PatchGenerator.base';
 export class FullscreenPatchGeneratorConfig {
     images = [] as string[];
     opacity = 0.1; // 建议在 0.1 ~ 0.3
+    brightness = 1;
     size = 'cover' as 'cover' | 'contain';
     position = 'center';
     interval = 0;
@@ -22,12 +23,15 @@ export class FullscreenPatchGenerator<T extends FullscreenPatchGeneratorConfig> 
         if (cur.opacity < 0 || cur.opacity > 0.6) {
             cur.opacity = new FullscreenPatchGeneratorConfig().opacity;
         }
+        if (cur.brightness < 0.1 || cur.brightness > 2) {
+            cur.brightness = 1;
+        }
 
         return cur;
     }
 
     protected getStyle(): string {
-        const { size, position, opacity } = this.curConfig;
+        const { size, position, opacity, brightness } = this.curConfig;
 
         return css`
             body::after {
@@ -42,6 +46,7 @@ export class FullscreenPatchGenerator<T extends FullscreenPatchGeneratorConfig> 
                 /* background-attachment: fixed; // 兼容 code-server，其他的不影响 */
                 background-position: ${position};
                 opacity: ${opacity};
+                filter: brightness(${brightness});
                 transition: 1s;
                 background-image: var(${this.cssvariable});
             }

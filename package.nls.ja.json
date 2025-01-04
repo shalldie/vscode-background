@@ -17,6 +17,7 @@
     "extension.background.fullscreen.description": "フルスクリーン表示の設定",
     "extension.background.fullscreen.images": "表示させる画像を制御します。\n\nパスの入力例:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
     "extension.background.fullscreen.opacity": "画像の不透明度（opacity）を制御します、[opacity][mdn-opacity]へのエイリアスです。\n\n推奨値`0.1～0.3`，制限範囲`0～0.6`を超えると、デフォルト値`0.1`にリセットされます。",
+    "extension.background.fullscreen.brightness": "明度は、CSSの [brightness](https://developer.mozilla.org/ja/docs/Web/CSS/filter-function/brightness) と同等の機能です。\n\n値の範囲は `0.1 ～ 2` です。 デフォルト値は `1` で、明るさを変更しないことを意味します。範囲外の値は `1` にリセットされます。",
     "extension.background.fullscreen.size": "[background-size](https://developer.mozilla.org/docs/Web/CSS/background-size)へのエイリアスです。推奨`cover`，縦横比を保ったまま領域を覆います。",
     "extension.background.fullscreen.position": "[background-position](https://developer.mozilla.org/docs/Web/CSS/background-position)へのエイリアスです。デフォルト値は`center`です。",
     "extension.background.fullscreen.interval": "次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。",

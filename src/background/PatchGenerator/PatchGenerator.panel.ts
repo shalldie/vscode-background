@@ -7,7 +7,7 @@ export class PanelPatchGenerator extends FullscreenPatchGenerator<PanelPatchGene
     protected readonly cssvariable = '--background-panel-img';
 
     protected getStyle(): string {
-        const { size, position, opacity } = this.curConfig;
+        const { size, position, opacity, brightness } = this.curConfig;
 
         return css`
             .split-view-view > .part.panel::after {
@@ -22,6 +22,7 @@ export class PanelPatchGenerator extends FullscreenPatchGenerator<PanelPatchGene
                 background-size: ${size};
                 pointer-events: none;
                 opacity: ${opacity};
+                filter: brightness(${brightness});
                 transition: 1s;
                 background-image: var(${this.cssvariable});
             }
