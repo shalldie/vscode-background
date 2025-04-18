@@ -80,7 +80,7 @@ Edit `background.editor` to config editor section.
 
 example:
 
-```json
+```jsonc
 {
   "background.editor": {
     "useFront": true,
@@ -117,7 +117,7 @@ Edit `background.fullscreen`、`background.sidebar`、`background.panel` to conf
 
 example：
 
-```json
+```jsonc
 {
   "background.fullscreen": {
     // Local images can be dragged into the browser to quickly get the file protocol address from the address bar
