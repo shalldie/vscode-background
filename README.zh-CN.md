@@ -90,7 +90,7 @@ example:
     "styles": [{}, {}, {}],
     // 本地图片可以拖到浏览器中，快速从地址栏得到file协议的地址
     "images": ["https://pathtoimage.png", "file:///path/to/local/file"],
-    "interval": 10,
+    "interval": 0,
     "random": false
   }
 }
