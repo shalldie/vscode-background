@@ -23,6 +23,7 @@
     "extension.background.fullscreen.random": "是否随机展示图片。",
 
     "extension.background.sidebar.description": "侧边栏区域配置。",
+    "extension.background.auxiliarybar.description": "辅助栏区域配置。",
     "extension.background.panel.description": "面板区域配置。",
 
     "extension.background.common.deprecation": "*Deprecated*, 过时的配置，请迁移到 `background.editor`。",

@@ -253,6 +253,38 @@
           },
           "markdownDescription": "%extension.background.sidebar.description%"
         },
+        "background.auxiliarybar": {
+          "type": "object",
+          "default": {
+            "images": [],
+            "opacity": 0.1,
+            "size": "cover",
+            "position": "center",
+            "interval": 0,
+            "random": false
+          },
+          "properties": {
+            "images": {
+              "$ref": "#/properties/background.fullscreen/properties/images"
+            },
+            "opacity": {
+              "$ref": "#/properties/background.fullscreen/properties/opacity"
+            },
+            "size": {
+              "$ref": "#/properties/background.fullscreen/properties/size"
+            },
+            "position": {
+              "$ref": "#/properties/background.fullscreen/properties/position"
+            },
+            "interval": {
+              "$ref": "#/properties/background.fullscreen/properties/interval"
+            },
+            "random": {
+              "$ref": "#/properties/background.fullscreen/properties/random"
+            }
+          },
+          "markdownDescription": "%extension.background.auxiliarybar.description%"
+        },
         "background.panel": {
           "type": "object",
           "default": {
