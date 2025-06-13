@@ -15,7 +15,7 @@
 
 ### Bring background images to your [Visual Studio Code](https://code.visualstudio.com)
 
-`fullscreen`、`editor`、`sidebar`、`panel`、`carousel`、`custom images/styles`...
+`fullscreen`、`editor`、`sidebar`、`auxiliarybar`、`panel`、`carousel`、`custom images/styles`...
 
 [GitHub](https://github.com/shalldie/vscode-background) | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
@@ -26,7 +26,7 @@
 [![Build Status](https://img.shields.io/github/actions/workflow/status/shalldie/vscode-background/ci.yml?branch=master&label=build&style=flat-square)](https://github.com/shalldie/vscode-background/actions)
 [![License](https://img.shields.io/github/license/shalldie/vscode-background?style=flat-square)](https://github.com/shalldie/vscode-background)
 
-Multiple sections, `editor`、`sidebar`、`panel`
+Multiple sections, `editor`、`sidebar`、`auxiliarybar`、`panel`
 
 <img width="760" src="./images/section.png">
 
@@ -98,9 +98,9 @@ example:
 }
 ```
 
-### Fullscreen、Sidebar、Panel Section Config
+### Fullscreen、Sidebar、Auxiliarybar、Panel Section Config
 
-Edit `background.fullscreen`、`background.sidebar`、`background.panel` to config these sections.
+Edit `background.fullscreen`、`background.sidebar`、`background.auxiliarybar`、`background.panel` to config these sections.
 
 | Name       |    Type    | Default  | Description                                                                              |
 | :--------- | :--------: | :------: | :--------------------------------------------------------------------------------------- |

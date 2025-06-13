@@ -15,7 +15,7 @@
 
 ### 给 [Visual Studio Code](https://code.visualstudio.com) 添加背景
 
-`全屏`、`编辑器`、`侧边栏`、`面板`、`轮播`、`自定义图片/样式`...
+`全屏`、`编辑器`、`侧边栏`、`辅助栏(auxiliarybar)`、`面板`、`轮播`、`自定义图片/样式`...
 
 [GitHub](https://github.com/shalldie/vscode-background) | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
@@ -26,7 +26,7 @@
 [![Build Status](https://img.shields.io/github/actions/workflow/status/shalldie/vscode-background/ci.yml?branch=master&label=build&style=flat-square)](https://github.com/shalldie/vscode-background/actions)
 [![License](https://img.shields.io/github/license/shalldie/vscode-background?style=flat-square)](https://github.com/shalldie/vscode-background)
 
-多区域，`编辑器`、`侧边栏`、`面板`
+多区域，`编辑器`、`侧边栏`、`辅助栏(auxiliarybar)`、`面板`
 
 <img width="760" src="./images/section.png">
 
@@ -96,9 +96,9 @@ example:
 }
 ```
 
-### 全屏、侧边栏、面板 区域配置
+### 全屏、侧边栏、辅助栏(auxiliarybar)、面板 区域配置
 
-通过 `background.fullscreen`、`background.sidebar`、`background.panel` 来进行这些区域的配置。
+通过 `background.fullscreen`、`background.sidebar`、`background.auxiliarybar`、`background.panel` 来进行这些区域的配置。
 
 | 名称       |    类型    |  默认值  | 描述                                                                         |
 | :--------- | :--------: | :------: | :--------------------------------------------------------------------------- |
