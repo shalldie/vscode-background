@@ -9,13 +9,13 @@
 <!-- 封面区域 -->
 <div align="center">
 
-![logo](https://user-images.githubusercontent.com/9987486/40583704-6accf3a4-61c6-11e8-8c00-a636b9c3ec65.png)
+![logo](./images/logo.png)
 
 <h1><b>vscode-background</b></h1>
 
 ### [Visual Studio Code](https://code.visualstudio.com) にも背景画像を。
 
-`エディターごとの画像表示`、`全画面の画像表示`、`画像の切り替わり`、`画像・CSSのカスタマイズ`...
+`フルスクリーン`、`エディター`、`サイドバー`、`補助バー(auxiliarybar)`、`パネル`、`画像の切り替わり`、`画像・CSSのカスタマイズ`...
 
 [GitHub](https://github.com/shalldie/vscode-background) | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
@@ -26,15 +26,13 @@
 [![Build Status](https://img.shields.io/github/actions/workflow/status/shalldie/vscode-background/ci.yml?branch=master&label=build&style=flat-square)](https://github.com/shalldie/vscode-background/actions)
 [![License](https://img.shields.io/github/license/shalldie/vscode-background?style=flat-square)](https://github.com/shalldie/vscode-background)
 
-`エディタ`、`サイドバー`、`パネル`、個別に設定
+複数の領域、`エディタ`、`サイドバー`、`補助バー(auxiliarybar)`、`パネル`
 
 <img width="760" src="./images/section.png">
 
 `フルスクリーン`
 
 <img width="760" src="./images/fullscreen.png">
-
-</div>
 
 </div>
 
@@ -98,9 +96,9 @@
 }
 ```
 
-### フルスクリーン、サイドバー、パネル部分の設定
+### フルスクリーン、サイドバー、補助バー(auxiliarybar)、パネル部分の設定
 
-フルスクリーン、サイドバー、パネル部分を設定するには、`background.fullscreen`、`background.sidebar`、`background.panel`を編集します。
+`background.fullscreen`、`background.sidebar`、`background.auxiliarybar`、`background.panel`を編集してこれらの領域を設定します。
 
 | 設定       |     型     | デフォルト | 説明                                                                                                       |
 | :--------- | :--------: | :--------: | :--------------------------------------------------------------------------------------------------------- |
@@ -152,7 +150,7 @@ example:
 
 ## 貢献者 🙏
 
-[<img alt="shalldie" src="https://avatars3.githubusercontent.com/u/9987486?v=4" width="80">](https://github.com/shalldie)
+[<img alt="shalldie" src="https://avatars.githubusercontent.com/u/9987486?v=4" width="80">](https://github.com/shalldie)
 [<img alt="suiyun39" src="https://avatars.githubusercontent.com/u/20502666?v=4" width="80">](https://github.com/suiyun39)
 [<img alt="frg2089" src="https://avatars.githubusercontent.com/u/42184238?v=4" width="80">](https://github.com/frg2089)
 [<img alt="AzureeDev" src="https://avatars.githubusercontent.com/u/23083011?v=4" width="80">](https://github.com/AzureeDev)

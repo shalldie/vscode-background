@@ -1,6 +1,7 @@
 import uglifyjs from 'uglify-js';
 
 import { _ } from '../../utils';
+import { AuxiliarybarPatchGenerator, AuxiliarybarPatchGeneratorConfig } from './PatchGenerator.auxiliarybar';
 import { ChecksumsPatchGenerator } from './PatchGenerator.checksums';
 import {
     EditorPatchGenerator,
@@ -15,6 +16,7 @@ export type TPatchGeneratorConfig = {
     enabled: boolean;
     editor: EditorPatchGeneratorConfig;
     sidebar: SidebarPatchGeneratorConfig;
+    auxiliarybar: AuxiliarybarPatchGeneratorConfig;
     panel: PanelPatchGeneratorConfig;
     fullscreen: FullscreenPatchGeneratorConfig;
 } & LegacyEditorPatchGeneratorConfig;
@@ -25,6 +27,7 @@ export class PatchGenerator {
             new ChecksumsPatchGenerator().create(), // fix checksums
             new EditorPatchGenerator(EditorPatchGenerator.mergeLegacyConfig(options, options.editor)).create(), // editor,
             new SidebarPatchGenerator(options.sidebar).create(), // sidebar
+            new AuxiliarybarPatchGenerator(options.auxiliarybar).create(), // auxiliarybar
             new PanelPatchGenerator(options.panel).create(), // panel
             new FullscreenPatchGenerator(options.fullscreen).create() // fullscreen
         ]

@@ -23,6 +23,7 @@
     "extension.background.fullscreen.random": "画像の表示順をランダムにするかを制御します。",
 
     "extension.background.sidebar.description": "サイドバー部分の設定",
+    "extension.background.auxiliarybar.description": "補助バー部分の設定",
     "extension.background.panel.description": "パネル部分の設定",
 
     "extension.background.common.deprecation": "*この設定項目は削除されました*、`background.editor`に移動しています。",

@@ -22,7 +22,8 @@
     "extension.background.fullscreen.interval": "Seconds of interval for carousel, default `0` to disabled.",
     "extension.background.fullscreen.random": "Whether to randomly display images.",
 
-    "extension.background.sidebar.description": "sidebar section config.",
+    "extension.background.sidebar.description": "Sidebar section config.",
+    "extension.background.auxiliarybar.description": "Auxiliarybar section config.",
     "extension.background.panel.description": "Panel section config.",
 
     "extension.background.common.deprecation": "*Deprecated*, it has been moved to `background.editor`.",
