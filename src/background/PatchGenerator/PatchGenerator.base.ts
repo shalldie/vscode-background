@@ -2,6 +2,7 @@ import * as stylis from 'stylis';
 import vscode from 'vscode';
 
 import { _ } from '../../utils';
+import { collectImagesFromFolders } from '../../utils/imageUtils';
 
 /**
  * 用于触发开发工具 css in js 语言支持
@@ -27,14 +28,56 @@ export function css(template: TemplateStringsArray, ...args: any[]) {
     }, '');
 }
 
-export class AbsPatchGenerator<T extends { images: string[] }> {
+export class AbsPatchGenerator<T extends { images?: string[]; imageFolders?: string[]; recursive?: boolean }> {
     protected config: T;
 
     constructor(config: T) {
         this.config = {
             ...config,
-            images: this.normalizeImageUrls(config?.images || [])
+            images: this.getAllImages(config)
         };
+    }
+
+    /**
+     * 获取所有图片，包括直接配置的图片和从文件夹收集的图片
+     * @protected
+     * @param {T} config 配置对象
+     * @returns {string[]} 合并后的图片列表
+     * @memberof AbsPatchGenerator
+     */
+    protected getAllImages(config: T): string[] {
+        if (!config) {
+            return [];
+        }
+        // 获取直接配置的图片并标准化为 file:// 协议
+        let directImages = config.images || [];
+
+        // 获取从文件夹收集的图片
+        const imageFolders = config.imageFolders || [];
+        const recursive = config.recursive !== false; // 默认为true
+
+        let folderImages: string[] = [];
+        if (imageFolders.length > 0) {
+            console.log(`[DEBUG] Collecting from folders:`, imageFolders, 'recursive:', recursive);
+            try {
+                folderImages = collectImagesFromFolders(imageFolders, recursive);
+            } catch (error) {
+                throw new Error(`Failed to collect images from folders: ${error}`);
+            }
+        }
+
+        // 合并图片列表，优先使用直接配置的图片，避免重复
+        const allImages = [...directImages];
+        const directImageUrls = new Set(directImages.map(img => img.toLowerCase()));
+
+        // 添加文件夹中的图片，避免与直接配置的图片重复
+        folderImages.forEach(img => {
+            if (!directImageUrls.has(img.toLowerCase())) {
+                allImages.push(img);
+            }
+        });
+
+        return this.normalizeImageUrls(allImages);
     }
 
     /**
@@ -109,7 +152,7 @@ container.appendChild(div);
     }
 
     public create() {
-        if (!this.config?.images.length) {
+        if (!this.config?.images?.length) {
             return '';
         }
 

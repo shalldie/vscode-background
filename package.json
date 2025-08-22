@@ -120,6 +120,8 @@
               {}
             ],
             "images": [],
+            "imageFolders": [],
+            "recursive": true,
             "interval": 0,
             "random": false
           },
@@ -157,6 +159,19 @@
               },
               "markdownDescription": "%extension.background.editor.images%"
             },
+            "imageFolders": {
+              "type": "array",
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "markdownDescription": "List of folders to search for images"
+            },
+            "recursive": {
+              "type": "boolean",
+              "default": true,
+              "markdownDescription": "Whether to search subdirectories recursively"
+            },
             "interval": {
               "type": "number",
               "default": 0,
@@ -174,6 +189,8 @@
           "type": "object",
           "default": {
             "images": [],
+            "imageFolders": [],
+            "recursive": true,
             "opacity": 0.1,
             "size": "cover",
             "position": "center",
@@ -190,6 +207,19 @@
                 "patternErrorMessage": "%extension.background.urlProtocol.error%"
               },
               "markdownDescription": "%extension.background.fullscreen.images%"
+            },
+            "imageFolders": {
+              "type": "array",
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "markdownDescription": "List of folders to search for images"
+            },
+            "recursive": {
+              "type": "boolean",
+              "default": true,
+              "markdownDescription": "Whether to search subdirectories recursively"
             },
             "opacity": {
               "type": "number",
@@ -225,6 +255,8 @@
           "type": "object",
           "default": {
             "images": [],
+            "imageFolders": [],
+            "recursive": true,
             "opacity": 0.1,
             "size": "cover",
             "position": "center",
@@ -234,6 +266,12 @@
           "properties": {
             "images": {
               "$ref": "#/properties/background.fullscreen/properties/images"
+            },
+            "imageFolders": {
+              "$ref": "#/properties/background.fullscreen/properties/imageFolders"
+            },
+            "recursive": {
+              "$ref": "#/properties/background.fullscreen/properties/recursive"
             },
             "opacity": {
               "$ref": "#/properties/background.fullscreen/properties/opacity"
@@ -257,6 +295,8 @@
           "type": "object",
           "default": {
             "images": [],
+            "imageFolders": [],
+            "recursive": true,
             "opacity": 0.1,
             "size": "cover",
             "position": "center",
@@ -266,6 +306,12 @@
           "properties": {
             "images": {
               "$ref": "#/properties/background.fullscreen/properties/images"
+            },
+            "imageFolders": {
+              "$ref": "#/properties/background.fullscreen/properties/imageFolders"
+            },
+            "recursive": {
+              "$ref": "#/properties/background.fullscreen/properties/recursive"
             },
             "opacity": {
               "$ref": "#/properties/background.fullscreen/properties/opacity"
@@ -289,6 +335,8 @@
           "type": "object",
           "default": {
             "images": [],
+            "imageFolders": [],
+            "recursive": true,
             "opacity": 0.1,
             "size": "cover",
             "position": "center",
@@ -298,6 +346,12 @@
           "properties": {
             "images": {
               "$ref": "#/properties/background.fullscreen/properties/images"
+            },
+            "imageFolders": {
+              "$ref": "#/properties/background.fullscreen/properties/imageFolders"
+            },
+            "recursive": {
+              "$ref": "#/properties/background.fullscreen/properties/recursive"
             },
             "opacity": {
               "$ref": "#/properties/background.fullscreen/properties/opacity"
