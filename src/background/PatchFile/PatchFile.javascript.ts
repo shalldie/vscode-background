@@ -27,7 +27,9 @@ export class JsPatchFile extends AbsPatchFile {
 
             // file unchanged
             if (curContent === content) {
-                return true;
+                return false;
+            } else {
+                console.log('[DEBUG] patch file not equals to origin content, need patching.');
             }
 
             return await this.write(content);
