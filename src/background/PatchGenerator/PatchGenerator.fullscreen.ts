@@ -2,8 +2,7 @@ import { AbsPatchGenerator, css } from './PatchGenerator.base';
 
 export class FullscreenPatchGeneratorConfig {
     images = [] as string[];
-    imageFolders = [] as string[];
-    recursive = true;
+    folders = [] as string[];
     opacity = 0.1; // 建议在 0.1 ~ 0.3
     size = 'cover' as 'cover' | 'contain';
     position = 'center';

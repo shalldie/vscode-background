@@ -206,8 +206,10 @@ export class Background implements Disposable {
         // 如果「开启」状态，文件不是「latest」，则进行更新
         if (this.config.enabled) {
             // 此时一般为 vscode更新、background更新
-            if (await this.applyPatch()) {
-                vsHelp.showInfoRestart(l10n.t('Background has been changed! Please restart.'));
+            if ([EFilePatchType.Legacy, EFilePatchType.None].includes(patchType)) {
+                if (await this.applyPatch()) {
+                    vsHelp.showInfoRestart(l10n.t('Background has been changed! Please restart.'));
+                }
             }
         }
 

@@ -127,7 +127,7 @@ export abstract class AbsPatchFile {
      *
      * @abstract
      * @param {string} patch
-     * @return {*}  {Promise<boolean>}
+     * @return {Promise<boolean>} 是否成功修改
      * @memberof AbsPatchFile
      */
     public abstract applyPatches(patch: string): Promise<boolean>;

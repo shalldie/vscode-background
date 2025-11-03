@@ -13,8 +13,7 @@ export class EditorPatchGeneratorConfig {
     style: Record<string, string> = {};
     styles: Array<Record<string, string>> = [];
     images: string[] = [];
-    imageFolders: string[] = [];
-    recursive: boolean = true;
+    folders: string[] = [];
     interval = 0;
     random = false;
 }
@@ -43,9 +42,8 @@ export class EditorPatchGenerator extends AbsPatchGenerator<EditorPatchGenerator
         return {
             ...legacy,
             images: legacy.customImages,
-            random: false,
-            imageFolders: [],
-            recursive: true
+            folders: [],
+            random: false
         };
     }
 

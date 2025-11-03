@@ -120,8 +120,7 @@
               {}
             ],
             "images": [],
-            "imageFolders": [],
-            "recursive": true,
+            "folders": [],
             "interval": 0,
             "random": false
           },
@@ -159,18 +158,13 @@
               },
               "markdownDescription": "%extension.background.editor.images%"
             },
-            "imageFolders": {
+            "folders": {
               "type": "array",
               "default": [],
               "items": {
                 "type": "string"
               },
               "markdownDescription": "List of folders to search for images"
-            },
-            "recursive": {
-              "type": "boolean",
-              "default": true,
-              "markdownDescription": "Whether to search subdirectories recursively"
             },
             "interval": {
               "type": "number",
@@ -189,8 +183,7 @@
           "type": "object",
           "default": {
             "images": [],
-            "imageFolders": [],
-            "recursive": true,
+            "folders": [],
             "opacity": 0.1,
             "size": "cover",
             "position": "center",
@@ -208,18 +201,13 @@
               },
               "markdownDescription": "%extension.background.fullscreen.images%"
             },
-            "imageFolders": {
+            "folders": {
               "type": "array",
               "default": [],
               "items": {
                 "type": "string"
               },
               "markdownDescription": "List of folders to search for images"
-            },
-            "recursive": {
-              "type": "boolean",
-              "default": true,
-              "markdownDescription": "Whether to search subdirectories recursively"
             },
             "opacity": {
               "type": "number",
@@ -255,8 +243,7 @@
           "type": "object",
           "default": {
             "images": [],
-            "imageFolders": [],
-            "recursive": true,
+            "folders": [],
             "opacity": 0.1,
             "size": "cover",
             "position": "center",
@@ -267,11 +254,8 @@
             "images": {
               "$ref": "#/properties/background.fullscreen/properties/images"
             },
-            "imageFolders": {
-              "$ref": "#/properties/background.fullscreen/properties/imageFolders"
-            },
-            "recursive": {
-              "$ref": "#/properties/background.fullscreen/properties/recursive"
+            "folders": {
+              "$ref": "#/properties/background.fullscreen/properties/folders"
             },
             "opacity": {
               "$ref": "#/properties/background.fullscreen/properties/opacity"
@@ -295,8 +279,7 @@
           "type": "object",
           "default": {
             "images": [],
-            "imageFolders": [],
-            "recursive": true,
+            "folders": [],
             "opacity": 0.1,
             "size": "cover",
             "position": "center",
@@ -307,11 +290,8 @@
             "images": {
               "$ref": "#/properties/background.fullscreen/properties/images"
             },
-            "imageFolders": {
-              "$ref": "#/properties/background.fullscreen/properties/imageFolders"
-            },
-            "recursive": {
-              "$ref": "#/properties/background.fullscreen/properties/recursive"
+            "folders": {
+              "$ref": "#/properties/background.fullscreen/properties/folders"
             },
             "opacity": {
               "$ref": "#/properties/background.fullscreen/properties/opacity"
@@ -335,8 +315,7 @@
           "type": "object",
           "default": {
             "images": [],
-            "imageFolders": [],
-            "recursive": true,
+            "folders": [],
             "opacity": 0.1,
             "size": "cover",
             "position": "center",
@@ -347,11 +326,8 @@
             "images": {
               "$ref": "#/properties/background.fullscreen/properties/images"
             },
-            "imageFolders": {
-              "$ref": "#/properties/background.fullscreen/properties/imageFolders"
-            },
-            "recursive": {
-              "$ref": "#/properties/background.fullscreen/properties/recursive"
+            "folders": {
+              "$ref": "#/properties/background.fullscreen/properties/folders"
             },
             "opacity": {
               "$ref": "#/properties/background.fullscreen/properties/opacity"
@@ -393,6 +369,7 @@
   },
   "dependencies": {
     "@vscode/sudo-prompt": "^9.3.1",
+    "glob": "^11.0.3",
     "lockfile": "^1.0.4",
     "stylis": "^4.3.4",
     "uglify-js": "^3.19.3"
