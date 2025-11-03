@@ -37,7 +37,11 @@ export class AbsPatchGenerator<T extends { images: string[]; folders: string[] }
     constructor(config: T) {
         this.config = {
             ...config,
-            images: this.normalizeImageUrls(config?.images || [])
+            images: [
+                //
+                ...this.normalizeImageUrls(config?.images),
+                ...this.getImagesFromFolders(config?.folders)
+            ]
         };
     }
 
@@ -46,11 +50,11 @@ export class AbsPatchGenerator<T extends { images: string[]; folders: string[] }
      * 在 v1.51.1 版本之后, vscode 将工作区放入 sandbox 中运行并添加了 file 协议的访问限制, 导致使用 file 协议的背景图片无法显示
      * 当检测到配置文件使用 file 协议时, 需要将其转换为 vscode-file 协议
      * @protected
-     * @param {string[]} images 图片列表
+     * @param {string[]} [images=[]] 图片列表
      * @return {*}
      * @memberof AbsPatchGenerator
      */
-    protected normalizeImageUrls(images: string[]) {
+    protected normalizeImageUrls(images: string[] = []) {
         return images.map(imageUrl => {
             if (!imageUrl.startsWith('file://')) {
                 return imageUrl;
@@ -60,6 +64,29 @@ export class AbsPatchGenerator<T extends { images: string[]; folders: string[] }
             const url = imageUrl.replace('file://', 'vscode-file://vscode-app');
             return vscode.Uri.parse(url).toString();
         });
+    }
+
+    /**
+     * 递归获取文件夹下的所有图片
+     * 支持的类型：`'jpg', 'jpeg', 'gif', 'bmp', 'webp', 'mp4', 'otf', 'ttf'`
+     * @protected
+     * @param {string[]} [folders=[]]
+     * @return {*}
+     * @memberof AbsPatchGenerator
+     */
+    protected getImagesFromFolders(folders: string[] = []) {
+        try {
+            // 支持的图片
+            // https://github.com/microsoft/vscode/blob/main/src/vs/platform/protocol/electron-main/protocolMainService.ts#L27
+            const validFiles = ['jpg', 'jpeg', 'gif', 'bmp', 'webp', 'mp4', 'otf', 'ttf'];
+            const patterns = folders.map(folder => path.join(folder, `**/*.{${validFiles.join(',')}}`));
+
+            // 获取所有图片 =》 绝对路径 =〉file:// 路径 =》 normalizeImageUrls
+            const allMatches = patterns.flatMap(p => globSync(p, { nodir: true, absolute: true }));
+            return this.normalizeImageUrls(allMatches.map(absPath => pathToFileURL(absPath).href));
+        } catch {
+            return [];
+        }
     }
 
     /**
