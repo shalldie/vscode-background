@@ -1,11 +1,24 @@
 import path from 'path';
-import { fileURLToPath, pathToFileURL } from 'url';
+import { pathToFileURL } from 'url';
 
 import { globSync } from 'glob';
 import * as stylis from 'stylis';
 import vscode from 'vscode';
 
 import { _ } from '../../utils';
+
+/**
+images 支持以下格式：
+
+------ 网络图片 ------
+https://...
+
+------ 本地目录、图片 ------
+file:///path/to/local/file
+/home/xie/downloads/images
+C:/Users/xie/downloads/images
+D:\\downloads\\images
+*/
 
 /**
  * 用于触发开发工具 css in js 语言支持

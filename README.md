@@ -67,14 +67,14 @@ User defined requirements can be met by changing the configuration(`settings.jso
 
 Edit `background.editor` to config editor section.
 
-| Name       |    Type    |   Default    | Description                                                |
-| :--------- | :--------: | :----------: | :--------------------------------------------------------- |
-| `useFront` | `boolean`  |    `true`    | Place the image above or below the code.                   |
-| `style`    |  `object`  |     `{}`     | Custom style for images. [MDN Reference][mdn-css]          |
-| `styles`   | `object[]` | `[{},{},{}]` | Each style of editor section image.                        |
-| `images`   | `string[]` |     `[]`     | Your custom images, support `https` and `file` protocol.   |
-| `interval` |  `number`  |     `0`      | Seconds of interval for carousel, default `0` to disabled. |
-| `random`   | `boolean`  |   `false`    | Whether to randomly display images.                        |
+| Name       |    Type    |   Default    | Description                                                          |
+| :--------- | :--------: | :----------: | :------------------------------------------------------------------- |
+| `useFront` | `boolean`  |    `true`    | Place the image above or below the code.                             |
+| `style`    |  `object`  |     `{}`     | Custom style for images. [MDN Reference][mdn-css]                    |
+| `styles`   | `object[]` | `[{},{},{}]` | Each style of editor section image.                                  |
+| `images`   | `string[]` |     `[]`     | Custom images, supports online and local images, as well as folders. |
+| `interval` |  `number`  |     `0`      | Seconds of interval for carousel, default `0` to disabled.           |
+| `random`   | `boolean`  |   `false`    | Whether to randomly display images.                                  |
 
 [mdn-css]: https://developer.mozilla.org/docs/Web/CSS
 
@@ -90,8 +90,18 @@ example:
       "opacity": 0.6
     },
     "styles": [{}, {}, {}],
-    // Local images can be dragged into the browser to quickly get the file protocol address from the address bar
-    "images": ["https://pathtoimage.png", "file:///path/to/local/file"],
+    // `images` supports online and local images, as well as folders.
+    "images": [
+      // online images, only `https` is allowed.
+      "https://hostname/online.jpg",
+      // local images
+      "file:///local/path/img.jpeg",
+      "/home/xie/downloads/img.gif",
+      "C:/Users/xie/img.bmp",
+      "D:\\downloads\\images\\img.webp",
+      // local folders
+      "/home/xie/images"
+    ],
     "interval": 0,
     "random": false
   }
@@ -104,7 +114,7 @@ Edit `background.fullscreen`、`background.sidebar`、`background.auxiliarybar`�
 
 | Name       |    Type    | Default  | Description                                                                              |
 | :--------- | :--------: | :------: | :--------------------------------------------------------------------------------------- |
-| `images`   | `string[]` |   `[]`   | Your custom images, support `https` and `file` protocol.                                 |
+| `images`   | `string[]` |   `[]`   | Custom images, supports online and local images, as well as folders.                     |
 | `opacity`  |  `number`  |  `0.1`   | Opacity of the images, alias to [opacity][mdn-opacity], `0.1 ~ 0.3` recommended.         |
 | `size`     |  `string`  | `cover`  | Alias to [background-size][mdn-background-size], `cover` to self-adaption (recommended). |
 | `position` |  `string`  | `center` | Alias to [background-position][mdn-background-position], default `center`.               |
@@ -120,8 +130,18 @@ example：
 ```json
 {
   "background.fullscreen": {
-    // Local images can be dragged into the browser to quickly get the file protocol address from the address bar
-    "images": ["https://pathtoimage.png", "file:///path/to/local/file"],
+    // `images` supports online and local images, as well as folders.
+    "images": [
+      // online images, only `https` is allowed.
+      "https://hostname/online.jpg",
+      // local images
+      "file:///local/path/img.jpeg",
+      "/home/xie/downloads/img.gif",
+      "C:/Users/xie/img.bmp",
+      "D:\\downloads\\images\\img.webp",
+      // local folders
+      "/home/xie/images"
+    ],
     "opacity": 0.1,
     "size": "cover",
     "position": "center",

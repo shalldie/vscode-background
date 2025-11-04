@@ -10,7 +10,7 @@
     "extension.background.editor.useFront": "把图片放在代码的上方或下方。",
     "extension.background.editor.style": "自定义图片样式。 [MDN Reference](https://developer.mozilla.org/docs/Web/CSS)",
     "extension.background.editor.styles": "为每一个图片自定义样式。",
-    "extension.background.editor.images": "自定义图片。\n\nExample:\n\n`https://a.com/b.png`\n\n`file:///a/b.jpg`",
+    "extension.background.editor.images": "```\n\"images\": [\n  // 在线图片，只允许 `https` 协议\n  \"https://hostname/online.jpg\",\n  // 本地图片\n  \"file:///local/path/img.jpeg\",\n  \"/home/xie/downloads/img.gif\",\n  \"C:/Users/xie/img.bmp\",\n  \"D:\\\\downloads\\\\images\\\\img.webp\",\n  // 文件夹\n  \"/home/xie/images\"\n]\n```",
     "extension.background.editor.interval": "单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。",
     "extension.background.editor.random": "是否随机展示图片。",
 
