@@ -1,5 +1,5 @@
 import path from 'path';
-import { pathToFileURL } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 
 import { globSync } from 'glob';
 import * as stylis from 'stylis';
@@ -31,35 +31,45 @@ export function css(template: TemplateStringsArray, ...args: any[]) {
     }, '');
 }
 
-export class AbsPatchGenerator<T extends { images: string[]; folders: string[] }> {
+export class AbsPatchGenerator<T extends { images: string[] }> {
     protected config: T;
 
     constructor(config: T) {
         this.config = {
             ...config,
-            images: [
-                //
-                ...this.normalizeImageUrls(config?.images),
-                ...this.getImagesFromFolders(config?.folders)
-            ]
+            images: (config?.images || []).flatMap(img => {
+                // ------ 网络图片，`https://` ------
+                if (img.startsWith('http')) {
+                    return [img];
+                }
+                // ------ 本地 ------
+                // 文件，模糊判断。`.xxx`
+                if (/\.[^\\/]+$/.test(img)) {
+                    return this.normalizeImageUrls([img]);
+                }
+                // 文件夹
+                return this.normalizeImageUrls(this.getImagesFromFolders([img]));
+            })
         };
     }
 
     /**
      * 归一化图片路径
      * 在 v1.51.1 版本之后, vscode 将工作区放入 sandbox 中运行并添加了 file 协议的访问限制, 导致使用 file 协议的背景图片无法显示
-     * 当检测到配置文件使用 file 协议时, 需要将其转换为 vscode-file 协议
-     * @protected
+     * 将「绝对路径」、「file协议」,转换为「vscode-file协议」
+     * @private
      * @param {string[]} [images=[]] 图片列表
      * @return {*}
      * @memberof AbsPatchGenerator
      */
-    protected normalizeImageUrls(images: string[] = []) {
+    private normalizeImageUrls(images: string[] = []) {
         return images.map(imageUrl => {
+            // 非 file协议（绝对路径），先转成 file协议。
             if (!imageUrl.startsWith('file://')) {
-                return imageUrl;
+                imageUrl = pathToFileURL(imageUrl).href;
             }
 
+            // file协议 转 vscode-file协议
             // file:///Users/foo/bar.png => vscode-file://vscode-app/Users/foo/bar.png
             const url = imageUrl.replace('file://', 'vscode-file://vscode-app');
             return vscode.Uri.parse(url).toString();
@@ -69,21 +79,20 @@ export class AbsPatchGenerator<T extends { images: string[]; folders: string[] }
     /**
      * 递归获取文件夹下的所有图片
      * 支持的类型：`'jpg', 'jpeg', 'gif', 'bmp', 'webp', 'mp4', 'otf', 'ttf'`
-     * @protected
+     * @private
      * @param {string[]} [folders=[]]
      * @return {*}
      * @memberof AbsPatchGenerator
      */
-    protected getImagesFromFolders(folders: string[] = []) {
+    private getImagesFromFolders(folders: string[] = []) {
         try {
             // 支持的图片
             // https://github.com/microsoft/vscode/blob/main/src/vs/platform/protocol/electron-main/protocolMainService.ts#L27
             const validFiles = ['jpg', 'jpeg', 'gif', 'bmp', 'webp', 'mp4', 'otf', 'ttf'];
             const patterns = folders.map(folder => path.join(folder, `**/*.{${validFiles.join(',')}}`));
 
-            // 获取所有图片 =》 绝对路径 =〉file:// 路径 =》 normalizeImageUrls
-            const allMatches = patterns.flatMap(p => globSync(p, { nodir: true, absolute: true }));
-            return this.normalizeImageUrls(allMatches.map(absPath => pathToFileURL(absPath).href));
+            // 获取所有图片绝对路径
+            return patterns.flatMap(p => globSync(p, { nodir: true, absolute: true, nocase: true }));
         } catch {
             return [];
         }

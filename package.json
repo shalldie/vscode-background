@@ -120,7 +120,6 @@
               {}
             ],
             "images": [],
-            "folders": [],
             "interval": 0,
             "random": false
           },
@@ -158,14 +157,6 @@
               },
               "markdownDescription": "%extension.background.editor.images%"
             },
-            "folders": {
-              "type": "array",
-              "default": [],
-              "items": {
-                "type": "string"
-              },
-              "markdownDescription": "List of folders to search for images"
-            },
             "interval": {
               "type": "number",
               "default": 0,
@@ -183,7 +174,6 @@
           "type": "object",
           "default": {
             "images": [],
-            "folders": [],
             "opacity": 0.1,
             "size": "cover",
             "position": "center",
@@ -200,14 +190,6 @@
                 "patternErrorMessage": "%extension.background.urlProtocol.error%"
               },
               "markdownDescription": "%extension.background.fullscreen.images%"
-            },
-            "folders": {
-              "type": "array",
-              "default": [],
-              "items": {
-                "type": "string"
-              },
-              "markdownDescription": "List of folders to search for images"
             },
             "opacity": {
               "type": "number",
@@ -243,7 +225,6 @@
           "type": "object",
           "default": {
             "images": [],
-            "folders": [],
             "opacity": 0.1,
             "size": "cover",
             "position": "center",
@@ -253,9 +234,6 @@
           "properties": {
             "images": {
               "$ref": "#/properties/background.fullscreen/properties/images"
-            },
-            "folders": {
-              "$ref": "#/properties/background.fullscreen/properties/folders"
             },
             "opacity": {
               "$ref": "#/properties/background.fullscreen/properties/opacity"
@@ -279,7 +257,6 @@
           "type": "object",
           "default": {
             "images": [],
-            "folders": [],
             "opacity": 0.1,
             "size": "cover",
             "position": "center",
@@ -289,9 +266,6 @@
           "properties": {
             "images": {
               "$ref": "#/properties/background.fullscreen/properties/images"
-            },
-            "folders": {
-              "$ref": "#/properties/background.fullscreen/properties/folders"
             },
             "opacity": {
               "$ref": "#/properties/background.fullscreen/properties/opacity"
@@ -315,7 +289,6 @@
           "type": "object",
           "default": {
             "images": [],
-            "folders": [],
             "opacity": 0.1,
             "size": "cover",
             "position": "center",
@@ -325,9 +298,6 @@
           "properties": {
             "images": {
               "$ref": "#/properties/background.fullscreen/properties/images"
-            },
-            "folders": {
-              "$ref": "#/properties/background.fullscreen/properties/folders"
             },
             "opacity": {
               "$ref": "#/properties/background.fullscreen/properties/opacity"
