@@ -48,9 +48,10 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
     protected config: T;
 
     constructor(config: T) {
+        const images = config?.images.filter(n => n.length) || [];
         this.config = {
             ...config,
-            images: (config?.images || []).flatMap(img => {
+            images: images.flatMap(img => {
                 // ------ 网络图片，`https://` ------
                 if (img.startsWith('http')) {
                     return [img];
@@ -77,21 +78,25 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
      */
     private normalizeImageUrls(images: string[] = []) {
         return images.map(imageUrl => {
-            // 非 file协议（绝对路径），先转成 file协议。
-            if (!imageUrl.startsWith('file://')) {
-                imageUrl = pathToFileURL(imageUrl).href;
-            }
+            try {
+                // 非 file协议（绝对路径），先转成 file协议。
+                if (!imageUrl.startsWith('file://')) {
+                    imageUrl = pathToFileURL(imageUrl).href;
+                }
 
-            // file协议 转 vscode-file协议
-            // file:///Users/foo/bar.png => vscode-file://vscode-app/Users/foo/bar.png
-            const url = imageUrl.replace('file://', 'vscode-file://vscode-app');
-            return vscode.Uri.parse(url).toString();
+                // file协议 转 vscode-file协议
+                // file:///Users/foo/bar.png => vscode-file://vscode-app/Users/foo/bar.png
+                const url = imageUrl.replace('file://', 'vscode-file://vscode-app');
+                return vscode.Uri.parse(url).toString();
+            } catch {
+                return '';
+            }
         });
     }
 
     /**
      * 递归获取文件夹下的所有图片
-     * 支持的类型：`'jpg', 'jpeg', 'gif', 'bmp', 'webp', 'mp4', 'otf', 'ttf'`
+     * 支持的类型：`'svg', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp', 'mp4', 'otf', 'ttf'`
      * @private
      * @param {string[]} [folders=[]]
      * @return {*}
@@ -101,11 +106,11 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
         try {
             // 支持的图片
             // https://github.com/microsoft/vscode/blob/main/src/vs/platform/protocol/electron-main/protocolMainService.ts#L27
-            const validFiles = ['jpg', 'jpeg', 'gif', 'bmp', 'webp', 'mp4', 'otf', 'ttf'];
+            const validFiles = ['svg', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp', 'mp4', 'otf', 'ttf'];
             const patterns = folders.map(folder => path.join(folder, `**/*.{${validFiles.join(',')}}`));
 
             // 获取所有图片绝对路径
-            return patterns.flatMap(p => globSync(p, { nodir: true, absolute: true, nocase: true }));
+            return patterns.flatMap(p => globSync(p, { nodir: true, absolute: true, nocase: true, debug: false }));
         } catch {
             return [];
         }
@@ -124,7 +129,7 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
     }
 
     protected getPreload() {
-        const images = (this.config?.images || []).filter(n => n.length);
+        const images = this.config.images.filter(n => n.length);
         // 10个以内图片，做预加载进行优化
         if (!images.length || images.length > 10) {
             return '';
@@ -162,10 +167,6 @@ container.appendChild(div);
     }
 
     public create() {
-        if (!this.config?.images.length) {
-            return '';
-        }
-
         const style = this.compileCSS(this.getStyle());
         const script = this.getScript().trim();
 

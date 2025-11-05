@@ -189,7 +189,7 @@
                 "pattern": "^(https://|file://)",
                 "patternErrorMessage": "%extension.background.urlProtocol.error%"
               },
-              "markdownDescription": "%extension.background.fullscreen.images%"
+              "markdownDescription": "%extension.background.editor.images%"
             },
             "opacity": {
               "type": "number",
