@@ -95,7 +95,7 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
     }
 
     /**
-     * 递归获取文件夹下的所有图片
+     * 获取文件夹下的所有图片
      * 支持的类型：`'svg', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp', 'mp4', 'otf', 'ttf'`
      * @private
      * @param {string[]} [folders=[]]
