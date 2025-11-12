@@ -2,6 +2,24 @@
 
 欢迎使用 `background@${VERSION}`，新版本拥有更多的功能，会给你带来更好的编码体验！
 
+现在 `images` 支持了多系统格式的路径以及文件夹：
+
+```json
+{
+  "images": [
+    // 在线图片，只允许 `https` 协议
+    "https://hostname/online.jpg",
+    // 本地图片
+    "file:///local/path/img.jpeg",
+    "/home/xie/downloads/img.gif",
+    "C:/Users/xie/img.bmp",
+    "D:\\downloads\\images\\img.webp",
+    // 文件夹
+    "/home/xie/images"
+  ]
+}
+```
+
 ## 更多的可配置区域
 
 每块区域都可以自定义 `图片/样式`、`轮播`、`随机展示` 等。
@@ -14,10 +32,11 @@
 
 ```json
 {
-  "background.sidebar": {...},   // 侧边栏
-  "background.editor": {...},    // 编辑器
-  "background.panel": {...},     // 面板
-  "background.fullscreen": {...} // 全屏
+  "background.sidebar": {...},     // 侧边栏
+  "background.editor": {...},      // 编辑器
+  "background.panel": {...},       // 面板
+  "background.fullscreen": {...},  // 全屏
+  "background.auxiliarybar": {...} // 辅助栏
 }
 ```
 

@@ -94,9 +94,7 @@
           "type": "array",
           "default": [],
           "items": {
-            "type": "string",
-            "pattern": "^(https://|file://)",
-            "patternErrorMessage": "%extension.background.urlProtocol.error%"
+            "type": "string"
           },
           "markdownDeprecationMessage": "%extension.background.common.deprecation%"
         },
@@ -151,9 +149,7 @@
               "type": "array",
               "default": [],
               "items": {
-                "type": "string",
-                "pattern": "^(https://|file://)",
-                "patternErrorMessage": "%extension.background.urlProtocol.error%"
+                "type": "string"
               },
               "markdownDescription": "%extension.background.editor.images%"
             },
@@ -185,9 +181,7 @@
               "type": "array",
               "default": [],
               "items": {
-                "type": "string",
-                "pattern": "^(https://|file://)",
-                "patternErrorMessage": "%extension.background.urlProtocol.error%"
+                "type": "string"
               },
               "markdownDescription": "%extension.background.editor.images%"
             },

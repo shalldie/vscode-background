@@ -2,6 +2,24 @@
 
 Welcome to use `background@${VERSION}`, the new version has more features and will bring you a better coding experience!
 
+Different system paths and folders are supported in `images` now:
+
+```json
+{
+  "images": [
+    // online images, only `https` is allowed.
+    "https://hostname/online.jpg",
+    // local images
+    "file:///local/path/img.jpeg",
+    "/home/xie/downloads/img.gif",
+    "C:/Users/xie/img.bmp",
+    "D:\\downloads\\images\\img.webp",
+    // local folders
+    "/home/xie/images"
+  ]
+}
+```
+
 ## More configurable sections
 
 Each section can be customized with features such as `custom images/styles`、`carousel`、`random display`...
@@ -14,10 +32,11 @@ Each section has independent configuration, see [README.md](https://github.com/s
 
 ```json
 {
-  "background.sidebar": {...},   // sidebar
-  "background.editor": {...},    // editor
-  "background.panel": {...},     // panel
-  "background.fullscreen": {...} // fullscreen
+  "background.sidebar": {...},     // sidebar
+  "background.editor": {...},      // editor
+  "background.panel": {...},       // panel
+  "background.fullscreen": {...},  // fullscreen
+  "background.auxiliarybar": {...} // auxiliarybar
 }
 ```
 
