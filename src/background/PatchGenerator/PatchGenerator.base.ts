@@ -1,7 +1,7 @@
 import path from 'path';
 import { pathToFileURL } from 'url';
 
-import { globSync } from 'glob';
+import fg from 'fast-glob';
 import * as stylis from 'stylis';
 import vscode from 'vscode';
 
@@ -104,13 +104,14 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
      */
     private getImagesFromFolders(folders: string[] = []) {
         try {
-            // 支持的图片
-            // https://github.com/microsoft/vscode/blob/main/src/vs/platform/protocol/electron-main/protocolMainService.ts#L27
-            const validFiles = ['svg', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp', 'mp4', 'otf', 'ttf'];
-            const patterns = folders.map(folder => path.join(folder, `**/*.{${validFiles.join(',')}}`));
-
-            // 获取所有图片绝对路径
-            return patterns.flatMap(p => globSync(p, { nodir: true, absolute: true, nocase: true, debug: false }));
+            const types = ['svg', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp', 'mp4', 'otf', 'ttf'];
+            return fg.sync(
+                folders
+                    // 处理win下的分隔符，去除末尾的/
+                    .map(f => f.replace(/\\/g, '/').replace(/\/+$/, ''))
+                    .map(f => `${f}/**/*.@(${types.join('|')})`),
+                { onlyFiles: true, absolute: true, caseSensitiveMatch: false }
+            );
         } catch {
             return [];
         }

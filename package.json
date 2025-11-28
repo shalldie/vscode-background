@@ -333,7 +333,7 @@
   },
   "dependencies": {
     "@vscode/sudo-prompt": "^9.3.1",
-    "glob": "^11.0.3",
+    "fast-glob": "^3.3.3",
     "lockfile": "^1.0.4",
     "stylis": "^4.3.4",
     "uglify-js": "^3.19.3"
