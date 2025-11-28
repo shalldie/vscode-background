@@ -1,3 +1,15 @@
+## v2.0.4 (2025/11/12)
+
+1. Feat folder - Add support for different system paths and folders, support by @shalldie and @Remhardt in [#557](https://github.com/shalldie/vscode-background/pull/557)
+2. Add auxiliary bar support by @suiyun39 in [#544](https://github.com/shalldie/vscode-background/pull/544)
+
+---
+
+1. Feat folder - 添加对不同系统路径、以及文件夹的支持。By @shalldie and @Remhardt in [#557](https://github.com/shalldie/vscode-background/pull/557)
+2. 添加辅助面板配置 by @suiyun39 in [#544](https://github.com/shalldie/vscode-background/pull/544)
+
+---
+
 ## v2.0.3 (2024/11/14)
 
 - add code-server support (添加了 code-server 支持) by @shalldie in [#498](https://github.com/shalldie/vscode-background/pull/498)

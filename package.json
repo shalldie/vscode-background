@@ -2,7 +2,7 @@
   "name": "background",
   "displayName": "background",
   "description": "Bring background images to your vscode",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "vscode:uninstall": "node ./out/uninstall",
@@ -94,9 +94,7 @@
           "type": "array",
           "default": [],
           "items": {
-            "type": "string",
-            "pattern": "^(https://|file://)",
-            "patternErrorMessage": "%extension.background.urlProtocol.error%"
+            "type": "string"
           },
           "markdownDeprecationMessage": "%extension.background.common.deprecation%"
         },
@@ -151,9 +149,7 @@
               "type": "array",
               "default": [],
               "items": {
-                "type": "string",
-                "pattern": "^(https://|file://)",
-                "patternErrorMessage": "%extension.background.urlProtocol.error%"
+                "type": "string"
               },
               "markdownDescription": "%extension.background.editor.images%"
             },
@@ -185,11 +181,9 @@
               "type": "array",
               "default": [],
               "items": {
-                "type": "string",
-                "pattern": "^(https://|file://)",
-                "patternErrorMessage": "%extension.background.urlProtocol.error%"
+                "type": "string"
               },
-              "markdownDescription": "%extension.background.fullscreen.images%"
+              "markdownDescription": "%extension.background.editor.images%"
             },
             "opacity": {
               "type": "number",
@@ -339,6 +333,7 @@
   },
   "dependencies": {
     "@vscode/sudo-prompt": "^9.3.1",
+    "fast-glob": "^3.3.3",
     "lockfile": "^1.0.4",
     "stylis": "^4.3.4",
     "uglify-js": "^3.19.3"
