@@ -1,4 +1,5 @@
 import { AbsPatchGenerator, css } from './PatchGenerator.base';
+import { ThemePatchGenerator } from './PatchGenerator.theme';
 
 export class LegacyEditorPatchGeneratorConfig {
     useFront = true;
@@ -121,6 +122,7 @@ export class EditorPatchGenerator extends AbsPatchGenerator<EditorPatchGenerator
                             pointer-events: ${useFront ? 'none' : 'initial'};
                             transition: 0.3s;
                             background-repeat: no-repeat;
+                            mix-blend-mode: var(${ThemePatchGenerator.cssMixBlendMode});
                             /* placeholder，用于动态替换css */
                             ${this.cssplaceholder + (index % images.length)}: #000;
                             ${this.cssplaceholder + '-end'}: #000;

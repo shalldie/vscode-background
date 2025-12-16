@@ -1,5 +1,6 @@
 import { css } from './PatchGenerator.base';
 import { FullscreenPatchGenerator, FullscreenPatchGeneratorConfig } from './PatchGenerator.fullscreen';
+import { ThemePatchGenerator } from './PatchGenerator.theme';
 
 export class PanelPatchGeneratorConfig extends FullscreenPatchGeneratorConfig {}
 
@@ -23,6 +24,7 @@ export class PanelPatchGenerator extends FullscreenPatchGenerator<PanelPatchGene
                 pointer-events: none;
                 opacity: ${opacity};
                 transition: 1s;
+                mix-blend-mode: var(${ThemePatchGenerator.cssMixBlendMode});
                 background-image: var(${this.cssvariable});
             }
         `;

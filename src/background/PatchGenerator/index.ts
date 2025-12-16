@@ -11,6 +11,7 @@ import {
 import { FullscreenPatchGenerator, FullscreenPatchGeneratorConfig } from './PatchGenerator.fullscreen';
 import { PanelPatchGenerator, PanelPatchGeneratorConfig } from './PatchGenerator.panel';
 import { SidebarPatchGenerator, SidebarPatchGeneratorConfig } from './PatchGenerator.sidebar';
+import { ThemePatchGenerator } from './PatchGenerator.theme';
 
 export type TPatchGeneratorConfig = {
     enabled: boolean;
@@ -24,7 +25,10 @@ export type TPatchGeneratorConfig = {
 export class PatchGenerator {
     public static create(options: TPatchGeneratorConfig) {
         const script = [
+            // global
             new ChecksumsPatchGenerator().create(), // fix checksums
+            new ThemePatchGenerator().create(), // hack theme
+            // sections
             new EditorPatchGenerator(EditorPatchGenerator.mergeLegacyConfig(options, options.editor)).create(), // editor,
             new SidebarPatchGenerator(options.sidebar).create(), // sidebar
             new AuxiliarybarPatchGenerator(options.auxiliarybar).create(), // auxiliarybar

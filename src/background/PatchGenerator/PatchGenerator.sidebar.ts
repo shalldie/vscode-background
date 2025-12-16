@@ -1,5 +1,6 @@
 import { css } from './PatchGenerator.base';
 import { FullscreenPatchGenerator, FullscreenPatchGeneratorConfig } from './PatchGenerator.fullscreen';
+import { ThemePatchGenerator } from './PatchGenerator.theme';
 
 export class SidebarPatchGeneratorConfig extends FullscreenPatchGeneratorConfig {}
 
@@ -24,6 +25,7 @@ export class SidebarPatchGenerator extends FullscreenPatchGenerator<SidebarPatch
                 pointer-events: none;
                 opacity: ${opacity};
                 transition: 1s;
+                mix-blend-mode: var(${ThemePatchGenerator.cssMixBlendMode});
                 background-image: var(${this.cssvariable});
             }
         `;
