@@ -111,9 +111,7 @@ export class EditorPatchGenerator extends AbsPatchGenerator<EditorPatchGenerator
 
                     return css`
                         /* code editor */
-                        &:nth-child(${nthChild}) .editor-instance>.monaco-editor .overflow-guard > .monaco-scrollable-element::${frontContent},
-                        /* home screen */
-                        &:nth-child(${nthChild}) .editor-group-container.empty::before {
+                        &:nth-child(${nthChild}) .editor-instance > .monaco-editor > .overflow-guard > .monaco-scrollable-element::${frontContent} {
                             content: '';
                             width: 100%;
                             height: 100%;
