@@ -1,5 +1,6 @@
 import { css } from './PatchGenerator.base';
 import { FullscreenPatchGenerator, FullscreenPatchGeneratorConfig } from './PatchGenerator.fullscreen';
+import { ThemePatchGenerator } from './PatchGenerator.theme';
 
 export class AuxiliarybarPatchGeneratorConfig extends FullscreenPatchGeneratorConfig {}
 
@@ -23,6 +24,7 @@ export class AuxiliarybarPatchGenerator extends FullscreenPatchGenerator<Auxilia
                 pointer-events: none;
                 opacity: ${opacity};
                 transition: 1s;
+                mix-blend-mode: var(${ThemePatchGenerator.cssMixBlendMode});
                 background-image: var(${this.cssvariable});
             }
         `;

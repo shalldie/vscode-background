@@ -40,7 +40,7 @@ const Translations = [
 
 export class ChecksumsPatchGenerator extends AbsPatchGenerator<any> {
     constructor() {
-        super({ images: [''] });
+        super({ images: [] });
     }
     /**
      * fix checksums with css. LOL

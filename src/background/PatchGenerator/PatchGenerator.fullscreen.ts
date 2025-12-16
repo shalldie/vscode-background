@@ -1,4 +1,5 @@
 import { AbsPatchGenerator, css } from './PatchGenerator.base';
+import { ThemePatchGenerator } from './PatchGenerator.theme';
 
 export class FullscreenPatchGeneratorConfig {
     images = [] as string[];
@@ -39,10 +40,10 @@ export class FullscreenPatchGenerator<T extends FullscreenPatchGeneratorConfig> 
                 pointer-events: none;
                 background-size: ${size};
                 background-repeat: no-repeat;
-                /* background-attachment: fixed; // 兼容 code-server，其他的不影响 */
                 background-position: ${position};
                 opacity: ${opacity};
                 transition: 1s;
+                mix-blend-mode: var(${ThemePatchGenerator.cssMixBlendMode});
                 background-image: var(${this.cssvariable});
             }
         `;
@@ -50,6 +51,9 @@ export class FullscreenPatchGenerator<T extends FullscreenPatchGeneratorConfig> 
 
     protected getScript(): string {
         const { images, random, interval } = this.curConfig;
+        if (!images.length) {
+            return '';
+        }
         return `
 const cssvariable = '${this.cssvariable}';
 const images = ${JSON.stringify(images)};
@@ -69,7 +73,7 @@ function getNextImg() {
 }
 
 function setNextImg() {
-    document.body.style.setProperty(cssvariable, 'url(' + getNextImg() + ')');
+    document.documentElement.style.setProperty(cssvariable, 'url(' + getNextImg() + ')');
 }
 
 if (interval > 0) {
