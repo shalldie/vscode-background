@@ -315,27 +315,27 @@
     }
   },
   "devDependencies": {
-    "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
+    "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
     "@types/lockfile": "^1.0.4",
-    "@types/node": "20.x",
-    "@types/stylis": "^4.2.6",
+    "@types/node": "^24",
+    "@types/stylis": "^4.2.7",
     "@types/uglify-js": "^3.17.5",
     "@types/vscode": "^1.94.0",
-    "@typescript-eslint/eslint-plugin": "^8.7.0",
-    "@typescript-eslint/parser": "^8.7.0",
-    "@vscode/vsce": "^3.2.0",
-    "eslint": "^9.11.1",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
+    "@typescript-eslint/eslint-plugin": "^8.50.0",
+    "@typescript-eslint/parser": "^8.50.0",
+    "@vscode/vsce": "^3.7.1",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
     "husky": "^9.1.6",
-    "prettier": "^3.3.3",
-    "typescript": "^5.6.2"
+    "prettier": "^3.7.4",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "@vscode/sudo-prompt": "^9.3.1",
     "fast-glob": "^3.3.3",
     "lockfile": "^1.0.4",
-    "stylis": "^4.3.4",
+    "stylis": "^4.3.6",
     "uglify-js": "^3.19.3"
   }
 }

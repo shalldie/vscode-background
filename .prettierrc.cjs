@@ -9,7 +9,7 @@ module.exports = {
     arrowParens: 'avoid',
     overrides: [
         {
-            files: ['*.md', 'package(-lock)?.json', '*.ya?ml'],
+            files: ['*.md', 'package{,-lock}.json', '*.{yaml,yml}'],
             options: {
                 singleQuote: false,
                 tabWidth: 2
@@ -24,6 +24,5 @@ module.exports = {
         '',
         '^[.]' // relative imports
     ],
-    importOrderTypeScriptVersion: '5.0.0',
-    importOrderCaseSensitive: true
+    importOrderTypeScriptVersion: '5.9.3'
 };

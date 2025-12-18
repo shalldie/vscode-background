@@ -13,3 +13,4 @@ src/**
 *.touch
 *.cache
 .node-version
+.comate
