@@ -1,4 +1,3 @@
-import { _ } from '../../utils';
 import { BACKGROUND_VER, VERSION } from '../../utils/constants';
 import { AbsPatchFile } from './PatchFile.base';
 
@@ -15,7 +14,6 @@ import { AbsPatchFile } from './PatchFile.base';
 export class JsPatchFile extends AbsPatchFile {
     public async applyPatches(patchContent: string): Promise<boolean> {
         try {
-            await _.lock();
             const curContent = await this.getContent();
             let content = this.cleanPatches(curContent);
             content += [
@@ -33,8 +31,6 @@ export class JsPatchFile extends AbsPatchFile {
             return await this.write(content);
         } catch {
             return false;
-        } finally {
-            await _.unlock();
         }
     }
 
