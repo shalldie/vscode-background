@@ -1,11 +1,11 @@
 {
     "Show `background` commands": "Show `background` commands",
     "Background extension has been uninstalled. See you next time!": "Background extension has been uninstalled. See you next time!",
-    "Restart vscode": "Restart vscode",
+    "Reload vscode": "Reload vscode",
     "Welcome to use background@{version}!": "Welcome to use background@{version}!",
     "More": "More",
-    "Background has been disabled! Please restart.": "Background has been disabled! Please restart.",
+    "Background has been disabled! Please reload.": "Background has been disabled! Please reload.",
     "Configuration has been changed, click to update.": "Configuration has been changed, click to update.",
-    "Update and restart": "Update and restart",
-    "Background has been changed! Please restart.": "Background has been changed! Please restart."
+    "Update and Reload": "Update and Reload",
+    "Background has been changed! Please reload.": "Background has been changed! Please reload."
 }

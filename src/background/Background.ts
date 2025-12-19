@@ -155,7 +155,7 @@ export class Background implements Disposable {
         if (!enabled) {
             if (hasInstalled) {
                 await this.uninstall();
-                vsHelp.showInfoRestart(l10n.t('Background has been disabled! Please restart.'));
+                vsHelp.showInfoReload(l10n.t('Background has been disabled! Please reload.'));
             }
             return;
         }
@@ -164,7 +164,7 @@ export class Background implements Disposable {
         const confirm = await vscode.window.showInformationMessage(
             l10n.t('Configuration has been changed, click to update.'),
             {
-                title: l10n.t('Update and restart')
+                title: l10n.t('Update and Reload')
             }
         );
 
@@ -193,22 +193,22 @@ export class Background implements Disposable {
     /**
      * 初始化
      *
-     * @return {*}  {Promise<void>}
+     * @return {*}  {Promise<any>}
      * @memberof Background
      */
     public async setup(): Promise<any> {
-        await this.removeLegacyCssPatch(); // 移除v1旧版本patch
+        await this.removeLegacyCssPatch(); // 移除「v1旧版本」patch
 
         await this.checkFirstload(); // 是否初次加载插件
 
-        const patchType = await this.jsFile.getPatchType(); // css 文件目前状态
+        const patchType = await this.jsFile.getPatchType(); // 「js文件」目前状态
 
-        // 如果「开启」状态，文件不是「latest」，则进行更新
+        // 如果「开启」状态，文件不是「latest」，则进行「提示更新」
         if (this.config.enabled) {
-            // 此时一般为 vscode更新、background更新
+            // 此时一般为 「background更新」、「vscode更新」
             if ([EFilePatchType.Legacy, EFilePatchType.None].includes(patchType)) {
                 if (await this.applyPatch()) {
-                    vsHelp.showInfoRestart(l10n.t('Background has been changed! Please restart.'));
+                    vsHelp.showInfoReload(l10n.t('Background has been changed! Please reload.'));
                 }
             }
         }
