@@ -146,14 +146,11 @@ export abstract class AbsPatchFile {
 
     public async restore() {
         try {
-            await _.lock();
             let content = await this.getContent();
             content = this.cleanPatches(content);
             return await this.write(content);
         } catch {
             return false;
-        } finally {
-            await _.unlock();
         }
     }
 }

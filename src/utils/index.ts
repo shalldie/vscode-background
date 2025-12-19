@@ -1,7 +1,5 @@
 import sudo from '@vscode/sudo-prompt';
-import lockfile from 'lockfile';
 
-import { LOCK_PATH } from './constants';
 import { vsc } from './vsc';
 
 export namespace _ {
@@ -29,48 +27,6 @@ export namespace _ {
     export function sleep(delay = 0) {
         return new Promise<void>(resolve => {
             setTimeout(resolve, delay);
-        });
-    }
-
-    /**
-     * 添加文件锁
-     *
-     * @export
-     * @return {*}
-     */
-    export function lock() {
-        return new Promise<void>((resolve, reject) => {
-            lockfile.lock(
-                LOCK_PATH,
-                {
-                    // When multiple VSCode instances are running, all instances' commands need to be executed within the `wait` time
-                    // 在打开了多个vscode实例时，需要所有实例的命令在`wait`时间内执行完毕
-                    wait: 1000 * 30
-                },
-                err => {
-                    if (err) {
-                        return reject(err);
-                    }
-                    resolve();
-                }
-            );
-        });
-    }
-
-    /**
-     * 取消文件锁
-     *
-     * @export
-     * @return {*}
-     */
-    export function unlock() {
-        return new Promise<void>((resolve, reject) => {
-            lockfile.unlock(LOCK_PATH, err => {
-                if (err) {
-                    return reject(err);
-                }
-                resolve();
-            });
         });
     }
 

@@ -177,7 +177,6 @@ export class CssFile {
      */
     public async uninstall(): Promise<boolean> {
         try {
-            await _.lock();
             let content = await this.getContent();
             content = this.clearContent(content);
             // 异常case return
@@ -188,8 +187,6 @@ export class CssFile {
         } catch (ex) {
             console.log(ex);
             return false;
-        } finally {
-            await _.unlock();
         }
     }
 }
