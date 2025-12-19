@@ -4,11 +4,6 @@ import { vsc } from './vsc';
 
 export namespace _ {
     /**
-     * if zh-CN
-     */
-    export const isZHCN = /^zh/.test(vsc?.env.language || '');
-
-    /**
      * if desktop
      *
      * desktop: `desktop`
@@ -16,19 +11,6 @@ export namespace _ {
      * See: https://code.visualstudio.com/api/references/vscode-api#env
      */
     export const isDesktop = vsc?.env.appHost === 'desktop';
-
-    /**
-     * 等待若干时间
-     *
-     * @export
-     * @param {number} [delay=0]
-     * @return {*}
-     */
-    export function sleep(delay = 0) {
-        return new Promise<void>(resolve => {
-            setTimeout(resolve, delay);
-        });
-    }
 
     /**
      * 提权运行
