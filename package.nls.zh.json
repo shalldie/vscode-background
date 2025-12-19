@@ -1,6 +1,6 @@
 {
     "extension.background.command.info.title": "欢迎使用 background 插件",
-    "extension.background.command.install.title": "安装/激活插件",
+    "extension.background.command.install.title": "激活/应用插件",
     "extension.background.command.disable.title": "禁用插件",
     "extension.background.command.uninstall.title": "卸载插件",
 

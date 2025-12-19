@@ -1,7 +1,7 @@
 {
     "extension.background.command.info.title": "backgroundへようこそ。",
-    "extension.background.command.install.title": "「background」をインストールして有効にします。",
-    "extension.background.command.disable.title": "「background」を無効にする。",
+    "extension.background.command.install.title": "有効にして適用「Background」 を有効にして適用",
+    "extension.background.command.disable.title": "「Background」を無効にする。",
     "extension.background.command.uninstall.title": "拡張機能をアンインストール",
 
     "extension.background.enabled.description": "拡張機能の有効化を制御します",

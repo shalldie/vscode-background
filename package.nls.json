@@ -1,6 +1,6 @@
 {
     "extension.background.command.info.title": "Welcome to background.",
-    "extension.background.command.install.title": "Install and enable the background.",
+    "extension.background.command.install.title": "Enable and apply the background.",
     "extension.background.command.disable.title": "Disable the background.",
     "extension.background.command.uninstall.title": "Uninstall the extension.",
 
