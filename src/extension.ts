@@ -40,7 +40,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         vscode.commands.registerCommand('extension.background.install', async () => {
             await background.config.update('enabled', true, true);
             await background.applyPatch();
-            await vscode.commands.executeCommand('workbench.action.reloadWindow');
+            await vsHelp.reload();
         })
     );
 
@@ -48,7 +48,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         vscode.commands.registerCommand('extension.background.disable', async () => {
             await background.config.update('enabled', false, true);
             await background.uninstall();
-            await vscode.commands.executeCommand('workbench.action.reloadWindow');
+            await vsHelp.reload();
         })
     );
 
@@ -58,7 +58,9 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
                 // 当且仅当成功删除样式时才会卸载扩展
                 // 否则可能导致没有成功删掉样式时扩展就被卸载掉
                 await vscode.commands.executeCommand('workbench.extensions.uninstallExtension', EXTENSION_ID);
-                await vsHelp.showInfoReload(l10n.t('Background extension has been uninstalled. See you next time!'));
+                vsHelp.reload({
+                    message: l10n.t('Background extension has been uninstalled. See you next time!')
+                });
             }
         })
     );

@@ -155,25 +155,20 @@ export class Background implements Disposable {
         if (!enabled) {
             if (hasInstalled) {
                 await this.uninstall();
-                vsHelp.showInfoReload(l10n.t('Background has been disabled! Please reload.'));
+
+                vsHelp.reload({
+                    message: l10n.t('Background has been disabled! Please reload.')
+                });
             }
             return;
         }
 
         // 更新，需要二次确认
-        const confirm = await vscode.window.showInformationMessage(
-            l10n.t('Configuration has been changed, click to update.'),
-            {
-                title: l10n.t('Update and Reload')
-            }
-        );
-
-        if (!confirm) {
-            return;
-        }
-
-        await this.applyPatch();
-        vscode.commands.executeCommand('workbench.action.reloadWindow');
+        vsHelp.reload({
+            message: l10n.t('Configuration has been changed, click to update.'),
+            btnReload: l10n.t('Update and Reload'),
+            beforeReload: () => this.applyPatch()
+        });
     }
 
     public async applyPatch() {
@@ -207,8 +202,11 @@ export class Background implements Disposable {
         if (this.config.enabled) {
             // 此时一般为 「background更新」、「vscode更新」
             if ([EFilePatchType.Legacy, EFilePatchType.None].includes(patchType)) {
+                // 提示： background 可更新
                 if (await this.applyPatch()) {
-                    vsHelp.showInfoReload(l10n.t('Background has been changed! Please reload.'));
+                    vsHelp.reload({
+                        message: l10n.t('Background has been changed! Please reload.')
+                    });
                 }
             }
         }
