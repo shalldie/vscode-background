@@ -4,7 +4,8 @@
     "Reload vscode": "Reload vscode",
     "Background@{version} is ready! Apply to take effect.": "Background@{version} is ready! Apply to take effect.",
     "More": "More",
-    "Background has been disabled! Please reload.": "Background has been disabled! Please reload.",
+    "Background will be disabled.": "Background will be disabled.",
     "Configuration has been changed, click to apply.": "Configuration has been changed, click to apply.",
-    "Apply and Reload": "Apply and Reload"
+    "Apply and Reload": "Apply and Reload",
+    "Disable and Reload": "Disable and Reload"
 }

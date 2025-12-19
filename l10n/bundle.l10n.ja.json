@@ -4,7 +4,8 @@
     "Reload vscode": "vscode を再読み込み",
     "Background@{version} is ready! Apply to take effect.": "Background@{version} の準備ができました！「適用」をクリックして反映してください。",
     "More": "詳細",
-    "Background has been disabled! Please reload.": "Backgroundは無効になっています！再起動してください。",
+    "Background will be disabled.": "Backgroundが無効になります。",
     "Configuration has been changed, click to apply.": "構成が変更されたので、更新をクリックします。",
-    "Apply and Reload": "適用して再読み込み"
+    "Apply and Reload": "適用して再読み込み",
+    "Disable and Reload": "無効にして再読み込み"
 }

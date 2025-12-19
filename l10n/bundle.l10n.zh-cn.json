@@ -4,7 +4,8 @@
     "Reload vscode": "重载 vscode",
     "Background@{version} is ready! Apply to take effect.": "Background@{version} 已就绪！点击应用生效。",
     "More": "更多",
-    "Background has been disabled! Please reload.": "Background 已经禁用！ 请重载。",
+    "Background will be disabled.": "Background 会被禁用。",
     "Configuration has been changed, click to apply.": "配置已改变，点击应用。",
-    "Apply and Reload": "应用并重载"
+    "Apply and Reload": "应用并重载",
+    "Disable and Reload": "禁用并重载"
 }

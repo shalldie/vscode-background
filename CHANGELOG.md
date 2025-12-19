@@ -1,9 +1,9 @@
-## v2.0.6 (2025/11/19)
+## v2.0.7 (2025/11/19)
 
 - Change automatic update to manual by @shalldie in [#569](https://github.com/shalldie/vscode-background/pull/569)
 - 自动更新替换为手动 by @shalldie in [#569](https://github.com/shalldie/vscode-background/pull/569)
 
-**Full Changelog**: https://github.com/shalldie/vscode-background/compare/v2.0.5...v2.0.6
+**Full Changelog**: https://github.com/shalldie/vscode-background/compare/v2.0.5...v2.0.7
 
 ## v2.0.5 (2025/11/16)
 
