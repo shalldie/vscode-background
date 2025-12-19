@@ -1,12 +1,19 @@
+## v2.0.6 (2025/11/19)
+
+- Change automatic update to manual by @shalldie in [#569](https://github.com/shalldie/vscode-background/pull/569)
+- 自动更新替换为手动 by @shalldie in [#569](https://github.com/shalldie/vscode-background/pull/569)
+
+**Full Changelog**: https://github.com/shalldie/vscode-background/compare/v2.0.5...v2.0.6
+
 ## v2.0.5 (2025/11/16)
 
-1. feat: Add blend mode to dark theme (#563) by @shalldie in [566](https://github.com/shalldie/vscode-background/pull/566)
-2. fix: A more precise editor selector by @shalldie in [530](https://github.com/shalldie/vscode-background/issues/530)
+1. feat: Add blend mode to dark theme (#563) by @shalldie in [#566](https://github.com/shalldie/vscode-background/pull/566)
+2. fix: A more precise editor selector by @shalldie in [#530](https://github.com/shalldie/vscode-background/issues/530)
 
 ---
 
-1. feat: 深色主题添加混动模式 (#563) by @shalldie in [566](https://github.com/shalldie/vscode-background/pull/566)
-2. fix: editor 使用更明确的选择器 by @shalldie in [530](https://github.com/shalldie/vscode-background/issues/530)
+1. feat: 深色主题添加混动模式 (#563) by @shalldie in [#566](https://github.com/shalldie/vscode-background/pull/566)
+2. fix: editor 使用更明确的选择器 by @shalldie in [#530](https://github.com/shalldie/vscode-background/issues/530)
 
 ## v2.0.4 (2025/11/12)
 
