@@ -61,7 +61,7 @@ export class Background implements Disposable {
     // #region private methods 私有方法
 
     /**
-     * 检测是否初次加载，并在初次加载的时候提示用户
+     * 检测是否初次加载
      *
      * @private
      * @returns {boolean} 是否初次加载
@@ -71,22 +71,6 @@ export class Background implements Disposable {
         const firstLoad = !fs.existsSync(TOUCH_JSFILE_PATH);
 
         if (firstLoad) {
-            // 提示
-            vscode.window
-                .showInformationMessage(l10n.t('Welcome to use background@{version}!', { version: VERSION }), {
-                    title: l10n.t('More')
-                })
-                .then(confirm => {
-                    if (!confirm) {
-                        return;
-                    }
-                    this.showWelcome();
-                });
-
-            // 新版本强制提示下吧
-            // if (VERSION === '2.0.0' || true) {
-            //     this.showWelcome();
-            // }
             // 标识插件已启动过
             await fs.promises.writeFile(TOUCH_JSFILE_PATH, vscodePath.jsPath, ENCODING);
             return true;
@@ -165,8 +149,8 @@ export class Background implements Disposable {
 
         // 更新，需要二次确认
         vsHelp.reload({
-            message: l10n.t('Configuration has been changed, click to update.'),
-            btnReload: l10n.t('Update and Reload'),
+            message: l10n.t('Configuration has been changed, click to apply.'),
+            btnReload: l10n.t('Apply and Reload'),
             beforeReload: () => this.applyPatch()
         });
     }
@@ -199,17 +183,37 @@ export class Background implements Disposable {
         const patchType = await this.jsFile.getPatchType(); // 「js文件」目前状态
 
         // 如果「开启」状态，文件不是「latest」，则进行「提示更新」
-        if (this.config.enabled) {
-            // 此时一般为 「background更新」、「vscode更新」
-            if ([EFilePatchType.Legacy, EFilePatchType.None].includes(patchType)) {
-                // 提示： background 可更新
-                if (await this.applyPatch()) {
-                    vsHelp.reload({
-                        message: l10n.t('Background has been changed! Please reload.')
-                    });
-                }
-            }
+        // 此时一般为 「background更新」、「vscode更新」
+        const needApply = [EFilePatchType.Legacy, EFilePatchType.None].includes(patchType);
+        if (this.config.enabled && needApply) {
+            // 提示
+            vscode.window
+                .showInformationMessage(
+                    l10n.t('Background@{version} is ready! Apply to take effect.', { version: VERSION }),
+                    {
+                        title: l10n.t('Apply and Reload'),
+                        action: async () => {
+                            await this.applyPatch();
+                            await vsHelp.reload();
+                        }
+                    },
+                    {
+                        title: l10n.t('More'),
+                        action: () => this.showWelcome()
+                    }
+                )
+                .then(confirm => {
+                    confirm?.action();
+                });
         }
+        // if ([EFilePatchType.Legacy, EFilePatchType.None].includes(patchType)) {
+        //     // 提示： 欢迎使用 background@version! 「应用并重载」、「更多」
+        //     if (await this.applyPatch()) {
+        //         vsHelp.reload({
+        //             message: l10n.t('Background has been changed! Please reload.')
+        //         });
+        //     }
+        // }
 
         // 监听文件改变
         this.disposables.push(

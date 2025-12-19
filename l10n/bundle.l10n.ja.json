@@ -2,10 +2,9 @@
     "Show `background` commands": "「`background`」コマンドの表示",
     "Background extension has been uninstalled. See you next time!": "Backgroundはアンインストールされています。また今度！",
     "Reload vscode": "vscode を再読み込み",
-    "Welcome to use background@{version}!": "ようこそbackground@{version}!",
+    "Background@{version} is ready! Apply to take effect.": "Background@{version} の準備ができました！「適用」をクリックして反映してください。",
     "More": "詳細",
     "Background has been disabled! Please reload.": "Backgroundは無効になっています！再起動してください。",
-    "Configuration has been changed, click to update.": "構成が変更されたので、更新をクリックします。",
-    "Update and Reload": "更新して再読み込み",
-    "Background has been changed! Please reload.": "Backgroundは変わった！再起動してください。"
+    "Configuration has been changed, click to apply.": "構成が変更されたので、更新をクリックします。",
+    "Apply and Reload": "適用して再読み込み"
 }
