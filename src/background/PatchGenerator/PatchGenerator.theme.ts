@@ -1,10 +1,6 @@
-import { AbsPatchGenerator, css } from './PatchGenerator.base';
+import { css, WithoutImagesPatchGenerator } from './PatchGenerator.base';
 
-export class ThemePatchGenerator extends AbsPatchGenerator<any> {
-    constructor() {
-        super({ images: [] });
-    }
-
+export class ThemePatchGenerator extends WithoutImagesPatchGenerator {
     /**
      * 混合模式使用 css variable
      *

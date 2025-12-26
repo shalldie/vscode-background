@@ -1,4 +1,4 @@
-import { AbsPatchGenerator, css } from './PatchGenerator.base';
+import { css, WithoutImagesPatchGenerator } from './PatchGenerator.base';
 
 // https://github.com/Microsoft/vscode/blob/main/src/vs/workbench/services/integrity/electron-sandbox/integrityService.ts#L147
 // https://github.com/microsoft/vscode-loc/blob/main/i18n/vscode-language-pack-zh-hans/translations/main.i18n.json#L14343
@@ -38,10 +38,7 @@ const Translations = [
     '安裝似乎已損毀。請重新安裝。'
 ];
 
-export class ChecksumsPatchGenerator extends AbsPatchGenerator<any> {
-    constructor() {
-        super({ images: [] });
-    }
+export class ChecksumsPatchGenerator extends WithoutImagesPatchGenerator {
     /**
      * fix checksums with css. LOL
      *

@@ -35,6 +35,7 @@ export class PatchGenerator {
             new PanelPatchGenerator(options.panel).create(), // panel
             new FullscreenPatchGenerator(options.fullscreen).create() // fullscreen
         ]
+            .filter(n => !!n.length)
             .map(n => _.withIIFE(n))
             .join(';');
 

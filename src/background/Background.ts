@@ -88,7 +88,7 @@ export class Background implements Disposable {
         let content = await fs.promises.readFile(path.join(docDir, docName), ENCODING);
         // 替换图片内联为base64
         content = content.replace(/\.\.\/images[^\")]+/g, (relativePath: string) => {
-            const imgPath = path.join(vscodePath.extensionRoot, 'images', relativePath);
+            const imgPath = path.join(vscodePath.extRoot, 'images', relativePath);
 
             return (
                 `data:image/${path.extname(imgPath).slice(1) || 'png'};base64,` +

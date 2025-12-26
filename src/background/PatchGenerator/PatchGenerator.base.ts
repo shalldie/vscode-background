@@ -1,4 +1,3 @@
-import path from 'path';
 import { pathToFileURL } from 'url';
 
 import fg from 'fast-glob';
@@ -46,6 +45,9 @@ export function css(template: TemplateStringsArray, ...args: any[]) {
 
 export class AbsPatchGenerator<T extends { images: string[] }> {
     protected config: T;
+
+    /** 必须有图片 */
+    protected imageRequired = true;
 
     constructor(config: T) {
         const images = config?.images.filter(n => n.length) || [];
@@ -168,20 +170,36 @@ container.appendChild(div);
     }
 
     public create() {
+        if (this.imageRequired && !this.config.images.length) {
+            return '';
+        }
+
         const style = this.compileCSS(this.getStyle());
         const script = this.getScript().trim();
 
         return [
             this.getPreload(),
-            `
-                var style = document.createElement("style");
+            (() => {
+                if (!style.length) {
+                    return '';
+                }
+                return `
+                const style = document.createElement("style");
                 style.textContent = ${JSON.stringify(style)};
-                document.head.appendChild(style);
-            `,
+                document.head.appendChild(style);`;
+            })(),
             script
         ]
             .filter(n => !!n.length)
             .map(n => _.withIIFE(n))
             .join(';');
     }
+}
+
+export class WithoutImagesPatchGenerator extends AbsPatchGenerator<any> {
+    constructor() {
+        super({ images: [] });
+    }
+
+    protected readonly imageRequired = false;
 }
