@@ -14,7 +14,7 @@ export class ThemePatchGenerator extends WithoutImagesPatchGenerator {
             // 浅色主题（默认）
             :root {
                 // 不使用混合模式
-                ${ThemePatchGenerator.cssMixBlendMode}: normal;
+                ${ThemePatchGenerator.cssMixBlendMode}: unset;
             }
 
             // 深色主题 (覆盖)
