@@ -73,7 +73,7 @@ function getNextImg() {
 }
 
 function setNextImg() {
-    document.documentElement.style.setProperty(cssvariable, 'url(' + getNextImg() + ')');
+    document.body.style.setProperty(cssvariable, 'url(' + getNextImg() + ')');
 }
 
 if (interval > 0) {
