@@ -15,7 +15,9 @@ Different system paths and folders are supported in `images` now:
     "C:/Users/xie/img.bmp",
     "D:\\downloads\\images\\img.webp",
     // local folders
-    "/home/xie/images"
+    "/home/xie/images",
+    // data URL
+    "data:image/*;base64,<base64-data>"
   ]
 }
 ```

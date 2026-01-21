@@ -98,7 +98,9 @@
       "C:/Users/xie/img.bmp",
       "D:\\downloads\\images\\img.webp",
       // ローカルフォルダ
-      "/home/xie/images"
+      "/home/xie/images",
+      // data URL
+      "data:image/*;base64,<base64-data>"
     ],
     "interval": 0,
     "random": false
@@ -138,7 +140,9 @@ example:
       "C:/Users/xie/img.bmp",
       "D:\\downloads\\images\\img.webp",
       // ローカルフォルダ
-      "/home/xie/images"
+      "/home/xie/images",
+      // data URL
+      "data:image/*;base64,<base64-data>"
     ],
     "opacity": 0.1,
     "size": "cover",

@@ -10,7 +10,7 @@
     "extension.background.editor.useFront": "Place the image above or below the code.",
     "extension.background.editor.style": "Custom style for images. [MDN Reference](https://developer.mozilla.org/docs/Web/CSS)",
     "extension.background.editor.styles": "Each style of editor section image.",
-    "extension.background.editor.images": "Custom images, Example:\n```\n\"images\": [\n  // online images, only `https` is allowed.\n  \"https://hostname/online.jpg\",\n  // local images\n  \"file:///local/path/img.jpeg\",\n  \"/home/xie/downloads/img.gif\",\n  \"C:/Users/xie/img.bmp\",\n  \"D:\\downloads\\images\\img.webp\",\n  // local folders\n  \"/home/xie/images\"\n]\n```",
+    "extension.background.editor.images": "Custom images, Example:\n```\n\"images\": [\n  // online images, only `https` is allowed.\n  \"https://hostname/online.jpg\",\n  // local images\n  \"file:///local/path/img.jpeg\",\n  \"/home/xie/downloads/img.gif\",\n  \"C:/Users/xie/img.bmp\",\n  \"D:\\\\downloads\\\\images\\\\img.webp\",\n  // local folders\n  \"/home/xie/images\",\n  // data URL\n  \"data:image/*;base64,<base64-data>\"\n]\n```",
     "extension.background.editor.interval": "Seconds of interval for carousel, default `0` to disabled.",
     "extension.background.editor.random": "Whether to randomly display images.",
 

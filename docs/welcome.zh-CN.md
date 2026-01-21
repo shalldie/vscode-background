@@ -15,7 +15,9 @@
     "C:/Users/xie/img.bmp",
     "D:\\downloads\\images\\img.webp",
     // 文件夹
-    "/home/xie/images"
+    "/home/xie/images",
+    // data URL
+    "data:image/*;base64,<base64-data>"
   ]
 }
 ```

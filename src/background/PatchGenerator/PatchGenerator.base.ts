@@ -11,6 +11,8 @@ images 支持以下格式：
 
 ------ 网络图片 ------
 https://...
+------ data URL ------
+data:image/*;base64,<base64-data>
 
 ------ 本地目录、图片 ------
 file:///path/to/local/file
@@ -54,11 +56,12 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
         this.config = {
             ...config,
             images: images.flatMap(img => {
-                // ------ 网络图片，`https://` ------
-                if (img.startsWith('http')) {
+                // ------ online images，`https://` ------
+                // ------ data URL，`data:image/png;base64,<BASE64_ENCODED_DATA>` ------
+                if (['http', 'data:'].some(prefix => img.startsWith(prefix))) {
                     return [img];
                 }
-                // ------ 本地 ------
+                // ------ local ------
                 // 文件，模糊判断。`.xxx`
                 if (/\.[^\\/]+$/.test(img)) {
                     return this.normalizeImageUrls([img]);
