@@ -1,3 +1,9 @@
+## v2.0.9 (2026/01/22)
+
+- feat: Add data URL support by @shalldie in (#578)[https://github.com/shalldie/vscode-background/pull/578]
+
+**Full Changelog**: https://github.com/shalldie/vscode-background/compare/v2.0.8...v2.0.9
+
 ## v2.0.8 (2025/12/28)
 
 - Perf/optimize rendering - 优化渲染模式 by @shalldie in (#573)[https://github.com/shalldie/vscode-background/pull/573]
