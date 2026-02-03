@@ -62,6 +62,12 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         })
     );
 
+    context.subscriptions.push(
+        vscode.commands.registerCommand('extension.background.previewPatch', async () => {
+            background.previewPatch();
+        })
+    );
+
     const statusbar = getStatusbar();
     context.subscriptions.push(
         vscode.commands.registerCommand(statusbar.command as string, async () => {

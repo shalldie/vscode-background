@@ -102,9 +102,7 @@ export class Background implements Disposable {
         for (const [key, value] of Object.entries(paramsMap)) {
             content = content.replaceAll('${' + key + '}', value);
         }
-        const targetPath = path.join(tmpdir(), 'welcome-to-background.md');
-        await fs.promises.writeFile(targetPath, content, ENCODING);
-        vscode.commands.executeCommand('markdown.showPreviewToSide', Uri.file(targetPath));
+        vsHelp.showMarkdown(content, 'welcome');
     }
 
     /**
@@ -165,6 +163,11 @@ export class Background implements Disposable {
 
         const scriptContent = PatchGenerator.create(this.config);
         return this.jsFile.applyPatches(scriptContent);
+    }
+
+    public previewPatch() {
+        const scriptContent = PatchGenerator.create(this.config);
+        vsHelp.showMarkdown('```ts\n' + scriptContent + '\n```', 'preview-patch');
     }
 
     // #endregion

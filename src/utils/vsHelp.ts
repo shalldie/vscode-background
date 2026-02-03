@@ -1,4 +1,10 @@
-import vscode, { l10n } from 'vscode';
+import fs from 'fs';
+import { tmpdir } from 'os';
+import path from 'path';
+
+import vscode, { l10n, Uri } from 'vscode';
+
+import { ENCODING } from './constants';
 
 class ReloadOptions {
     /** reload 提示内容 */
@@ -33,5 +39,11 @@ export const vsHelp = {
             await options.beforeReload?.();
         }
         return vscode.commands.executeCommand('workbench.action.reloadWindow');
+    },
+
+    async showMarkdown(content: string, key = 'temp') {
+        const targetPath = path.join(tmpdir(), `${key}-background.md`);
+        await fs.promises.writeFile(targetPath, content, ENCODING);
+        vscode.commands.executeCommand('markdown.showPreviewToSide', Uri.file(targetPath));
     }
 };

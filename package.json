@@ -2,7 +2,7 @@
   "name": "background",
   "displayName": "background",
   "description": "Bring background images to your vscode",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "vscode:uninstall": "node ./out/uninstall",
@@ -56,6 +56,11 @@
         "command": "extension.background.uninstall",
         "category": "Background",
         "title": "%extension.background.command.uninstall.title%"
+      },
+      {
+        "command": "extension.background.previewPatch",
+        "category": "Background",
+        "title": "[Dev] Preview Patch"
       }
     ],
     "configuration": {
