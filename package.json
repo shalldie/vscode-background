@@ -2,7 +2,7 @@
   "name": "background",
   "displayName": "background",
   "description": "Bring background images to your vscode",
-  "version": "2.0.10",
+  "version": "2.1.0-rc.1",
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "vscode:uninstall": "node ./out/uninstall",
@@ -20,7 +20,7 @@
     "url": "https://github.com/shalldie/vscode-background.git"
   },
   "engines": {
-    "vscode": "^1.94.0"
+    "vscode": "^1.123.0"
   },
   "icon": "images/logo.png",
   "categories": [
@@ -324,7 +324,7 @@
     "@types/node": "^24",
     "@types/stylis": "^4.2.7",
     "@types/uglify-js": "^3.17.5",
-    "@types/vscode": "^1.94.0",
+    "@types/vscode": "^1.120.0",
     "@typescript-eslint/eslint-plugin": "^8.50.0",
     "@typescript-eslint/parser": "^8.50.0",
     "@vscode/vsce": "^3.7.1",

@@ -30,7 +30,7 @@ export enum EFilePatchType {
  * @class AbsPatchFile
  */
 export abstract class AbsPatchFile {
-    constructor(private filePath: string) {}
+    constructor(protected filePath: string) {}
 
     /**
      * 是否已经修改过
@@ -69,7 +69,7 @@ export abstract class AbsPatchFile {
         return fs.promises.readFile(this.filePath, ENCODING);
     }
 
-    private async saveContentTo(filePath: string, content: string) {
+    protected async saveContentTo(filePath: string, content: string) {
         try {
             if (fs.existsSync(filePath)) {
                 await fs.promises.access(filePath, fsConstants.W_OK);
@@ -146,8 +146,11 @@ export abstract class AbsPatchFile {
 
     public async restore() {
         try {
-            let content = await this.getContent();
-            content = this.cleanPatches(content);
+            const curContent = await this.getContent();
+            const content = this.cleanPatches(curContent);
+            if (curContent === content) {
+                return true;
+            }
             return await this.write(content);
         } catch {
             return false;

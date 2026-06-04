@@ -1,14 +1,12 @@
 import fs from 'fs';
-import { tmpdir } from 'os';
 import path from 'path';
 
-import vscode, { Disposable, l10n, Uri } from 'vscode';
+import vscode, { Disposable, l10n } from 'vscode';
 
-import { ENCODING, EXTENSION_NAME, TOUCH_JSFILE_PATH, VERSION } from '../utils/constants';
+import { ENCODING, EXTENSION_NAME, TOUCH_FILE_PATH, VERSION } from '../utils/constants';
 import { vscodePath } from '../utils/vscodePath';
 import { vsHelp } from '../utils/vsHelp';
-import { CssFile } from './CssFile';
-import { EFilePatchType, JsPatchFile } from './PatchFile';
+import { EFilePatchType, HtmlPatchFile, JsPatchFile } from './PatchFile';
 import { PatchGenerator, TPatchGeneratorConfig } from './PatchGenerator';
 
 /**
@@ -26,14 +24,9 @@ type TConfigType = vscode.WorkspaceConfiguration & TPatchGeneratorConfig;
 export class Background implements Disposable {
     // #region fields 字段
 
-    /**
-     * 老版本css文件操作对象
-     *
-     * @memberof Background
-     */
-    public cssFile = new CssFile(vscodePath.cssPath); // 没必要继承，组合就行
+    public htmlFile = new HtmlPatchFile(vscodePath.workbenchHtmlPath);
 
-    public jsFile = new JsPatchFile(vscodePath.jsPath);
+    private legacyJsFile = new JsPatchFile(vscodePath.jsPath);
 
     /**
      * Current config
@@ -68,11 +61,10 @@ export class Background implements Disposable {
      * @memberof Background
      */
     private async checkFirstload(): Promise<boolean> {
-        const firstLoad = !fs.existsSync(TOUCH_JSFILE_PATH);
+        const firstLoad = !fs.existsSync(TOUCH_FILE_PATH);
 
         if (firstLoad) {
-            // 标识插件已启动过
-            await fs.promises.writeFile(TOUCH_JSFILE_PATH, vscodePath.jsPath, ENCODING);
+            await fs.promises.writeFile(TOUCH_FILE_PATH, vscodePath.workbenchHtmlPath, ENCODING);
             return true;
         }
 
@@ -103,23 +95,6 @@ export class Background implements Disposable {
             content = content.replaceAll('${' + key + '}', value);
         }
         vsHelp.showMarkdown(content, 'welcome');
-    }
-
-    /**
-     * 移除旧版本css文件中的patch
-     *
-     * @private
-     * @return {*}
-     * @memberof Background
-     */
-    private async removeLegacyCssPatch() {
-        try {
-            const hasInstalled = await this.cssFile.hasInstalled();
-            if (!hasInstalled) {
-                return;
-            }
-            await this.cssFile.uninstall();
-        } catch (ex) {}
     }
 
     /**
@@ -156,13 +131,12 @@ export class Background implements Disposable {
     }
 
     public async applyPatch() {
-        // 禁用时候，不处理
         if (!this.config.enabled) {
             return;
         }
 
         const scriptContent = PatchGenerator.create(this.config);
-        return this.jsFile.applyPatches(scriptContent);
+        return this.htmlFile.applyPatches(scriptContent);
     }
 
     public previewPatch() {
@@ -181,11 +155,16 @@ export class Background implements Disposable {
      * @memberof Background
      */
     public async setup(): Promise<any> {
-        await this.removeLegacyCssPatch(); // 移除「v1旧版本」patch
+        if (await this.legacyJsFile.hasPatched()) {
+            await this.legacyJsFile.restore();
+            vscode.window.showWarningMessage(
+                l10n.t('Background detected legacy patch cache. Please restart VS Code (quit and reopen) to clear it.')
+            );
+        }
 
-        await this.checkFirstload(); // 是否初次加载插件
+        await this.checkFirstload();
 
-        const patchType = await this.jsFile.getPatchType(); // 「js文件」目前状态
+        const patchType = await this.htmlFile.getPatchType();
 
         // 如果「开启」状态，文件不是「latest」，则进行「提示更新」
         // 此时一般为 「background更新」、「vscode更新」
@@ -240,7 +219,7 @@ export class Background implements Disposable {
      * @memberof Background
      */
     public hasInstalled(): Promise<boolean> {
-        return this.jsFile.hasPatched();
+        return this.htmlFile.hasPatched();
     }
 
     /**
@@ -250,8 +229,8 @@ export class Background implements Disposable {
      * @memberof Background
      */
     public async uninstall(): Promise<boolean> {
-        await this.removeLegacyCssPatch();
-        return this.jsFile.restore();
+        await this.legacyJsFile.restore();
+        return this.htmlFile.restore();
     }
 
     /**
