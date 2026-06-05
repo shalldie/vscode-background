@@ -4,7 +4,7 @@
 
 ## 插件是如何工作的
 
-**本插件是通过修改 vscode 的 js 文件的方式运行**
+**本插件是通过修改 vscode 的 html 文件的方式运行**
 
 ## 如何获取本地图片地址
 
@@ -70,7 +70,7 @@
    - mac: `/Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/workbench`
    - linux: `/usr/share/code/resources/app/out/vs/workbench`
      - 一些 Arch Linux: `/opt/visual-studio-code/resources/app/out/vs/workbench`
-2. 编辑 `workbench.desktop.main.js`，去掉尾部的这部分：`// vscode-background-start...// vscode-background-end`。
+2. 编辑 `workbench.html`，删除从 `<!-- vscode-background-start` 到 `<!-- vscode-background-end -->` 的内容。
 
 ## 想继续使用v1版本的默认图片？
 

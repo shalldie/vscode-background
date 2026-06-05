@@ -4,7 +4,7 @@
 
 ## How it works
 
-**This extension works by editting the vscode's js file.**
+**This extension works by editting the vscode's html file.**
 
 ## How to get local images' address
 
@@ -70,7 +70,7 @@ Whenever there is an extreme situation where vscode crashes, you can manually fi
    - mac: `/Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/workbench`
    - linux: `/usr/share/code/resources/app/out/vs/workbench`
      - Some Arch Linux: `/opt/visual-studio-code/resources/app/out/vs/workbench`
-2. Edit `workbench.desktop.main.js`, remove the content at the end: `// vscode-background-start...// vscode-background-end`.
+2. Edit `workbench.html`, remove from `<!-- vscode-background-start` to `<!-- vscode-background-end -->`.
 
 ## Prefer v1 default images?
 

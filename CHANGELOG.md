@@ -1,3 +1,11 @@
+## v2.1.0 (2026/06/05)
+
+- fix: Handle resource cache issue in VS Code 1.123.0 by @shalldie in [#600](https://github.com/shalldie/vscode-background/pull/600)
+
+---
+
+- fix: 处理 VS Code 1.123.0 加载资源的内存缓存问题，改为通过 HTML 注入独立脚本文件 by @shalldie in [#600](https://github.com/shalldie/vscode-background/pull/600)
+
 ## v2.0.10 (2026/02/03)
 
 - feat: Add 「Preview Patch」 command (#581) by @shalldie in [#583](https://github.com/shalldie/vscode-background/pull/583)
