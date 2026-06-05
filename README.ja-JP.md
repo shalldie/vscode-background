@@ -164,7 +164,7 @@ example:
 
 ## 注意点
 
-> **この拡張機能は、VSCode 本体の js ファイルを編集することで機能します。**
+> **この拡張機能は、VSCode 本体の html ファイルを編集することで機能します。**
 
 問題が発生した際は、[Common Issues](docs/common-issues.md)を参照してください。
 

@@ -20,5 +20,5 @@ export const EXTENSION_NAME: string = pkg.name;
 /** 扩展ID */
 export const EXTENSION_ID = `${PUBLISHER}.${EXTENSION_NAME}`;
 
-/** 版本临时文件，存放js路径、标识初次安装 */
-export const TOUCH_JSFILE_PATH = path.join(__dirname, `../../vscb.${VERSION}.js.touch`);
+/** 版本临时文件，存放 html 路径、标识初次安装 */
+export const TOUCH_FILE_PATH = path.join(__dirname, `../../vscb.${VERSION}.touch`);

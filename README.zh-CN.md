@@ -164,7 +164,7 @@ example:
 
 ## 常见问题
 
-> **本插件是通过修改 vscode 的 js 文件的方式运行**
+> **本插件是通过修改 vscode 的 html 文件的方式运行**
 
 如果遇到问题请查看 [常见问题](docs/common-issues.zh-CN.md)
 

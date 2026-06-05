@@ -166,7 +166,7 @@ Click the 「Background」 button on the right-bottom of statusbar, all commands
 
 ## Common Issues
 
-> **This extension works by editting the vscode's js file.**
+> **This extension works by editting the vscode's html file.**
 
 Please refer to the [Common Issues](docs/common-issues.md) if you met some problems.
 

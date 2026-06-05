@@ -11,19 +11,6 @@ const base = (() => {
     return base;
 })();
 
-const cssPath = (() => {
-    const getCssPath = (cssFileName: string) => path.join(base, 'vs', 'workbench', cssFileName);
-
-    const defPath = getCssPath('workbench.desktop.main.css');
-    // https://github.com/microsoft/vscode/pull/141263
-    const webPath = getCssPath('workbench.web.main.css');
-
-    if (_.isDesktop) {
-        return defPath;
-    }
-    return webPath;
-})();
-
 const jsPath = (() => {
     // See https://code.visualstudio.com/api/references/vscode-api#env
 
@@ -38,6 +25,14 @@ const jsPath = (() => {
     return path.join(base, 'vs/code/browser/workbench/workbench.js');
 })();
 
+const workbenchHtmlPath = (() => {
+    if (_.isDesktop) {
+        return path.join(base, 'vs/code/electron-browser/workbench/workbench.html');
+    }
+    // code-server / web
+    return path.join(base, 'vs/code/browser/workbench/workbench.html');
+})();
+
 export const vscodePath = {
     /**
      * 基础目录
@@ -48,11 +43,11 @@ export const vscodePath = {
      */
     extRoot: path.join(__dirname, '../../'),
     /**
-     * css文件路径
-     */
-    cssPath,
-    /**
      * js 文件地址
      */
-    jsPath
+    jsPath,
+    /**
+     * workbench.html 文件路径
+     */
+    workbenchHtmlPath
 };

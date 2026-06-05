@@ -12,22 +12,17 @@
 
 import fs from 'fs';
 
-import { JsPatchFile } from './background/PatchFile/PatchFile.javascript';
-import { ENCODING, TOUCH_JSFILE_PATH } from './utils/constants';
+import { HtmlPatchFile } from './background/PatchFile/PatchFile.html';
+import { ENCODING, TOUCH_FILE_PATH } from './utils/constants';
 
 async function uninstall() {
     try {
-        const jsFilePath = (await fs.promises.readFile(TOUCH_JSFILE_PATH, ENCODING)).trim();
-        if (!jsFilePath) {
-            return;
-        }
-        const file = new JsPatchFile(jsFilePath);
-        const hasPatched = await file.hasPatched();
-        if (!hasPatched) {
+        const filePath = (await fs.promises.readFile(TOUCH_FILE_PATH, ENCODING)).trim();
+        if (!filePath) {
             return;
         }
 
-        await file.restore();
+        await new HtmlPatchFile(filePath).restore();
         console.log('vscode background has been auto uninstalled.');
     } catch (ex: any) {
         console.error('vscode background uninstalled fail: ' + ex.message);
