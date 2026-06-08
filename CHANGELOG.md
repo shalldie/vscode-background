@@ -1,3 +1,7 @@
+## v2.1.1 (2026/06/08)
+
+- fix: fix sudo/admin option by @shalldie in [#605](https://github.com/shalldie/vscode-background/pull/605)
+
 ## v2.1.0 (2026/06/05)
 
 - fix: Handle resource cache issue in VS Code 1.123.0 by @shalldie in [#600](https://github.com/shalldie/vscode-background/pull/600)
