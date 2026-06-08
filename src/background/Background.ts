@@ -53,6 +53,17 @@ export class Background implements Disposable {
 
     // #region private methods 私有方法
 
+    private async removeLegacyJsPatch() {
+        try {
+            const hasPatched = await this.legacyJsFile.hasPatched();
+            if (!hasPatched) {
+                return;
+            }
+
+            await this.legacyJsFile.restore();
+        } catch {}
+    }
+
     /**
      * 检测是否初次加载
      *
@@ -155,12 +166,7 @@ export class Background implements Disposable {
      * @memberof Background
      */
     public async setup(): Promise<any> {
-        if (await this.legacyJsFile.hasPatched()) {
-            await this.legacyJsFile.restore();
-            vscode.window.showWarningMessage(
-                l10n.t('Background detected legacy patch cache. Please restart VS Code (quit and reopen) to clear it.')
-            );
-        }
+        await this.removeLegacyJsPatch();
 
         await this.checkFirstload();
 
@@ -229,7 +235,7 @@ export class Background implements Disposable {
      * @memberof Background
      */
     public async uninstall(): Promise<boolean> {
-        await this.legacyJsFile.restore();
+        await this.removeLegacyJsPatch();
         return this.htmlFile.restore();
     }
 

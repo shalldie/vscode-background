@@ -14,3 +14,4 @@ src/**
 *.cache
 .node-version
 .comate
+.claude
