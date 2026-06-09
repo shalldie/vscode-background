@@ -19,7 +19,7 @@
 
 [GitHub](https://github.com/shalldie/vscode-background) | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
-[![Version](https://img.shields.io/badge/version-2.1.1-blue?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[![Version](https://img.shields.io/badge/version-3.0.0--rc.1-blue?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Stars](https://img.shields.io/github/stars/shalldie/vscode-background?logo=github&style=flat-square)](https://github.com/shalldie/vscode-background)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/shalldie/vscode-background/ci.yml?branch=master&label=build&style=flat-square)](https://github.com/shalldie/vscode-background/actions)
 [![License](https://img.shields.io/github/license/shalldie/vscode-background?style=flat-square)](https://github.com/shalldie/vscode-background)
@@ -200,7 +200,7 @@ We share background images [here](https://github.com/shalldie/vscode-background/
 
 ## Migration from v1
 
-The configuration of v1 is outdated and currently maintains a certain level of compatibility. Please refer to [migration-from-v1.md](docs/migration-from-v1.md) for migration.
+Starting from v3.0, v1 top-level configuration is no longer supported. Please refer to [migration-from-v1.md](docs/migration-from-v1.md) to migrate.
 
 ## LICENSE
 

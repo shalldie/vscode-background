@@ -19,7 +19,7 @@
 
 [GitHub](https://github.com/shalldie/vscode-background) | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
-[![Version](https://img.shields.io/badge/version-2.1.1-blue?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[![Version](https://img.shields.io/badge/version-3.0.0--rc.1-blue?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Stars](https://img.shields.io/github/stars/shalldie/vscode-background?logo=github&style=flat-square)](https://github.com/shalldie/vscode-background)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/shalldie/vscode-background/ci.yml?branch=master&label=build&style=flat-square)](https://github.com/shalldie/vscode-background/actions)
 [![License](https://img.shields.io/github/license/shalldie/vscode-background?style=flat-square)](https://github.com/shalldie/vscode-background)
@@ -198,8 +198,7 @@ example:
 
 ## v1からの移行
 
-v1における設定は古いものであり、互換性は限定的です。
-設定の移行の際には、[migration-from-v1.md](docs/migration-from-v1.md)を参照してください。
+v3.0 以降、v1 のトップレベル設定はサポートされなくなりました。移行については [migration-from-v1.md](docs/migration-from-v1.md) を参照してください。
 
 ## ライセンス
 

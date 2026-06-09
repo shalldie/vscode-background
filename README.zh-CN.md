@@ -19,7 +19,7 @@
 
 [GitHub](https://github.com/shalldie/vscode-background) | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
-[![Version](https://img.shields.io/badge/version-2.1.1-blue?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[![Version](https://img.shields.io/badge/version-3.0.0--rc.1-blue?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Stars](https://img.shields.io/github/stars/shalldie/vscode-background?logo=github&style=flat-square)](https://github.com/shalldie/vscode-background)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/shalldie/vscode-background/ci.yml?branch=master&label=build&style=flat-square)](https://github.com/shalldie/vscode-background/actions)
 [![License](https://img.shields.io/github/license/shalldie/vscode-background?style=flat-square)](https://github.com/shalldie/vscode-background)
@@ -198,7 +198,7 @@ example:
 
 ## 从 v1 迁移
 
-v1 的配置已经过时，当前保持一定的兼容性，请参考 [migration-from-v1.md](docs/migration-from-v1.md) 进行迁移。
+从 v3.0 起，v1 顶层配置不再被支持，请参考 [migration-from-v1.md](docs/migration-from-v1.md) 进行迁移。
 
 ## 协议
 

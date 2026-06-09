@@ -25,10 +25,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     const background = new Background();
 
     context.subscriptions.push(background);
-    const ok = await background.setup();
-    if (ok === false) {
-        return;
-    }
+    await background.setup();
 
     context.subscriptions.push(
         vscode.commands.registerCommand('extension.background.info', function () {

@@ -54,7 +54,7 @@ No more warnings about `Your Code installation appears to be corrupt`.
 
 ## Migration from v1
 
-> The configuration of v1 is outdated and needs to be migrated. Currently maintaining a certain level of compatibility.
+> Starting from v3.0, v1 top-level configuration is no longer supported. Please migrate to `background.editor.*`.
 
 v1:
 

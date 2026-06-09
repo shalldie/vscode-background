@@ -162,10 +162,9 @@ export class Background implements Disposable {
     /**
      * 初始化
      *
-     * @return {*}  {Promise<any>}
      * @memberof Background
      */
-    public async setup(): Promise<any> {
+    public async setup(): Promise<void> {
         await this.removeLegacyJsPatch();
 
         await this.checkFirstload();

@@ -2,7 +2,7 @@
   "name": "background",
   "displayName": "background",
   "description": "Bring background images to your vscode",
-  "version": "2.1.1",
+  "version": "3.0.0-rc.1",
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "vscode:uninstall": "node ./out/uninstall",
@@ -71,42 +71,6 @@
           "type": "boolean",
           "default": true,
           "markdownDescription": "%extension.background.enabled.description%"
-        },
-        "background.useFront": {
-          "type": "boolean",
-          "default": true,
-          "markdownDeprecationMessage": "%extension.background.common.deprecation%"
-        },
-        "background.style": {
-          "type": "object",
-          "default": {
-            "background-position": "100% 100%",
-            "background-size": "auto",
-            "opacity": 0.6
-          },
-          "markdownDeprecationMessage": "%extension.background.common.deprecation%"
-        },
-        "background.styles": {
-          "type": "array",
-          "default": [
-            {},
-            {},
-            {}
-          ],
-          "markdownDeprecationMessage": "%extension.background.common.deprecation%"
-        },
-        "background.customImages": {
-          "type": "array",
-          "default": [],
-          "items": {
-            "type": "string"
-          },
-          "markdownDeprecationMessage": "%extension.background.common.deprecation%"
-        },
-        "background.interval": {
-          "type": "number",
-          "default": 0,
-          "markdownDeprecationMessage": "%extension.background.common.deprecation%"
         },
         "background.editor": {
           "type": "object",

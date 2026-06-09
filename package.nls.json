@@ -23,8 +23,5 @@
 
     "extension.background.sidebar.description": "Sidebar section config.",
     "extension.background.auxiliarybar.description": "Auxiliarybar section config.",
-    "extension.background.panel.description": "Panel section config.",
-
-    "extension.background.common.deprecation": "*Deprecated*, it has been moved to `background.editor`.",
-    "extension.background.urlProtocol.error": "The image url must use https or file protocol."
+    "extension.background.panel.description": "Panel section config."
 }
