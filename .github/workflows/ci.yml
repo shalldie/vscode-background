@@ -30,3 +30,4 @@ jobs:
         with:
           name: build-artifact
           path: "*.vsix"
+          retention-days: 3

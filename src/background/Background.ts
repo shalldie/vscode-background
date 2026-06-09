@@ -195,14 +195,6 @@ export class Background implements Disposable {
                     confirm?.action();
                 });
         }
-        // if ([EFilePatchType.Legacy, EFilePatchType.None].includes(patchType)) {
-        //     // 提示： 欢迎使用 background@version! 「应用并重载」、「更多」
-        //     if (await this.applyPatch()) {
-        //         vsHelp.reload({
-        //             message: l10n.t('Background has been changed! Please reload.')
-        //         });
-        //     }
-        // }
 
         // 监听文件改变
         this.disposables.push(
