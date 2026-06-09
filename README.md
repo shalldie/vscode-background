@@ -26,11 +26,11 @@
 
 Multiple sections, `editor`、`sidebar`、`auxiliarybar`、`panel`
 
-<img width="760" src="./images/section.png">
+<img width="760" src="./images/section.webp">
 
 `fullscreen`
 
-<img width="760" src="./images/fullscreen.png">
+<img width="760" src="./images/fullscreen.webp">
 
 </div>
 
@@ -53,7 +53,7 @@ User defined requirements can be met by changing the configuration(`settings.jso
 
 ## Config
 
-<img width="760" src="./images/containers.png">
+<img width="760" src="./images/containers.webp">
 
 ### Global Config
 
@@ -160,7 +160,7 @@ example：
 
 Click the 「Background」 button on the right-bottom of statusbar, all commands of `background` will appear:
 
-<img width="660" src="./images/commands.png">
+<img width="660" src="./images/commands.webp">
 
 ## Common Issues
 

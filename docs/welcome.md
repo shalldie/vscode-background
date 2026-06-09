@@ -26,7 +26,7 @@ Different system paths and folders are supported in `images` now:
 
 Each section can be customized with features such as `custom images/styles`、`carousel`、`random display`...
 
-<img src="../images/containers.png" width="800" />
+<img src="../images/containers.webp" width="800" />
 
 ## Clear and concise configuration
 
@@ -46,7 +46,7 @@ Each section has independent configuration, see [README.md](https://github.com/s
 
 Click the 「Background」 button on the right-bottom of statusbar, all commands of `background` will appear:
 
-<img width="660" src="../images/commands.png">
+<img width="660" src="../images/commands.webp">
 
 ## No more warnings
 

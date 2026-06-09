@@ -85,7 +85,7 @@
 
 ## v2.0.0 (2024/10/23) (#462)
 
-<img width="380" src="./images/containers.png">
+<img width="380" src="./images/containers.webp">
 
 This is a major version that has added more features, which will bring you a better coding experience!
 

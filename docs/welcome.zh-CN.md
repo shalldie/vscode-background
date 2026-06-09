@@ -26,7 +26,7 @@
 
 每块区域都可以自定义 `图片/样式`、`轮播`、`随机展示` 等。
 
-<img src="../images/containers.png" width="800" />
+<img src="../images/containers.webp" width="800" />
 
 ## 更清晰简洁的配置
 
@@ -46,7 +46,7 @@
 
 点击状态栏右下角「Background」按钮，可以快速弹出 background 所有命令：
 
-<img width="660" src="../images/commands.png">
+<img width="660" src="../images/commands.webp">
 
 ## 治好强迫症
 

@@ -26,11 +26,11 @@
 
 複数の領域、`エディタ`、`サイドバー`、`補助バー(auxiliarybar)`、`パネル`
 
-<img width="760" src="./images/section.png">
+<img width="760" src="./images/section.webp">
 
 `フルスクリーン`
 
-<img width="760" src="./images/fullscreen.png">
+<img width="760" src="./images/fullscreen.webp">
 
 </div>
 
@@ -51,7 +51,7 @@
 
 ## コンフィグ
 
-<img width="760" src="./images/containers.png">
+<img width="760" src="./images/containers.webp">
 
 ### グローバル設定
 
@@ -158,7 +158,7 @@ example:
 
 ステータスバーの右下にある「background」をクリックすると、`background`のすべてのコマンドが表示されます：
 
-<img width="660" src="./images/commands.png">
+<img width="660" src="./images/commands.webp">
 
 ## 注意点
 

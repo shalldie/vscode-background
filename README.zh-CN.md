@@ -26,11 +26,11 @@
 
 多区域，`编辑器`、`侧边栏`、`辅助栏(auxiliarybar)`、`面板`
 
-<img width="760" src="./images/section.png">
+<img width="760" src="./images/section.webp">
 
 `全屏`
 
-<img width="760" src="./images/fullscreen.png">
+<img width="760" src="./images/fullscreen.webp">
 
 </div>
 
@@ -51,7 +51,7 @@
 
 ## 配置项
 
-<img width="760" src="./images/containers.png">
+<img width="760" src="./images/containers.webp">
 
 ### 全局配置
 
@@ -158,7 +158,7 @@ example:
 
 点击状态栏右下角「Background」按钮，可以快速弹出 background 所有命令：
 
-<img width="660" src="./images/commands.png">
+<img width="660" src="./images/commands.webp">
 
 ## 常见问题
 
