@@ -146,12 +146,12 @@ export class Background implements Disposable {
             return;
         }
 
-        const scriptContent = PatchGenerator.create(this.config);
+        const scriptContent = await PatchGenerator.create(this.config);
         return this.htmlFile.applyPatches(scriptContent);
     }
 
-    public previewPatch() {
-        const scriptContent = PatchGenerator.create(this.config);
+    public async previewPatch() {
+        const scriptContent = await PatchGenerator.create(this.config);
         vsHelp.showMarkdown('```ts\n' + scriptContent + '\n```', 'preview-patch');
     }
 

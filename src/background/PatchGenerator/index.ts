@@ -1,5 +1,3 @@
-import uglifyjs from 'uglify-js';
-
 import { _ } from '../../utils';
 import { AuxiliarybarPatchGenerator, AuxiliarybarPatchGeneratorConfig } from './PatchGenerator.auxiliarybar';
 import { ChecksumsPatchGenerator } from './PatchGenerator.checksums';
@@ -19,7 +17,7 @@ export type TPatchGeneratorConfig = {
 };
 
 export class PatchGenerator {
-    public static create(options: TPatchGeneratorConfig) {
+    public static async create(options: TPatchGeneratorConfig) {
         const script = [
             // global
             new ChecksumsPatchGenerator().create(), // fix checksums
@@ -35,7 +33,7 @@ export class PatchGenerator {
             .map(n => _.withIIFE(n))
             .join(';');
 
-        // return script;
-        return uglifyjs.minify(script).code;
+        const { minify } = await import('terser');
+        return (await minify(script)).code ?? script;
     }
 }

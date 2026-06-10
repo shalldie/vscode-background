@@ -287,7 +287,6 @@
     "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
     "@types/node": "^24.13.1",
     "@types/stylis": "^4.2.7",
-    "@types/uglify-js": "^3.17.5",
     "@types/vscode": "^1.120.0",
     "@vscode/vsce": "^3.9.2",
     "eslint": "^10.4.1",
@@ -302,6 +301,6 @@
     "@vscode/sudo-prompt": "^9.3.2",
     "fast-glob": "^3.3.3",
     "stylis": "^4.4.0",
-    "uglify-js": "^3.19.3"
+    "terser": "^5.48.0"
   }
 }
