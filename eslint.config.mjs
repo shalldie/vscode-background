@@ -1,36 +1,27 @@
-import typescriptEslint from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import tseslint from 'typescript-eslint';
 
-export default [
+export default tseslint.config(
+    tseslint.configs.recommended,
     {
-        files: ['**/*.ts']
-    },
-    {
-        plugins: {
-            '@typescript-eslint': typescriptEslint
-        },
-
+        files: ['**/*.ts'],
         languageOptions: {
-            parser: tsParser,
+            parser: tseslint.parser,
             ecmaVersion: 2022,
             sourceType: 'module'
         },
-
+        plugins: {
+            '@typescript-eslint': tseslint.plugin
+        },
         rules: {
-            // '@typescript-eslint/naming-convention': [
-            //     'warn',
-            //     {
-            //         selector: 'import',
-            //         format: ['camelCase', 'PascalCase']
-            //     }
-            // ],
-
             curly: 'warn',
             eqeqeq: 'warn',
             'no-throw-literal': 'warn',
-            semi: 'warn'
+            semi: 'warn',
+            '@typescript-eslint/no-explicit-any': 'off',
+            '@typescript-eslint/no-namespace': 'off',
+            '@typescript-eslint/no-require-imports': 'off'
         }
     },
     eslintPluginPrettierRecommended
-];
+);
