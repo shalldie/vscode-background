@@ -1,3 +1,4 @@
+import fs from 'fs';
 import path from 'path';
 
 import { _ } from './index';
@@ -27,7 +28,10 @@ const jsPath = (() => {
 
 const workbenchHtmlPath = (() => {
     if (_.isDesktop) {
-        return path.join(base, 'vs/code/electron-browser/workbench/workbench.html');
+        // new version Cursor/VSCode use electron-sandbox, old version use electron-browser
+        const sandboxPath = path.join(base, 'vs/code/electron-sandbox/workbench/workbench.html');
+        const browserPath = path.join(base, 'vs/code/electron-browser/workbench/workbench.html');
+        return fs.existsSync(sandboxPath) ? sandboxPath : browserPath;
     }
     // code-server / web
     return path.join(base, 'vs/code/browser/workbench/workbench.html');
