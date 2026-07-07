@@ -28,10 +28,11 @@ const jsPath = (() => {
 
 const workbenchHtmlPath = (() => {
     if (_.isDesktop) {
-        // new version Cursor/VSCode use electron-sandbox, old version use electron-browser
-        const sandboxPath = path.join(base, 'vs/code/electron-sandbox/workbench/workbench.html');
+        // vscode
         const browserPath = path.join(base, 'vs/code/electron-browser/workbench/workbench.html');
-        return fs.existsSync(sandboxPath) ? sandboxPath : browserPath;
+        // some version of Cursor use electron-sandbox
+        const sandboxPath = path.join(base, 'vs/code/electron-sandbox/workbench/workbench.html');
+        return fs.existsSync(browserPath) ? browserPath : sandboxPath;
     }
     // code-server / web
     return path.join(base, 'vs/code/browser/workbench/workbench.html');

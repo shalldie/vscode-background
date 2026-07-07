@@ -1,3 +1,8 @@
+## v2.1.2 (2026/07/07)
+
+- fix: support electron-sandbox path for some version of Cursor by @hedgehog-ha in [#614](https://github.com/shalldie/vscode-background/pull/614)
+- fix: prioritize electron-browser path for VSCode, fallback to electron-sandbox for Cursor
+
 ## v2.1.1 (2026/06/08)
 
 - fix: fix sudo/admin option by @shalldie in [#605](https://github.com/shalldie/vscode-background/pull/605)
