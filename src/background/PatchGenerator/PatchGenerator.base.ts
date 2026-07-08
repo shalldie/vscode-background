@@ -63,7 +63,7 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
                     return [img];
                 }
                 // ------ local ------
-                img = this.resolveImagePath(img);
+                img = this.expandPathVariables(img);
                 // 文件，模糊判断。`.xxx`
                 if (/\.[^\\/]+$/.test(img)) {
                     return this.normalizeImageUrls([img]);
@@ -102,9 +102,9 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
     }
 
     /**
-     * 展开图片路径中的特殊标记和环境变量
+     * 展开路径中的 `~`（用户目录）和环境变量（`${ENV}`、`$ENV`）
      */
-    private resolveImagePath(imagePath: string): string {
+    private expandPathVariables(imagePath: string): string {
         // 展开 ~ 为用户目录
         if (imagePath.startsWith('~/')) {
             imagePath = homedir() + imagePath.slice(1);

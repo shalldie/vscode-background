@@ -95,6 +95,9 @@
       "/home/xie/downloads/img.gif",
       "C:/Users/xie/img.bmp",
       "D:\\downloads\\images\\img.webp",
+      // ローカルパスでは `~` と環境変数が使用できます
+      "~/Pictures/img.png",
+      "${HOME}/Pictures/img.png",
       // ローカルフォルダ
       "/home/xie/images",
       // data URL
@@ -137,6 +140,9 @@ example:
       "/home/xie/downloads/img.gif",
       "C:/Users/xie/img.bmp",
       "D:\\downloads\\images\\img.webp",
+      // ローカルパスでは `~` と環境変数が使用できます
+      "~/Pictures/img.png",
+      "${HOME}/Pictures/img.png",
       // ローカルフォルダ
       "/home/xie/images",
       // data URL

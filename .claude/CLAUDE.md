@@ -9,7 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Common Commands
 
 ```bash
-npm run compile      # tsc 编译到 out/
+npm run build        # check-types + esbuild 打包到 dist/
 npm run watch        # 开发时 watch 模式
 npm run lint         # ESLint，pre-commit 钩子也会跑
 npm run package      # vsce package，生成 .vsix
@@ -24,12 +24,12 @@ npm run package      # vsce package，生成 .vsix
 
 入口 `src/extension.ts` 创建 `Background` 实例。`Background.applyPatch()` 流程：
 
-1. `PatchGenerator.create(config)` 把用户配置编译成一段 JS 代码（多个 IIFE 拼接，最后用 `uglify-js` 压缩）。
+1. `PatchGenerator.create(config)` 把用户配置编译成一段 JS 代码（多个 IIFE 拼接，最后用 `terser` 压缩）。
 2. `HtmlPatchFile.applyPatches(content)` 将生成的脚本**内联**到 `workbench.html` 末尾的 `<script>` 标签中，包裹在 `<!-- vscode-background-start -->` 与 `<!-- vscode-background-end -->` 注释之间；同时在 CSP 中注入 `'unsafe-inline'` 以允许内联脚本执行。
 3. 用户重启 VS Code 后 HTML 加载注入的脚本，把样式/图片注入到 workbench DOM。
 
 VS Code 的 `workbench.html` 路径由 `src/utils/vscodePath.ts` 推断：
-- Desktop: `out/vs/code/electron-browser/workbench/workbench.html`
+- Desktop: `out/vs/code/electron-browser/workbench/workbench.html`，部分版本的 Cursor 用 `electron-sandbox`（探测哪个存在）
 - Web/code-server: `out/vs/code/browser/workbench/workbench.html`
 
 修改这些文件通常需要写权限；写失败时会通过 `@vscode/sudo-prompt` 提权重试（见 `PatchFile.base.ts` 的 `saveContentTo`）。
@@ -59,7 +59,7 @@ VS Code 1.123.0+ 对 `vscode-file://` 协议的 JS 资源启用了内存缓存�
 
 所有继承 `AbsPatchGenerator`（`PatchGenerator.base.ts`），通过 `getStyle()` / `getScript()` 钩子贡献片段，由 `create()` 组合并经 `stylis` 编译 CSS。
 
-图片来源处理（在基类构造函数中）支持：`https://`、`data:`、本地文件、本地目录（用 `fast-glob` 扫支持的扩展名）；本地路径会被归一化为 `vscode-file://vscode-app/...` 协议（v1.51.1+ 的沙盒访问限制需要）。
+图片来源处理（在基类构造函数中）支持：`https://`、`data:`、本地文件、本地目录（用 `fast-glob` 扫支持的扩展名）；本地路径先经 `expandPathVariables` 展开 `~`（用户目录）和环境变量（`${ENV}`、`$ENV`），再被归一化为 `vscode-file://vscode-app/...` 协议（v1.51.1+ 的沙盒访问限制需要）。
 
 ### 卸载
 
@@ -81,7 +81,7 @@ HTML 文件的实际路径通过 `TOUCH_FILE_PATH`（一个版本号命名的 to
 
 ## Conventions
 
-- 模块路径以 `Node16`（ES module 风格）解析，`tsconfig` 严格模式开启。
+- 模块路径以 `NodeNext`（ES module 风格）解析，`tsconfig` 严格模式开启。类型检查（`tsc --noEmit`）与打包（`esbuild`）分离：`tsconfig.json` 设 `noEmit`，产物由 `esbuild.mjs` bundle 到 `dist/`；`isolatedModules` 保证代码兼容 esbuild 单文件转译。
 - imports 由 `@ianvs/prettier-plugin-sort-imports` 自动排序——直接跑 `prettier --write` 或依赖编辑器集成；不要手动调整 import 顺序。
 - 中文注释普遍存在；项目支持中/英/日 README，新增用户可见文案应同步到 `package.nls*.json`、`l10n/bundle.l10n.*.json`、`docs/welcome.*.md`。
 - 修改 patch 注入逻辑后，用 `[Dev] Preview Patch` 命令（`extension.background.previewPatch`）查看最终生成的脚本进行验证。

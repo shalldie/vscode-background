@@ -95,6 +95,9 @@ example:
       "/home/xie/downloads/img.gif",
       "C:/Users/xie/img.bmp",
       "D:\\downloads\\images\\img.webp",
+      // 本地路径支持 `~` 和环境变量
+      "~/Pictures/img.png",
+      "${HOME}/Pictures/img.png",
       // 文件夹
       "/home/xie/images",
       // data URL
@@ -137,6 +140,9 @@ example:
       "/home/xie/downloads/img.gif",
       "C:/Users/xie/img.bmp",
       "D:\\downloads\\images\\img.webp",
+      // 本地路径支持 `~` 和环境变量
+      "~/Pictures/img.png",
+      "${HOME}/Pictures/img.png",
       // 文件夹
       "/home/xie/images",
       // data URL

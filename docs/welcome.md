@@ -14,6 +14,9 @@ Different system paths and folders are supported in `images` now:
     "/home/xie/downloads/img.gif",
     "C:/Users/xie/img.bmp",
     "D:\\downloads\\images\\img.webp",
+    // `~` and environment variables are supported in local paths
+    "~/Pictures/img.png",
+    "${HOME}/Pictures/img.png",
     // local folders
     "/home/xie/images",
     // data URL

@@ -4,9 +4,9 @@
   "description": "Bring background images to your vscode",
   "version": "3.0.0-rc.1",
   "scripts": {
-    "vscode:prepublish": "npm run compile",
+    "vscode:prepublish": "npm run build",
     "vscode:uninstall": "node ./dist/uninstall",
-    "compile": "npm run check-types && node esbuild.mjs",
+    "build": "npm run check-types && node esbuild.mjs",
     "check-types": "tsc --noEmit",
     "watch": "npm-run-all -p watch:*",
     "watch:esbuild": "node esbuild.mjs --watch",
