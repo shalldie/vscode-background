@@ -5,7 +5,7 @@ import { ThemePatchGenerator } from './PatchGenerator.theme';
 export class PanelPatchGeneratorConfig extends FullscreenPatchGeneratorConfig {}
 
 export class PanelPatchGenerator extends FullscreenPatchGenerator<PanelPatchGeneratorConfig> {
-    protected readonly cssvariable = '--background-panel-img';
+    protected readonly cssVariable = '--background-panel-img';
 
     protected getStyle(): string {
         const { size, position, opacity } = this.curConfig;
@@ -25,7 +25,7 @@ export class PanelPatchGenerator extends FullscreenPatchGenerator<PanelPatchGene
                 opacity: ${opacity};
                 transition: 1s;
                 mix-blend-mode: var(${ThemePatchGenerator.cssMixBlendMode});
-                background-image: var(${this.cssvariable});
+                background-image: var(${this.cssVariable});
             }
         `;
     }

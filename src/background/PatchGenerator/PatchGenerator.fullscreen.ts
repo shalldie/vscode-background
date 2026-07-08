@@ -11,7 +11,7 @@ export class FullscreenPatchGeneratorConfig {
 }
 
 export class FullscreenPatchGenerator<T extends FullscreenPatchGeneratorConfig> extends AbsPatchGenerator<T> {
-    protected cssvariable = '--background-fullscreen-img';
+    protected cssVariable = '--background-fullscreen-img';
 
     protected get curConfig(): T {
         const cur = {
@@ -44,7 +44,7 @@ export class FullscreenPatchGenerator<T extends FullscreenPatchGeneratorConfig> 
                 opacity: ${opacity};
                 transition: 1s;
                 mix-blend-mode: var(${ThemePatchGenerator.cssMixBlendMode});
-                background-image: var(${this.cssvariable});
+                background-image: var(${this.cssVariable});
             }
         `;
     }
@@ -55,7 +55,7 @@ export class FullscreenPatchGenerator<T extends FullscreenPatchGeneratorConfig> 
             return '';
         }
         return `
-const cssvariable = '${this.cssvariable}';
+const cssVariable = '${this.cssVariable}';
 const images = ${JSON.stringify(images)};
 const random = ${random};
 const interval = ${interval};
@@ -73,7 +73,7 @@ function getNextImg() {
 }
 
 function setNextImg() {
-    document.body.style.setProperty(cssvariable, 'url(' + getNextImg() + ')');
+    document.body.style.setProperty(cssVariable, 'url(' + getNextImg() + ')');
 }
 
 if (interval > 0) {

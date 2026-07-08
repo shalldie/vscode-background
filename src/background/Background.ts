@@ -122,8 +122,6 @@ export class Background implements Disposable {
         // 禁用
         if (!enabled) {
             if (hasInstalled) {
-                // await this.uninstall();
-
                 vsHelp.reload({
                     message: l10n.t('Background will be disabled.'),
                     btnReload: l10n.t('Disable and Reload'),

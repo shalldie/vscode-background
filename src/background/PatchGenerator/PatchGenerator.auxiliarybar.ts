@@ -5,7 +5,7 @@ import { ThemePatchGenerator } from './PatchGenerator.theme';
 export class AuxiliarybarPatchGeneratorConfig extends FullscreenPatchGeneratorConfig {}
 
 export class AuxiliarybarPatchGenerator extends FullscreenPatchGenerator<AuxiliarybarPatchGeneratorConfig> {
-    protected cssvariable = '--background-auxiliarybar-img';
+    protected cssVariable = '--background-auxiliarybar-img';
 
     protected getStyle(): string {
         const { size, position, opacity } = this.curConfig;
@@ -25,7 +25,7 @@ export class AuxiliarybarPatchGenerator extends FullscreenPatchGenerator<Auxilia
                 opacity: ${opacity};
                 transition: 1s;
                 mix-blend-mode: var(${ThemePatchGenerator.cssMixBlendMode});
-                background-image: var(${this.cssvariable});
+                background-image: var(${this.cssVariable});
             }
         `;
     }

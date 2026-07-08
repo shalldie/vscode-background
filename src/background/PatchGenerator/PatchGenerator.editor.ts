@@ -17,7 +17,7 @@ export class EditorPatchGenerator extends AbsPatchGenerator<EditorPatchGenerator
      * @private
      * @memberof EditorPatchGenerator
      */
-    private readonly cssplaceholder = '--background-editor-placeholder';
+    private readonly cssPlaceholder = '--background-editor-placeholder';
 
     private get curConfig() {
         // 默认值实际在 package.json 中定义，会 deep merge
@@ -87,8 +87,8 @@ export class EditorPatchGenerator extends AbsPatchGenerator<EditorPatchGenerator
                             background-repeat: no-repeat;
                             mix-blend-mode: var(${ThemePatchGenerator.cssMixBlendMode});
                             /* placeholder，用于动态替换css */
-                            ${this.cssplaceholder + (index % images.length)}: #000;
-                            ${this.cssplaceholder + '-end'}: #000;
+                            ${this.cssPlaceholder + (index % images.length)}: #000;
+                            ${this.cssPlaceholder + '-end'}: #000;
                         }
                     `;
                 })}
@@ -101,7 +101,7 @@ export class EditorPatchGenerator extends AbsPatchGenerator<EditorPatchGenerator
         return `
 // options
 const styleTemplate = ${JSON.stringify(this.styleTemplate)};
-const cssplaceholder = '${this.cssplaceholder}';
+const cssPlaceholder = '${this.cssPlaceholder}';
 const imageStyles = ${JSON.stringify(this.imageStyles)};
 const interval = ${interval};
 const random = ${random};
@@ -135,7 +135,7 @@ function setNextStyles() {
     let curStyle = styleTemplate;
     const nextStyles = getNextStyles();
     for (let i = 0; i < nextStyles.length; i++) {
-        const reg = new RegExp(cssplaceholder + i + '[^;]+;', 'g');
+        const reg = new RegExp(cssPlaceholder + i + '[^;]+;', 'g');
         curStyle = curStyle.replace(reg, nextStyles[i]);
     }
     style.textContent = curStyle;

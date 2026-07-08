@@ -5,7 +5,7 @@ import { ThemePatchGenerator } from './PatchGenerator.theme';
 export class SidebarPatchGeneratorConfig extends FullscreenPatchGeneratorConfig {}
 
 export class SidebarPatchGenerator extends FullscreenPatchGenerator<SidebarPatchGeneratorConfig> {
-    protected cssvariable = '--background-sidebar-img';
+    protected cssVariable = '--background-sidebar-img';
 
     protected getStyle(): string {
         const { size, position, opacity } = this.curConfig;
@@ -26,7 +26,7 @@ export class SidebarPatchGenerator extends FullscreenPatchGenerator<SidebarPatch
                 opacity: ${opacity};
                 transition: 1s;
                 mix-blend-mode: var(${ThemePatchGenerator.cssMixBlendMode});
-                background-image: var(${this.cssvariable});
+                background-image: var(${this.cssVariable});
             }
         `;
     }
