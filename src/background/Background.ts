@@ -3,8 +3,8 @@ import path from 'path';
 
 import vscode, { Disposable, l10n } from 'vscode';
 
-import { ENCODING, EXTENSION_NAME, TOUCH_FILE_PATH, VERSION } from '../utils/constants';
-import { vscodePath } from '../utils/vscodePath';
+import { ENCODING, EXT_ROOT, EXTENSION_NAME, TOUCH_FILE_PATH, VERSION } from '../utils/constants';
+import { getLegacyJsPath, getWorkbenchHtmlPath } from '../utils/patchTargets';
 import { vsHelp } from '../utils/vsHelp';
 import { EFilePatchType, HtmlPatchFile, JsPatchFile } from './PatchFile';
 import { PatchGenerator, TPatchGeneratorConfig } from './PatchGenerator';
@@ -24,9 +24,9 @@ type TConfigType = vscode.WorkspaceConfiguration & TPatchGeneratorConfig;
 export class Background implements Disposable {
     // #region fields 字段
 
-    public htmlFile = new HtmlPatchFile(vscodePath.workbenchHtmlPath);
+    public htmlFile = new HtmlPatchFile(getWorkbenchHtmlPath());
 
-    private legacyJsFile = new JsPatchFile(vscodePath.jsPath);
+    private legacyJsFile = new JsPatchFile(getLegacyJsPath());
 
     /**
      * Current config
@@ -75,7 +75,7 @@ export class Background implements Disposable {
         const firstLoad = !fs.existsSync(TOUCH_FILE_PATH);
 
         if (firstLoad) {
-            await fs.promises.writeFile(TOUCH_FILE_PATH, vscodePath.workbenchHtmlPath, ENCODING);
+            await fs.promises.writeFile(TOUCH_FILE_PATH, this.htmlFile.filePath, ENCODING);
             return true;
         }
 
@@ -84,14 +84,14 @@ export class Background implements Disposable {
 
     public async showWelcome() {
         // 欢迎页
-        const docDir = path.join(vscodePath.extRoot, 'docs');
+        const docDir = path.join(EXT_ROOT, 'docs');
         const docName = /^zh/.test(vscode.env.language) ? 'welcome.zh-CN.md' : 'welcome.md';
 
         // welcome 内容
         let content = await fs.promises.readFile(path.join(docDir, docName), ENCODING);
         // 替换图片内联为base64
         content = content.replace(/\.\.\/images[^\")]+/g, (relativePath: string) => {
-            const imgPath = path.join(vscodePath.extRoot, 'images', relativePath);
+            const imgPath = path.join(EXT_ROOT, 'images', relativePath);
 
             return (
                 `data:image/${path.extname(imgPath).slice(1) || 'png'};base64,` +

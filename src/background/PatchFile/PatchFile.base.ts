@@ -30,7 +30,7 @@ export enum EFilePatchType {
  * @class AbsPatchFile
  */
 export abstract class AbsPatchFile {
-    constructor(protected filePath: string) {}
+    constructor(public filePath: string) {}
 
     /**
      * 是否已经修改过
