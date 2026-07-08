@@ -1,3 +1,4 @@
+import { homedir } from 'os';
 import { pathToFileURL } from 'url';
 
 import fg from 'fast-glob';
@@ -62,6 +63,7 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
                     return [img];
                 }
                 // ------ local ------
+                img = this.resolveImagePath(img);
                 // 文件，模糊判断。`.xxx`
                 if (/\.[^\\/]+$/.test(img)) {
                     return this.normalizeImageUrls([img]);
@@ -97,6 +99,27 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
                 return '';
             }
         });
+    }
+
+    /**
+     * 展开图片路径中的特殊标记和环境变量
+     */
+    private resolveImagePath(imagePath: string): string {
+        // 展开 ~ 为用户目录
+        if (imagePath.startsWith('~/')) {
+            imagePath = homedir() + imagePath.slice(1);
+        }
+
+        // 展开 ${ENV}
+        imagePath = imagePath.replace(/\$\{(\w+)\}/g, (match, name) => {
+            return process.env[name] !== undefined ? process.env[name] : match;
+        });
+        // 展开 $ENV
+        imagePath = imagePath.replace(/\$(\w+)/g, (match, name) => {
+            return process.env[name] !== undefined ? process.env[name] : match;
+        });
+
+        return imagePath;
     }
 
     /**
