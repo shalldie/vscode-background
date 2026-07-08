@@ -84,7 +84,7 @@ export class Background implements Disposable {
 
     public async showWelcome() {
         // 欢迎页
-        const docDir = path.join(__dirname, '../../docs');
+        const docDir = path.join(vscodePath.extRoot, 'docs');
         const docName = /^zh/.test(vscode.env.language) ? 'welcome.zh-CN.md' : 'welcome.md';
 
         // welcome 内容

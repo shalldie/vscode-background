@@ -24,5 +24,5 @@ module.exports = {
         '',
         '^[.]' // relative imports
     ],
-    importOrderTypeScriptVersion: '5.9.3'
+    importOrderTypeScriptVersion: '6.0.3'
 };
