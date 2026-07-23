@@ -1,38 +1,56 @@
 {
   "name": "background",
   "displayName": "background",
-  "description": "Bring background images to your vscode",
   "version": "3.0.0-rc.1",
-  "publisher": "shalldie",
-  "author": "shalldie",
+  "description": "Bring background images to your vscode",
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "background",
+    "background-image",
+    "customize",
+    "theme",
+    "wallpaper"
+  ],
+  "homepage": "https://github.com/shalldie/vscode-background#readme",
   "license": "MIT",
+  "author": "shalldie",
   "repository": {
     "type": "git",
     "url": "https://github.com/shalldie/vscode-background.git"
   },
-  "homepage": "https://github.com/shalldie/vscode-background#readme",
-  "keywords": [
-    "background",
-    "background-image",
-    "wallpaper",
-    "theme",
-    "customize"
-  ],
-  "engines": {
-    "vscode": "^1.120.0"
-  },
-  "icon": "images/logo.png",
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-    "onStartupFinished"
-  ],
-  "extensionKind": [
-    "ui",
-    "workspace"
-  ],
+  "publisher": "shalldie",
   "main": "./dist/extension",
+  "scripts": {
+    "build": "npm run lint && npm run check-types && node esbuild.mjs",
+    "check-types": "tsc --noEmit",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.mjs --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "lint": "oxlint src",
+    "lint:fix": "oxlint src --fix",
+    "package": "vsce package",
+    "vscode:prepublish": "npm run build",
+    "vscode:uninstall": "node ./dist/uninstall"
+  },
+  "dependencies": {
+    "@vscode/sudo-prompt": "^9.3.2",
+    "fast-glob": "^3.3.3",
+    "stylis": "^4.4.0",
+    "terser": "^5.48.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.1",
+    "@types/stylis": "^4.2.7",
+    "@types/vscode": "^1.120.0",
+    "@vscode/vsce": "^3.9.2",
+    "esbuild": "^0.28.1",
+    "npm-run-all": "^4.1.5",
+    "oxfmt": "^0.60.0",
+    "oxlint": "^1.75.0",
+    "typescript": "^6.0.3"
+  },
   "l10n": "./l10n",
   "contributes": {
     "commands": [
@@ -282,38 +300,15 @@
       }
     }
   },
-  "scripts": {
-    "build": "npm run check-types && node esbuild.mjs",
-    "check-types": "tsc --noEmit",
-    "watch": "npm-run-all -p watch:*",
-    "watch:esbuild": "node esbuild.mjs --watch",
-    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
-    "lint": "eslint src",
-    "package": "vsce package",
-    "vscode:prepublish": "npm run build",
-    "vscode:uninstall": "node ./dist/uninstall",
-    "prepare": "husky"
-  },
-  "dependencies": {
-    "@vscode/sudo-prompt": "^9.3.2",
-    "fast-glob": "^3.3.3",
-    "stylis": "^4.4.0",
-    "terser": "^5.48.0"
-  },
-  "devDependencies": {
-    "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
-    "@types/node": "^24.13.1",
-    "@types/stylis": "^4.2.7",
-    "@types/vscode": "^1.120.0",
-    "@vscode/vsce": "^3.9.2",
-    "esbuild": "^0.28.1",
-    "eslint": "^10.4.1",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.6",
-    "husky": "^9.1.7",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^3.8.4",
-    "typescript": "^6.0.3",
-    "typescript-eslint": "^8.61.0"
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ],
+  "icon": "images/logo.png",
+  "engines": {
+    "vscode": "^1.120.0"
   }
 }

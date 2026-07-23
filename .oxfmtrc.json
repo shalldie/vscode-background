@@ -1,0 +1,29 @@
+{
+    "$schema": "./node_modules/oxfmt/configuration_schema.json",
+    "singleQuote": true,
+    "trailingComma": "none",
+    "tabWidth": 4,
+    "printWidth": 120,
+    "bracketSpacing": true,
+    "arrowParens": "avoid",
+    "endOfLine": "lf",
+    "sortImports": {
+        "newlinesBetween": false,
+        "groups": [
+            "value-builtin",
+            { "newlinesBetween": true },
+            ["value-external", "value-internal"],
+            { "newlinesBetween": true },
+            ["value-parent", "value-sibling", "value-index"]
+        ]
+    },
+    "overrides": [
+        {
+            "files": ["*.md", "package{,-lock}.json", "*.{yaml,yml}"],
+            "options": {
+                "singleQuote": false,
+                "tabWidth": 2
+            }
+        }
+    ]
+}

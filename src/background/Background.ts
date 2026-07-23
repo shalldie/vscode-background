@@ -85,12 +85,12 @@ export class Background implements Disposable {
     public async showWelcome() {
         // 欢迎页
         const docDir = path.join(EXT_ROOT, 'docs');
-        const docName = /^zh/.test(vscode.env.language) ? 'welcome.zh-CN.md' : 'welcome.md';
+        const docName = vscode.env.language.startsWith('zh') ? 'welcome.zh-CN.md' : 'welcome.md';
 
         // welcome 内容
         let content = await fs.promises.readFile(path.join(docDir, docName), ENCODING);
         // 替换图片内联为base64
-        content = content.replace(/\.\.\/images[^\")]+/g, (relativePath: string) => {
+        content = content.replace(/\.\.\/images[^")]+/g, (relativePath: string) => {
             const imgPath = path.join(EXT_ROOT, 'images', relativePath);
 
             return (

@@ -11,7 +11,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ```bash
 npm run build        # check-types + esbuild 打包到 dist/
 npm run watch        # 开发时 watch 模式
-npm run lint         # ESLint，pre-commit 钩子也会跑
+npm run lint         # oxlint，pre-commit 钩子也会跑（lint:fix 可自动修复）
 npm run package      # vsce package，生成 .vsix
 ```
 
@@ -29,6 +29,7 @@ npm run package      # vsce package，生成 .vsix
 3. 用户重启 VS Code 后 HTML 加载注入的脚本，把样式/图片注入到 workbench DOM。
 
 VS Code 的 `workbench.html` 路径由 `src/utils/vscodePath.ts` 推断：
+
 - Desktop: `out/vs/code/electron-browser/workbench/workbench.html`，部分版本的 Cursor 用 `electron-sandbox`（探测哪个存在）
 - Web/code-server: `out/vs/code/browser/workbench/workbench.html`
 
@@ -41,17 +42,20 @@ VS Code 1.123.0+ 对 `vscode-file://` 协议的 JS 资源启用了内存缓存�
 ### Patch 状态判断
 
 `AbsPatchFile.getPatchType()` 通过查找文件中的标记字符串区分三种状态：
+
 - `Latest`: 文件包含 `${BACKGROUND_VER}.${VERSION}`（当前版本号）
 - `Legacy`: 包含 `BACKGROUND_VER`（`'background.ver'`）但不是当前版本——通常是 background 升级或 VS Code 升级后
 - `None`: 干净文件
 
 `setup()` 在激活时：
+
 1. 先调用 `removeLegacyJsPatch()` 清除 v2.1 之前遗留在 JS 文件（`workbench.desktop.main.js`）中的 patch。
 2. 若发现 `enabled && (Legacy || None)`，弹通知提示 "Apply and Reload"。
 
 ### PatchGenerator 子模块
 
 `src/background/PatchGenerator/` 下每个生成器对应一种「区块」：
+
 - `editor` / `sidebar` / `auxiliarybar` / `panel`：通过 CSS `::before`/`::after` 在对应 workbench 容器上盖图片
 - `fullscreen`：覆盖整个 workbench
 - `theme`：hack 主题相关样式
@@ -82,6 +86,6 @@ HTML 文件的实际路径通过 `TOUCH_FILE_PATH`（一个版本号命名的 to
 ## Conventions
 
 - 模块路径以 `NodeNext`（ES module 风格）解析，`tsconfig` 严格模式开启。类型检查（`tsc --noEmit`）与打包（`esbuild`）分离：`tsconfig.json` 设 `noEmit`，产物由 `esbuild.mjs` bundle 到 `dist/`；`isolatedModules` 保证代码兼容 esbuild 单文件转译。
-- imports 由 `@ianvs/prettier-plugin-sort-imports` 自动排序——直接跑 `prettier --write` 或依赖编辑器集成；不要手动调整 import 顺序。
+- imports 由 `oxfmt` 的 `sortImports` 自动排序（Node 内置 → 第三方 → 相对导入，组间空行）——直接跑 `npm run format` 或依赖编辑器集成；不要手动调整 import 顺序。
 - 中文注释普遍存在；项目支持中/英/日 README，新增用户可见文案应同步到 `package.nls*.json`、`l10n/bundle.l10n.*.json`、`docs/welcome.*.md`。
 - 修改 patch 注入逻辑后，用 `[Dev] Preview Patch` 命令（`extension.background.previewPatch`）查看最终生成的脚本进行验证。
