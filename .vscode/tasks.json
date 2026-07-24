@@ -38,8 +38,8 @@
                 },
                 "background": {
                     "activeOnStart": true,
-                    "beginsPattern": "^\\[watch\\] build started$",
-                    "endsPattern": "^\\[watch\\] build finished$"
+                    "beginsPattern": "^\\[esbuild\\] build started$",
+                    "endsPattern": "^\\[esbuild\\] build finished$"
                 }
             },
             "isBackground": true,
