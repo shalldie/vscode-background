@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
 /** 扩展根目录 */
 // 打包后运行于 dist/extension.js，__dirname 为 dist/

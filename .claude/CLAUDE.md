@@ -11,7 +11,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ```bash
 npm run build        # check-types + esbuild 打包到 dist/
 npm run watch        # 开发时 watch 模式
-npm run lint         # oxlint，pre-commit 钩子也会跑（lint:fix 可自动修复）
+npm run lint         # oxlint（lint:fix 可自动修复）
 npm run package      # vsce package，生成 .vsix
 ```
 
@@ -28,7 +28,7 @@ npm run package      # vsce package，生成 .vsix
 2. `HtmlPatchFile.applyPatches(content)` 将生成的脚本**内联**到 `workbench.html` 末尾的 `<script>` 标签中，包裹在 `<!-- vscode-background-start -->` 与 `<!-- vscode-background-end -->` 注释之间；同时在 CSP 中注入 `'unsafe-inline'` 以允许内联脚本执行。
 3. 用户重启 VS Code 后 HTML 加载注入的脚本，把样式/图片注入到 workbench DOM。
 
-VS Code 的 `workbench.html` 路径由 `src/utils/vscodePath.ts` 推断：
+VS Code 的 `workbench.html` 路径由 `src/utils/patchTargets.ts` 的 `getWorkbenchHtmlPath()` 推断：
 
 - Desktop: `out/vs/code/electron-browser/workbench/workbench.html`，部分版本的 Cursor 用 `electron-sandbox`（探测哪个存在）
 - Web/code-server: `out/vs/code/browser/workbench/workbench.html`
@@ -69,7 +69,7 @@ VS Code 1.123.0+ 对 `vscode-file://` 协议的 JS 资源启用了内存缓存�
 
 `src/uninstall.ts` 是 `package.json` 中的 `vscode:uninstall` 钩子。**不能引用 vscode API**（钩子运行时 vscode 已退出），只能 `import` 到具体文件——所以这里直接从 `PatchFile/PatchFile.html` 导入而不是 `background/index`，避免间接拉入 vscode 相关代码。
 
-HTML 文件的实际路径通过 `TOUCH_FILE_PATH`（一个版本号命名的 touch 文件，如 `vscb.2.1.1.touch`，在扩展根目录）记录——文件**内容**存储 `workbenchHtmlPath`，文件**是否存在**用于判断是否首次加载。卸载时 `vscodePath.ts` 中依赖 vscode API 的逻辑不可用，因此通过此文件获取路径。
+HTML 文件的实际路径通过 `TOUCH_FILE_PATH`（一个版本号命名的 touch 文件，如 `vscb.3.0.0-rc.1.touch`，在扩展根目录）记录——文件**内容**存储 workbench.html 路径，文件**是否存在**用于判断是否首次加载。卸载时 `patchTargets.ts` 中依赖 vscode API 的逻辑不可用，因此通过此文件获取路径。
 
 ### 国际化
 
@@ -86,6 +86,6 @@ HTML 文件的实际路径通过 `TOUCH_FILE_PATH`（一个版本号命名的 to
 ## Conventions
 
 - 模块路径以 `NodeNext`（ES module 风格）解析，`tsconfig` 严格模式开启。类型检查（`tsc --noEmit`）与打包（`esbuild`）分离：`tsconfig.json` 设 `noEmit`，产物由 `esbuild.mjs` bundle 到 `dist/`；`isolatedModules` 保证代码兼容 esbuild 单文件转译。
-- imports 由 `oxfmt` 的 `sortImports` 自动排序（Node 内置 → 第三方 → 相对导入，组间空行）——直接跑 `npm run format` 或依赖编辑器集成；不要手动调整 import 顺序。
+- imports 由 `oxfmt` 的 `sortImports` 自动排序（Node 内置 → 第三方 → 内部 → 相对导入，组间空行；分组见 `.oxfmtrc.json`）——依赖 `npx oxfmt` 或编辑器集成；不要手动调整 import 顺序。
 - 中文注释普遍存在；项目支持中/英/日 README，新增用户可见文案应同步到 `package.nls*.json`、`l10n/bundle.l10n.*.json`、`docs/welcome.*.md`。
 - 修改 patch 注入逻辑后，用 `[Dev] Preview Patch` 命令（`extension.background.previewPatch`）查看最终生成的脚本进行验证。

@@ -8,14 +8,8 @@
     "arrowParens": "avoid",
     "endOfLine": "lf",
     "sortImports": {
-        "newlinesBetween": false,
-        "groups": [
-            "value-builtin",
-            { "newlinesBetween": true },
-            ["value-external", "value-internal"],
-            { "newlinesBetween": true },
-            ["value-parent", "value-sibling", "value-index"]
-        ]
+        "newlinesBetween": true,
+        "groups": ["builtin", "external", "internal", ["parent", "sibling", "index"]]
     },
     "overrides": [
         {

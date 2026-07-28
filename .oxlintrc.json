@@ -8,6 +8,7 @@
     "rules": {
         "curly": "warn",
         "eqeqeq": "warn",
+        "prefer-node-protocol": "error",
         "no-throw-literal": "warn",
         "typescript/no-explicit-any": "off",
         "typescript/no-namespace": "off",

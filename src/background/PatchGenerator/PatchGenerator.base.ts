@@ -1,5 +1,5 @@
-import { homedir } from 'os';
-import { pathToFileURL } from 'url';
+import { homedir } from 'node:os';
+import { pathToFileURL } from 'node:url';
 
 import fg from 'fast-glob';
 import * as stylis from 'stylis';

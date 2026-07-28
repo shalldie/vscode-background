@@ -1,7 +1,7 @@
-import { randomUUID } from 'crypto';
-import fs, { constants as fsConstants } from 'fs';
-import { tmpdir } from 'os';
-import path from 'path';
+import { randomUUID } from 'node:crypto';
+import fs, { constants as fsConstants } from 'node:fs';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
 
 import { _ } from '../../utils';
 import { BACKGROUND_VER, ENCODING, VERSION } from '../../utils/constants';

@@ -10,7 +10,7 @@
  * 使用到的依赖需要引用到具体文件，避免二次导出
  */
 
-import fs from 'fs';
+import fs from 'node:fs';
 
 import { HtmlPatchFile } from './background/PatchFile/PatchFile.html';
 import { ENCODING, TOUCH_FILE_PATH } from './utils/constants';
