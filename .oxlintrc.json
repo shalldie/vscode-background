@@ -6,10 +6,26 @@
         "suspicious": "off"
     },
     "rules": {
+        // core
         "curly": "warn",
         "eqeqeq": "warn",
-        "prefer-node-protocol": "error",
         "no-throw-literal": "warn",
+        "prefer-node-protocol": "error",
+        // import
+        "import/no-duplicates": [
+            "error",
+            {
+                "preferInline": true
+            }
+        ],
+        // typescript
+        "typescript/consistent-type-imports": [
+            "error",
+            {
+                "prefer": "type-imports",
+                "fixStyle": "inline-type-imports"
+            }
+        ],
         "typescript/no-explicit-any": "off",
         "typescript/no-namespace": "off",
         "typescript/no-require-imports": "off"

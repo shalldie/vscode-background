@@ -3,7 +3,7 @@
  * 比如 `vscode:uninstall`
  */
 
-import VSCODE_BASE from 'vscode';
+import type VSCODE_BASE from 'vscode';
 
 let vsc: typeof VSCODE_BASE | undefined;
 

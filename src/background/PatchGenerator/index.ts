@@ -1,10 +1,10 @@
 import { _ } from '../../utils';
-import { AuxiliarybarPatchGenerator, AuxiliarybarPatchGeneratorConfig } from './PatchGenerator.auxiliarybar';
+import { AuxiliarybarPatchGenerator, type AuxiliarybarPatchGeneratorConfig } from './PatchGenerator.auxiliarybar';
 import { ChecksumsPatchGenerator } from './PatchGenerator.checksums';
-import { EditorPatchGenerator, EditorPatchGeneratorConfig } from './PatchGenerator.editor';
-import { FullscreenPatchGenerator, FullscreenPatchGeneratorConfig } from './PatchGenerator.fullscreen';
-import { PanelPatchGenerator, PanelPatchGeneratorConfig } from './PatchGenerator.panel';
-import { SidebarPatchGenerator, SidebarPatchGeneratorConfig } from './PatchGenerator.sidebar';
+import { EditorPatchGenerator, type EditorPatchGeneratorConfig } from './PatchGenerator.editor';
+import { FullscreenPatchGenerator, type FullscreenPatchGeneratorConfig } from './PatchGenerator.fullscreen';
+import { PanelPatchGenerator, type PanelPatchGeneratorConfig } from './PatchGenerator.panel';
+import { SidebarPatchGenerator, type SidebarPatchGeneratorConfig } from './PatchGenerator.sidebar';
 import { ThemePatchGenerator } from './PatchGenerator.theme';
 
 export type TPatchGeneratorConfig = {

@@ -1,13 +1,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import vscode, { Disposable, l10n } from 'vscode';
+import vscode, { type Disposable, l10n } from 'vscode';
 
 import { ENCODING, EXT_ROOT, EXTENSION_NAME, TOUCH_FILE_PATH, VERSION } from '../utils/constants';
 import { getLegacyJsPath, getWorkbenchHtmlPath } from '../utils/patchTargets';
 import { vsHelp } from '../utils/vsHelp';
 import { EFilePatchType, HtmlPatchFile, JsPatchFile } from './PatchFile';
-import { PatchGenerator, TPatchGeneratorConfig } from './PatchGenerator';
+import { PatchGenerator, type TPatchGeneratorConfig } from './PatchGenerator';
 
 /**
  * 配置类型

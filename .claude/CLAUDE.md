@@ -87,5 +87,6 @@ HTML 文件的实际路径通过 `TOUCH_FILE_PATH`（一个版本号命名的 to
 
 - 模块路径以 `NodeNext`（ES module 风格）解析，`tsconfig` 严格模式开启。类型检查（`tsc --noEmit`）与打包（`esbuild`）分离：`tsconfig.json` 设 `noEmit`，产物由 `esbuild.mjs` bundle 到 `dist/`；`isolatedModules` 保证代码兼容 esbuild 单文件转译。
 - imports 由 `oxfmt` 的 `sortImports` 自动排序（Node 内置 → 第三方 → 内部 → 相对导入，组间空行；分组见 `.oxfmtrc.json`）——依赖 `npx oxfmt` 或编辑器集成；不要手动调整 import 顺序。
+- `.oxlintrc.json` 的 `rules` 按来源/插件分组、组内字母序：无前缀的 eslint 核心规则在前，然后 `import/`、`typescript/` 等按前缀分组，每组内规则名按字母序排列。新增规则时插入到对应分组的正确字母位置，不要追加到末尾。该文件是 JSONC（支持 `//` 注释），每个分组前用注释标注来源（如 `// eslint 核心规则`、`// import`、`// typescript`）。
 - 中文注释普遍存在；项目支持中/英/日 README，新增用户可见文案应同步到 `package.nls*.json`、`l10n/bundle.l10n.*.json`、`docs/welcome.*.md`。
 - 修改 patch 注入逻辑后，用 `[Dev] Preview Patch` 命令（`extension.background.previewPatch`）查看最终生成的脚本进行验证。
