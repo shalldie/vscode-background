@@ -69,7 +69,7 @@ Edit `background.editor` to config editor section.
 | :--------- | :--------: | :----------: | :------------------------------------------------------------------- |
 | `useFront` | `boolean`  |    `true`    | Place the image above or below the code.                             |
 | `style`    |  `object`  |     `{}`     | Custom style for images. [MDN Reference][mdn-css]                    |
-| `styles`   | `object[]` | `[{},{},{}]` | Each style of editor section image.                                  |
+| `styles`   | `object[]` |     `[]`     | Custom style for each image individually.                            |
 | `images`   | `string[]` |     `[]`     | Custom images, supports online and local images, as well as folders. |
 | `interval` |  `number`  |     `0`      | Seconds of interval for carousel, default `0` to disabled.           |
 | `random`   | `boolean`  |   `false`    | Whether to randomly display images.                                  |
@@ -87,7 +87,7 @@ example:
       "background-size": "auto",
       "opacity": 0.6
     },
-    "styles": [{}, {}, {}],
+    "styles": [],
     // `images` supports online and local images, as well as folders.
     "images": [
       // online images, only `https` is allowed.
@@ -121,6 +121,7 @@ Edit `background.fullscreen`、`background.sidebar`、`background.auxiliarybar`�
 | `opacity`  |  `number`  |  `0.1`   | Opacity of the images, alias to [opacity][mdn-opacity], `0.1 ~ 0.3` recommended.         |
 | `size`     |  `string`  | `cover`  | Alias to [background-size][mdn-background-size], `cover` to self-adaption (recommended). |
 | `position` |  `string`  | `center` | Alias to [background-position][mdn-background-position], default `center`.               |
+| `styles`   | `object[]` |   `[]`   | Custom style for each image individually.                                               |
 | `interval` |  `number`  |   `0`    | Seconds of interval for carousel, default `0` to disabled.                               |
 | `random`   | `boolean`  | `false`  | Whether to randomly display images.                                                      |
 
@@ -153,6 +154,7 @@ example：
     "opacity": 0.1,
     "size": "cover",
     "position": "center",
+    "styles": [],
     "interval": 0,
     "random": false
   },

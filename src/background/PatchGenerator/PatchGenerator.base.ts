@@ -157,6 +157,24 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
         return stylis.serialize(stylis.compile(source), stylis.stringify);
     }
 
+    /**
+     * 把样式对象序列化为 css 声明字符串。
+     * 始终排除 `pointer-events` 和 `z-index`，避免用户自定义样式破坏覆盖层的点击穿透与层级。
+     *
+     * @protected
+     * @param {Record<string, string>} style
+     * @return {*}
+     * @memberof AbsPatchGenerator
+     */
+    protected serializeStyle(style: Record<string, string>): string {
+        const excludeKeys = ['pointer-events', 'z-index'];
+
+        return Object.entries(style)
+            .filter(([key]) => !excludeKeys.includes(key))
+            .map(([key, value]) => `${key}: ${value};`)
+            .join('');
+    }
+
     protected getPreload() {
         const images = this.config.images.filter(n => n.length);
         // 10个以内图片，做预加载进行优化

@@ -97,11 +97,7 @@
               "background-size": "auto",
               "opacity": 0.6
             },
-            "styles": [
-              {},
-              {},
-              {}
-            ],
+            "styles": [],
             "images": [],
             "interval": 0,
             "random": false
@@ -123,11 +119,7 @@
             },
             "styles": {
               "type": "array",
-              "default": [
-                {},
-                {},
-                {}
-              ],
+              "default": [],
               "markdownDescription": "%extension.background.editor.styles%"
             },
             "images": {
@@ -158,6 +150,7 @@
             "opacity": 0.1,
             "size": "cover",
             "position": "center",
+            "styles": [],
             "interval": 0,
             "random": false
           },
@@ -187,6 +180,11 @@
               "default": "center",
               "markdownDescription": "%extension.background.fullscreen.position%"
             },
+            "styles": {
+              "type": "array",
+              "default": [],
+              "markdownDescription": "%extension.background.editor.styles%"
+            },
             "interval": {
               "type": "number",
               "default": 0,
@@ -207,6 +205,7 @@
             "opacity": 0.1,
             "size": "cover",
             "position": "center",
+            "styles": [],
             "interval": 0,
             "random": false
           },
@@ -222,6 +221,9 @@
             },
             "position": {
               "$ref": "#/properties/background.fullscreen/properties/position"
+            },
+            "styles": {
+              "$ref": "#/properties/background.fullscreen/properties/styles"
             },
             "interval": {
               "$ref": "#/properties/background.fullscreen/properties/interval"
@@ -239,6 +241,7 @@
             "opacity": 0.1,
             "size": "cover",
             "position": "center",
+            "styles": [],
             "interval": 0,
             "random": false
           },
@@ -254,6 +257,9 @@
             },
             "position": {
               "$ref": "#/properties/background.fullscreen/properties/position"
+            },
+            "styles": {
+              "$ref": "#/properties/background.fullscreen/properties/styles"
             },
             "interval": {
               "$ref": "#/properties/background.fullscreen/properties/interval"
@@ -271,6 +277,7 @@
             "opacity": 0.1,
             "size": "cover",
             "position": "center",
+            "styles": [],
             "interval": 0,
             "random": false
           },
@@ -286,6 +293,9 @@
             },
             "position": {
               "$ref": "#/properties/background.fullscreen/properties/position"
+            },
+            "styles": {
+              "$ref": "#/properties/background.fullscreen/properties/styles"
             },
             "interval": {
               "$ref": "#/properties/background.fullscreen/properties/interval"

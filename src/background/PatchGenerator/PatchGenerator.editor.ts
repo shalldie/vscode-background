@@ -27,28 +27,15 @@ export class EditorPatchGenerator extends AbsPatchGenerator<EditorPatchGenerator
         };
     }
 
-    private getStyleByOptions(style: Record<string, string>, useFront: boolean): string {
-        // 在使用背景图时，排除掉 pointer-events 和 z-index
-        const excludeKeys = useFront ? [] : ['pointer-events', 'z-index'];
-
-        return Object.entries(style)
-            .filter(([key]) => !excludeKeys.includes(key))
-            .map(([key, value]) => `${key}: ${value};`)
-            .join('');
-    }
-
     private get imageStyles() {
-        const { images, style, styles, useFront } = this.curConfig;
+        const { images, style, styles } = this.curConfig;
 
         return images.map((img, index) => {
-            return this.getStyleByOptions(
-                {
-                    ...style,
-                    ...styles[index],
-                    'background-image': `url(${img})`
-                },
-                useFront
-            );
+            return this.serializeStyle({
+                ...style,
+                ...styles[index],
+                'background-image': `url(${img})`
+            });
         });
     }
 

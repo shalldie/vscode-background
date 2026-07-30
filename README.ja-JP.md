@@ -67,7 +67,7 @@
 | :--------- | :--------: | :----------: | :-------------------------------------------------------------------------- |
 | `useFront` | `boolean`  |    `true`    | 画像を最前面に表示するかどうかを制御します。                                |
 | `style`    |  `object`  |     `{}`     | 全ての画像に適応される CSS を制御します。 [MDN Reference][mdn-css]          |
-| `styles`   | `object[]` | `[{},{},{}]` | 個別の画像に適応される CSS を制御します。                                   |
+| `styles`   | `object[]` |     `[]`     | 画像ごとに個別のCSSを制御します。                                           |
 | `images`   | `string[]` |     `[]`     | カスタム画像に対応、オンライン画像やローカル画像、フォルダもサポート。      |
 | `interval` |  `number`  |     `0`      | 次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。 |
 | `random`   | `boolean`  |   `false`    | 画像の表示順をランダムにするかを制御します。                                |
@@ -85,7 +85,7 @@
       "background-size": "auto",
       "opacity": 0.6
     },
-    "styles": [{}, {}, {}],
+    "styles": [],
     // `images`はオンライン画像、ローカル画像、およびフォルダをサポートしています。
     "images": [
       // オンライン画像については、`https`のみ許可されています。
@@ -119,6 +119,7 @@
 | `opacity`  |  `number`  |   `0.1`    | 画像の不透明度を制御します、[opacity][mdn-opacity]へのエイリアスです。推奨値 `0.1 ～ 0.3`。                |
 | `size`     |  `string`  |  `cover`   | [background-size][mdn-background-size]へのエイリアスです。推奨 `cover`，縦横比を保ったまま領域を覆います。 |
 | `position` |  `string`  |  `center`  | [background-position][mdn-background-position]へのエイリアスです。デフォルト値は `center` です。           |
+| `styles`   | `object[]` |    `[]`    | 画像ごとに個別のCSSを制御します。                                                                          |
 | `interval` |  `number`  |    `0`     | 次の画像を表示するまでの秒数を制御します。`0` の場合、画像は変更されません。                               |
 | `random`   | `boolean`  |  `false`   | 画像の表示順をランダムにするかを制御します。                                                               |
 
@@ -151,6 +152,7 @@ example:
     "opacity": 0.1,
     "size": "cover",
     "position": "center",
+    "styles": [],
     "interval": 0,
     "random": false
   },

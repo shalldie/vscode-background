@@ -67,7 +67,7 @@
 | :--------- | :--------: | :----------: | :----------------------------------------------------- |
 | `useFront` | `boolean`  |    `true`    | 把图片放在代码的上方或下方。                           |
 | `style`    |  `object`  |     `{}`     | 自定义图片样式。 [MDN Reference][mdn-css]              |
-| `styles`   | `object[]` | `[{},{},{}]` | 为每一个图片自定义样式。                               |
+| `styles`   | `object[]` |     `[]`     | 为每一张图片单独自定义样式。                           |
 | `images`   | `string[]` |     `[]`     | 自定义图片，支持在线和本地图片，以及文件夹。           |
 | `interval` |  `number`  |     `0`      | 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。 |
 | `random`   | `boolean`  |   `false`    | 是否随机展示图片。                                     |
@@ -85,7 +85,7 @@ example:
       "background-size": "auto",
       "opacity": 0.6
     },
-    "styles": [{}, {}, {}],
+    "styles": [],
     // `images` 支持在线和本地图片，以及文件夹。
     "images": [
       // 在线图片，只允许 `https` 协议
@@ -119,6 +119,7 @@ example:
 | `opacity`  |  `number`  |  `0.1`   | 透明度，等同 css [opacity][mdn-opacity]，建议 `0.1 ~ 0.3`。                  |
 | `size`     |  `string`  | `cover`  | 等同 css [background-size][mdn-background-size], 建议使用 `cover` 来自适应。 |
 | `position` |  `string`  | `center` | 等同 css [background-position][mdn-background-position]， 默认值 `center`。  |
+| `styles`   | `object[]` |   `[]`   | 为每一张图片单独自定义样式。                                                |
 | `interval` |  `number`  |   `0`    | 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。                       |
 | `random`   | `boolean`  | `false`  | 是否随机展示图片。                                                           |
 
@@ -151,6 +152,7 @@ example:
     "opacity": 0.1,
     "size": "cover",
     "position": "center",
+    "styles": [],
     "interval": 0,
     "random": false
   },
