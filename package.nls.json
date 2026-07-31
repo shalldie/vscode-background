@@ -9,8 +9,8 @@
     "extension.background.editor.description": "Editor section config.",
     "extension.background.editor.useFront": "Place the image above or below the code.",
     "extension.background.editor.style": "Custom style for images. [MDN Reference](https://developer.mozilla.org/docs/Web/CSS)",
-    "extension.background.editor.styles": "Each style of editor section image.",
-    "extension.background.editor.images": "Custom images, Example:\n```\n\"images\": [\n  // online images, only `https` is allowed.\n  \"https://hostname/online.jpg\",\n  // local images\n  \"file:///local/path/img.jpeg\",\n  \"/home/xie/downloads/img.gif\",\n  \"C:/Users/xie/img.bmp\",\n  \"D:\\\\downloads\\\\images\\\\img.webp\",\n  // local folders\n  \"/home/xie/images\",\n  // data URL\n  \"data:image/*;base64,<base64-data>\"\n]\n```",
+    "extension.background.editor.styles": "Custom style for each image individually. [MDN Reference](https://developer.mozilla.org/docs/Web/CSS)",
+    "extension.background.editor.images": "Custom images, Example:\n```\n\"images\": [\n  // online images, only `https` is allowed.\n  \"https://hostname/online.jpg\",\n  // local images\n  \"file:///local/path/img.jpeg\",\n  \"/home/xie/downloads/img.gif\",\n  \"C:/Users/xie/img.bmp\",\n  \"D:\\\\downloads\\\\images\\\\img.webp\",\n  // `~` and environment variables are supported in local paths\n  \"~/Pictures/img.png\",\n  \"${HOME}/Pictures/img.png\",\n  // local folders\n  \"/home/xie/images\",\n  // data URL\n  \"data:image/*;base64,<base64-data>\"\n]\n```",
     "extension.background.editor.interval": "Seconds of interval for carousel, default `0` to disabled.",
     "extension.background.editor.random": "Whether to randomly display images.",
 
@@ -23,8 +23,5 @@
 
     "extension.background.sidebar.description": "Sidebar section config.",
     "extension.background.auxiliarybar.description": "Auxiliarybar section config.",
-    "extension.background.panel.description": "Panel section config.",
-
-    "extension.background.common.deprecation": "*Deprecated*, it has been moved to `background.editor`.",
-    "extension.background.urlProtocol.error": "The image url must use https or file protocol."
+    "extension.background.panel.description": "Panel section config."
 }

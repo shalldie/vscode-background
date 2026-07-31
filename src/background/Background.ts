@@ -1,13 +1,13 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
-import vscode, { Disposable, l10n } from 'vscode';
+import vscode, { type Disposable, l10n } from 'vscode';
 
-import { ENCODING, EXTENSION_NAME, TOUCH_FILE_PATH, VERSION } from '../utils/constants';
-import { vscodePath } from '../utils/vscodePath';
+import { ENCODING, EXT_ROOT, EXTENSION_NAME, TOUCH_FILE_PATH, VERSION } from '../utils/constants';
+import { getLegacyJsPath, getWorkbenchHtmlPath } from '../utils/patchTargets';
 import { vsHelp } from '../utils/vsHelp';
 import { EFilePatchType, HtmlPatchFile, JsPatchFile } from './PatchFile';
-import { PatchGenerator, TPatchGeneratorConfig } from './PatchGenerator';
+import { PatchGenerator, type TPatchGeneratorConfig } from './PatchGenerator';
 
 /**
  * 配置类型
@@ -24,9 +24,9 @@ type TConfigType = vscode.WorkspaceConfiguration & TPatchGeneratorConfig;
 export class Background implements Disposable {
     // #region fields 字段
 
-    public htmlFile = new HtmlPatchFile(vscodePath.workbenchHtmlPath);
+    public htmlFile = new HtmlPatchFile(getWorkbenchHtmlPath());
 
-    private legacyJsFile = new JsPatchFile(vscodePath.jsPath);
+    private legacyJsFile = new JsPatchFile(getLegacyJsPath());
 
     /**
      * Current config
@@ -75,7 +75,7 @@ export class Background implements Disposable {
         const firstLoad = !fs.existsSync(TOUCH_FILE_PATH);
 
         if (firstLoad) {
-            await fs.promises.writeFile(TOUCH_FILE_PATH, vscodePath.workbenchHtmlPath, ENCODING);
+            await fs.promises.writeFile(TOUCH_FILE_PATH, this.htmlFile.filePath, ENCODING);
             return true;
         }
 
@@ -84,14 +84,14 @@ export class Background implements Disposable {
 
     public async showWelcome() {
         // 欢迎页
-        const docDir = path.join(__dirname, '../../docs');
-        const docName = /^zh/.test(vscode.env.language) ? 'welcome.zh-CN.md' : 'welcome.md';
+        const docDir = path.join(EXT_ROOT, 'docs');
+        const docName = vscode.env.language.startsWith('zh') ? 'welcome.zh-CN.md' : 'welcome.md';
 
         // welcome 内容
         let content = await fs.promises.readFile(path.join(docDir, docName), ENCODING);
         // 替换图片内联为base64
-        content = content.replace(/\.\.\/images[^\")]+/g, (relativePath: string) => {
-            const imgPath = path.join(vscodePath.extRoot, 'images', relativePath);
+        content = content.replace(/\.\.\/images[^")]+/g, (relativePath: string) => {
+            const imgPath = path.join(EXT_ROOT, 'images', relativePath);
 
             return (
                 `data:image/${path.extname(imgPath).slice(1) || 'png'};base64,` +
@@ -122,8 +122,6 @@ export class Background implements Disposable {
         // 禁用
         if (!enabled) {
             if (hasInstalled) {
-                // await this.uninstall();
-
                 vsHelp.reload({
                     message: l10n.t('Background will be disabled.'),
                     btnReload: l10n.t('Disable and Reload'),
@@ -146,12 +144,12 @@ export class Background implements Disposable {
             return;
         }
 
-        const scriptContent = PatchGenerator.create(this.config);
+        const scriptContent = await PatchGenerator.create(this.config);
         return this.htmlFile.applyPatches(scriptContent);
     }
 
-    public previewPatch() {
-        const scriptContent = PatchGenerator.create(this.config);
+    public async previewPatch() {
+        const scriptContent = await PatchGenerator.create(this.config);
         vsHelp.showMarkdown('```ts\n' + scriptContent + '\n```', 'preview-patch');
     }
 
@@ -162,10 +160,9 @@ export class Background implements Disposable {
     /**
      * 初始化
      *
-     * @return {*}  {Promise<any>}
      * @memberof Background
      */
-    public async setup(): Promise<any> {
+    public async setup(): Promise<void> {
         await this.removeLegacyJsPatch();
 
         await this.checkFirstload();
@@ -196,14 +193,6 @@ export class Background implements Disposable {
                     confirm?.action();
                 });
         }
-        // if ([EFilePatchType.Legacy, EFilePatchType.None].includes(patchType)) {
-        //     // 提示： 欢迎使用 background@version! 「应用并重载」、「更多」
-        //     if (await this.applyPatch()) {
-        //         vsHelp.reload({
-        //             message: l10n.t('Background has been changed! Please reload.')
-        //         });
-        //     }
-        // }
 
         // 监听文件改变
         this.disposables.push(

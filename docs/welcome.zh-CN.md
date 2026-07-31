@@ -14,6 +14,9 @@
     "/home/xie/downloads/img.gif",
     "C:/Users/xie/img.bmp",
     "D:\\downloads\\images\\img.webp",
+    // 本地路径支持 `~` 和环境变量
+    "~/Pictures/img.png",
+    "${HOME}/Pictures/img.png",
     // 文件夹
     "/home/xie/images",
     // data URL
@@ -26,7 +29,7 @@
 
 每块区域都可以自定义 `图片/样式`、`轮播`、`随机展示` 等。
 
-<img src="../images/containers.png" width="800" />
+<img src="../images/containers.webp" width="800" />
 
 ## 更清晰简洁的配置
 
@@ -46,7 +49,7 @@
 
 点击状态栏右下角「Background」按钮，可以快速弹出 background 所有命令：
 
-<img width="660" src="../images/commands.png">
+<img width="660" src="../images/commands.webp">
 
 ## 治好强迫症
 
@@ -54,7 +57,7 @@
 
 ## 从 v1 迁移
 
-> v1 的配置已经过时，需要进行迁移。当前保持一定的兼容性。
+> 从 v3.0 起，v1 顶层配置不再被支持，请迁移到 `background.editor.*`。
 
 v1:
 

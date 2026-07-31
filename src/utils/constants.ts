@@ -1,15 +1,23 @@
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
-import pkg from '../../package.json';
+/** 扩展根目录 */
+// 打包后运行于 dist/extension.js，__dirname 为 dist/
+export const EXT_ROOT = path.join(__dirname, '../');
+
+/** 文件编码 */
+export const ENCODING = 'utf-8';
+
+// 运行时读取 package.json
+const pkg: { version: string; publisher: string; name: string } = JSON.parse(
+    fs.readFileSync(path.join(EXT_ROOT, 'package.json'), ENCODING)
+);
 
 /** 版本号 */
 export const VERSION: string = pkg.version;
 
 /** 版本标识 */
 export const BACKGROUND_VER = 'background.ver';
-
-/** 文件编码 */
-export const ENCODING = 'utf-8';
 
 /** 发布者 */
 export const PUBLISHER: string = pkg.publisher;
@@ -21,4 +29,4 @@ export const EXTENSION_NAME: string = pkg.name;
 export const EXTENSION_ID = `${PUBLISHER}.${EXTENSION_NAME}`;
 
 /** 版本临时文件，存放 html 路径、标识初次安装 */
-export const TOUCH_FILE_PATH = path.join(__dirname, `../../vscb.${VERSION}.touch`);
+export const TOUCH_FILE_PATH = path.join(EXT_ROOT, `vscb.${VERSION}.touch`);

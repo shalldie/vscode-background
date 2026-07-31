@@ -1,14 +1,6 @@
 import { AbsPatchGenerator, css } from './PatchGenerator.base';
 import { ThemePatchGenerator } from './PatchGenerator.theme';
 
-export class LegacyEditorPatchGeneratorConfig {
-    useFront = true;
-    style: Record<string, string> = {};
-    styles: Array<Record<string, string>> = [];
-    customImages: string[] = [];
-    interval = 0;
-}
-
 export class EditorPatchGeneratorConfig {
     useFront = true;
     style: Record<string, string> = {};
@@ -20,39 +12,12 @@ export class EditorPatchGeneratorConfig {
 
 export class EditorPatchGenerator extends AbsPatchGenerator<EditorPatchGeneratorConfig> {
     /**
-     * 兼容旧版本配置
-     *
-     * @static
-     * @param {LegacyEditorPatchGeneratorConfig} legacy
-     * @param {EditorPatchGeneratorConfig} config
-     * @return {*}  {EditorPatchGeneratorConfig}
-     * @memberof EditorPatchGenerator
-     */
-    public static mergeLegacyConfig(
-        legacy: LegacyEditorPatchGeneratorConfig,
-        config: EditorPatchGeneratorConfig
-    ): EditorPatchGeneratorConfig {
-        // 没有v1配置，或者配置了v2配置。直接使用v2
-        // 插件原地更新（vsix）的时候，config 可能找不到。
-        if (!legacy?.customImages.length || config?.images.length) {
-            return config;
-        }
-
-        // 反之，把v1配置按照v2格式返回
-        return {
-            ...legacy,
-            images: legacy.customImages,
-            random: false
-        };
-    }
-
-    /**
      * 用于每张图片独立样式的占位符前缀， template.replace(placeholder, dynamicStyle) => style
      *
      * @private
      * @memberof EditorPatchGenerator
      */
-    private readonly cssplaceholder = '--background-editor-placeholder';
+    private readonly cssPlaceholder = '--background-editor-placeholder';
 
     private get curConfig() {
         // 默认值实际在 package.json 中定义，会 deep merge
@@ -62,28 +27,15 @@ export class EditorPatchGenerator extends AbsPatchGenerator<EditorPatchGenerator
         };
     }
 
-    private getStyleByOptions(style: Record<string, string>, useFront: boolean): string {
-        // 在使用背景图时，排除掉 pointer-events 和 z-index
-        const excludeKeys = useFront ? [] : ['pointer-events', 'z-index'];
-
-        return Object.entries(style)
-            .filter(([key]) => !excludeKeys.includes(key))
-            .map(([key, value]) => `${key}: ${value};`)
-            .join('');
-    }
-
     private get imageStyles() {
-        const { images, style, styles, useFront } = this.curConfig;
+        const { images, style, styles } = this.curConfig;
 
         return images.map((img, index) => {
-            return this.getStyleByOptions(
-                {
-                    ...style,
-                    ...styles[index],
-                    'background-image': `url(${img})`
-                },
-                useFront
-            );
+            return this.serializeStyle({
+                ...style,
+                ...styles[index],
+                'background-image': `url(${img})`
+            });
         });
     }
 
@@ -122,8 +74,8 @@ export class EditorPatchGenerator extends AbsPatchGenerator<EditorPatchGenerator
                             background-repeat: no-repeat;
                             mix-blend-mode: var(${ThemePatchGenerator.cssMixBlendMode});
                             /* placeholder，用于动态替换css */
-                            ${this.cssplaceholder + (index % images.length)}: #000;
-                            ${this.cssplaceholder + '-end'}: #000;
+                            ${this.cssPlaceholder + (index % images.length)}: #000;
+                            ${this.cssPlaceholder + '-end'}: #000;
                         }
                     `;
                 })}
@@ -136,7 +88,7 @@ export class EditorPatchGenerator extends AbsPatchGenerator<EditorPatchGenerator
         return `
 // options
 const styleTemplate = ${JSON.stringify(this.styleTemplate)};
-const cssplaceholder = '${this.cssplaceholder}';
+const cssPlaceholder = '${this.cssPlaceholder}';
 const imageStyles = ${JSON.stringify(this.imageStyles)};
 const interval = ${interval};
 const random = ${random};
@@ -170,7 +122,7 @@ function setNextStyles() {
     let curStyle = styleTemplate;
     const nextStyles = getNextStyles();
     for (let i = 0; i < nextStyles.length; i++) {
-        const reg = new RegExp(cssplaceholder + i + '[^;]+;', 'g');
+        const reg = new RegExp(cssPlaceholder + i + '[^;]+;', 'g');
         curStyle = curStyle.replace(reg, nextStyles[i]);
     }
     style.textContent = curStyle;

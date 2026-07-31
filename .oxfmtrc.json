@@ -1,0 +1,23 @@
+{
+    "$schema": "./node_modules/oxfmt/configuration_schema.json",
+    "singleQuote": true,
+    "trailingComma": "none",
+    "tabWidth": 4,
+    "printWidth": 120,
+    "bracketSpacing": true,
+    "arrowParens": "avoid",
+    "endOfLine": "lf",
+    "sortImports": {
+        "newlinesBetween": true,
+        "groups": ["builtin", "external", "internal", ["parent", "sibling", "index"]]
+    },
+    "overrides": [
+        {
+            "files": ["*.md", "package{,-lock}.json", "*.{yaml,yml}"],
+            "options": {
+                "singleQuote": false,
+                "tabWidth": 2
+            }
+        }
+    ]
+}

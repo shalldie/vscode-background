@@ -6,12 +6,14 @@ export class FullscreenPatchGeneratorConfig {
     opacity = 0.1; // 建议在 0.1 ~ 0.3
     size = 'cover' as 'cover' | 'contain';
     position = 'center';
+    styles: Array<Record<string, string>> = [];
     interval = 0;
     random = false;
 }
 
 export class FullscreenPatchGenerator<T extends FullscreenPatchGeneratorConfig> extends AbsPatchGenerator<T> {
-    protected cssvariable = '--background-fullscreen-img';
+    /** 背景图挂载的选择器，子类覆盖 */
+    protected selector = 'body::after';
 
     protected get curConfig(): T {
         const cur = {
@@ -31,12 +33,12 @@ export class FullscreenPatchGenerator<T extends FullscreenPatchGeneratorConfig> 
         const { size, position, opacity } = this.curConfig;
 
         return css`
-            body::after {
+            ${this.selector} {
                 content: '';
                 display: block;
                 position: absolute;
-                z-index: 1000;
                 inset: 0;
+                z-index: 1000;
                 pointer-events: none;
                 background-size: ${size};
                 background-repeat: no-repeat;
@@ -44,9 +46,24 @@ export class FullscreenPatchGenerator<T extends FullscreenPatchGeneratorConfig> 
                 opacity: ${opacity};
                 transition: 1s;
                 mix-blend-mode: var(${ThemePatchGenerator.cssMixBlendMode});
-                background-image: var(${this.cssvariable});
             }
         `;
+    }
+
+    /**
+     * 为每张图片生成一条动态规则：自定义样式（可覆盖默认样式）+ background-image
+     */
+    private get imageRules() {
+        const { images, styles } = this.curConfig;
+
+        return images.map((img, index) => {
+            const style = this.serializeStyle({
+                ...styles[index],
+                'background-image': `url(${img})`
+            });
+
+            return this.compileCSS(`${this.selector} { ${style} }`);
+        });
     }
 
     protected getScript(): string {
@@ -55,32 +72,37 @@ export class FullscreenPatchGenerator<T extends FullscreenPatchGeneratorConfig> 
             return '';
         }
         return `
-const cssvariable = '${this.cssvariable}';
-const images = ${JSON.stringify(images)};
+const imageRules = ${JSON.stringify(this.imageRules)};
 const random = ${random};
 const interval = ${interval};
 
 let curIndex = -1;
 
-function getNextImg() {
+const style = (() => {
+    const ele = document.createElement('style');
+    document.head.appendChild(ele);
+    return ele;
+})();
+
+function getNextRule() {
     if (random) {
-        return images[Math.floor(Math.random() * images.length)];
+        return imageRules[Math.floor(Math.random() * imageRules.length)];
     }
 
     curIndex++;
-    curIndex = curIndex % images.length;
-    return images[curIndex];
+    curIndex = curIndex % imageRules.length;
+    return imageRules[curIndex];
 }
 
-function setNextImg() {
-    document.body.style.setProperty(cssvariable, 'url(' + getNextImg() + ')');
+function setNextRule() {
+    style.textContent = getNextRule();
 }
 
 if (interval > 0) {
-    setInterval(setNextImg, interval * 1000);
+    setInterval(setNextRule, interval * 1000);
 }
 
-setNextImg();
+setNextRule();
         `;
     }
 }

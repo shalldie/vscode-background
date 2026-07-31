@@ -19,18 +19,18 @@
 
 [GitHub](https://github.com/shalldie/vscode-background) | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
-[![Version](https://img.shields.io/badge/version-2.1.2-blue?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[![Version](https://img.shields.io/badge/version-3.0.0-blue?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Stars](https://img.shields.io/github/stars/shalldie/vscode-background?logo=github&style=flat-square)](https://github.com/shalldie/vscode-background)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/shalldie/vscode-background/ci.yml?branch=master&label=build&style=flat-square)](https://github.com/shalldie/vscode-background/actions)
 [![License](https://img.shields.io/github/license/shalldie/vscode-background?style=flat-square)](https://github.com/shalldie/vscode-background)
 
 Multiple sections, `editor`、`sidebar`、`auxiliarybar`、`panel`
 
-<img width="760" src="./images/section.png">
+<img width="760" src="./images/section.webp">
 
 `fullscreen`
 
-<img width="760" src="./images/fullscreen.png">
+<img width="760" src="./images/fullscreen.webp">
 
 </div>
 
@@ -53,7 +53,7 @@ User defined requirements can be met by changing the configuration(`settings.jso
 
 ## Config
 
-<img width="760" src="./images/containers.png">
+<img width="760" src="./images/containers.webp">
 
 ### Global Config
 
@@ -69,7 +69,7 @@ Edit `background.editor` to config editor section.
 | :--------- | :--------: | :----------: | :------------------------------------------------------------------- |
 | `useFront` | `boolean`  |    `true`    | Place the image above or below the code.                             |
 | `style`    |  `object`  |     `{}`     | Custom style for images. [MDN Reference][mdn-css]                    |
-| `styles`   | `object[]` | `[{},{},{}]` | Each style of editor section image.                                  |
+| `styles`   | `object[]` |     `[]`     | Custom style for each image individually.                            |
 | `images`   | `string[]` |     `[]`     | Custom images, supports online and local images, as well as folders. |
 | `interval` |  `number`  |     `0`      | Seconds of interval for carousel, default `0` to disabled.           |
 | `random`   | `boolean`  |   `false`    | Whether to randomly display images.                                  |
@@ -87,7 +87,7 @@ example:
       "background-size": "auto",
       "opacity": 0.6
     },
-    "styles": [{}, {}, {}],
+    "styles": [],
     // `images` supports online and local images, as well as folders.
     "images": [
       // online images, only `https` is allowed.
@@ -97,6 +97,9 @@ example:
       "/home/xie/downloads/img.gif",
       "C:/Users/xie/img.bmp",
       "D:\\downloads\\images\\img.webp",
+      // `~` and environment variables are supported in local paths
+      "~/Pictures/img.png",
+      "${HOME}/Pictures/img.png",
       // local folders
       "/home/xie/images",
       // data URL
@@ -118,6 +121,7 @@ Edit `background.fullscreen`、`background.sidebar`、`background.auxiliarybar`�
 | `opacity`  |  `number`  |  `0.1`   | Opacity of the images, alias to [opacity][mdn-opacity], `0.1 ~ 0.3` recommended.         |
 | `size`     |  `string`  | `cover`  | Alias to [background-size][mdn-background-size], `cover` to self-adaption (recommended). |
 | `position` |  `string`  | `center` | Alias to [background-position][mdn-background-position], default `center`.               |
+| `styles`   | `object[]` |   `[]`   | Custom style for each image individually.                                               |
 | `interval` |  `number`  |   `0`    | Seconds of interval for carousel, default `0` to disabled.                               |
 | `random`   | `boolean`  | `false`  | Whether to randomly display images.                                                      |
 
@@ -139,6 +143,9 @@ example：
       "/home/xie/downloads/img.gif",
       "C:/Users/xie/img.bmp",
       "D:\\downloads\\images\\img.webp",
+      // `~` and environment variables are supported in local paths
+      "~/Pictures/img.png",
+      "${HOME}/Pictures/img.png",
       // local folders
       "/home/xie/images",
       // data URL
@@ -147,6 +154,7 @@ example：
     "opacity": 0.1,
     "size": "cover",
     "position": "center",
+    "styles": [],
     "interval": 0,
     "random": false
   },
@@ -160,7 +168,7 @@ example：
 
 Click the 「Background」 button on the right-bottom of statusbar, all commands of `background` will appear:
 
-<img width="660" src="./images/commands.png">
+<img width="660" src="./images/commands.webp">
 
 ## Common Issues
 
@@ -200,7 +208,7 @@ We share background images [here](https://github.com/shalldie/vscode-background/
 
 ## Migration from v1
 
-The configuration of v1 is outdated and currently maintains a certain level of compatibility. Please refer to [migration-from-v1.md](docs/migration-from-v1.md) for migration.
+Starting from v3.0, v1 top-level configuration is no longer supported. Please refer to [migration-from-v1.md](docs/migration-from-v1.md) to migrate.
 
 ## LICENSE
 

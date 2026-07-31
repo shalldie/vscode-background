@@ -1,7 +1,3 @@
 {
-    "recommendations": [
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode",
-        "styled-components.vscode-styled-components"
-    ]
+    "recommendations": ["oxc.oxc-vscode", "styled-components.vscode-styled-components"]
 }

@@ -14,6 +14,9 @@ Different system paths and folders are supported in `images` now:
     "/home/xie/downloads/img.gif",
     "C:/Users/xie/img.bmp",
     "D:\\downloads\\images\\img.webp",
+    // `~` and environment variables are supported in local paths
+    "~/Pictures/img.png",
+    "${HOME}/Pictures/img.png",
     // local folders
     "/home/xie/images",
     // data URL
@@ -26,7 +29,7 @@ Different system paths and folders are supported in `images` now:
 
 Each section can be customized with features such as `custom images/styles`、`carousel`、`random display`...
 
-<img src="../images/containers.png" width="800" />
+<img src="../images/containers.webp" width="800" />
 
 ## Clear and concise configuration
 
@@ -46,7 +49,7 @@ Each section has independent configuration, see [README.md](https://github.com/s
 
 Click the 「Background」 button on the right-bottom of statusbar, all commands of `background` will appear:
 
-<img width="660" src="../images/commands.png">
+<img width="660" src="../images/commands.webp">
 
 ## No more warnings
 
@@ -54,7 +57,7 @@ No more warnings about `Your Code installation appears to be corrupt`.
 
 ## Migration from v1
 
-> The configuration of v1 is outdated and needs to be migrated. Currently maintaining a certain level of compatibility.
+> Starting from v3.0, v1 top-level configuration is no longer supported. Please migrate to `background.editor.*`.
 
 v1:
 

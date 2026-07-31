@@ -1,8 +1,8 @@
 ## Migration from v1
 
-> The configuration of v1 is outdated and needs to be migrated. Currently maintaining a certain level of compatibility.
+> Starting from v3.0, v1 top-level configuration is no longer supported. Please migrate to `background.editor.*`.
 >
-> v1 的配置已经过时，需要进行迁移。当前保持一定的兼容性。
+> 从 v3.0 起，v1 顶层配置不再被支持，请迁移到 `background.editor.*`。
 
 v1:
 

@@ -19,18 +19,18 @@
 
 [GitHub](https://github.com/shalldie/vscode-background) | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
-[![Version](https://img.shields.io/badge/version-2.1.2-blue?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[![Version](https://img.shields.io/badge/version-3.0.0-blue?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Stars](https://img.shields.io/github/stars/shalldie/vscode-background?logo=github&style=flat-square)](https://github.com/shalldie/vscode-background)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/shalldie/vscode-background/ci.yml?branch=master&label=build&style=flat-square)](https://github.com/shalldie/vscode-background/actions)
 [![License](https://img.shields.io/github/license/shalldie/vscode-background?style=flat-square)](https://github.com/shalldie/vscode-background)
 
 複数の領域、`エディタ`、`サイドバー`、`補助バー(auxiliarybar)`、`パネル`
 
-<img width="760" src="./images/section.png">
+<img width="760" src="./images/section.webp">
 
 `フルスクリーン`
 
-<img width="760" src="./images/fullscreen.png">
+<img width="760" src="./images/fullscreen.webp">
 
 </div>
 
@@ -51,7 +51,7 @@
 
 ## コンフィグ
 
-<img width="760" src="./images/containers.png">
+<img width="760" src="./images/containers.webp">
 
 ### グローバル設定
 
@@ -67,7 +67,7 @@
 | :--------- | :--------: | :----------: | :-------------------------------------------------------------------------- |
 | `useFront` | `boolean`  |    `true`    | 画像を最前面に表示するかどうかを制御します。                                |
 | `style`    |  `object`  |     `{}`     | 全ての画像に適応される CSS を制御します。 [MDN Reference][mdn-css]          |
-| `styles`   | `object[]` | `[{},{},{}]` | 個別の画像に適応される CSS を制御します。                                   |
+| `styles`   | `object[]` |     `[]`     | 画像ごとに個別のCSSを制御します。                                           |
 | `images`   | `string[]` |     `[]`     | カスタム画像に対応、オンライン画像やローカル画像、フォルダもサポート。      |
 | `interval` |  `number`  |     `0`      | 次の画像を表示するまでの秒数を制御します。`0`の場合、画像は変更されません。 |
 | `random`   | `boolean`  |   `false`    | 画像の表示順をランダムにするかを制御します。                                |
@@ -85,7 +85,7 @@
       "background-size": "auto",
       "opacity": 0.6
     },
-    "styles": [{}, {}, {}],
+    "styles": [],
     // `images`はオンライン画像、ローカル画像、およびフォルダをサポートしています。
     "images": [
       // オンライン画像については、`https`のみ許可されています。
@@ -95,6 +95,9 @@
       "/home/xie/downloads/img.gif",
       "C:/Users/xie/img.bmp",
       "D:\\downloads\\images\\img.webp",
+      // ローカルパスでは `~` と環境変数が使用できます
+      "~/Pictures/img.png",
+      "${HOME}/Pictures/img.png",
       // ローカルフォルダ
       "/home/xie/images",
       // data URL
@@ -116,6 +119,7 @@
 | `opacity`  |  `number`  |   `0.1`    | 画像の不透明度を制御します、[opacity][mdn-opacity]へのエイリアスです。推奨値 `0.1 ～ 0.3`。                |
 | `size`     |  `string`  |  `cover`   | [background-size][mdn-background-size]へのエイリアスです。推奨 `cover`，縦横比を保ったまま領域を覆います。 |
 | `position` |  `string`  |  `center`  | [background-position][mdn-background-position]へのエイリアスです。デフォルト値は `center` です。           |
+| `styles`   | `object[]` |    `[]`    | 画像ごとに個別のCSSを制御します。                                                                          |
 | `interval` |  `number`  |    `0`     | 次の画像を表示するまでの秒数を制御します。`0` の場合、画像は変更されません。                               |
 | `random`   | `boolean`  |  `false`   | 画像の表示順をランダムにするかを制御します。                                                               |
 
@@ -137,6 +141,9 @@ example:
       "/home/xie/downloads/img.gif",
       "C:/Users/xie/img.bmp",
       "D:\\downloads\\images\\img.webp",
+      // ローカルパスでは `~` と環境変数が使用できます
+      "~/Pictures/img.png",
+      "${HOME}/Pictures/img.png",
       // ローカルフォルダ
       "/home/xie/images",
       // data URL
@@ -145,6 +152,7 @@ example:
     "opacity": 0.1,
     "size": "cover",
     "position": "center",
+    "styles": [],
     "interval": 0,
     "random": false
   },
@@ -158,7 +166,7 @@ example:
 
 ステータスバーの右下にある「background」をクリックすると、`background`のすべてのコマンドが表示されます：
 
-<img width="660" src="./images/commands.png">
+<img width="660" src="./images/commands.webp">
 
 ## 注意点
 
@@ -198,8 +206,7 @@ example:
 
 ## v1からの移行
 
-v1における設定は古いものであり、互換性は限定的です。
-設定の移行の際には、[migration-from-v1.md](docs/migration-from-v1.md)を参照してください。
+v3.0 以降、v1 のトップレベル設定はサポートされなくなりました。移行については [migration-from-v1.md](docs/migration-from-v1.md) を参照してください。
 
 ## ライセンス
 

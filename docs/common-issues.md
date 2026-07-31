@@ -10,6 +10,8 @@
 
 Local images can be dragged into the browser to quickly get the file protocol address from the address bar.
 
+Local paths also support `~` (home directory) and environment variables (`${HOME}` or `$HOME`), e.g. `~/Pictures/img.png`, `${HOME}/Pictures/img.png`.
+
 ## Warn `Your Code installation appears to be corrupt`
 
 Starting from v2.0, this issue should not occur again. Regardless, you can refer to `How to uninstall` section.

@@ -1,6 +1,6 @@
-import fs from 'fs';
-import { tmpdir } from 'os';
-import path from 'path';
+import fs from 'node:fs';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
 
 import vscode, { l10n, Uri } from 'vscode';
 
@@ -44,6 +44,6 @@ export const vsHelp = {
     async showMarkdown(content: string, key = 'temp') {
         const targetPath = path.join(tmpdir(), `${key}-background.md`);
         await fs.promises.writeFile(targetPath, content, ENCODING);
-        vscode.commands.executeCommand('markdown.showPreviewToSide', Uri.file(targetPath));
+        return vscode.commands.executeCommand('markdown.showPreviewToSide', Uri.file(targetPath));
     }
 };

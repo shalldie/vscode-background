@@ -1,4 +1,5 @@
-import { pathToFileURL } from 'url';
+import { homedir } from 'node:os';
+import { pathToFileURL } from 'node:url';
 
 import fg from 'fast-glob';
 import * as stylis from 'stylis';
@@ -62,6 +63,7 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
                     return [img];
                 }
                 // ------ local ------
+                img = this.expandPathVariables(img);
                 // 文件，模糊判断。`.xxx`
                 if (/\.[^\\/]+$/.test(img)) {
                     return this.normalizeImageUrls([img]);
@@ -100,6 +102,27 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
     }
 
     /**
+     * 展开路径中的 `~`（用户目录）和环境变量（`${ENV}`、`$ENV`）
+     */
+    private expandPathVariables(imagePath: string): string {
+        // 展开 ~ 为用户目录
+        if (imagePath.startsWith('~/')) {
+            imagePath = homedir() + imagePath.slice(1);
+        }
+
+        // 展开 ${ENV}
+        imagePath = imagePath.replace(/\$\{(\w+)\}/g, (match, name) => {
+            return process.env[name] !== undefined ? process.env[name] : match;
+        });
+        // 展开 $ENV
+        imagePath = imagePath.replace(/\$(\w+)/g, (match, name) => {
+            return process.env[name] !== undefined ? process.env[name] : match;
+        });
+
+        return imagePath;
+    }
+
+    /**
      * 获取文件夹下的所有图片
      * 支持的类型：`'svg', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp', 'mp4', 'otf', 'ttf'`
      * @private
@@ -132,6 +155,24 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
      */
     protected compileCSS(source: string) {
         return stylis.serialize(stylis.compile(source), stylis.stringify);
+    }
+
+    /**
+     * 把样式对象序列化为 css 声明字符串。
+     * 始终排除 `pointer-events` 和 `z-index`，避免用户自定义样式破坏覆盖层的点击穿透与层级。
+     *
+     * @protected
+     * @param {Record<string, string>} style
+     * @return {*}
+     * @memberof AbsPatchGenerator
+     */
+    protected serializeStyle(style: Record<string, string>): string {
+        const excludeKeys = ['pointer-events', 'z-index'];
+
+        return Object.entries(style)
+            .filter(([key]) => !excludeKeys.includes(key))
+            .map(([key, value]) => `${key}: ${value};`)
+            .join('');
     }
 
     protected getPreload() {

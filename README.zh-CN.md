@@ -19,18 +19,18 @@
 
 [GitHub](https://github.com/shalldie/vscode-background) | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
-[![Version](https://img.shields.io/badge/version-2.1.2-blue?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
+[![Version](https://img.shields.io/badge/version-3.0.0-blue?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 [![Stars](https://img.shields.io/github/stars/shalldie/vscode-background?logo=github&style=flat-square)](https://github.com/shalldie/vscode-background)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/shalldie/vscode-background/ci.yml?branch=master&label=build&style=flat-square)](https://github.com/shalldie/vscode-background/actions)
 [![License](https://img.shields.io/github/license/shalldie/vscode-background?style=flat-square)](https://github.com/shalldie/vscode-background)
 
 多区域，`编辑器`、`侧边栏`、`辅助栏(auxiliarybar)`、`面板`
 
-<img width="760" src="./images/section.png">
+<img width="760" src="./images/section.webp">
 
 `全屏`
 
-<img width="760" src="./images/fullscreen.png">
+<img width="760" src="./images/fullscreen.webp">
 
 </div>
 
@@ -51,7 +51,7 @@
 
 ## 配置项
 
-<img width="760" src="./images/containers.png">
+<img width="760" src="./images/containers.webp">
 
 ### 全局配置
 
@@ -67,7 +67,7 @@
 | :--------- | :--------: | :----------: | :----------------------------------------------------- |
 | `useFront` | `boolean`  |    `true`    | 把图片放在代码的上方或下方。                           |
 | `style`    |  `object`  |     `{}`     | 自定义图片样式。 [MDN Reference][mdn-css]              |
-| `styles`   | `object[]` | `[{},{},{}]` | 为每一个图片自定义样式。                               |
+| `styles`   | `object[]` |     `[]`     | 为每一张图片单独自定义样式。                           |
 | `images`   | `string[]` |     `[]`     | 自定义图片，支持在线和本地图片，以及文件夹。           |
 | `interval` |  `number`  |     `0`      | 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。 |
 | `random`   | `boolean`  |   `false`    | 是否随机展示图片。                                     |
@@ -85,7 +85,7 @@ example:
       "background-size": "auto",
       "opacity": 0.6
     },
-    "styles": [{}, {}, {}],
+    "styles": [],
     // `images` 支持在线和本地图片，以及文件夹。
     "images": [
       // 在线图片，只允许 `https` 协议
@@ -95,6 +95,9 @@ example:
       "/home/xie/downloads/img.gif",
       "C:/Users/xie/img.bmp",
       "D:\\downloads\\images\\img.webp",
+      // 本地路径支持 `~` 和环境变量
+      "~/Pictures/img.png",
+      "${HOME}/Pictures/img.png",
       // 文件夹
       "/home/xie/images",
       // data URL
@@ -116,6 +119,7 @@ example:
 | `opacity`  |  `number`  |  `0.1`   | 透明度，等同 css [opacity][mdn-opacity]，建议 `0.1 ~ 0.3`。                  |
 | `size`     |  `string`  | `cover`  | 等同 css [background-size][mdn-background-size], 建议使用 `cover` 来自适应。 |
 | `position` |  `string`  | `center` | 等同 css [background-position][mdn-background-position]， 默认值 `center`。  |
+| `styles`   | `object[]` |   `[]`   | 为每一张图片单独自定义样式。                                                |
 | `interval` |  `number`  |   `0`    | 单位 `秒`，轮播时候图片切换间隔，默认 `0` 表示不开启。                       |
 | `random`   | `boolean`  | `false`  | 是否随机展示图片。                                                           |
 
@@ -137,6 +141,9 @@ example:
       "/home/xie/downloads/img.gif",
       "C:/Users/xie/img.bmp",
       "D:\\downloads\\images\\img.webp",
+      // 本地路径支持 `~` 和环境变量
+      "~/Pictures/img.png",
+      "${HOME}/Pictures/img.png",
       // 文件夹
       "/home/xie/images",
       // data URL
@@ -145,6 +152,7 @@ example:
     "opacity": 0.1,
     "size": "cover",
     "position": "center",
+    "styles": [],
     "interval": 0,
     "random": false
   },
@@ -158,7 +166,7 @@ example:
 
 点击状态栏右下角「Background」按钮，可以快速弹出 background 所有命令：
 
-<img width="660" src="./images/commands.png">
+<img width="660" src="./images/commands.webp">
 
 ## 常见问题
 
@@ -198,7 +206,7 @@ example:
 
 ## 从 v1 迁移
 
-v1 的配置已经过时，当前保持一定的兼容性，请参考 [migration-from-v1.md](docs/migration-from-v1.md) 进行迁移。
+从 v3.0 起，v1 顶层配置不再被支持，请参考 [migration-from-v1.md](docs/migration-from-v1.md) 进行迁移。
 
 ## 协议
 
