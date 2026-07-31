@@ -1,3 +1,12 @@
+## v3.0.0 (2026/07/31)
+
+- **BREAKING** refactor: 移除 v1 旧配置支持 by @shalldie
+- feat: 为 fullscreen/sidebar/panel/auxiliarybar 添加逐图 styles 配置 in [#592](https://github.com/shalldie/vscode-background/pull/592)
+- feat: 支持在图片路径中使用 `~` 和环境变量 in [#612](https://github.com/shalldie/vscode-background/pull/612)
+- chore: 工程结构优化、依赖升级、静态资源与冗余代码清理
+
+**Full Changelog**: https://github.com/shalldie/vscode-background/compare/v2.1.2...v3.0.0
+
 ## v2.1.2 (2026/07/07)
 
 - fix: support electron-sandbox path for some version of Cursor by @hedgehog-ha in [#614](https://github.com/shalldie/vscode-background/pull/614)
