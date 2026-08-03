@@ -141,7 +141,7 @@ export class Background implements Disposable {
 
     public async applyPatch() {
         if (!this.config.enabled) {
-            return;
+            return true;
         }
 
         const scriptContent = await PatchGenerator.create(this.config);
@@ -180,8 +180,10 @@ export class Background implements Disposable {
                     {
                         title: l10n.t('Apply and Reload'),
                         action: async () => {
-                            await this.applyPatch();
-                            await vsHelp.reload();
+                            const patchApplied = await this.applyPatch();
+                            if (patchApplied !== false) {
+                                await vsHelp.reload();
+                            }
                         }
                     },
                     {
