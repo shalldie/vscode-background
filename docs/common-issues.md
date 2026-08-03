@@ -4,7 +4,7 @@
 
 ## How it works
 
-**This extension works by editting the vscode's html file.**
+**This extension works by editing the vscode's html file.**
 
 ## How to get local images' address
 
@@ -59,7 +59,7 @@ three ways:
 
 - `Installed by snap` is not supported. [#382](https://github.com/shalldie/vscode-background/issues/382)
   - Error: (Linux) snap: read-only file system
-  - Snap use SquashFS to storage packages, which is a compressed readonly file system.
+  - Snap uses [SquashFS](https://en.wikipedia.org/wiki/SquashFS) to store packages, which is a compressed readonly file system. You can install vscode via deb or rpm.
 - `vscodium` is not fully supported.
   - It works fine in most cases. But I don't use it that much, pr welcome.
 

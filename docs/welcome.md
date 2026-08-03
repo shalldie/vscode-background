@@ -27,7 +27,7 @@ Different system paths and folders are supported in `images` now:
 
 ## More configurable sections
 
-Each section can be customized with features such as `custom images/styles`、`carousel`、`random display`...
+Each section can be customized with features such as `custom images/styles`, `carousel`, `random display`...
 
 <img src="../images/containers.webp" width="800" />
 

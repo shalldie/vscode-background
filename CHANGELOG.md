@@ -56,7 +56,7 @@
 
 ---
 
-1. feat: 深色主题添加混动模式 (#563) by @shalldie in [#566](https://github.com/shalldie/vscode-background/pull/566)
+1. feat: 深色主题添加混合模式 (#563) by @shalldie in [#566](https://github.com/shalldie/vscode-background/pull/566)
 2. fix: editor 使用更明确的选择器 by @shalldie in [#530](https://github.com/shalldie/vscode-background/issues/530)
 
 ## v2.0.4 (2025/11/12)
@@ -139,8 +139,8 @@ This is a major version that has added more features, which will bring you a bet
 ## ver1.2.12 (2023/6/10)
 
     fix #400, #401
-    兼容低版本vsocde全屏css选择器
-    Compatible with lower version vsocde full screen CSS selector
+    兼容低版本vscode全屏css选择器
+    Compatible with lower version vscode full screen CSS selector
 
 ## ver1.2.11 (2023/6/8)
 
@@ -184,13 +184,13 @@ This is a major version that has added more features, which will bring you a bet
     Add a hook to remove background images, when plugin has been uninstalled.
     当插件被卸载时，添加钩子去清理背景图。
 
-## ver1.2.3 (2022/11.3)
+## ver1.2.3 (2022/11/3)
 
     #306, #329
     fix css broken caused by mutiple write.
     修复多实例写入造成的css损坏。
 
-## ver1.2.2 (2022/10.31)
+## ver1.2.2 (2022/10/31)
 
     add feature fullscreen.
     添加全屏背景图支持。

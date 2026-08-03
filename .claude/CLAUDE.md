@@ -9,7 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Common Commands
 
 ```bash
-npm run build        # check-types + esbuild 打包到 dist/
+npm run build        # lint + check-types(tsc --noEmit) + esbuild 打包到 dist/
 npm run watch        # 开发时 watch 模式
 npm run lint         # oxlint（lint:fix 可自动修复）
 npm run package      # vsce package，生成 .vsix
@@ -69,7 +69,7 @@ VS Code 1.123.0+ 对 `vscode-file://` 协议的 JS 资源启用了内存缓存�
 
 `src/uninstall.ts` 是 `package.json` 中的 `vscode:uninstall` 钩子。**不能引用 vscode API**（钩子运行时 vscode 已退出），只能 `import` 到具体文件——所以这里直接从 `PatchFile/PatchFile.html` 导入而不是 `background/index`，避免间接拉入 vscode 相关代码。
 
-HTML 文件的实际路径通过 `TOUCH_FILE_PATH`（一个版本号命名的 touch 文件，如 `vscb.3.0.0-rc.1.touch`，在扩展根目录）记录——文件**内容**存储 workbench.html 路径，文件**是否存在**用于判断是否首次加载。卸载时 `patchTargets.ts` 中依赖 vscode API 的逻辑不可用，因此通过此文件获取路径。
+HTML 文件的实际路径通过 `TOUCH_FILE_PATH`（一个版本号命名的 touch 文件，即 `vscb.${VERSION}.touch`，在扩展根目录）记录——文件**内容**存储 workbench.html 路径，文件**是否存在**用于判断是否首次加载。卸载时 `patchTargets.ts` 中依赖 vscode API 的逻辑不可用，因此通过此文件获取路径。
 
 ### 国际化
 

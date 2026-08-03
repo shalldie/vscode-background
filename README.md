@@ -15,7 +15,7 @@
 
 ### Bring background images to your [Visual Studio Code](https://code.visualstudio.com)
 
-`fullscreen`、`editor`、`sidebar`、`auxiliarybar`、`panel`、`carousel`、`custom images/styles`...
+`fullscreen`, `editor`, `sidebar`, `auxiliarybar`, `panel`, `carousel`, `custom images/styles`...
 
 [GitHub](https://github.com/shalldie/vscode-background) | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shalldie.background)
 
@@ -24,7 +24,7 @@
 [![Build Status](https://img.shields.io/github/actions/workflow/status/shalldie/vscode-background/ci.yml?branch=master&label=build&style=flat-square)](https://github.com/shalldie/vscode-background/actions)
 [![License](https://img.shields.io/github/license/shalldie/vscode-background?style=flat-square)](https://github.com/shalldie/vscode-background)
 
-Multiple sections, `editor`、`sidebar`、`auxiliarybar`、`panel`
+Multiple sections, `editor`, `sidebar`, `auxiliarybar`, `panel`
 
 <img width="760" src="./images/section.webp">
 
@@ -111,9 +111,9 @@ example:
 }
 ```
 
-### Fullscreen、Sidebar、Auxiliarybar、Panel Section Config
+### Fullscreen, Sidebar, Auxiliarybar, Panel Section Config
 
-Edit `background.fullscreen`、`background.sidebar`、`background.auxiliarybar`、`background.panel` to config these sections.
+Edit `background.fullscreen`, `background.sidebar`, `background.auxiliarybar`, `background.panel` to config these sections.
 
 | Name       |    Type    | Default  | Description                                                                              |
 | :--------- | :--------: | :------: | :--------------------------------------------------------------------------------------- |
@@ -129,7 +129,7 @@ Edit `background.fullscreen`、`background.sidebar`、`background.auxiliarybar`�
 [mdn-background-size]: https://developer.mozilla.org/docs/Web/CSS/background-size
 [mdn-background-position]: https://developer.mozilla.org/docs/Web/CSS/background-position
 
-example：
+example:
 
 ```json
 {
@@ -172,7 +172,7 @@ Click the 「Background」 button on the right-bottom of statusbar, all commands
 
 ## Common Issues
 
-> **This extension works by editting the vscode's html file.**
+> **This extension works by editing the vscode's html file.**
 
 Please refer to the [Common Issues](docs/common-issues.md) if you met some problems.
 
@@ -192,7 +192,7 @@ Please refer to [Common Issues#how-to-uninstall](docs/common-issues.md#how-to-un
 [<img alt="kuresaru" src="https://avatars.githubusercontent.com/u/31172177?v=4" width="80">](https://github.com/kuresaru)
 [<img alt="Unthrottled" src="https://avatars.githubusercontent.com/u/15972415?v=4" width="80">](https://github.com/Unthrottled)
 [<img alt="rogeraabbccdd" src="https://avatars.githubusercontent.com/u/15815422?v=4" width="80">](https://github.com/rogeraabbccdd)
-[<img alt="rogeraabbccdd" src="https://avatars.githubusercontent.com/u/86603229?v=4" width="80">](https://github.com/SatoMasahiro2005)
+[<img alt="SatoMasahiro2005" src="https://avatars.githubusercontent.com/u/86603229?v=4" width="80">](https://github.com/SatoMasahiro2005)
 
 ## Contributing Guide
 
