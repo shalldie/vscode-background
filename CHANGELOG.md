@@ -1,3 +1,9 @@
+## v3.0.1 (2026/08/05)
+
+- fix: patch 写入失败（如 code-server 等只读环境）时不再触发 reload，保留错误提示 by @shalldie
+
+**Full Changelog**: https://github.com/shalldie/vscode-background/compare/v3.0.0...v3.0.1
+
 ## v3.0.0 (2026/07/31)
 
 - **BREAKING** refactor: 移除 v1 旧配置支持 by @shalldie

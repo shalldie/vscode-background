@@ -83,6 +83,8 @@ HTML 文件的实际路径通过 `TOUCH_FILE_PATH`（一个版本号命名的 to
 - `CHANGELOG.md` — 顶部新增版本条目（记录本次变更）
 - `README.md` / `README.zh-CN.md` / `README.ja-JP.md` — badge 中的静态版本号（`/badge/version-x.x.x-blue`）
 
+发版步骤（顺序固定）：本地测试 → 本地发布到 VS Code 市场 → commit & push → GitHub Release（tag 由 GitHub 生成，本地不打 tag）。
+
 ## Conventions
 
 - 模块路径以 `NodeNext`（ES module 风格）解析，`tsconfig` 严格模式开启。类型检查（`tsc --noEmit`）与打包（`esbuild`）分离：`tsconfig.json` 设 `noEmit`，产物由 `esbuild.mjs` bundle 到 `dist/`；`isolatedModules` 保证代码兼容 esbuild 单文件转译。
