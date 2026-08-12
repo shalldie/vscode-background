@@ -15,6 +15,7 @@ labels: bug
 
 - `OS(Win10 / Mac OSX / Linux)`:
 - `vscode`:
+- `background`:
 
 ### Background Config | 插件的配置
 
@@ -24,7 +25,7 @@ labels: bug
     "background.enabled": true,
     "background.fullscreen": {
         "image": [ "file:///path/to/image" ],
-        "opacity": 0.91,
+        "opacity": 0.1,
         "interval": 3
     }
 }
