@@ -52,7 +52,10 @@ export class EditorPatchGenerator extends AbsPatchGenerator<EditorPatchGenerator
                 opacity: 0.8;
             }
 
-            [id='workbench.parts.editor'] .split-view-view {
+            /* 主窗口的 editor part 是 #workbench.parts.editor，
+               而浮动编辑器窗口（auxiliary window）的 editor part 只有 class 没有 id，
+               所以这里用 class 选择器同时覆盖两者 */
+            .monaco-workbench .part.editor .split-view-view {
                 /* 处理一块背景色遮挡 */
                 .editor-container .overflow-guard > .monaco-scrollable-element > .monaco-editor-background {
                     background: none;
