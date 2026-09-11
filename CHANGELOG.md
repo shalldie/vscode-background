@@ -1,3 +1,10 @@
+## v3.1.0 (2026/09/11)
+
+- fix: avoid corrupting CSP directives when injecting inline script support by @Moli13337 in [#631](https://github.com/shalldie/vscode-background/pull/631)
+- fix: apply editor background in floating editor windows (fix #633) by @mods-hd in [#634](https://github.com/shalldie/vscode-background/pull/634)
+
+**Full Changelog**: https://github.com/shalldie/vscode-background/compare/v3.0.1...v3.1.0
+
 ## v3.0.1 (2026/08/05)
 
 - fix: patch 写入失败（如 code-server 等只读环境）时不再触发 reload，保留错误提示 by @shalldie
