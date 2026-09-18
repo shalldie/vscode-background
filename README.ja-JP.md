@@ -116,7 +116,7 @@
 | 設定       |     型     | デフォルト | 説明                                                                                                       |
 | :--------- | :--------: | :--------: | :--------------------------------------------------------------------------------------------------------- |
 | `images`   | `string[]` |    `[]`    | カスタム画像に対応、オンライン画像やローカル画像、フォルダもサポート。                                     |
-| `opacity`  |  `number`  |   `0.1`    | 画像の不透明度を制御します、[opacity][mdn-opacity]へのエイリアスです。推奨値 `0.1 ～ 0.3`。                |
+| `opacity`  |  `number`  |   `0.1`    | 画像の不透明度、[opacity][mdn-opacity]へのエイリアスです。推奨値 `0.1 ～ 0.3`、`0 ～ 0.6` に丸められます。 |
 | `size`     |  `string`  |  `cover`   | [background-size][mdn-background-size]へのエイリアスです。推奨 `cover`，縦横比を保ったまま領域を覆います。 |
 | `position` |  `string`  |  `center`  | [background-position][mdn-background-position]へのエイリアスです。デフォルト値は `center` です。           |
 | `styles`   | `object[]` |    `[]`    | 画像ごとに個別のCSSを制御します。                                                                          |

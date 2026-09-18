@@ -7,5 +7,7 @@
     "Background will be disabled.": "Background will be disabled.",
     "Configuration has been changed, click to apply.": "Configuration has been changed, click to apply.",
     "Apply and Reload": "Apply and Reload",
-    "Disable and Reload": "Disable and Reload"
+    "Disable and Reload": "Disable and Reload",
+    "background.fullscreen.opacity {value} clamped to max {clamped}.": "background.fullscreen.opacity {value} clamped to max {clamped}.",
+    "background.fullscreen.opacity {value} clamped to min {clamped}.": "background.fullscreen.opacity {value} clamped to min {clamped}."
 }

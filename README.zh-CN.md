@@ -116,7 +116,7 @@ example:
 | 名称       |    类型    |  默认值  | 描述                                                                         |
 | :--------- | :--------: | :------: | :--------------------------------------------------------------------------- |
 | `images`   | `string[]` |   `[]`   | 自定义图片，支持在线和本地图片，以及文件夹。                                 |
-| `opacity`  |  `number`  |  `0.1`   | 透明度，等同 css [opacity][mdn-opacity]，建议 `0.1 ~ 0.3`。                  |
+| `opacity`  |  `number`  |  `0.1`   | 等同 css [opacity][mdn-opacity]，建议 `0.1 ~ 0.3`，超出 `0 ~ 0.6` 会被钳制。 |
 | `size`     |  `string`  | `cover`  | 等同 css [background-size][mdn-background-size], 建议使用 `cover` 来自适应。 |
 | `position` |  `string`  | `center` | 等同 css [background-position][mdn-background-position]， 默认值 `center`。  |
 | `styles`   | `object[]` |   `[]`   | 为每一张图片单独自定义样式。                                                |

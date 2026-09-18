@@ -118,7 +118,7 @@ Edit `background.fullscreen`, `background.sidebar`, `background.auxiliarybar`, `
 | Name       |    Type    | Default  | Description                                                                              |
 | :--------- | :--------: | :------: | :--------------------------------------------------------------------------------------- |
 | `images`   | `string[]` |   `[]`   | Custom images, supports online and local images, as well as folders.                     |
-| `opacity`  |  `number`  |  `0.1`   | Opacity of the images, alias to [opacity][mdn-opacity], `0.1 ~ 0.3` recommended.         |
+| `opacity`  |  `number`  |  `0.1`   | Alias to [opacity][mdn-opacity], `0.1 ~ 0.3` recommended, clamped to `0 ~ 0.6`.          |
 | `size`     |  `string`  | `cover`  | Alias to [background-size][mdn-background-size], `cover` to self-adaption (recommended). |
 | `position` |  `string`  | `center` | Alias to [background-position][mdn-background-position], default `center`.               |
 | `styles`   | `object[]` |   `[]`   | Custom style for each image individually.                                               |

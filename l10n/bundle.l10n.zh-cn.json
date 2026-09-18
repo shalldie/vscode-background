@@ -7,5 +7,7 @@
     "Background will be disabled.": "Background 会被禁用。",
     "Configuration has been changed, click to apply.": "配置已改变，点击应用。",
     "Apply and Reload": "应用并重载",
-    "Disable and Reload": "禁用并重载"
+    "Disable and Reload": "禁用并重载",
+    "background.fullscreen.opacity {value} clamped to max {clamped}.": "background.fullscreen.opacity {value} 已钳制为上限 {clamped}。",
+    "background.fullscreen.opacity {value} clamped to min {clamped}.": "background.fullscreen.opacity {value} 已钳制为下限 {clamped}。"
 }

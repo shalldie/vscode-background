@@ -1,14 +1,32 @@
 import { AbsPatchGenerator, css } from './PatchGenerator.base';
 import { ThemePatchGenerator } from './PatchGenerator.theme';
 
+/** fullscreen 透明度上限，覆盖层压在整个 workbench 之上，过高会遮住文字。与 package.json 中该配置项的 `maximum` 保持一致 */
+export const FULLSCREEN_MAX_OPACITY = 0.6;
+
 export class FullscreenPatchGeneratorConfig {
     images = [] as string[];
-    opacity = 0.1; // 建议在 0.1 ~ 0.3
+    opacity = 0.1; // 建议在 0.1 ~ 0.3，上限见 FULLSCREEN_MAX_OPACITY
     size = 'cover' as 'cover' | 'contain';
     position = 'center';
     styles: Array<Record<string, string>> = [];
     interval = 0;
     random = false;
+}
+
+/**
+ * 把透明度钳制到 `0 ~ FULLSCREEN_MAX_OPACITY`，非数字回退到默认值
+ * 不用 `Number()` 转换：`Number(null)`、`Number('')` 都是 0，会把图片变成全透明
+ *
+ * @export
+ * @param {unknown} opacity
+ * @return {*}  {number}
+ */
+export function clampFullscreenOpacity(opacity: unknown): number {
+    if (typeof opacity !== 'number' || !Number.isFinite(opacity)) {
+        return new FullscreenPatchGeneratorConfig().opacity;
+    }
+    return Math.min(Math.max(opacity, 0), FULLSCREEN_MAX_OPACITY);
 }
 
 export class FullscreenPatchGenerator<T extends FullscreenPatchGeneratorConfig> extends AbsPatchGenerator<T> {
@@ -22,9 +40,8 @@ export class FullscreenPatchGenerator<T extends FullscreenPatchGeneratorConfig> 
         };
 
         // ------ opacity ------
-        if (cur.opacity < 0 || cur.opacity > 0.6) {
-            cur.opacity = new FullscreenPatchGeneratorConfig().opacity;
-        }
+        // 超出范围时钳制到边界，而不是静默重置为默认值（#636）
+        cur.opacity = clampFullscreenOpacity(cur.opacity);
 
         return cur;
     }

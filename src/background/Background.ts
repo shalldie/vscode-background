@@ -8,6 +8,7 @@ import { getLegacyJsPath, getWorkbenchHtmlPath } from '../utils/patchTargets';
 import { vsHelp } from '../utils/vsHelp';
 import { EFilePatchType, HtmlPatchFile, JsPatchFile } from './PatchFile';
 import { PatchGenerator, type TPatchGeneratorConfig } from './PatchGenerator';
+import { clampFullscreenOpacity } from './PatchGenerator/PatchGenerator.fullscreen';
 
 /**
  * 配置类型
@@ -109,6 +110,33 @@ export class Background implements Disposable {
     }
 
     /**
+     * fullscreen 透明度超出 `0 ~ FULLSCREEN_MAX_OPACITY` 时会被钳制，给用户提示，避免看起来像「改了没效果」（#636）
+     *
+     * @private
+     * @memberof Background
+     */
+    private warnFullscreenOpacity() {
+        const { enabled, fullscreen } = this.config;
+        if (!enabled || !fullscreen?.images?.length) {
+            return;
+        }
+
+        // 非数字由 settings 的 schema 校验提示，这里只管数值越界
+        const opacity = fullscreen.opacity;
+        const clamped = clampFullscreenOpacity(opacity);
+        if (typeof opacity !== 'number' || opacity === clamped) {
+            return;
+        }
+
+        const args = { value: opacity, clamped };
+        vscode.window.showWarningMessage(
+            opacity > clamped
+                ? l10n.t('background.fullscreen.opacity {value} clamped to max {clamped}.', args)
+                : l10n.t('background.fullscreen.opacity {value} clamped to min {clamped}.', args)
+        );
+    }
+
+    /**
      * 配置改变，confirm 并提示应用&重启
      *
      * @private
@@ -118,6 +146,8 @@ export class Background implements Disposable {
     private async onConfigChange() {
         const hasInstalled = await this.hasInstalled();
         const enabled = this.config.enabled;
+
+        this.warnFullscreenOpacity();
 
         // 禁用
         if (!enabled) {
@@ -166,6 +196,8 @@ export class Background implements Disposable {
         await this.removeLegacyJsPatch();
 
         await this.checkFirstload();
+
+        this.warnFullscreenOpacity();
 
         const patchType = await this.htmlFile.getPatchType();
 
