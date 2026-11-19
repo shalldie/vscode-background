@@ -3,5 +3,5 @@ import { FullscreenPatchGenerator, FullscreenPatchGeneratorConfig } from './Patc
 export class PanelPatchGeneratorConfig extends FullscreenPatchGeneratorConfig {}
 
 export class PanelPatchGenerator extends FullscreenPatchGenerator<PanelPatchGeneratorConfig> {
-    protected selector = '.split-view-view > .part.panel::after';
+    protected selector = '.split-view-view > .part.panel > .content::after';
 }
