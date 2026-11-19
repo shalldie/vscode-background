@@ -3,5 +3,5 @@ import { FullscreenPatchGenerator, FullscreenPatchGeneratorConfig } from './Patc
 export class AuxiliarybarPatchGeneratorConfig extends FullscreenPatchGeneratorConfig {}
 
 export class AuxiliarybarPatchGenerator extends FullscreenPatchGenerator<AuxiliarybarPatchGeneratorConfig> {
-    protected selector = '.split-view-view > .part.auxiliarybar::after';
+    protected selector = '.split-view-view > .part.auxiliarybar > .content::after';
 }

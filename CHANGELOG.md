@@ -1,3 +1,9 @@
+## v3.2.0 (2026/11/19)
+
+- fix: sidebar/panel/auxiliarybar backgrounds broken under Modern UI by @shalldie
+
+**Full Changelog**: https://github.com/shalldie/vscode-background/compare/v3.1.0...v3.2.0
+
 ## v3.1.0 (2026/09/11)
 
 - fix: avoid corrupting CSP directives when injecting inline script support by @Moli13337 in [#631](https://github.com/shalldie/vscode-background/pull/631)
