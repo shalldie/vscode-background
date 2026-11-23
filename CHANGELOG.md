@@ -1,3 +1,9 @@
+## v3.2.1 (2026/11/23)
+
+- fix: restore sidebar background for Sidebar2 layout (fix #644) by @mahagst in [#645](https://github.com/shalldie/vscode-background/pull/645)
+
+**Full Changelog**: https://github.com/shalldie/vscode-background/compare/v3.2.0...v3.2.1
+
 ## v3.2.0 (2026/11/19)
 
 - fix: sidebar/panel/auxiliarybar backgrounds broken under Modern UI by @shalldie

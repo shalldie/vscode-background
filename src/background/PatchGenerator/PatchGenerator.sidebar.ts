@@ -3,7 +3,10 @@ import { FullscreenPatchGenerator, FullscreenPatchGeneratorConfig } from './Patc
 export class SidebarPatchGeneratorConfig extends FullscreenPatchGeneratorConfig {}
 
 export class SidebarPatchGenerator extends FullscreenPatchGenerator<SidebarPatchGeneratorConfig> {
-    // Classic `.content` + Cursor Sidebar2 (no `.content` child)
-    protected selector =
-        '.split-view-view > .part.sidebar > .content::after, .split-view-view > .part.sidebar > div:first-child:has(.sidebar2-compositeComponent)::after';
+    protected selector = [
+        // VS Code DOM (`.content` child)
+        '.split-view-view > .part.sidebar > .content::after',
+        // Cursor Sidebar2 DOM (no `.content` child)
+        '.split-view-view > .part.sidebar > div:first-child:has(.sidebar2-compositeComponent)::after'
+    ].join(', ');
 }
