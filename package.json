@@ -1,7 +1,7 @@
 {
   "name": "background",
   "displayName": "background",
-  "version": "3.2.1",
+  "version": "3.3.0-beta.1",
   "description": "Bring background images to your vscode",
   "categories": [
     "Other"
@@ -141,6 +141,7 @@
               "markdownDescription": "%extension.background.editor.random%"
             }
           },
+          "additionalProperties": false,
           "markdownDescription": "%extension.background.editor.description%"
         },
         "background.fullscreen": {
@@ -196,6 +197,7 @@
               "markdownDescription": "%extension.background.fullscreen.random%"
             }
           },
+          "additionalProperties": false,
           "markdownDescription": "%extension.background.fullscreen.description%"
         },
         "background.sidebar": {
@@ -232,6 +234,7 @@
               "$ref": "#/properties/background.fullscreen/properties/random"
             }
           },
+          "additionalProperties": false,
           "markdownDescription": "%extension.background.sidebar.description%"
         },
         "background.auxiliarybar": {
@@ -268,6 +271,7 @@
               "$ref": "#/properties/background.fullscreen/properties/random"
             }
           },
+          "additionalProperties": false,
           "markdownDescription": "%extension.background.auxiliarybar.description%"
         },
         "background.panel": {
@@ -304,6 +308,7 @@
               "$ref": "#/properties/background.fullscreen/properties/random"
             }
           },
+          "additionalProperties": false,
           "markdownDescription": "%extension.background.panel.description%"
         }
       }
