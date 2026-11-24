@@ -125,7 +125,7 @@ function setNextStyles() {
     let curStyle = styleTemplate;
     const nextStyles = getNextStyles();
     for (let i = 0; i < nextStyles.length; i++) {
-        const reg = new RegExp(cssPlaceholder + i + '[^;]+;', 'g');
+        const reg = new RegExp(cssPlaceholder + i + ':[^;]+;', 'g');
         curStyle = curStyle.replace(reg, nextStyles[i]);
     }
     style.textContent = curStyle;
