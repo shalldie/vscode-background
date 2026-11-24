@@ -93,8 +93,8 @@ export class EditorPatchGenerator extends AbsPatchGenerator<EditorPatchGenerator
 const styleTemplate = ${JSON.stringify(this.styleTemplate)};
 const cssPlaceholder = '${this.cssPlaceholder}';
 const imageStyles = ${JSON.stringify(this.imageStyles)};
-const interval = ${interval};
-const random = ${random};
+const interval = ${Number(interval) || 0};
+const random = ${random === true};
 
 // variables
 let curIndex = -1;

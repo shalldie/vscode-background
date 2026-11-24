@@ -73,8 +73,8 @@ export class FullscreenPatchGenerator<T extends FullscreenPatchGeneratorConfig> 
         }
         return `
 const imageRules = ${JSON.stringify(this.imageRules)};
-const random = ${random};
-const interval = ${interval};
+const random = ${random === true};
+const interval = ${Number(interval) || 0};
 
 let curIndex = -1;
 
