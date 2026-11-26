@@ -1,3 +1,13 @@
+## v3.3.0 (2026/11/26)
+
+- feat: warn on unsupported properties in section settings by @shalldie
+- fix: editor placeholder regex matched longer indices when images > 10 by @shalldie
+- fix: coerce interval/random before interpolating into generated script by @shalldie
+- fix: tighten remote image check and clean legacy JS patch only on first load by @shalldie
+- chore: upgrade dependencies by @shalldie
+
+**Full Changelog**: https://github.com/shalldie/vscode-background/compare/v3.2.1...v3.3.0
+
 ## v3.2.1 (2026/11/23)
 
 - fix: restore sidebar background for Sidebar2 layout (fix #644) by @mahagst in [#645](https://github.com/shalldie/vscode-background/pull/645)
