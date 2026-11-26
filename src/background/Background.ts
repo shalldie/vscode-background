@@ -163,9 +163,10 @@ export class Background implements Disposable {
      * @memberof Background
      */
     public async setup(): Promise<void> {
-        await this.removeLegacyJsPatch();
-
-        await this.checkFirstload();
+        // 旧版本 patch 只需在每个版本首次加载时清理一次，避免每次激活都读取大体积的 JS 文件
+        if (await this.checkFirstload()) {
+            await this.removeLegacyJsPatch();
+        }
 
         const patchType = await this.htmlFile.getPatchType();
 

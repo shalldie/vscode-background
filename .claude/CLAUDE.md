@@ -49,7 +49,7 @@ VS Code 1.123.0+ 对 `vscode-file://` 协议的 JS 资源启用了内存缓存�
 
 `setup()` 在激活时：
 
-1. 先调用 `removeLegacyJsPatch()` 清除 v2.1 之前遗留在 JS 文件（`workbench.desktop.main.js`）中的 patch。
+1. 仅在当前扩展版本首次加载（`checkFirstload()` 返回 `true`）时，调用 `removeLegacyJsPatch()` 清除 v2.1 之前遗留在 JS 文件（`workbench.desktop.main.js`）中的 patch。该文件体积很大，不要改成每次激活都读取。
 2. 若发现 `enabled && (Legacy || None)`，弹通知提示 "Apply and Reload"。
 
 ### PatchGenerator 子模块
