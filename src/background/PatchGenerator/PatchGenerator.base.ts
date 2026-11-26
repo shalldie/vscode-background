@@ -59,7 +59,7 @@ export class AbsPatchGenerator<T extends { images: string[] }> {
             images: images.flatMap(img => {
                 // ------ online images，`https://` ------
                 // ------ data URL，`data:image/png;base64,<BASE64_ENCODED_DATA>` ------
-                if (['http', 'data:'].some(prefix => img.startsWith(prefix))) {
+                if (/^(https?:\/\/|data:)/i.test(img)) {
                     return [img];
                 }
                 // ------ local ------
